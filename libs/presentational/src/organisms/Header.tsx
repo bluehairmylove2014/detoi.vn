@@ -2,6 +2,7 @@
 
 import Logo from '@presentational/molecules/Logo';
 import Help from '../assets/icon/help.svg';
+import CWEBFAIcon from '@presentational/atoms/CWEBFAIcon';
 
 function Header() {
   return (
@@ -118,11 +119,12 @@ function Header() {
     //     </div>
     //   </nav>
     // </header>
-    <header>
-      <nav className="bg-white px-[30px] py-[18px]">
-        <div className="flex flex-wrap justify-between items-center max-w-full min-w-full">
-          <Logo />
-          {/* <div
+    <div className="xl:container">
+      <header>
+        <nav className="bg-white px-[30px] py-[18px]">
+          <div className="flex flex-wrap justify-between items-center max-w-full min-w-full">
+            <Logo />
+            {/* <div
             className="hidden justify-between items-center w-full md:flex lg:w-auto "
             // id="mobile-menu-2"
           >
@@ -138,41 +140,45 @@ function Header() {
               </li>
             </ul>
           </div> */}
-          <div className="flex items-center justify-center md:gap-[40px]">
-            <button className="hidden md:block text-black text-[16px] font-semibold md:font-bold md:py-[0.85rem] lg:py-[0.6rem]  ">
-              {/* <img src={Help.src} /> */}
-              <span className="inline">Hỗ trợ</span>
-            </button>
-            <button className="hidden md:block text-black text-[16px] font-semibold md:font-bold md:py-[0.85rem] lg:py-[0.6rem]  ">
-              Trở thành Freelancer
-            </button>
-            <button className="hidden md:block text-black text-[16px] font-semibold md:font-bold md:py-[0.85rem] lg:py-[0.6rem]  ">
-              Chính sách
-            </button>
-            <button className=" text-black text-[16px] font-semibold md:font-bold md:px-[2.28rem] md:py-[0.85rem] lg:px-[1.6rem] lg:py-[0.6rem] md:border-solid md:border-3 md:border-black rounded-md ">
-              Đăng nhập
-            </button>
-            <button
-              data-collapse-toggle="mobile-menu-2"
-              type="button"
-              className="inline-flex items-center p-2 ml-2 text-sm text-black md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
-              aria-controls="mobile-menu-2"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="16"
-                width="14"
-                viewBox="0 0 448 512"
+            <div className="flex items-center justify-center md:gap-[40px] ">
+              <button className="hidden md:block text-black text-[16px] font-semibold md:font-bold md:py-[0.85rem] lg:py-[0.6rem]  ">
+                {/* <img src={Help.src} /> */}
+                <div className="flex justify-center items-center">
+                  <CWEBFAIcon iconName="faCircleQuestion" className="" />
+                  <span className="ml-1.5">Hỗ trợ</span>
+                </div>
+              </button>
+              <button className="hidden md:block text-black text-[16px] font-semibold md:font-bold md:py-[0.85rem] lg:py-[0.6rem]">
+                Trở thành Freelancer
+              </button>
+              <button className="hidden md:block text-black text-[16px] font-semibold md:font-bold md:py-[0.85rem] lg:py-[0.6rem]  ">
+                Chính sách
+              </button>
+              <button className=" text-black text-[16px] font-semibold md:font-bold px-[32px] py-[12px] md:border-solid md:border-3 md:border-black rounded-md ">
+                Đăng nhập
+              </button>
+              <button
+                data-collapse-toggle="mobile-menu-2"
+                type="button"
+                className="inline-flex items-center p-2 ml-2 text-sm text-black md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+                aria-controls="mobile-menu-2"
+                aria-expanded="false"
               >
-                <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
-              </svg>
-            </button>
+                <span className="sr-only">Open main menu</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="18"
+                  width="18"
+                  viewBox="0 0 448 512"
+                >
+                  <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
+    </div>
     // <header>
     //   <nav className="bg-white py-[2rem] md:px-[2.42rem] lg:px-6 md:pt-[16px] lg:pt-[16px] ">
     //     <div className="flex flex-wrap md:justify-between items-center max-w-full min-w-full">
