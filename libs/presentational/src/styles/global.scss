@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "./animations.scss";
+@import '@fortawesome/fontawesome-svg-core/styles.css';
 
 // Responsive settings
 $desktop-breakpoint: 1024px;

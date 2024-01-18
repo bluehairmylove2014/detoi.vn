@@ -1,3 +1,3 @@
-export * from './process/hooks';
-export * from './process/context/type';
-export * from './process/provider';
+export * from './hooks';
+export * from './context/type';
+export * from './provider';
