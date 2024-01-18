@@ -3,7 +3,7 @@ import { AuthProvider, AuthProviderType } from '../lib/auth/process/provider';
 import {
   PaginationProvider,
   paginationProviderType,
-} from '../non-service-lib/pagination/process/provider/PaginationProvider';
+} from '../non-service-lib/pagination/provider';
 import {
   RealtimeProvider,
   realtimeProviderType,
@@ -23,7 +23,7 @@ export const authConfig = {
  * MUTATION CONFIG FOR REACT-QUERY
  */
 export const mutationConfig = {
-  MUTATION_RETRY: 0,
+  MUTATION_RETRY: 1,
   USE_QUERY_RETRY: 1,
 };
 
