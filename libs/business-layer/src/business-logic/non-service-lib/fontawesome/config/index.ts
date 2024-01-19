@@ -2,6 +2,8 @@ import {
   faAppleAlt,
   faArrowRight,
   faArrowLeft,
+  faEnvelope,
+  faPhone,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -9,6 +11,7 @@ import {
   faFacebookF,
   faGooglePlay,
   faInstagram,
+  faWebflow,
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 // import {  } from '@fortawesome/free-regular-svg-icons';
@@ -23,6 +26,9 @@ export const CWEB_ICON_LIST = {
   faFacebookF: faFacebookF,
   faInstagram: faInstagram,
   faYoutube: faYoutube,
+  faEnvelope: faEnvelope,
+  faPhone: faPhone,
+  faWebflow: faWebflow,
 };
 
 // Customer App Icon
