@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "./animations.scss";
+@import "./customClass.scss";
 @import '@fortawesome/fontawesome-svg-core/styles.css';
 
 // Responsive settings
@@ -139,6 +140,7 @@ h6 {
 p {
     font-size: 0.75rem;
     margin: 0;
+    font-weight: 500;
 }
 
 small {
