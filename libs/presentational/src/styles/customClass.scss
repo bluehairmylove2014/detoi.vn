@@ -1,0 +1,29 @@
+.showAllChildWhenHover {
+    * {
+        transition: all 0.1s ease-in-out;
+    }
+
+    &:hover {
+        *:not(strong) {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+    }
+}
+
+.showAllChildWhenActive.active {
+    &>* {
+        transition: all 0.1s ease-in-out;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+
+.momentum-forward-icon.icon {
+    animation: gain-momentum-surge-forward 0.3s ease-in-out forwards;
+    animation-play-state: paused;
+
+    &:hover {
+        animation-play-state: running;
+    }
+}
