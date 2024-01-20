@@ -1,5 +1,5 @@
 import CWEBFAIcon from '@presentational/atoms/CWEBFAIcon';
-import ButtonWithIcon from '@presentational/atoms/ButtonWithIcon';
+import IconButton from '@presentational/atoms/IconButton';
 import Image from 'next/image';
 import Link from 'next/link';
 import qrDetoi from '@assets/qrDetoi.png';
@@ -79,23 +79,23 @@ function Footer() {
                 MẠNG XÃ HỘI
               </h5>
               <div className="flex justify-between mx-5">
-                <ButtonWithIcon
-                  type="button"
+                <IconButton
                   shape="circle"
                   iconName="faFacebookF"
                   background="whiteYellow"
+                  color="black"
                 />
-                <ButtonWithIcon
-                  type="button"
+                <IconButton
                   shape="circle"
                   iconName="faInstagram"
                   background="whiteYellow"
+                  color="black"
                 />
-                <ButtonWithIcon
-                  type="button"
+                <IconButton
                   shape="circle"
                   iconName="faYoutube"
                   background="whiteYellow"
+                  color="black"
                 />
               </div>
               <hr className="my-4"></hr>
