@@ -13,10 +13,10 @@ import {
 function Footer() {
   return (
     <div className="w-full bg-black relative grid place-items-center">
-      <div className="container text-gray-400 px-8 py-16 grid grid-cols-5 md:px-0 xl:px-5 xl:text-base md:text-sm sm:text-2xl">
+      <div className="container text-gray-400 text-2xl px-16 py-16 grid grid-cols-5 md:px-0 xl:px-5 xl:text-base md:text-sm ">
         <div className="flex flex-col space-y-10 col-span-3 justify-center md:space-y-0 md:flex-row mr-1">
           <div className="flex-1">
-            <h4 className="mb-2 text-white sm:text-2xl md:text-base">
+            <h4 className="mb-2 text-white text-2xl md:text-base">
               VỀ CHÚNG TÔI
             </h4>
             <ul className="space-y-2">
@@ -29,9 +29,7 @@ function Footer() {
           </div>
 
           <div className="flex-1">
-            <h5 className="mb-2 text-white sm:text-2xl md:text-base">
-              HƯỚNG DẪN
-            </h5>
+            <h5 className="mb-2 text-white text-2xl md:text-base">HƯỚNG DẪN</h5>
             <ul className="xl:space-y-2 md:space-y-1">
               {INSTRUCTION.map((info) => (
                 <li className=" hover:text-white" key={info.title}>
@@ -42,9 +40,7 @@ function Footer() {
           </div>
 
           <div className="flex-1">
-            <h5 className="mb-2 text-white sm:text-2xl md:text-base">
-              QUY ĐỊNH
-            </h5>
+            <h5 className="mb-2 text-white text-2xl md:text-base">QUY ĐỊNH</h5>
             <ul className="space-y-2">
               {POLICY.map((info) => (
                 <li className="hover:text-white" key={info.title}>
@@ -57,9 +53,7 @@ function Footer() {
 
         <div className="flex flex-col space-y-10 md:space-y-0 md:flex-row col-span-2 md:justify-end">
           <div className="flex-2 md:mr-6">
-            <h5 className="text-white mb-2 sm:text-2xl md:text-base">
-              TỔNG ĐÀI
-            </h5>
+            <h5 className="text-white mb-2 text-2xl md:text-base">TỔNG ĐÀI</h5>
             <ul className="space-y-2">
               {SWITCH_BOARD.map((info) => (
                 <li className="text-white" key={info.title}>
@@ -75,10 +69,10 @@ function Footer() {
           </div>
           <div className="flex-1">
             <div className="flex flex-col">
-              <h5 className="text-white mb-2 sm:text-2xl md:text-base">
+              <h5 className="text-white mb-2 text-2xl md:text-base">
                 MẠNG XÃ HỘI
               </h5>
-              <div className="flex justify-between mx-5">
+              <div className="flex justify-between px-5 pb-4 mb-4 border-b">
                 <IconButton
                   shape="circle"
                   iconName="faFacebookF"
@@ -98,7 +92,6 @@ function Footer() {
                   color="black"
                 />
               </div>
-              <hr className="my-4"></hr>
               <div className="flex justify-between items-start">
                 <p className="text-white italic mr-1 xl:text-sm md:text-xs text-xl">
                   Quét QR để liên hệ với chúng tôi
