@@ -5,10 +5,10 @@
 
 <p align="center">
   <a href="https://apps.apple.com/us/app/nmf-earth/id1494561829">
-    <img alt="app-store" src="https://github.com/NotMyFaultEarth/nmf-app/blob/main/app-store.png" />
+    <img alt="app-store" src="#" />
   </a>
   <a href="https://play.google.com/store/apps/details?id=nmf.earth">
-    <img alt="google-play" src="https://github.com/NotMyFaultEarth/nmf-app/blob/main/play-store.png" />
+    <img alt="google-play" src="#" />
   </a>
 </p>
 
@@ -23,7 +23,7 @@
 [![runs with expo](https://img.shields.io/badge/Runs%20with%20Expo-000.svg?style=flat-square&logo=EXPO&labelColor=f3f3f3&logoColor=000)](https://expo.io/)
 
 Repository for the [NMF.earth](https://nmf.earth/) React Native application, built with Expo, Redux Toolkit and Typescript.
-Design can be found on [Figma](https://www.figma.com/community/file/967052407514062912).
+Design can be found on [Figma] 
 
 <br />
 
