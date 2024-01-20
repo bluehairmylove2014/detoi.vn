@@ -166,29 +166,5 @@ First you need to configure `SENTRY_AUTH_TOKEN` and `SENTRY_DSN` secrets on [exp
 Run `eas build -p ios` to build for the [App Store Connect](https://appstoreconnect.apple.com) and `eas build -p android` for the [Google Play Console](https://play.google.com/console/developers).
 
 <br />
-
-### 👨‍💻 Contribute ❤️
-
-More than 40 developers have contribute to the app, thanks a lot to [them](https://github.com/NMF-earth/nmf-app/graphs/contributors)!
-
-Have a look to [contributing.md](https://github.com/NotMyFaultEarth/nmf-app/blob/main/contributing.md) if you want to contribute!
-
-<br />
-
-### 🏆 Backers
-
-A big thank you to [Christopher Gwilliams](https://github.com/encima) and to the Phelps family for their amazing contribution to the [Kickstarter](https://www.kickstarter.com/projects/pierrebresson/not-my-fault)!
-
-<br />
-
-### ©️ Open source - licence
-
-Repository and contributions are under [GNU General Public License v3.0](https://github.com/NotMyFaultEarth/nmf-app/blob/main/LICENSE)
-
-
-# Jest:
-Testing 
-
-# Asset:
-Font, images, guilds, quotes, methodology, emission-info
-
+ 
+ 
