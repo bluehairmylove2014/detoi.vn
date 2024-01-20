@@ -4,11 +4,11 @@
 <br />
 
 <p align="center">
-  <a href="https://apps.apple.com/us/app/nmf-earth/id1494561829">
-    <img alt="app-store" src="#" />
+  <a href="#">
+    <img alt="app-store" src="https://github.com/NotMyFaultEarth/nmf-app/blob/main/app-store.png" />
   </a>
-  <a href="https://play.google.com/store/apps/details?id=nmf.earth">
-    <img alt="google-play" src="#" />
+  <a href="#">
+    <img alt="google-play" src="https://github.com/NotMyFaultEarth/nmf-app/blob/main/play-store.png" />
   </a>
 </p>
 
