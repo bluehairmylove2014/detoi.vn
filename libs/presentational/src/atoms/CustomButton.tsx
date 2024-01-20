@@ -6,8 +6,7 @@ type buttonType = 'button' | 'submit' | 'link';
 type buttonStyle =
   | 'fill-primary' // blue background, white color
   | 'fill-secondary' // gray background, black color
-  | 'fill-error' // red bg, white color
-  | 'fill-green'
+  | 'fill-white'
   | 'fill-black';
 type commonButtonType = {
   children: React.ReactNode | string | number;
@@ -26,33 +25,27 @@ function getTailwindClassStyle(style: buttonStyle) {
   switch (style) {
     case 'fill-primary':
       return {
-        normal: 'bg-blue-500 hover:bg-blue-700',
-        disabled: 'disabled:bg-cyan-500 disabled:cursor-not-allowed',
-        common: 'rounded text-white transition-colors',
+        normal: 'btn-primary',
+        // disabled: 'disabled:bg-cyan-500 disabled:cursor-not-allowed',
+        // common: 'rounded text-white transition-colors',
       };
     case 'fill-secondary':
       return {
-        normal: 'bg-gray-100 hover:bg-gray-300',
-        disabled: 'disabled:bg-gray-300 disabled:cursor-not-allowed',
-        common: 'rounded text-black transition-colors',
+        normal: 'btn-secondary',
+        // disabled: 'disabled:bg-gray-300 disabled:cursor-not-allowed',
+        // common: 'rounded text-black transition-colors',
       };
-    case 'fill-green':
+    case 'fill-white':
       return {
-        normal: 'bg-green-600 hover:bg-green-500',
-        disabled: 'disabled:bg-gray-300 disabled:cursor-not-allowed',
-        common: 'rounded text-white transition-colors',
-      };
-    case 'fill-error':
-      return {
-        normal: 'bg-rose-600 hover:bg-gray-500',
-        disabled: 'disabled:bg-gray-300 disabled:cursor-not-allowed',
-        common: 'rounded text-white transition-colors',
+        normal: 'btn-white',
+        // disabled: 'disabled:bg-gray-300 disabled:cursor-not-allowed',
+        // common: 'rounded text-white transition-colors',
       };
     case 'fill-black':
       return {
-        normal: 'bg-black hover:bg-neutral-800',
-        disabled: 'disabled:bg-gray-300 disabled:cursor-not-allowed',
-        common: 'rounded text-white transition-colors',
+        normal: 'btn-black',
+        // disabled: 'disabled:bg-gray-300 disabled:cursor-not-allowed',
+        // common: 'rounded text-white transition-colors',
       };
     default:
       return {
@@ -82,13 +75,13 @@ function CustomButton({
   return type === 'link' ? (
     <Link
       href={href ?? '#'}
-      className={`${commonStyle} ${disabledStyle} ${normalStyle} shadow-sm w-full py-2 font-semibold text-xs block`}
+      className={`${commonStyle} ${disabledStyle} ${normalStyle} btn block`}
     >
       {children}
     </Link>
   ) : (
     <button
-      className={`${commonStyle} ${disabledStyle} ${normalStyle} shadow-sm w-full py-2 font-semibold text-xs`}
+      className={`${commonStyle} ${disabledStyle} ${normalStyle} btn`}
       onClick={onClick}
       disabled={disabled || loading}
       type={type ?? defaultType}
