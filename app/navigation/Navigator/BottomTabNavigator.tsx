@@ -19,7 +19,7 @@ const BottomTabNavigator = (): React.ReactElement => {
   const { bottom } = useSafeAreaInsets();
   return (
     <BottomTab.Navigator
-      initialRouteName={"EmissionsNavigator"}
+      initialRouteName={"BudgetNavigator"}
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: Colors.primary,

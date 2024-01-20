@@ -7,7 +7,11 @@ const Stack = createStackNavigator();
 
 const BudgetNavigator = (): React.ReactElement => (
   <Stack.Navigator>
-    <Stack.Screen name="Example" options={BudgetScreen.navigationOptions} component={BudgetScreen} />
+    <Stack.Screen
+      name="Example"
+      options={BudgetScreen.navigationOptions}
+      component={BudgetScreen}
+    />
   </Stack.Navigator>
 );
 

@@ -19,21 +19,12 @@ import AppNavigator from "./app/navigation/Navigator/AppNavigator";
 import store from "./app/redux/store";
 
 const supportedLanguages: string[] = [
+  "vi",
   "en",
   "fr",
-  "de",
-  "sv",
-  "da",
-  "ru",
-  "pt",
-  "pl",
-  "zh",
-  "ms",
-  "es",
-  "it",
-  "ar",
+  
 ];
-const defaultLanguage = "en";
+const defaultLanguage = "vi";
 const defaultLocale = "en-us";
 
 loadGlobalize();
