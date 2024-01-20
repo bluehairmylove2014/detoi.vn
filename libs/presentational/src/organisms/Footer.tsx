@@ -1,117 +1,26 @@
 import CWEBFAIcon from '@presentational/atoms/CWEBFAIcon';
-import IconButtonWithHover from '@presentational/atoms/IconButtonWithHover';
+import ButtonWithIcon from '@presentational/atoms/ButtonWithIcon';
 import Image from 'next/image';
 import Link from 'next/link';
 import qrDetoi from '@assets/qrDetoi.png';
+import {
+  ABOUT_US,
+  INSTRUCTION,
+  POLICY,
+  SWITCH_BOARD,
+} from '../../../constants/infoFooter';
 
 function Footer() {
-  const aboutUs = [
-    {
-      link: '#',
-      title: 'Giới thiệu',
-    },
-    {
-      link: '#',
-      title: 'Quan hệ cổ đông',
-    },
-    {
-      link: '#',
-      title: 'Tin tức & Sự kiện',
-    },
-    {
-      link: '#',
-      title: 'Tuyển dụng',
-    },
-    {
-      link: '#',
-      title: 'Thông tin ngành',
-    },
-  ];
-
-  const instruction = [
-    {
-      link: '#',
-      title: 'Báo giá hỗ trợ',
-    },
-    {
-      link: '#',
-      title: 'Câu hỏi thường gặp',
-    },
-    {
-      link: '#',
-      title: 'Về chúng tôi',
-    },
-    {
-      link: '#',
-      title: 'Tin nội bộ',
-    },
-    {
-      link: '#',
-      title: 'Liên hệ',
-    },
-  ];
-
-  const policy = [
-    {
-      link: '#',
-      title: 'Tổng đài hỗ trợ',
-    },
-    {
-      link: '#',
-      title: 'Quy chế hoạt động',
-    },
-    {
-      link: '#',
-      title: 'Điều khoản thỏa thuận',
-    },
-    {
-      link: '#',
-      title: 'Chính sách bảo mật',
-    },
-    {
-      link: '#',
-      title: 'Giải quyết khiếu nại',
-    },
-  ];
-
-  const switchboard = [
-    {
-      icon: 'faPhone' as const,
-      title: '0902987088',
-    },
-    {
-      icon: 'faWebflow' as const,
-      title: 'cskh@safeclean.vn',
-    },
-    {
-      icon: 'faEnvelope' as const,
-      title: 'info@safeclean.vn',
-    },
-  ];
-
   return (
     <div className="w-full bg-black relative grid place-items-center">
-      <div className="container text-gray-400 py-[4rem] px-[2rem] grid grid-cols-5 md:text-sm sm:text-2xl">
-        <div className="flex flex-col space-y-10 col-span-3 justify-center md:space-y-0 md:flex-row">
-          <div className="flex-1 md:mr-2 ">
-            <h4 className="text-yellow-500 mb-2 sm:text-2xl md:text-base">
+      <div className="container text-gray-400 px-8 py-16 grid grid-cols-5 md:px-0 xl:px-5 xl:text-base md:text-sm sm:text-2xl">
+        <div className="flex flex-col space-y-10 col-span-3 justify-center md:space-y-0 md:flex-row mr-1">
+          <div className="flex-1">
+            <h4 className="mb-2 text-white sm:text-2xl md:text-base">
               VỀ CHÚNG TÔI
             </h4>
             <ul className="space-y-2">
-              {aboutUs.map((info) => (
-                <li className=" hover:text-white" key={info.title}>
-                  <Link href={info.link}>{info.title}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="flex-1 md:mr-2 ">
-            <h5 className="text-yellow-500 mb-2 sm:text-2xl md:text-base">
-              HƯỚNG DẪN
-            </h5>
-            <ul className="space-y-2">
-              {instruction.map((info) => (
+              {ABOUT_US.map((info) => (
                 <li className=" hover:text-white" key={info.title}>
                   <Link href={info.link}>{info.title}</Link>
                 </li>
@@ -120,11 +29,24 @@ function Footer() {
           </div>
 
           <div className="flex-1">
-            <h5 className="text-yellow-500 mb-2 sm:text-2xl md:text-base">
+            <h5 className="mb-2 text-white sm:text-2xl md:text-base">
+              HƯỚNG DẪN
+            </h5>
+            <ul className="xl:space-y-2 md:space-y-1">
+              {INSTRUCTION.map((info) => (
+                <li className=" hover:text-white" key={info.title}>
+                  <Link href={info.link}>{info.title}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex-1">
+            <h5 className="mb-2 text-white sm:text-2xl md:text-base">
               QUY ĐỊNH
             </h5>
             <ul className="space-y-2">
-              {policy.map((info) => (
+              {POLICY.map((info) => (
                 <li className="hover:text-white" key={info.title}>
                   <Link href={info.link}>{info.title}</Link>
                 </li>
@@ -134,17 +56,17 @@ function Footer() {
         </div>
 
         <div className="flex flex-col space-y-10 md:space-y-0 md:flex-row col-span-2 md:justify-end">
-          <div className="sm:flex-2 md:flex-1">
-            <h5 className="text-yellow-500 mb-2 sm:text-2xl md:text-base">
+          <div className="flex-2 md:mr-6">
+            <h5 className="text-white mb-2 sm:text-2xl md:text-base">
               TỔNG ĐÀI
             </h5>
             <ul className="space-y-2">
-              {switchboard.map((info) => (
+              {SWITCH_BOARD.map((info) => (
                 <li className="text-white" key={info.title}>
                   <CWEBFAIcon
                     iconName={info.icon}
                     color="white"
-                    className="xl:h-4 xl:w-4 md:h-3 md:w-3"
+                    className="md:h-2.5 md:w-2.5 xl:h-4 xl:w-4"
                   />{' '}
                   {info.title}
                 </li>
@@ -153,27 +75,35 @@ function Footer() {
           </div>
           <div className="flex-1">
             <div className="flex flex-col">
-              <h5 className="text-yellow-500 mb-2 sm:text-2xl md:text-base">
+              <h5 className="text-white mb-2 sm:text-2xl md:text-base">
                 MẠNG XÃ HỘI
               </h5>
-              <div className="flex justify-between px-3">
-                <IconButtonWithHover type="button" shape="circle">
-                  <CWEBFAIcon iconName="faFacebookF" color="black" />
-                </IconButtonWithHover>
-                <IconButtonWithHover type="button" shape="circle">
-                  <CWEBFAIcon iconName="faInstagram" color="black" />
-                </IconButtonWithHover>
-                <IconButtonWithHover type="button" shape="circle">
-                  <CWEBFAIcon iconName="faYoutube" color="black" />
-                </IconButtonWithHover>
+              <div className="flex justify-between mx-5">
+                <ButtonWithIcon
+                  type="button"
+                  shape="circle"
+                  iconName="faFacebookF"
+                  background="whiteYellow"
+                />
+                <ButtonWithIcon
+                  type="button"
+                  shape="circle"
+                  iconName="faInstagram"
+                  background="whiteYellow"
+                />
+                <ButtonWithIcon
+                  type="button"
+                  shape="circle"
+                  iconName="faYoutube"
+                  background="whiteYellow"
+                />
               </div>
-              <hr className="my-3"></hr>
-              <div className="flex justify-between items-center">
-                <p className="text-white italic mr-1 sm:text-xl md:text-sm">
+              <hr className="my-4"></hr>
+              <div className="flex justify-between items-start">
+                <p className="text-white italic mr-1 xl:text-sm md:text-xs text-xl">
                   Quét QR để liên hệ với chúng tôi
                 </p>
-                <div></div>
-                <div className="w-[35%] h-[35%]">
+                <div className="w-28 h-28">
                   <Image src={qrDetoi} alt="qr" />
                 </div>
               </div>
