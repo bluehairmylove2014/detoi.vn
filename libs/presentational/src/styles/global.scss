@@ -4,7 +4,7 @@
 @import "./animations.scss";
 @import "./customClass.scss";
 @import '@fortawesome/fontawesome-svg-core/styles.css';
-@import './custom/button.scss';
+@import './button.scss';
 
 // Responsive settings
 $desktop-breakpoint: 1024px;
@@ -12,8 +12,6 @@ $tablet-breakpoint: 768px;
 $mobile-breakpoint: 480px;
 
 $container-width: 1400px;
-
-
 
 @font-face {
     font-family: 'LuckiestGuy';

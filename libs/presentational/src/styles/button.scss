@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    .btn {
+        @apply rounded transition-colors shadow-sm w-full py-2 font-semibold text-xs;
+    }
+
+    .btn-disable {
+        @apply disabled:bg-gray disabled:cursor-not-allowed;
+    }
+
+    .btn-primary {
+        @apply bg-primary text-white;
+    }
+
+    .btn-secondary {
+        @apply bg-secondary text-white;
+    }
+
+    .btn-white {
+        @apply bg-white text-secondary border-solid border-black;
+    }
+
+    .btn-black {
+        @apply bg-black text-white
+    }
+}
+
+// @layer utilities {
+//     @layer responsive {
+//         .btn-primary {
+//             background-color: theme('colors.primary')
+//         }
+
+//         .text-primary {
+//             color: theme("colors.primary");
+//         }
+
+//         // .bg-secondary {
+//         //     background-color: theme("colors.secondary");
+//         // }
+
+//         // .text-secondary {
+//         //     color: theme("colors.secondary");
+//         // }
+
+//     }
+// }
