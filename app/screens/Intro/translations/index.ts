@@ -1,5 +1,6 @@
 import en from "./en.json";
 import fr from "./fr.json";
+import vi from "./vi.json";
 
 interface TranslationKeys {
   INTRO_SCREEN_WELCOME: string;
@@ -8,4 +9,4 @@ interface TranslationKeys {
   INTRO_SCREEN_I_AGREE: string;
 }
 
-export { en, fr, TranslationKeys };
+export { vi, en, fr, TranslationKeys };

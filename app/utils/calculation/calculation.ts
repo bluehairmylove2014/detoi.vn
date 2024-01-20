@@ -1,21 +1,13 @@
-import { isEmpty, prop, reduce, maxBy, either, isNil, pipe, join } from "ramda";
+import { pipe } from "ramda";
 import {
-  transport,
   TransportType,
-  food,
-  getInternetUsageCarbonImpact,
-  ElectricityType,
-  electricity,
-  purchase,
-  fashion,
-  streaming,
-  meal,
+
 } from "carbon-footprint";
 
 import { t } from "../translations";
 import { MeasureType } from "../../types/measureType";
 
-const isNilOrEmpty = either(isNil, isEmpty);
+
 
 const getFlightType = (duration: number): TransportType => {
   /* Below 3 hours */
@@ -61,7 +53,6 @@ const getFlightEmissionValue = (duration: number): number => {
 };
 
 
-const getCreationDate: (Emission) => string = prop("creationDate");
 
 const toKWH = (x: number): number => (x * 3.6) / Math.pow(10, -6);
 const toKgCO2 = (x: number): number => x * 1000;
