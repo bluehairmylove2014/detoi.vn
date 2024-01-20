@@ -65,13 +65,13 @@ function Home() {
           </p>
           <div className="flex flex-row gap-4 justify-center items-center mt-4">
             <div className="w-36">
-              <CustomButton style="fill-black" type="link" href="#">
+              <CustomButton style="btn-black" type="link" href="#">
                 <CWEBFAIcon iconName="faApple" color="white" />{' '}
                 <span className="ml-1">App Store</span>
               </CustomButton>
             </div>
             <div className="w-36">
-              <CustomButton style="fill-black" type="link" href="#">
+              <CustomButton style="btn-black" type="link" href="#">
                 <CWEBFAIcon iconName="faGooglePlay" color="white" />{' '}
                 <span className="ml-1">Google Play</span>
               </CustomButton>
