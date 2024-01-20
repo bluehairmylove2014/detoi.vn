@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly TextInput 1`] = `
+<View
+  style={
+    {
+      "marginHorizontal": 16,
+      "marginTop": 12,
+    }
+  }
+>
+  <TouchableOpacity
+    activeOpacity={1}
+    onPress={[Function]}
+    style={
+      {
+        "flexDirection": "row",
+        "marginBottom": 14,
+      }
+    }
+  >
+    <Text.H3
+      green={false}
+    >
+      title
+    </Text.H3>
+  </TouchableOpacity>
+  <TextInput
+    onChangeText={[Function]}
+    placeholder="placeholder"
+    style={
+      {
+        "borderColor": "#F9F9F9",
+        "borderRadius": 20,
+        "borderWidth": 2,
+        "height": 40,
+        "marginBottom": 8,
+        "paddingHorizontal": 16,
+      }
+    }
+    value="value"
+  />
+</View>
+`;
+
+exports[`renders correctly TextInput if optional 1`] = `
+<View
+  style={
+    {
+      "marginHorizontal": 16,
+      "marginTop": 12,
+    }
+  }
+>
+  <TouchableOpacity
+    activeOpacity={1}
+    onPress={[Function]}
+    style={
+      {
+        "flexDirection": "row",
+        "marginBottom": 14,
+      }
+    }
+  >
+    <Text.H3
+      green={false}
+    >
+      title
+    </Text.H3>
+  </TouchableOpacity>
+  <TextInput
+    onChangeText={[Function]}
+    placeholder="placeholder"
+    style={
+      {
+        "borderColor": "#F9F9F9",
+        "borderRadius": 20,
+        "borderWidth": 2,
+        "height": 40,
+        "marginBottom": 8,
+        "paddingHorizontal": 16,
+      }
+    }
+    value="value"
+  />
+</View>
+`;

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`userPreferences actions should export expected actions 1`] = `
+{
+  "acceptTermsOfUse": [Function],
+  "changeLanguage": [Function],
+  "incrementTimesStarted": [Function],
+  "toggleNotifications": [Function],
+  "toggleUnits": [Function],
+  "updateLocation": [Function],
+}
+`;

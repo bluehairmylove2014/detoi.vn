@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly PermissionsRequest if camera 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#FFFFFF",
+      "flex": 1,
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "#FFFFFF",
+          "flex": 1,
+          "paddingHorizontal": 16,
+        },
+        {
+          "alignContent": "center",
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <Text.H2
+      center={true}
+    >
+      No access to camera
+    </Text.H2>
+    <Text.Primary
+      center={true}
+    >
+      Please give NMF.earth app access to camera in your phone settings to use this feature.
+    </Text.Primary>
+  </View>
+  <Button.Secondary
+    icon="settings"
+    onPress={[Function]}
+    style={
+      {
+        "marginBottom": 20,
+        "marginTop": 20,
+      }
+    }
+    text="Open settings"
+  />
+</View>
+`;
+
+exports[`renders correctly PermissionsRequest if notification 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#FFFFFF",
+      "flex": 1,
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "#FFFFFF",
+          "flex": 1,
+          "paddingHorizontal": 16,
+        },
+        {
+          "alignContent": "center",
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <Text.H2
+      center={true}
+    >
+      No permission to send notifications
+    </Text.H2>
+    <Text.Primary
+      center={true}
+    >
+      Please give NMF.earth app permission to send you notifications in your phone settings to use this feature.
+    </Text.Primary>
+  </View>
+  <Button.Secondary
+    icon="settings"
+    onPress={[Function]}
+    style={
+      {
+        "marginBottom": 20,
+        "marginTop": 20,
+      }
+    }
+    text="Open settings"
+  />
+</View>
+`;
