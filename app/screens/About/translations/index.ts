@@ -1,6 +1,6 @@
 import en from "./en.json";
 import fr from "./fr.json";
-
+import vi from "./vi.json";
 
 interface TranslationKeys {
   ABOUT_SCREEN_TITLE: string;
@@ -17,4 +17,4 @@ interface TranslationKeys {
   ABOUT_SCREEN_GITHUB: string;
 }
 
-export { en, fr, TranslationKeys };
+export { en, fr, vi, TranslationKeys };

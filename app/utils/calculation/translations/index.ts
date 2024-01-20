@@ -1,16 +1,7 @@
 import en from "./en.json";
 import fr from "./fr.json";
-import de from "./de.json";
-import sv from "./sv.json";
-import es from "./es.json";
-import pt from "./pt.json";
-import da from "./da.json";
-import ru from "./ru.json";
-import pl from "./pl.json";
-import zh from "./zh.json";
-import ms from "./ms.json";
-import it from "./it.json";
-import ar from "./ar.json";
+import vi from "./vi.json";
+
 
 interface TranslationKeys {
   CALCULATION_GRAMS_SYMBOL: string;
@@ -29,4 +20,4 @@ interface TranslationKeys {
   CALCULATION_MILES_FULL: string;
 }
 
-export { en, fr, de, sv, es, pt, da, ru, pl, zh, ms, it, ar, TranslationKeys };
+export { en, fr, vi, TranslationKeys };
