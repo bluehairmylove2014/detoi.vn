@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 
 import { NavStatelessComponent } from "interfaces";
 import Accordion from "components/Accordion";
