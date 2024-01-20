@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly ComingSoon 1`] = `
+<RCTSafeAreaView
+  style={
+    {
+      "backgroundColor": "#FFFFFF",
+      "flex": 1,
+      "justifyContent": "space-between",
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "flex": 2,
+      }
+    }
+  >
+    <StickersImage
+      sticker="bike"
+    />
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flex": 2,
+        "paddingHorizontal": 16,
+      }
+    }
+  >
+    <Text.H3
+      style={
+        {
+          "paddingVertical": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+      Welcome to NMF.earth 🌱
+    </Text.H3>
+    <Text.Tertiary
+      style={
+        {
+          "paddingVertical": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+      By proceeding, you are agreeing to our terms of use.
+    </Text.Tertiary>
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <Text.Tertiary
+        green={true}
+      >
+        Read terms of use
+      </Text.Tertiary>
+    </TouchableOpacity>
+    <View
+      style={
+        {
+          "bottom": 16,
+          "left": 0,
+          "marginHorizontal": 16,
+          "position": "absolute",
+          "right": 0,
+        }
+      }
+    >
+      <Button.Primary
+        fullWidth={true}
+        icon="checkmark"
+        onPress={[Function]}
+        text="I agree"
+      />
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;

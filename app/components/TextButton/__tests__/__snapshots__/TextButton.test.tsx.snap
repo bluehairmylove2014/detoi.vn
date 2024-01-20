@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextButton renders correctly with camera icon 1`] = `
+<TouchableOpacity
+  onPress={[Function]}
+  style={
+    {
+      "alignContent": "center",
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "width": 30,
+      }
+    }
+  >
+    <Ionicons
+      color="#3957D0"
+      name="camera"
+      size={20}
+    />
+  </View>
+  <View
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <Text.Primary
+      darkGray={true}
+      style={
+        {
+          "marginHorizontal": 8,
+        }
+      }
+    >
+      some text
+    </Text.Primary>
+  </View>
+  <View
+    style={
+      {
+        "width": 30,
+      }
+    }
+  >
+    <Ionicons
+      color="#0F853B"
+      name="create"
+      size={20}
+    />
+  </View>
+</TouchableOpacity>
+`;
+
+exports[`TextButton renders correctly with repeat icon 1`] = `
+<TouchableOpacity
+  onPress={[Function]}
+  style={
+    {
+      "alignContent": "center",
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "width": 30,
+      }
+    }
+  >
+    <Ionicons
+      color="#3957D0"
+      name="repeat"
+      size={20}
+    />
+  </View>
+  <View
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <Text.Primary
+      darkGray={true}
+      style={
+        {
+          "marginHorizontal": 8,
+        }
+      }
+    >
+      some text
+    </Text.Primary>
+  </View>
+  <View
+    style={
+      {
+        "width": 30,
+      }
+    }
+  >
+    <Ionicons
+      color="#0F853B"
+      name="create"
+      size={20}
+    />
+  </View>
+</TouchableOpacity>
+`;
