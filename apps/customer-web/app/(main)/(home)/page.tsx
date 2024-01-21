@@ -126,7 +126,7 @@ function Home() {
                 <CircleImage src={User_3_img} alt="user1" size="1.5rem" />
                 <CircleImage src={User_2_img} alt="user1" size="1.5rem" />
                 <CircleImage src={User_1_img} alt="user1" size="1.5rem" />
-                <div className="w-6 h-6 rounded-full bg-zinc-200 grid place-items-center">
+                <div className="w-6 h-6 rounded-full bg-zinc grid place-items-center">
                   <span className="font-semibold text-black whitespace-nowrap text-[0.6rem]">
                     99+
                   </span>
@@ -187,7 +187,7 @@ function Home() {
           DETOIVN
         </p>
       </section>
-      <section className="w-full h-screen bg-stone-900 relative grid place-items-center">
+      <section className="w-full h-screen bg-stone relative grid place-items-center">
         <div className="container h-screen py-14 flex flex-col justify-between">
           <div className="text-white flex-shrink">
             <p className="text-base opacity-80 leading-10">3 BƯỚC ĐƠN GIẢN</p>

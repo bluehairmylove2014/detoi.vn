@@ -3,11 +3,11 @@ type colorType = 'red' | 'yellow' | 'blue';
 function getTailwindColorCls(color: colorType) {
   switch (color) {
     case 'red':
-      return 'bg-rose-600';
+      return 'bg-rose';
     case 'yellow':
-      return 'bg-yellow-600';
+      return 'bg-yellow';
     case 'blue':
-      return 'bg-blue-600';
+      return 'bg-blue';
     default:
       return '';
   }
