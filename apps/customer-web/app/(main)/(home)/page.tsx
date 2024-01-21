@@ -11,15 +11,45 @@ import User_1_img from '@assets/user-avt (1).png';
 import User_2_img from '@assets/user-avt (2).png';
 import User_3_img from '@assets/user-avt (3).png';
 import User_4_img from '@assets/user-avt (4).png';
+import step1_img from '@assets/step1.png';
+import step2_img from '@assets/step2.jpg';
+import step3_img from '@assets/step3.jpg';
 import CleaningIcon from '@assets/cleaning-110.png';
 import Image from 'next/image';
 import CircleImage from '@presentational/atoms/CircleImage';
 import ColorfulDot from '@presentational/atoms/ColorfulDot';
 import ImageIcon from '@presentational/atoms/ImageIcon';
+import StepCardList from '@presentational/molecules/StepCardList';
 
 const akshar = Akshar({
   subsets: ['latin'],
 });
+const stepsContent = [
+  {
+    step: '01',
+    stepImgSrc: step1_img,
+    title: 'Đặt đơn trên ứng dụng',
+    description:
+      'Mở ứng dụng “detoi” và chọn dịch vụ bạn muốn, hệ thống sẽ tự động ghép đơn nhân viên lý tưởng nhất.',
+    href: '#',
+  },
+  {
+    step: '02',
+    stepImgSrc: step2_img,
+    title: 'Tuỳ ý chọn giá tiền',
+    description:
+      'Sẽ có nhiều Freelancer đưa ra mức giá khác nhau, việc chọn ai làm cho mình và bao nhiêu tiền tuỳ thuộc vào bạn.',
+    href: '#',
+  },
+  {
+    step: '03',
+    stepImgSrc: step3_img,
+    title: 'Tận hưởng dịch vụ',
+    description:
+      'Cuối cùng chỉ cần ngồi ăn bánh, uống trà và đợi nhân viên tới làm việc thay cho bạn!',
+    href: '#',
+  },
+];
 
 function Home() {
   return (
@@ -35,13 +65,13 @@ function Home() {
           </p>
           <div className="flex flex-row gap-4 justify-center items-center mt-4">
             <div className="w-36">
-              <CustomButton style="fill-black" type="link" href="#">
+              <CustomButton style="btn-black" type="link" href="#">
                 <CWEBFAIcon iconName="faApple" color="white" />{' '}
                 <span className="ml-1">App Store</span>
               </CustomButton>
             </div>
             <div className="w-36">
-              <CustomButton style="fill-black" type="link" href="#">
+              <CustomButton style="btn-black" type="link" href="#">
                 <CWEBFAIcon iconName="faGooglePlay" color="white" />{' '}
                 <span className="ml-1">Google Play</span>
               </CustomButton>
@@ -157,8 +187,21 @@ function Home() {
           DETOIVN
         </p>
       </section>
-      <section className="w-full h-screen bg-black relative">
-        <div className="container"></div>
+      <section className="w-full h-screen bg-stone-900 relative grid place-items-center">
+        <div className="container h-screen py-14 flex flex-col justify-between">
+          <div className="text-white flex-shrink">
+            <p className="text-base opacity-80 leading-10">3 BƯỚC ĐƠN GIẢN</p>
+            <h2 className="text-4xl leading-[3rem]">
+              Đặt dịch vụ chưa bao giờ
+              <br />
+              là <span className="text-yellow-500">dễ đến thế</span>
+            </h2>
+          </div>
+
+          <div className="flex-grow flex flex-col justify-end">
+            <StepCardList steps={stepsContent} />
+          </div>
+        </div>
       </section>
     </main>
   );

@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 @import "./animations.scss";
+@import "./customClass.scss";
 @import '@fortawesome/fontawesome-svg-core/styles.css';
+@import './button.scss';
 
 // Responsive settings
 $desktop-breakpoint: 1024px;
@@ -139,6 +141,7 @@ h6 {
 p {
     font-size: 0.75rem;
     margin: 0;
+    font-weight: 500;
 }
 
 small {

@@ -1,5 +1,19 @@
-import { faAppleAlt } from '@fortawesome/free-solid-svg-icons';
-import { faApple, faGooglePlay } from '@fortawesome/free-brands-svg-icons';
+import {
+  faAppleAlt,
+  faArrowRight,
+  faArrowLeft,
+  faEnvelope,
+  faPhone,
+} from '@fortawesome/free-solid-svg-icons';
+
+import {
+  faApple,
+  faFacebookF,
+  faGooglePlay,
+  faInstagram,
+  faWebflow,
+  faYoutube,
+} from '@fortawesome/free-brands-svg-icons';
 // import {  } from '@fortawesome/free-regular-svg-icons';
 
 // Customer Web Icon
@@ -7,6 +21,14 @@ export const CWEB_ICON_LIST = {
   faAppleAlt: faAppleAlt,
   faApple: faApple,
   faGooglePlay: faGooglePlay,
+  faArrowRight: faArrowRight,
+  faArrowLeft: faArrowLeft,
+  faFacebookF: faFacebookF,
+  faInstagram: faInstagram,
+  faYoutube: faYoutube,
+  faEnvelope: faEnvelope,
+  faPhone: faPhone,
+  faWebflow: faWebflow,
 };
 
 // Customer App Icon

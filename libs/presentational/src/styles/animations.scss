@@ -44,3 +44,17 @@
         }
     }
 }
+
+@keyframes gain-momentum-surge-forward {
+    0% {
+        transform: translateX(0);
+    }
+
+    60% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        transform: translateX(20px);
+    }
+}
