@@ -19,6 +19,7 @@
       "@assets/*": ["libs/presentational/src/assets/*"],
       "@business-layer/*": ["libs/business-layer/src/*"],
       "@constants/*": ["libs/constants/*"],
+      "@presentational-mobile/*": ["libs/presentational-mobile/src/*"],
       "@presentational/*": ["libs/presentational/src/*"],
       "@storages/*": ["libs/storages/*"],
       "@utils/*": ["libs/utils/*"]

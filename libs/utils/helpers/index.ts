@@ -5,3 +5,4 @@ export * from "./MoneyConverter";
 export * from "./Pagination";
 export * from "./RedirectUrl";
 export * from "./ToggleClass";
+export * from "./Platform";
