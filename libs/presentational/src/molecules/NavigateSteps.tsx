@@ -15,20 +15,18 @@ function NavigateSteps({
       <IconButton
         iconName="faArrowLeft"
         onClick={() => {}}
-        color="white"
         size="lg"
-        opacity={0.6}
-        onClickCapture={() => {
+        buttonStyle={'opacityIncrease'}
+        onButtonClick={() => {
           setActiveCard(prevStep);
         }}
       />
       <IconButton
         iconName="faArrowRight"
         onClick={() => {}}
-        color="white"
         size="lg"
-        opacity={0.6}
-        onClickCapture={() => {
+        buttonStyle={'opacityIncrease'}
+        onButtonClick={() => {
           setActiveCard(nextStep);
         }}
       />

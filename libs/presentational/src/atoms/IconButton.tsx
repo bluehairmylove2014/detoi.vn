@@ -2,32 +2,28 @@ import { CWEB_ICON_LIST } from '@business-layer/business-logic/non-service-lib/f
 import CWEBFAIcon from './CWEBFAIcon';
 import { FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
 
-const shapeStyle = {
-  circle: 'rounded-full',
-  square: 'rounded-md',
-};
-
 const backgroundStyle = {
   default: 'bg-transparent',
-  whiteYellow: 'bg-white hover:bg-primary',
+  opacityIncrease: 'text-white opacity-60 hover:opacity-100',
+  circle_modern: 'rounded-[50%] bg-white hover:rounded-md hover:bg-zinc',
 };
 
+type buttonStyleType = 'default' | 'circle_modern' | 'opacityIncrease';
 type iconButton = {
-  shape?: 'circle' | 'square';
-  background?: 'default' | 'whiteYellow';
+  buttonStyle?: buttonStyleType;
   iconName: keyof typeof CWEB_ICON_LIST;
-  onClick?: () => void;
+  onButtonClick?: () => void;
   customSize?: string;
 };
 
 const DEFAULT_SIZE = '2rem';
+const DEFAULT_STYLE: buttonStyleType = 'default';
 
 function IconButton({
-  shape,
-  background,
+  buttonStyle,
   iconName,
   size,
-  onClick,
+  onButtonClick,
   customSize,
   ...restProps
 }: iconButton & Omit<FontAwesomeIconProps, 'icon'>) {
@@ -36,11 +32,10 @@ function IconButton({
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={onButtonClick}
       style={{ width: realSize, height: realSize }}
       className={`
-      ${shapeStyle[shape || 'square']}  
-      ${backgroundStyle[background || 'default']}`}
+      ${backgroundStyle[buttonStyle ?? DEFAULT_STYLE]} transition-all`}
     >
       <CWEBFAIcon {...restProps} iconName={iconName} />
     </button>
