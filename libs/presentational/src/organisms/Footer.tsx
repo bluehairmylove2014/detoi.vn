@@ -13,7 +13,7 @@ import {
 function Footer() {
   return (
     <div className="w-full bg-black relative grid place-items-center">
-      <div className="container text-gray-400 text-2xl px-16 py-16 grid grid-cols-5 md:px-0 xl:px-5 xl:text-base md:text-sm ">
+      <div className="container text-gray text-2xl px-16 py-16 grid grid-cols-5 md:px-0 xl:px-5 xl:text-base md:text-sm ">
         <div className="flex flex-col space-y-10 col-span-3 justify-center md:space-y-0 md:flex-row mr-1">
           <div className="flex-1">
             <h4 className="mb-2 text-white text-2xl md:text-base">
