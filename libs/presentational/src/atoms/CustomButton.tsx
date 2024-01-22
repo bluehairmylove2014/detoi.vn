@@ -3,7 +3,14 @@ import Link from 'next/link';
 import ButtonLoader from './ButtonLoader';
 
 type buttonType = 'button' | 'submit' | 'link';
-type buttonStyle = 'btn-primary' | 'btn-secondary' | 'btn-white' | 'btn-black';
+type buttonStyle =
+  | 'btn-primary'
+  | 'btn-secondary'
+  | 'btn-white'
+  | 'btn-black'
+  | 'btn-black-only-border'
+  | 'btn-white-black'
+  | 'btn-white-black-border';
 type commonButtonType = {
   children: React.ReactNode | string | number;
   style: buttonStyle;

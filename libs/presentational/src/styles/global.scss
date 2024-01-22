@@ -1,10 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
 @import "./animations.scss";
 @import "./customClass.scss";
-@import '@fortawesome/fontawesome-svg-core/styles.css';
 @import './button.scss';
+@import '@fortawesome/fontawesome-svg-core/styles.css';
 
 // Responsive settings
 $desktop-breakpoint: 1024px;
