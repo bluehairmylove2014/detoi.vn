@@ -29,8 +29,8 @@ function StepCard({
     <div
       id={`step${step}`}
       className={`step-card px-8 py-10 h-[80%] flex flex-col justify-start relative overflow-hidden text-white cursor-pointer ${
-        isActive ? '!bg-cyan-800 !h-full active' : ''
-      } bg-stone-800 showAllChildWhenActive transition-all`}
+        isActive ? '!bg-cyan !h-full active' : ''
+      } bg-lightStone showAllChildWhenActive transition-all`}
       // onMouseEnter={() => setActiveCard(step)}
       // onMouseLeave={() => setActiveCard(defaultStep)}
       onClick={() => setActiveCard(step)}

@@ -9,7 +9,7 @@ const shapeStyle = {
 
 const backgroundStyle = {
   default: 'bg-transparent',
-  whiteYellow: 'bg-white hover:bg-yellow-500',
+  whiteYellow: 'bg-white hover:bg-primary',
 };
 
 type iconButton = {
