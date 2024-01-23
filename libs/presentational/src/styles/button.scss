@@ -33,7 +33,7 @@
     }
 
     .btn-white-black-border {
-        @apply bg-white text-black md:border-spacing-3 md:border-solid md:border-black
+        @apply bg-white text-black md:border-spacing-3 md:border-solid md:border-black shadow-none
     }
 
     .btn-white-black {
