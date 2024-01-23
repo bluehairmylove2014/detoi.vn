@@ -8,7 +8,9 @@ type buttonStyle =
   | 'btn-secondary'
   | 'btn-white'
   | 'btn-black'
-  | 'btn-black-only-border';
+  | 'btn-black-only-border'
+  | 'btn-white-black'
+  | 'btn-white-black-border';
 type commonButtonType = {
   children: React.ReactNode | string | number;
   style: buttonStyle;
