@@ -4,11 +4,16 @@ import { FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
 
 const backgroundStyle = {
   default: 'bg-transparent',
-  opacityIncrease: 'text-white opacity-60 hover:opacity-100',
+  whiteIncrease: 'text-white opacity-60 hover:opacity-100',
+  blackIncrease: 'text-black opacity-60 hover:opacity-100',
   circle_modern: 'rounded-[50%] bg-white hover:rounded-md hover:bg-zinc',
 };
 
-type buttonStyleType = 'default' | 'circle_modern' | 'opacityIncrease';
+type buttonStyleType =
+  | 'default'
+  | 'circle_modern'
+  | 'whiteIncrease'
+  | 'blackIncrease';
 type iconButton = {
   buttonStyle?: buttonStyleType;
   iconName: keyof typeof CWEB_ICON_LIST;

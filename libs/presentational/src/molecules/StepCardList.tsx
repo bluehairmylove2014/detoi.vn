@@ -2,7 +2,7 @@
 import StepCard from '@presentational/atoms/StepCard';
 import { StaticImageData } from 'next/image';
 import { useState } from 'react';
-import NavigateSteps from './NavigateSteps';
+import CardController from './NavigateSteps';
 
 function StepCardList({
   steps,
@@ -27,10 +27,10 @@ function StepCardList({
   return (
     <>
       <div className="flex flex-row justify-end items-start w-full h-10">
-        <NavigateSteps
-          nextStep={getNextStep()}
-          prevStep={getPrevStep()}
-          setActiveCard={setActiveCard}
+        <CardController
+          nextCardId={getNextStep()}
+          prevCardId={getPrevStep()}
+          setCardId={setActiveCard}
         />
       </div>
       <div className="w-full flex flex-row gap-0 items-end h-4/5">

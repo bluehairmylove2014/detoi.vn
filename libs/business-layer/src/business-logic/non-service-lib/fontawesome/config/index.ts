@@ -14,7 +14,11 @@ import {
   faWebflow,
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
-// import {  } from '@fortawesome/free-regular-svg-icons';
+import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
+import {
+  faStar as faStarSolid,
+  faStarHalfStroke,
+} from '@fortawesome/free-solid-svg-icons';
 
 // Customer Web Icon
 export const CWEB_ICON_LIST = {
@@ -29,6 +33,9 @@ export const CWEB_ICON_LIST = {
   faEnvelope: faEnvelope,
   faPhone: faPhone,
   faWebflow: faWebflow,
+  faStarRegular: faStarRegular,
+  faStarSolid: faStarSolid,
+  faStarHalfStroke: faStarHalfStroke,
 };
 
 // Customer App Icon

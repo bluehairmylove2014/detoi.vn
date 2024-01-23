@@ -21,7 +21,7 @@ import CircleImage from '@presentational/atoms/CircleImage';
 import ColorfulDot from '@presentational/atoms/ColorfulDot';
 import ImageIcon from '@presentational/atoms/ImageIcon';
 import StepCardList from '@presentational/molecules/StepCardList';
-import ReviewCardList from '@presentational/molecules/ReviewCardList';
+import StylistReviewCardList from '@presentational/organisms/StylistReviewCardList';
 
 const akshar = Akshar({
   subsets: ['latin'],
@@ -227,10 +227,10 @@ function Home() {
               </div>
             </div>
             <div className="col-span-1 flex flex-col justify-between h-full">
-              <div className="mt-6">
-                <ReviewCardList />
+              <div className="mt-6 flex-grow w-full">
+                <StylistReviewCardList />
               </div>
-              <div className="mb-14">
+              <div className="mb-14 flex-shrink">
                 <h3 className="text-3xl font-extrabold">Dễ dàng theo dõi</h3>
                 <p className="mt-2 mb-4 text-justify">
                   Hỗ trợ bản đồ và cập nhật tình trạng xử lý dịch vụ theo thời
