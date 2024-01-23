@@ -3,7 +3,13 @@ import Link from 'next/link';
 import ButtonLoader from './ButtonLoader';
 
 type buttonType = 'button' | 'submit' | 'link';
-type buttonStyle = 'btn-primary' | 'btn-secondary' | 'btn-white' | 'btn-black';
+type buttonStyle =
+  | 'btn-primary'
+  | 'btn-secondary'
+  | 'btn-white'
+  | 'btn-black'
+  | 'btn-black-only-border'
+  | 'btn-white-black';
 type commonButtonType = {
   children: React.ReactNode | string | number;
   style: buttonStyle;
@@ -20,15 +26,15 @@ const defaultType = 'button';
 function CustomButton({
   children,
   style,
-  href,
+  href = '#',
   disabled,
   loading,
-  type,
+  type = 'button',
   onClick,
   isShortLoading,
 }: commonButtonType): JSX.Element {
   return type === 'link' ? (
-    <Link href={href ?? '#'} className={`${style} btn btn-disable block`}>
+    <Link href={href} className={`${style} btn btn-disable block`}>
       {children}
     </Link>
   ) : (
@@ -36,7 +42,7 @@ function CustomButton({
       className={`${style} btn btn-disable`}
       onClick={onClick}
       disabled={disabled || loading}
-      type={type ?? defaultType}
+      type={type}
     >
       {loading ? (
         <ButtonLoader label={isShortLoading ? '' : 'Chờ chút...'} />

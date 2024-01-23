@@ -74,21 +74,18 @@ function Footer() {
               </h5>
               <div className="flex justify-between px-4 pb-4 mb-4 border-b">
                 <IconButton
-                  shape="circle"
                   iconName="faFacebookF"
-                  background="whiteYellow"
+                  buttonStyle="circle_modern"
                   color="black"
                 />
                 <IconButton
-                  shape="circle"
                   iconName="faInstagram"
-                  background="whiteYellow"
+                  buttonStyle="circle_modern"
                   color="black"
                 />
                 <IconButton
-                  shape="circle"
                   iconName="faYoutube"
-                  background="whiteYellow"
+                  buttonStyle="circle_modern"
                   color="black"
                 />
               </div>

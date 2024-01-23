@@ -70,8 +70,8 @@ function revertShortenedDateTime(dateTime: string): string {
 
   return `${year}-${month}-${day}T${hour}:${minute}`;
 }
-function formatDate(dateObj: Date) {
-  const dateRaw = new Date(dateObj);
+function formatDate(dateObj: Date | string) {
+  const dateRaw = typeof dateObj === 'string' ? new Date(dateObj) : dateObj;
 
   let days: string[] = [
     'Sunday',
@@ -95,7 +95,7 @@ function formatDate(dateObj: Date) {
   const formattedMinutes: string = minutes.toString().padStart(2, '0');
 
   return {
-    dateMonthYear: `${date} - ${month} - ${year}`,
+    dateMonthYear: `${date}-${month}-${year}`,
     days: dayOfWeek,
     time24: `${formattedHours}:${formattedMinutes}`,
   };

@@ -13,15 +13,19 @@ function getTailwindColorCls(color: colorType) {
   }
 }
 
-const DEFAULT_SIZE = '0.25rem';
-function ColorfulDot({ size, color }: { size?: string; color: colorType }) {
-  const realSize = size ?? DEFAULT_SIZE;
+function ColorfulDot({
+  size = '0.25rem',
+  color,
+}: {
+  size?: string;
+  color: colorType;
+}) {
   return (
     <div
       className={`rounded-full aspect-square h-auto relative ${getTailwindColorCls(
         color
       )}`}
-      style={{ width: realSize }}
+      style={{ width: size }}
     ></div>
   );
 }

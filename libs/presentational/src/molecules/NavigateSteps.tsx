@@ -1,34 +1,34 @@
 import IconButton from '@presentational/atoms/IconButton';
 import { Dispatch, SetStateAction } from 'react';
 
-function NavigateSteps({
-  nextStep,
-  prevStep,
-  setActiveCard,
+function CardController({
+  nextCardId: nextStep,
+  prevCardId: prevStep,
+  setCardId: setActiveCard,
+  theme = 'whiteIncrease',
 }: {
-  nextStep: string;
-  prevStep: string;
-  setActiveCard: Dispatch<SetStateAction<string>>;
+  nextCardId: any;
+  prevCardId: any;
+  setCardId: Dispatch<SetStateAction<any>>;
+  theme?: 'whiteIncrease' | 'blackIncrease';
 }) {
   return (
     <div className="flex flex-row gap-4">
       <IconButton
         iconName="faArrowLeft"
         onClick={() => {}}
-        color="white"
         size="lg"
-        opacity={0.6}
-        onClickCapture={() => {
+        buttonStyle={theme}
+        onButtonClick={() => {
           setActiveCard(prevStep);
         }}
       />
       <IconButton
         iconName="faArrowRight"
         onClick={() => {}}
-        color="white"
         size="lg"
-        opacity={0.6}
-        onClickCapture={() => {
+        buttonStyle={theme}
+        onButtonClick={() => {
           setActiveCard(nextStep);
         }}
       />
@@ -36,4 +36,4 @@ function NavigateSteps({
   );
 }
 
-export default NavigateSteps;
+export default CardController;
