@@ -217,7 +217,7 @@ function Home() {
           </div>
           <div className="w-full flex-grow grid grid-cols-2 gap-6">
             <div className="col-span-1 flex flex-col justify-end w-full h-full">
-              <div className="w-full h-auto aspect-square relative">
+              <div className="w-full h-auto aspect-square max-w-[600px] relative">
                 <Image
                   src={TrackingImage}
                   alt="Dễ dàng theo dõi dịch vụ"
@@ -227,8 +227,10 @@ function Home() {
               </div>
             </div>
             <div className="col-span-1 flex flex-col justify-between h-full">
-              <div className="mt-6 flex-grow w-full">
-                <StylistReviewCardList />
+              <div className="mt-8 flex-grow w-full">
+                <div className="w-full h-fit">
+                  <StylistReviewCardList />
+                </div>
               </div>
               <div className="mb-14 flex-shrink">
                 <h3 className="text-3xl font-extrabold">Dễ dàng theo dõi</h3>

@@ -5,7 +5,7 @@ export interface IReviewBase {
   avt: string;
   name: string;
   content: string;
-  ratingPoint: string;
+  ratingPoint: number;
   reviewDate: string;
 }
 

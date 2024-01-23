@@ -5,12 +5,12 @@ function CardController({
   nextCardId: nextStep,
   prevCardId: prevStep,
   setCardId: setActiveCard,
-  theme,
+  theme = 'whiteIncrease',
 }: {
-  nextCardId: string;
-  prevCardId: string;
-  setCardId: Dispatch<SetStateAction<string>>;
-  theme: 'whiteIncrease' | 'blackIncrease';
+  nextCardId: any;
+  prevCardId: any;
+  setCardId: Dispatch<SetStateAction<any>>;
+  theme?: 'whiteIncrease' | 'blackIncrease';
 }) {
   return (
     <div className="flex flex-row gap-4">
@@ -18,7 +18,7 @@ function CardController({
         iconName="faArrowLeft"
         onClick={() => {}}
         size="lg"
-        buttonStyle={theme ?? 'whiteIncrease'}
+        buttonStyle={theme}
         onButtonClick={() => {
           setActiveCard(prevStep);
         }}
@@ -27,7 +27,7 @@ function CardController({
         iconName="faArrowRight"
         onClick={() => {}}
         size="lg"
-        buttonStyle={theme ?? 'whiteIncrease'}
+        buttonStyle={theme}
         onButtonClick={() => {
           setActiveCard(nextStep);
         }}

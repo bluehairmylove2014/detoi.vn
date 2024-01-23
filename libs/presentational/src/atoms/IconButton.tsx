@@ -21,26 +21,21 @@ type iconButton = {
   customSize?: string;
 };
 
-const DEFAULT_SIZE = '2rem';
-const DEFAULT_STYLE: buttonStyleType = 'default';
-
 function IconButton({
-  buttonStyle,
+  buttonStyle = 'default',
   iconName,
   size,
   onButtonClick,
-  customSize,
+  customSize = '2rem',
   ...restProps
 }: iconButton & Omit<FontAwesomeIconProps, 'icon'>) {
-  const realSize = customSize ?? DEFAULT_SIZE;
-
   return (
     <button
       type="button"
       onClick={onButtonClick}
-      style={{ width: realSize, height: realSize }}
+      style={{ width: customSize, height: customSize }}
       className={`
-      ${backgroundStyle[buttonStyle ?? DEFAULT_STYLE]} transition-all`}
+      ${backgroundStyle[buttonStyle]} transition-all`}
     >
       <CWEBFAIcon {...restProps} iconName={iconName} />
     </button>
