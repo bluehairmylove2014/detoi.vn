@@ -13,36 +13,34 @@ function Header() {
             <Logo />
             <div className=" flex items-center justify-center md:gap-0">
               <div className="hidden md:block">
-                <Link href={'#'}>
-                  <CustomButton style="btn-white-black">
-                    <CWEBFAIcon
-                      iconName="faCircleQuestion"
-                      className="text-[16px]"
-                    />
-                    <span className="ml-1 text-[16px]">Hỗ trợ</span>
-                  </CustomButton>
-                </Link>
+                <CustomButton style="btn-white-black" type="link" href="#">
+                  <CWEBFAIcon
+                    iconName="faCircleQuestion"
+                    className="text-[16px]"
+                  />
+                  <span className="ml-1 text-[16px]">Hỗ trợ</span>
+                </CustomButton>
               </div>
               <div className="hidden md:block ">
                 <Link href={'#'}>
-                  <CustomButton style="btn-white-black">
+                  <CustomButton style="btn-white-black" type="link" href="#">
                     <span className="text-[16px]">Trở thành Freelancer</span>
                   </CustomButton>
                 </Link>
               </div>
               <div className="hidden md:block ">
-                <Link href={'#'}>
-                  <CustomButton style="btn-white-black">
-                    <span className="text-[16px]">Chính sách</span>
-                  </CustomButton>
-                </Link>
+                <CustomButton style="btn-white-black" type="link" href="#">
+                  <span className="text-[16px]">Chính sách</span>
+                </CustomButton>
               </div>
               <div className="w-29">
-                <Link href={'#'}>
-                  <CustomButton style="btn-white-black-border">
-                    <span className="text-[16px]">Đăng nhập</span>
-                  </CustomButton>
-                </Link>
+                <CustomButton
+                  style="btn-white-black-border"
+                  type="link"
+                  href="#"
+                >
+                  <span className="text-[16px]">Đăng nhập</span>
+                </CustomButton>
               </div>
               <div className="md:hidden">
                 <IconButton iconName="faBar" />
