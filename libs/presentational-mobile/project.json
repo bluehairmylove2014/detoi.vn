@@ -6,14 +6,11 @@
   "tags": [],
   "targets": {
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "jestConfig": "libs/presentational-mobile/jest.config.ts"
+        "tailwindConfig": "libs/presentational-mobile/tailwind.config.js",
+        "lintFilePatterns": ["libs/presentational-mobile/**/*.{ts,tsx,js,jsx}"]
       }
     }
   }

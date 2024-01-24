@@ -1,88 +1,88 @@
 {
-  "name": "customer-mobile",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/customer-mobile/src",
+  "root": "apps/avidtrader-mobile",
+  "sourceRoot": "apps/avidtrader-mobile/src",
   "projectType": "application",
   "targets": {
     "start": {
-      "executor": "@nx/react-native:start",
-      "dependsOn": ["ensure-symlink", "sync-deps", "pod-install"],
+      "executor": "@nrwl/expo:start",
       "options": {
         "port": 8081
       }
     },
-    "serve": {
-      "executor": "nx:run-commands",
+    "web": {
+      "executor": "@nrwl/expo:start",
       "options": {
-        "command": "nx start customer-mobile"
+        "port": 8081,
+        "webpack": true
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "nx start avidtrader-mobile"
       }
     },
     "run-ios": {
-      "executor": "@nx/react-native:run-ios",
-      "dependsOn": ["ensure-symlink", "sync-deps", "pod-install"],
-      "options": {}
-    },
-    "bundle-ios": {
-      "executor": "@nx/react-native:bundle",
-      "dependsOn": ["ensure-symlink"],
-      "outputs": ["{options.bundleOutput}"],
+      "executor": "@nrwl/expo:run",
       "options": {
-        "entryFile": "src/main.tsx",
-        "platform": "ios",
-        "bundleOutput": "dist/apps/customer-mobile/ios/main.jsbundle"
+        "platform": "ios"
       }
     },
     "run-android": {
-      "executor": "@nx/react-native:run-android",
-      "dependsOn": ["ensure-symlink", "sync-deps"],
+      "executor": "@nrwl/expo:run",
+      "options": {
+        "platform": "android"
+      }
+    },
+    "build-ios": {
+      "executor": "@nrwl/expo:build-ios",
       "options": {}
     },
     "build-android": {
-      "executor": "@nx/react-native:build-android",
-      "outputs": [
-        "{projectRoot}/android/app/build/outputs/bundle",
-        "{projectRoot}/android/app/build/outputs/apk"
-      ],
-      "dependsOn": ["ensure-symlink", "sync-deps"],
+      "executor": "@nrwl/expo:build-android",
       "options": {}
     },
-    "build-ios": {
-      "executor": "@nx/react-native:build-ios",
-      "outputs": ["{projectRoot}/ios/build/Build"],
-      "dependsOn": ["ensure-symlink", "sync-deps", "pod-install"],
+    "build-web": {
+      "executor": "@nrwl/expo:build-web",
       "options": {}
     },
-    "pod-install": {
-      "executor": "@nx/react-native:pod-install",
+    "build-status": {
+      "executor": "@nrwl/expo:build-web",
       "options": {}
-    },
-    "bundle-android": {
-      "executor": "@nx/react-native:bundle",
-      "dependsOn": ["ensure-symlink"],
-      "outputs": ["{options.bundleOutput}"],
-      "options": {
-        "entryFile": "src/main.tsx",
-        "platform": "android",
-        "bundleOutput": "dist/apps/customer-mobile/android/main.jsbundle"
-      }
     },
     "sync-deps": {
-      "executor": "@nx/react-native:sync-deps",
+      "executor": "@nrwl/expo:sync-deps",
       "options": {}
     },
     "ensure-symlink": {
-      "executor": "@nx/react-native:ensure-symlink",
+      "executor": "@nrwl/expo:ensure-symlink",
+      "options": {}
+    },
+    "publish": {
+      "executor": "@nrwl/expo:publish",
+      "options": {}
+    },
+    "publish-set": {
+      "executor": "@nrwl/expo:publish-set",
+      "options": {}
+    },
+    "rollback": {
+      "executor": "@nrwl/expo:rollback",
       "options": {}
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/avidtrader-mobile/**/*.{ts,tsx,js,jsx}"]
+      }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/avidtrader-mobile"],
       "options": {
-        "jestConfig": "apps/customer-mobile/jest.config.ts"
+        "jestConfig": "apps/avidtrader-mobile/jest.config.js",
+        "passWithNoTests": true
       }
     }
   },
