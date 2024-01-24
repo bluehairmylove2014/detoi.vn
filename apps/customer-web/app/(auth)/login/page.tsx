@@ -5,7 +5,7 @@ import CWEBFAIcon from '@presentational/atoms/CWEBFAIcon';
 
 function Login() {
   return (
-    <div className="bg-register bg-center bg-cover bg-no-repeat brightness-55 w-screen h-screen">
+    <div className="bg-fgpwd-otp bg-center bg-cover bg-no-repeat brightness-55 w-screen h-screen">
       <div className="container flex flex-row w-full h-full gap-24">
         <div className="flex flex-col justify-center">
           <div className="text-white text-[3rem] font-bold drop-shadow ml-12">

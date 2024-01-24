@@ -16,7 +16,9 @@ module.exports = {
     extend: {
         backgroundImage: {
         'login': "url('/assets/images/login.png')",
-        'register': "url('/assets/images/register.png')"
+        'register': "url('/assets/images/register.png')",
+        'fgpwd-email': "url('/assets/images/fgpwd-enter-email.png')",
+        'fgpwd-otp': "url('/assets/images/fgpwd-enter-otp.png')"
       }
     },
   },
