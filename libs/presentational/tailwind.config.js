@@ -17,10 +17,10 @@ module.exports = {
 
       black: '#000000',
       nearBlack: '#566483',
+      stone: '#1c1917', // light black
+      lightStone: '#292524',
       gray: '#808080',
       zinc: '#e4e4e7', // light gray
-      stone: '#1c1917', // light black
-      lightStone: '#292524', // light black
 
       white: '#FFFFFF',
 

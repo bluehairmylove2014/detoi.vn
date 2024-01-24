@@ -22,6 +22,7 @@ import ColorfulDot from '@presentational/atoms/ColorfulDot';
 import ImageIcon from '@presentational/atoms/ImageIcon';
 import StepCardList from '@presentational/molecules/StepCardList';
 import StylistReviewCardList from '@presentational/organisms/StylistReviewCardList';
+import ContactForm from '@presentational/organisms/ContactForm';
 
 const akshar = Akshar({
   subsets: ['latin'],
@@ -249,6 +250,20 @@ function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="w-full h-screen bg-white relative grid place-items-center">
+        <div className="container h-screen py-16 flex flex-col justify-around items-start">
+          <div className="flex-shrink mx-auto">
+            <h2 className="text-rose text-4xl leading-[3rem] font-extrabold drop-shadow-md text-center">
+              LIÊN HỆ VỚI CHÚNG TÔI
+            </h2>
+            <p className="text-black text-base opacity-80 leading-10 text-center">
+              Có thắc mắc hay vấn đề cần giải quyết? Liên hệ để chúng tôi có thể
+              giúp đỡ bạn
+            </p>
+          </div>
+          <ContactForm />
         </div>
       </section>
     </main>
