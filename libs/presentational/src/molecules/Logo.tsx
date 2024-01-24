@@ -9,6 +9,7 @@ export default function Logo() {
         src={logo}
         className="mr-[1.2rem] md:block md:h-[50px] lg:h-[50px] md:mr-[18px]"
         alt="DeToi Logo"
+        priority={true}
       />
       <span className="self-center hidden lg:inline text-[20px] lg:text-[1rem] font-semibold whitespace-nowrap underline italic">
         detoi@sunrise.continent
