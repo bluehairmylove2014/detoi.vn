@@ -15,7 +15,8 @@ module.exports = {
     ...theme,
     extend: {
         backgroundImage: {
-        'login': "url('/assets/images/login.png')"
+        'login': "url('/assets/images/login.png')",
+        'register': "url('/assets/images/register.png')"
       }
     },
   },
