@@ -13,7 +13,11 @@ module.exports = {
   ],
   theme: {
     ...theme,
-    extend: {},
+    extend: {
+        backgroundImage: {
+        'login': "url('/assets/images/login.png')"
+      }
+    },
   },
   plugins: [],
 };
