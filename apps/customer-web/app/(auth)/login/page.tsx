@@ -2,6 +2,7 @@ import Image from 'next/image';
 import phone from '@assets/phone.svg';
 import CustomButton from '@presentational/atoms/CustomButton';
 import CWEBFAIcon from '@presentational/atoms/CWEBFAIcon';
+import AuthInput from '@presentational/atoms/AuthInput';
 
 function Login() {
   return (
@@ -43,7 +44,9 @@ function Login() {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <div className="bg-white w-[517px] h-[700px] bg-opacity-80 rounded-[1.5rem]"></div>
+          <div className="bg-white w-[517px] h-[700px] bg-opacity-95 rounded-[1.5rem]">
+            <AuthInput label="Email" />
+          </div>
         </div>
       </div>
     </div>

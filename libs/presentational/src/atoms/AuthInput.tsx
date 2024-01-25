@@ -1,0 +1,44 @@
+'use client';
+import { Controller } from 'react-hook-form';
+import { useRef } from 'react';
+import { addClass, removeClass } from '@utils/helpers';
+
+const inputDefinition = {
+  EMAIL: {
+    type: 'email',
+    icon: 'fi fi-rr-envelope',
+  },
+  PASSWORD: {
+    type: 'password',
+    icon: 'fi fi-rs-key',
+  },
+};
+
+export type authInputParams = {
+  name?: string;
+  label?: string;
+  type?: 'EMAIL' | 'PASSWORD';
+  control?: any;
+  disabled?: boolean;
+  onChange?: (value: string) => void;
+};
+
+const AuthInput = ({
+  name,
+  label,
+  type,
+  control,
+  disabled,
+  onChange,
+}: authInputParams) => {
+  return (
+    <div className="relative bg-transparent rounded shadow-lg h-10 w-[300px] mt-[50px] ">
+      <label className="bg-white bg-opacity-80 text-xs absolute left-5 z-50 -translate-y-1/2 font-semibold flex flex-row items-center justify-start">
+        <span className="">{label}</span>
+      </label>
+      <input className="text-xs border outline-none bg-transparent px-5 w-full h-full rounded-sm" />
+    </div>
+  );
+};
+
+export default AuthInput;
