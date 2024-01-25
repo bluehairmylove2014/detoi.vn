@@ -19,10 +19,13 @@ import TrackingImage from '@assets/tracking.png';
 import Image from 'next/image';
 import CircleImage from '@presentational/atoms/CircleImage';
 import ColorfulDot from '@presentational/atoms/ColorfulDot';
+import { Head2 } from '@presentational/atoms';
 import ImageIcon from '@presentational/atoms/ImageIcon';
 import StepCardList from '@presentational/molecules/StepCardList';
 import StylistReviewCardList from '@presentational/organisms/StylistReviewCardList';
+import FAQ from '@presentational/organisms/FAQ';
 import ContactForm from '@presentational/organisms/ContactForm';
+import { FAQ_CONTENT } from '../../../constants/FAQ';
 
 const akshar = Akshar({
   subsets: ['latin'],
@@ -212,9 +215,7 @@ function Home() {
             <p className="text-base opacity-80 leading-10">
               <b className="text-rose">5.000+</b> ĐÁNH GIÁ TÍCH CỰC
             </p>
-            <h2 className="text-4xl leading-[3rem] font-extrabold">
-              UY TÍN, NHANH CHÓNG & TIỆN LỢI
-            </h2>
+            <Head2> UY TÍN, NHANH CHÓNG & TIỆN LỢI</Head2>
           </div>
           <div className="w-full flex-grow grid grid-cols-2 gap-6">
             <div className="col-span-1 flex flex-col justify-end w-full h-full">
@@ -255,9 +256,7 @@ function Home() {
       <section className="w-full h-screen bg-white relative grid place-items-center">
         <div className="container h-screen py-16 flex flex-col justify-around items-start">
           <div className="flex-shrink mx-auto">
-            <h2 className="text-rose text-4xl leading-[3rem] font-extrabold drop-shadow-md text-center">
-              LIÊN HỆ VỚI CHÚNG TÔI
-            </h2>
+            <Head2 style="text-rose"> LIÊN HỆ VỚI CHÚNG TÔI</Head2>
             <p className="text-black text-base opacity-80 leading-10 text-center">
               Có thắc mắc hay vấn đề cần giải quyết? Liên hệ để chúng tôi có thể
               giúp đỡ bạn
@@ -266,6 +265,10 @@ function Home() {
           <ContactForm />
         </div>
       </section>
+      <div>
+        <Head2>CÁC CÂU HỎI THƯỜNG GẶP</Head2>
+        <FAQ faqListContent={FAQ_CONTENT} />
+      </div>
     </main>
   );
 }
