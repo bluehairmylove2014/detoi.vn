@@ -7,8 +7,8 @@ import AuthInput from '@presentational/atoms/AuthInput';
 function Login() {
   return (
     <div className="bg-fgpwd-otp bg-center bg-cover bg-no-repeat brightness-55 w-screen h-screen">
-      <div className="container flex flex-row w-full h-full gap-24">
-        <div className="flex flex-col justify-center">
+      <div className="container flex flex-row w-full h-full gap-24 justify-center md:justify-start">
+        <div className="flex flex-col justify-center ">
           <div className="text-white text-[3rem] font-bold drop-shadow ml-12">
             ĐỂ CHÚNG TÔI
           </div>
@@ -44,8 +44,13 @@ function Login() {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <div className="bg-white w-[517px] h-[700px] bg-opacity-95 rounded-[1.5rem]">
+          <div className="bg-white w-[517px] h-[600px] bg-opacity-95 rounded-[1.5rem] flex flex-col justify-center items-center">
+            <div className="font-extrabold text-[40px]">Đăng nhập</div>
             <AuthInput label="Email" />
+            <AuthInput label="Mật khẩu" />
+            <div className=" w-40">
+              <CustomButton style="btn-secondary">Đăng Nhập</CustomButton>
+            </div>
           </div>
         </div>
       </div>

@@ -20,6 +20,7 @@ module.exports = {
       stone: '#1c1917', // light black
       lightStone: '#292524',
       gray: '#808080',
+      midgray: '#79747E',
       zinc: '#e4e4e7', // light gray
 
       white: '#FFFFFF',
