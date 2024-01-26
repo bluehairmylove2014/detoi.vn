@@ -1,72 +1,69 @@
 'use client';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { Text } from '@presentational/atoms';
 import IconButton from '@presentational/atoms/IconButton';
 
-interface IAccordionProps {
+type TAccordionProps = {
   idx: number;
   title: string;
   content: string;
-}
+};
 
-interface IFaqListContentProps {
+type TFaqListContentProps = {
   faqListContent?: {
     title: string;
     content: string;
   }[];
-}
-
-const Accordion: React.FC<IAccordionProps> = ({ idx, title, content }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleToggle = () => {
-    return isOpen ? { maxHeight: '100%' } : { maxHeight: '0' };
-  };
-
-  return (
-    <>
-      <div
-        onClick={handleClick}
-        className="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
-      >
-        <Text left style="font-bold">
-          {title}
-        </Text>
-        <IconButton
-          iconName={isOpen ? 'minus' : 'plus'}
-          color="black"
-          className="h-4 w-4 md:h-3 md:w-3 xl:h-4 xl:w-4"
-        />
-      </div>
-      <div
-        className={`border-l-2 border-purple-600 overflow-hidden max-h-0  ${
-          isOpen && 'border-t border-gray-400'
-        }`}
-        style={handleToggle()}
-      >
-        <Text left size="xSmall" style="p-3 text-gray">
-          {content}
-        </Text>
-      </div>
-    </>
-  );
 };
 
-const FAQ: React.FC<IFaqListContentProps> = ({ faqListContent = [] }) => {
-  return (
-    <main className="p-5">
-      <div className="flex justify-center items-start my-2 ">
-        <div className="w-full sm:w-10/12 md:w-1/2 my-1">
-          <ul
-            className="flex flex-col border-collapse border-solid border-gray rounded-md"
-            style={{ borderWidth: '1px' }}
-          >
-            {faqListContent?.map((faqItem, index) => {
-              return (
+const Accordion: React.FC<TAccordionProps> = React.memo(
+  ({ idx, title, content }) => {
+    const [isOpen, setIsOpen] = useState<Boolean>(false);
+
+    const handleClick = useCallback(() => {
+      setIsOpen(!isOpen);
+    }, []);
+
+    return (
+      <>
+        <div
+          onClick={handleClick}
+          className="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
+        >
+          <Text align='left' style="font-bold">
+            {title}
+          </Text>
+          <IconButton
+            iconName={isOpen ? 'minus' : 'plus'}
+            color="black"
+            className="h-4 w-4 md:h-3 md:w-3 xl:h-4 xl:w-4"
+          />
+        </div>
+        <div
+          className={`border-l-2 border-purple-600 overflow-hidden max-h  ${
+            isOpen ? 'border-t border-gray-400 max-h-full' : 'max-h-0'
+          }`}
+        >
+          <Text align='left' size="sm" style="p-3 text-gray">
+            {content}
+          </Text>
+        </div>
+      </>
+    );
+  }
+);
+
+const FAQ: React.FC<TFaqListContentProps> = React.memo(
+  ({ faqListContent = [] }) => {
+    return (
+      <main className="p-5">
+        <div className="flex justify-center items-start my-2 ">
+          <div className="w-full sm:w-10/12 md:w-1/2 my-1">
+            <ul
+              className="flex flex-col border-collapse border-solid border-gray rounded-md"
+              style={{ borderWidth: '1px' }}
+            >
+              {faqListContent.map((faqItem, index) => (
                 <li
                   className={`my-2 ${
                     index !== faqListContent.length - 1 &&
@@ -80,13 +77,13 @@ const FAQ: React.FC<IFaqListContentProps> = ({ faqListContent = [] }) => {
                     content={faqItem.content}
                   />
                 </li>
-              );
-            })}
-          </ul>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
-    </main>
-  );
-};
+      </main>
+    );
+  }
+);
 
 export default FAQ;

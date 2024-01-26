@@ -19,7 +19,7 @@ import TrackingImage from '@assets/tracking.png';
 import Image from 'next/image';
 import CircleImage from '@presentational/atoms/CircleImage';
 import ColorfulDot from '@presentational/atoms/ColorfulDot';
-import { Head2 } from '@presentational/atoms';
+import { Heading } from '@presentational/atoms';
 import ImageIcon from '@presentational/atoms/ImageIcon';
 import StepCardList from '@presentational/molecules/StepCardList';
 import StylistReviewCardList from '@presentational/organisms/StylistReviewCardList';
@@ -215,7 +215,7 @@ function Home() {
             <p className="text-base opacity-80 leading-10">
               <b className="text-rose">5.000+</b> ĐÁNH GIÁ TÍCH CỰC
             </p>
-            <Head2> UY TÍN, NHANH CHÓNG & TIỆN LỢI</Head2>
+            <Heading> UY TÍN, NHANH CHÓNG & TIỆN LỢI</Heading>
           </div>
           <div className="w-full flex-grow grid grid-cols-2 gap-6">
             <div className="col-span-1 flex flex-col justify-end w-full h-full">
@@ -256,7 +256,7 @@ function Home() {
       <section className="w-full h-screen bg-white relative grid place-items-center">
         <div className="container h-screen py-16 flex flex-col justify-around items-start">
           <div className="flex-shrink mx-auto">
-            <Head2 style="text-rose"> LIÊN HỆ VỚI CHÚNG TÔI</Head2>
+            <Heading style="text-rose"> LIÊN HỆ VỚI CHÚNG TÔI</Heading>
             <p className="text-black text-base opacity-80 leading-10 text-center">
               Có thắc mắc hay vấn đề cần giải quyết? Liên hệ để chúng tôi có thể
               giúp đỡ bạn
@@ -265,10 +265,10 @@ function Home() {
           <ContactForm />
         </div>
       </section>
-      <div>
-        <Head2>CÁC CÂU HỎI THƯỜNG GẶP</Head2>
+      <section>
+        <Heading>CÁC CÂU HỎI THƯỜNG GẶP</Heading>
         <FAQ faqListContent={FAQ_CONTENT} />
-      </div>
+      </section>
     </main>
   );
 }
