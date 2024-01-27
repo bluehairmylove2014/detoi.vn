@@ -2,7 +2,7 @@ import Image from 'next/image';
 import phone from '@assets/phone.svg';
 import CustomButton from '@presentational/atoms/CustomButton';
 import CWEBFAIcon from '@presentational/atoms/CWEBFAIcon';
-import AuthInput from '@presentational/atoms/AuthInput';
+import LoginForm from '@presentational/molecules/LoginForm';
 
 function Login() {
   return (
@@ -44,13 +44,8 @@ function Login() {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <div className="bg-white w-[517px] h-[600px] bg-opacity-95 rounded-[1.5rem] flex flex-col justify-center items-center">
-            <div className="font-extrabold text-[40px]">Đăng nhập</div>
-            <AuthInput label="Email" />
-            <AuthInput label="Mật khẩu" />
-            <div className=" w-40">
-              <CustomButton style="btn-secondary">Đăng Nhập</CustomButton>
-            </div>
+          <div className="bg-white w-[25rem] h-[28rem] bg-opacity-95 rounded-[1.5rem] flex flex-col justify-center items-center">
+            <LoginForm />
           </div>
         </div>
       </div>
