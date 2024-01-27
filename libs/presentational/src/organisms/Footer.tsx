@@ -13,7 +13,7 @@ import {
 function Footer() {
   return (
     <div className="w-full bg-black relative grid place-items-center">
-      <div className="container mx-auto text-gray text-[1.1rem] px-12 py-16 grid grid-cols-5 md:px-0 xl:px-5 xl:text-base md:text-sm">
+      <div className="container mx-auto text-gray text-[1.1rem] px-12 py-16 grid grid-cols-5 md:px-0 xl:px-5 md:text-sm">
         <div className="flex flex-col space-y-10 col-span-3 justify-center md:space-y-0 md:flex-row mr-1">
           <div className="flex-1">
             <h4 className="mb-2 text-white text-xl md:text-base">
@@ -21,8 +21,10 @@ function Footer() {
             </h4>
             <ul className="space-y-2">
               {ABOUT_US.map((info) => (
-                <li className=" hover:text-white" key={info.title}>
-                  <Link href={info.link}>{info.title}</Link>
+                <li key={info.title}>
+                  <Link href={info.link} className="text-gray hover:text-white">
+                    {info.title}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -32,8 +34,10 @@ function Footer() {
             <h5 className="mb-2 text-white text-xl md:text-base">HƯỚNG DẪN</h5>
             <ul className="space-y-2">
               {INSTRUCTION.map((info) => (
-                <li className=" hover:text-white" key={info.title}>
-                  <Link href={info.link}>{info.title}</Link>
+                <li key={info.title}>
+                  <Link href={info.link} className="text-gray hover:text-white">
+                    {info.title}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -43,8 +47,10 @@ function Footer() {
             <h5 className="mb-2 text-white text-xl md:text-base">QUY ĐỊNH</h5>
             <ul className="space-y-2">
               {POLICY.map((info) => (
-                <li className="hover:text-white" key={info.title}>
-                  <Link href={info.link}>{info.title}</Link>
+                <li key={info.title}>
+                  <Link href={info.link} className="text-gray hover:text-white">
+                    {info.title}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -67,7 +73,7 @@ function Footer() {
               ))}
             </ul>
           </div>
-          <div className="flex-1 md:ml-4">
+          <div className="flex-1 md:ml-8">
             <div className="flex flex-col">
               <h5 className="text-white mb-2 text-xl md:text-base">
                 MẠNG XÃ HỘI

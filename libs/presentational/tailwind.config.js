@@ -25,7 +25,8 @@ module.exports = {
       white: '#FFFFFF',
 
       rose: '#e11d48', // soft red
-      yellow: '#ca8a04', // USE FOR DECORATE DOT ONLY
+      yellow: '#facc15', // USE FOR DECORATE DOT ONLY
+      lightYellow: '#fef08a',
       blue: '#2563eb', // USE FOR DECORATE DOT ONLY
       cyan: '#155e75', // soft blue
     },
