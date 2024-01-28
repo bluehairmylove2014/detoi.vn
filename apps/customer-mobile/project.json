@@ -1,87 +1,87 @@
 {
-  "root": "apps/avidtrader-mobile",
-  "sourceRoot": "apps/avidtrader-mobile/src",
+  "root": "apps/customer-mobile",
+  "sourceRoot": "apps/customer-mobile/src",
   "projectType": "application",
   "targets": {
     "start": {
-      "executor": "@nrwl/expo:start",
+      "executor": "@nx/expo:start",
       "options": {
         "port": 8081
       }
     },
     "web": {
-      "executor": "@nrwl/expo:start",
+      "executor": "@nx/expo:start",
       "options": {
         "port": 8081,
         "webpack": true
       }
     },
     "serve": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "@nx/workspace:run-commands",
       "options": {
-        "command": "nx start avidtrader-mobile"
+        "command": "nx start customer-mobile"
       }
     },
     "run-ios": {
-      "executor": "@nrwl/expo:run",
+      "executor": "@nx/expo:run",
       "options": {
         "platform": "ios"
       }
     },
     "run-android": {
-      "executor": "@nrwl/expo:run",
+      "executor": "@nx/expo:run",
       "options": {
         "platform": "android"
       }
     },
     "build-ios": {
-      "executor": "@nrwl/expo:build-ios",
+      "executor": "@nx/expo:build-ios",
       "options": {}
     },
     "build-android": {
-      "executor": "@nrwl/expo:build-android",
+      "executor": "@nx/expo:build-android",
       "options": {}
     },
     "build-web": {
-      "executor": "@nrwl/expo:build-web",
+      "executor": "@nx/expo:build-web",
       "options": {}
     },
     "build-status": {
-      "executor": "@nrwl/expo:build-web",
+      "executor": "@nx/expo:build-web",
       "options": {}
     },
     "sync-deps": {
-      "executor": "@nrwl/expo:sync-deps",
+      "executor": "@nx/expo:sync-deps",
       "options": {}
     },
     "ensure-symlink": {
-      "executor": "@nrwl/expo:ensure-symlink",
+      "executor": "@nx/expo:ensure-symlink",
       "options": {}
     },
     "publish": {
-      "executor": "@nrwl/expo:publish",
+      "executor": "@nx/expo:publish",
       "options": {}
     },
     "publish-set": {
-      "executor": "@nrwl/expo:publish-set",
+      "executor": "@nx/expo:publish-set",
       "options": {}
     },
     "rollback": {
-      "executor": "@nrwl/expo:rollback",
+      "executor": "@nx/expo:rollback",
       "options": {}
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/avidtrader-mobile/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/customer-mobile/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/avidtrader-mobile"],
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/apps/customer-mobile"],
       "options": {
-        "jestConfig": "apps/avidtrader-mobile/jest.config.js",
+        "jestConfig": "apps/customer-mobile/jest.config.js",
         "passWithNoTests": true
       }
     }

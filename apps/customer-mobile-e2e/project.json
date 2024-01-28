@@ -1,6 +1,6 @@
 {
-  "root": "apps/avidtrader-mobile-e2e",
-  "sourceRoot": "apps/avidtrader-mobile-e2e/src",
+  "root": "apps/customer-mobile-e2e",
+  "sourceRoot": "apps/customer-mobile-e2e/src",
   "projectType": "application",
   "targets": {
     "build-ios": {
@@ -18,12 +18,12 @@
       "executor": "@nrwl/detox:test",
       "options": {
         "detoxConfiguration": "ios.sim.debug",
-        "buildTarget": "avidtrader-mobile-e2e:build-ios"
+        "buildTarget": "customer-mobile-e2e:build-ios"
       },
       "configurations": {
         "production": {
           "detoxConfiguration": "ios.sim.release",
-          "buildTarget": "avidtrader-mobile-e2e:build-ios:prod"
+          "buildTarget": "customer-mobile-e2e:build-ios:prod"
         }
       }
     },
@@ -42,12 +42,12 @@
       "executor": "@nrwl/detox:test",
       "options": {
         "detoxConfiguration": "android.emu.debug",
-        "buildTarget": "avidtrader-mobile-e2e:build-android"
+        "buildTarget": "customer-mobile-e2e:build-android"
       },
       "configurations": {
         "production": {
           "detoxConfiguration": "android.emu.release",
-          "buildTarget": "avidtrader-mobile-e2e:build-android:prod"
+          "buildTarget": "customer-mobile-e2e:build-android:prod"
         }
       }
     },
@@ -55,10 +55,10 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/avidtrader-mobile-e2e/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/customer-mobile-e2e/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },
   "tags": [],
-  "implicitDependencies": ["avidtrader-mobile"]
+  "implicitDependencies": ["customer-mobile"]
 }

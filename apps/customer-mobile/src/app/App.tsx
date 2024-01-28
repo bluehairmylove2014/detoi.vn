@@ -3,8 +3,10 @@ import React from 'react';
 import Home from './home/home';
 
 const App = () => {
-  return ( 
+  return ( <div>
       <Home /> 
+asdasdsa
+  </div>
   );
 };
 

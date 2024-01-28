@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "avidtrader-mobile",
-    "slug": "avidtrader-mobile",
+    "name": "customer-mobile",
+    "slug": "customer-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,8 +24,6 @@
         "backgroundColor": "#FFFFFF"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+ 
   }
 }

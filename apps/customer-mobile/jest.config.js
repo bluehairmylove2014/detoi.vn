@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'avidtrader-mobile',
+  displayName: 'customer-mobile',
   resolver: '@nrwl/jest/plugins/resolver',
   preset: 'jest-expo',
   transformIgnorePatterns: [
