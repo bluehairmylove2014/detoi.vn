@@ -9,8 +9,8 @@ function LoginForm() {
   return (
     <form className="overflow-hidden min-h-[25rem] w-3/4 flex flex-col items-center justify-start">
       <div className="font-extrabold text-[40px] mt-8 mb-5">ĐĂNG NHẬP</div>
-      <AuthInput label="Email" />
-      <AuthInput label="Mật khẩu" />
+      {/* <AuthInput label="Email" />
+      <AuthInput label="Mật khẩu" /> */}
       <div className="w-full mt-[30px]">
         <CustomButton style="btn-secondary">Đăng nhập</CustomButton>
       </div>
