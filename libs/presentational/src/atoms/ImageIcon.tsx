@@ -1,21 +1,15 @@
 import Image, { StaticImageData } from 'next/image';
 
-const DEFAULT_SIZE = '5rem';
-
 function ImageIcon({
   src,
   alt,
-  size,
+  size = '5rem',
 }: {
   src: string | StaticImageData;
   alt: string;
   size?: string;
 }) {
-  const realSize = size ?? DEFAULT_SIZE;
-
-  return (
-    <Image src={src} alt={alt} style={{ width: realSize, height: realSize }} />
-  );
+  return <Image src={src} alt={alt} style={{ width: size, height: size }} />;
 }
 
 export default ImageIcon;

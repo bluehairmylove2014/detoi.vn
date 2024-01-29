@@ -15,11 +15,14 @@ import step1_img from '@assets/step1.png';
 import step2_img from '@assets/step2.jpg';
 import step3_img from '@assets/step3.jpg';
 import CleaningIcon from '@assets/cleaning-110.png';
+import TrackingImage from '@assets/tracking.png';
 import Image from 'next/image';
 import CircleImage from '@presentational/atoms/CircleImage';
 import ColorfulDot from '@presentational/atoms/ColorfulDot';
 import ImageIcon from '@presentational/atoms/ImageIcon';
 import StepCardList from '@presentational/molecules/StepCardList';
+import StylistReviewCardList from '@presentational/organisms/StylistReviewCardList';
+import ContactForm from '@presentational/organisms/ContactForm';
 
 const akshar = Akshar({
   subsets: ['latin'],
@@ -126,7 +129,7 @@ function Home() {
                 <CircleImage src={User_3_img} alt="user1" size="1.5rem" />
                 <CircleImage src={User_2_img} alt="user1" size="1.5rem" />
                 <CircleImage src={User_1_img} alt="user1" size="1.5rem" />
-                <div className="w-6 h-6 rounded-full bg-zinc-200 grid place-items-center">
+                <div className="w-6 h-6 rounded-full bg-zinc grid place-items-center">
                   <span className="font-semibold text-black whitespace-nowrap text-[0.6rem]">
                     99+
                   </span>
@@ -187,11 +190,11 @@ function Home() {
           DETOIVN
         </p>
       </section>
-      <section className="w-full h-screen bg-stone-900 relative grid place-items-center">
+      <section className="w-full h-screen bg-stone relative grid place-items-center">
         <div className="container h-screen py-14 flex flex-col justify-between">
           <div className="text-white flex-shrink">
             <p className="text-base opacity-80 leading-10">3 BƯỚC ĐƠN GIẢN</p>
-            <h2 className="text-4xl leading-[3rem]">
+            <h2 className="text-4xl leading-[3rem] ">
               Đặt dịch vụ chưa bao giờ
               <br />
               là <span className="text-yellow-500">dễ đến thế</span>
@@ -201,6 +204,66 @@ function Home() {
           <div className="flex-grow flex flex-col justify-end">
             <StepCardList steps={stepsContent} />
           </div>
+        </div>
+      </section>
+      <section className="w-full h-screen bg-zinc relative grid place-items-center">
+        <div className="container h-screen pt-14 flex flex-col justify-between items-start">
+          <div className="text-black flex-shrink">
+            <p className="text-base opacity-80 leading-10">
+              <b className="text-rose">5.000+</b> ĐÁNH GIÁ TÍCH CỰC
+            </p>
+            <h2 className="text-4xl leading-[3rem] font-extrabold">
+              UY TÍN, NHANH CHÓNG & TIỆN LỢI
+            </h2>
+          </div>
+          <div className="w-full flex-grow grid grid-cols-2 gap-6">
+            <div className="col-span-1 flex flex-col justify-end w-full h-full">
+              <div className="w-full h-auto aspect-square max-w-[600px] relative">
+                <Image
+                  src={TrackingImage}
+                  alt="Dễ dàng theo dõi dịch vụ"
+                  fill
+                  sizes="(max-width: 768px) 300px, (max-width: 1200px)  505px, 705px"
+                />
+              </div>
+            </div>
+            <div className="col-span-1 flex flex-col justify-between h-full">
+              <div className="mt-8 flex-grow w-full">
+                <div className="w-full h-fit">
+                  <StylistReviewCardList />
+                </div>
+              </div>
+              <div className="mb-14 flex-shrink">
+                <h3 className="text-3xl font-extrabold">Dễ dàng theo dõi</h3>
+                <p className="mt-2 mb-4 text-justify">
+                  Hỗ trợ bản đồ và cập nhật tình trạng xử lý dịch vụ theo thời
+                  gian thực, dễ dàng theo dõi và đáng tin cậy. Bên cạnh đó,
+                  chúng tôi cũng cung cấp các chính sách hoàn trả tốt nhất nếu
+                  dịch vụ không như ý muốn.
+                </p>
+                <div className="w-fit h-fit">
+                  <CustomButton style="btn-black-only-border">
+                    <span className="mr-2">Xem chính sách</span>
+                    <CWEBFAIcon iconName="faArrowRight" size="xs" />
+                  </CustomButton>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="w-full h-screen bg-white relative grid place-items-center">
+        <div className="container h-screen py-16 flex flex-col justify-around items-start">
+          <div className="flex-shrink mx-auto">
+            <h2 className="text-rose text-4xl leading-[3rem] font-extrabold drop-shadow-md text-center">
+              LIÊN HỆ VỚI CHÚNG TÔI
+            </h2>
+            <p className="text-black text-base opacity-80 leading-10 text-center">
+              Có thắc mắc hay vấn đề cần giải quyết? Liên hệ để chúng tôi có thể
+              giúp đỡ bạn
+            </p>
+          </div>
+          <ContactForm />
         </div>
       </section>
     </main>

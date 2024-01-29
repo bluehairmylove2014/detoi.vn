@@ -26,6 +26,7 @@
     "expo-structured-headers": "2.1.1",
     "expo-updates": "0.11.6",
     "expo-web-browser": "^12.8.1",
+    "friendly-challenge": "^0.9.14",
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "nativewind": "^2.0.11",

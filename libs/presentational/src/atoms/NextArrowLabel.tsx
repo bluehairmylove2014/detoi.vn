@@ -7,13 +7,18 @@ type nextArrowLinkProps = {
   href: string;
   className?: string;
 };
-function NextArrowLabel({ label, style, href, className }: nextArrowLinkProps) {
+function NextArrowLabel({
+  label,
+  style,
+  href,
+  className = '',
+}: nextArrowLinkProps) {
   return (
     <Link
       href={href}
-      className={`${style === 'bordered' ? '' : ''} ${
-        className ?? ''
-      } font-medium text-xs flex flex-row relative [&:hover>.line]:w-full`}
+      className={`${
+        style === 'bordered' ? '' : ''
+      } ${className} font-medium text-xs flex flex-row relative [&:hover>.line]:w-full`}
     >
       <span className="label relative right-0 mr-2 transition-all">
         {label}
