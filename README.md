@@ -68,3 +68,5 @@ cd customer-mobile
 ```
 npm start
 ```
+## DO NOT PUSH YOUR SOURCE CODE DIRECTLY TO MAIN BRANCH
+
