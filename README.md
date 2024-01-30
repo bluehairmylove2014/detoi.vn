@@ -55,3 +55,16 @@ Nx comes with local caching already built-in (check your `nx.json`). On CI you m
 - [Join the community](https://nx.dev/community)
 - [Subscribe to the Nx Youtube Channel](https://www.youtube.com/@nxdevtools)
 - [Follow us on Twitter](https://twitter.com/nxdevtools)
+
+
+## How to run mobile app
+There are 2 methods:
+- Method 1: Run from root: `npx nx run customer-mobile:start`
+- Method 2: Run from  customer-mobile:
+```
+cd apps
+cd customer-mobile
+```
+```
+npm start
+```
