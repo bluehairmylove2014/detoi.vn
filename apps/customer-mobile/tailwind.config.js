@@ -1,13 +1,12 @@
-const { join } = require('path');
+// @ts-check
 
+
+/**
+ * @type {import('tailwindcss').Config}
+ */
 module.exports = {
-  mode: 'jit',
-  content: [
-    join(__dirname, 'src/app/**/*.{js,jsx,ts,tsx}'),
-  ],
-  theme: {
-    extend: {},
+  content: ['./App.tsx'],
+  theme: { 
   },
   plugins: [],
-  corePlugins: require('tailwind-rn/unsupported-core-plugins'),
 }

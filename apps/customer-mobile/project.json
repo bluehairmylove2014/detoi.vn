@@ -12,8 +12,7 @@
     "web": {
       "executor": "@nx/expo:start",
       "options": {
-        "port": 8081,
-        "webpack": true
+        "port": 8081
       }
     },
     "serve": {

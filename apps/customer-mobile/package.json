@@ -1,27 +1,40 @@
 {
   "name": "customer-mobile",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
+  "main": "index.js",
   "dependencies": {
-    "@testing-library/jest-native": "*",
-    "@testing-library/react-native": "*",
-    "react-native": "*",
-    "expo": "*",
-    "@nx/expo": "*",
-    "expo-dev-client": "*",
-    "expo-status-bar": "*",
-    "expo-splash-screen": "*",
-    "expo-structured-headers": "*",
-    "expo-updates": "*",
-    "react-native-gesture-handler": "*",
-    "react-native-reanimated": "*",
-    "react-native-safe-area-context": "*",
-    "react-native-screens": "*",
-    "react-native-svg": "*",
-    "react-native-web": "*"
+    "@expo/webpack-config": "^0.17.0",
+    "dns.js": "^1.0.1",
+    "expo": "~46.0.19",
+    "expo-dev-client": "~1.3.1",
+    "expo-image-loader": "~3.2.0",
+    "expo-linking": "~3.2.4",
+    "expo-splash-screen": "~0.16.2",
+    "expo-status-bar": "~1.4.0",
+    "expo-updates": "~0.14.7",
+    "nativewind": "2.0.9",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "react-native": "0.69.9", 
+    "react-native-screens": "~3.15.0", 
+    "react-native-web": "~0.18.7",
+    "react-scripts": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@types/react": "~18.0.24",
+    "@types/react-native": "~0.70.5",
+    "patch-package": "^6.4.7",
+    "tailwindcss": "^3.3.2",
+    "typescript": "4.7.4"
   },
   "scripts": {
-    "eas-build-pre-install": "cd ../../ && cp yarn.lock ./apps/customer-mobile/ && mv ./apps/customer-mobile/eas.js ./index.js",
-    "postinstall": "rm -r node_modules && cd ../../ && yarn install && npx nx sync-deps customer-mobile && npx nx ensure-symlink customer-mobile"
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "build:preview:android": "eas build --profile preview --platform android",
+    "build:development:android": "eas build --profile development --platform android"
   }
 }

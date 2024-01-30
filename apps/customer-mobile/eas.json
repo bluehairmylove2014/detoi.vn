@@ -1,26 +1,16 @@
 {
-  "build": {
-    "production": {
-      "android": {
-        "buildType": "app-bundle"
-      }
+    "build": {
+        "preview": {
+            "android": {
+                "buildType": "apk"
+            },
+            "ios": {
+                "enterpriseProvisioning": "universal"
+            }
+        },
+        "production": {}
     },
-    "development": {
-      "android": {
-        "developmentClient": true,
-        "distribution": "internal"
-      }
-    },
-    "preview": {
-      "ios": {
-        "simulator": true
-      },
-      "android": {
-        "buildType": "apk"
-      }
+    "cli": {
+        "promptToConfigurePushNotifications": false
     }
-  },
-  "cli": {
-    "version": ">= 0.38.1"
-  }
 }
