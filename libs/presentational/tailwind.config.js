@@ -20,6 +20,7 @@ module.exports = {
       stone: '#1c1917', // light black
       lightStone: '#292524',
       gray: '#808080',
+      midgray: '#79747E',
       zinc: '#e4e4e7', // light gray
 
       white: '#FFFFFF',
@@ -29,6 +30,9 @@ module.exports = {
       lightYellow: '#fef08a',
       blue: '#2563eb', // USE FOR DECORATE DOT ONLY
       cyan: '#155e75', // soft blue
+
+      transparent: 'transparent',
+      inherit: 'inherit'
     },
     extend: {
       activeHQFormBox: '!w-80 !opacity-100',

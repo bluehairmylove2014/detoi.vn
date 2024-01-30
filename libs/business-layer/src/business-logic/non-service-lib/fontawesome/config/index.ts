@@ -19,7 +19,7 @@ import {
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 import {
   faStar as faStarSolid,
-  faStarHalfStroke,
+  faStarHalfStroke, faPlus, faMinus
 } from '@fortawesome/free-solid-svg-icons';
 
 // Customer Web Icon
@@ -40,6 +40,8 @@ export const CWEB_ICON_LIST = {
   faStarSolid: faStarSolid,
   faStarHalfStroke: faStarHalfStroke,
   faBar: faBars,
+  plus: faPlus,
+  minus: faMinus
 };
 
 // Customer App Icon
