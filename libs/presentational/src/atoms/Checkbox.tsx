@@ -5,18 +5,24 @@ type checkboxProps = {
   label: string;
   name: string;
   register: UseFormRegister<any>;
+  watcher: Boolean;
 };
-function Checkbox({ id, label, name, register }: checkboxProps) {
+function Checkbox({
+  id,
+  label,
+  name,
+  register,
+  watcher = false,
+}: checkboxProps) {
   return (
-    <div className="flex flex-row justify-start items-start flex-nowrap gap-3">
-      <div className="w-6 h-6 rounded border-2 border-solid border-gray">
-        <input
-          type="checkbox"
-          id={id}
-          {...register(name)}
-          className="bg-transparent opacity-0 w-full h-full"
-        />
-      </div>
+    <div className="flex flex-row justify-start items-start flex-nowrap gap-3 ">
+      <input
+        type="checkbox"
+        id={id}
+        {...register(name)}
+        checked={watcher == true}
+        className="border-solid border-transparent w-6 h-6 cursor-pointer"
+      />
       <label htmlFor={id} className="line-clamp-1">
         {label}
       </label>

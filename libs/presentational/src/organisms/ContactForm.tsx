@@ -4,7 +4,9 @@ import Checkbox from '@presentational/atoms/Checkbox';
 import CommonInput from '@presentational/atoms/CommonInput';
 import DoubleArrowBtn from '@presentational/atoms/DoubleArrowBtn';
 import useFriendlyCaptcha from '@presentational/atoms/FriendlyCaptcha';
+import { Text } from '@presentational/atoms';
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 
 type contactFormType = {
   fullName: string;
@@ -14,6 +16,7 @@ type contactFormType = {
   subscribeNews: boolean;
 };
 function ContactForm() {
+  const [ isFormError, setIsFormError ] = useState<Boolean>(false);
   const { register, watch } = useForm<contactFormType>({
     defaultValues: {
       fullName: '',
@@ -30,8 +33,22 @@ function ContactForm() {
     onSuccessVerify: onSuccessVerify,
   });
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!watch('fullName') || !watch('email') || !watch('topic') || !watch('content')) {
+      setIsFormError(true);
+      return;
+    }
+    setIsFormError(false);
+    alert('Submit success');
+  };
   return (
-    <form className="max-w-3xl mx-auto w-full h-fit">
+    <form className="max-w-3xl mx-auto w-full h-fit " onSubmit={handleSubmit}>
+      <div className={`${isFormError? '':'invisible'}`}>
+        <Text align="left" style="text-rose font-bold" size="xl">
+          Vui lòng nhập đầy đủ thông tin
+        </Text>
+      </div>
       <div className="grid grid-cols-2 grid-rows-3 gap-6 w-full h-fit">
         <div className="col-span-1 row-start-1 pr-5">
           <CommonInput
@@ -84,6 +101,7 @@ function ContactForm() {
           name="subscribeNews"
           label="Tôi muốn nhận thư về các thông tin mới nhất của detoi.vn"
           register={register}
+          watcher={watch('subscribeNews')}
         />
       </div>
       <div className="w-full h-fit flex flex-row justify-start items-center gap-6">
