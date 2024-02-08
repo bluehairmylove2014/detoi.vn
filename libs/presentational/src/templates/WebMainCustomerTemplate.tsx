@@ -7,7 +7,7 @@ type accessPageTemplateParams = {
 
 const WebMainCustomerTemplate = ({ children }: accessPageTemplateParams) => {
   return (
-    <div className="w-screen h-screen overflow-y-auto overflow-x-hidden relative scrollbar-hide">
+    <div className="w-full h-full overflow-y-auto overflow-x-hidden relative scrollbar-hide">
       <Notification />
 
       {children}
