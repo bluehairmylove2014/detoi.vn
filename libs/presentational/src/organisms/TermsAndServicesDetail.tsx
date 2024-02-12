@@ -5,9 +5,7 @@ import { useEffect, useState } from 'react';
 function TermPolicy({ termPolicy }: { termPolicy: ITermPolicy }) {
   const [subTitleList, setSubTitleList] =
     useState<NodeListOf<HTMLHeadingElement> | null>(null);
-  const [selectedTitleIndex, setSelectedTitleIndex] = useState<number | null>(
-    null
-  );
+  const [selectedTitleIndex, setSelectedTitleIndex] = useState<number | 0>(0);
 
   useEffect(() => {
     const tempDiv = document.createElement('div');
@@ -59,59 +57,65 @@ function TermPolicy({ termPolicy }: { termPolicy: ITermPolicy }) {
   }, []);
 
   const smoothScrollTo = (id: string, index: number) => {
+    console.log('Smooth scrolling to:', id);
     const element = document.getElementById(id);
+    console.log('Element:', element);
     if (element) {
       const remToPixels = parseFloat(
         getComputedStyle(document.documentElement).fontSize
       );
 
-      const marginRem = 15;
+      const marginRem = 5;
       const marginPixels = marginRem * remToPixels;
       const offsetTop = element.getBoundingClientRect().top;
       setSelectedTitleIndex(index);
 
       window.scroll({
         top: window.scrollY + offsetTop - marginPixels,
-        behavior: 'smooth',
+        behavior: 'auto',
       });
-
-      return;
     }
   };
 
   return (
-    <main className="w-full h-full flex flex-col justify-start items-center bg-white relative">
-      <section className="container mx-auto w-full h-fit fixed bg-white py-28 pb-8">
-        <h1 className="font-black drop-shadow-md text-[2.5rem]">
-          {termPolicy.title}
-        </h1>
-        <p className="text-sm text-gray">
-          Có hiệu lực từ ngày 24 tháng 01 năm 2024
-        </p>
-      </section>
-      <section className="container mx-auto flex flex-row mt-56 h-full mb-20">
-        <div className="w-1/5 fixed h-screen overflow-y-auto">
-          {subTitleList &&
-            Array.from(subTitleList).map((title, index) => (
-              <div
-                key={index}
-                className={`py-2 px-4 rounded text-black cursor-pointer ${
-                  selectedTitleIndex === index ? 'bg-yellow' : 'bg-white'
-                }`}
-                onClick={() => smoothScrollTo(`section-${index + 1}`, index)}
-              >
-                <span className="text-sm text-black font-semibold text-start">
-                  {title.innerText}
-                </span>
-              </div>
-            ))}
-        </div>
-        <div
-          className="pl-8 pr-20 ml-[25%]"
-          dangerouslySetInnerHTML={{ __html: termPolicy.content }}
-        />
-      </section>
-    </main>
+    <div className="w-full">
+      <div className="bg-white container mx-auto relative w-full">
+        <section className=" pt-8">
+          <h1 className="font-black drop-shadow-md text-[2.5rem]">
+            {termPolicy.title}
+          </h1>
+          <p className="text-sm text-gray">
+            Có hiệu lực từ ngày 24 tháng 01 năm 2024
+          </p>
+        </section>
+
+        <section className="flex items-start mt-10 pb-14">
+          {/* Sidebar */}
+          <aside className="w-2/5 sticky top-20 z-10 h-[65vh] overflow-y-auto">
+            {subTitleList &&
+              Array.from(subTitleList).map((title, index) => (
+                <div
+                  key={index}
+                  className={`py-2 px-3 rounded text-black cursor-pointer ${
+                    selectedTitleIndex === index ? 'bg-yellow' : 'bg-white'
+                  }`}
+                  onClick={() => smoothScrollTo(`section-${index + 1}`, index)}
+                >
+                  <span className="text-xs text-black font-semibold text-start">
+                    {title.innerText}
+                  </span>
+                </div>
+              ))}
+          </aside>
+
+          {/* Content Right */}
+          <main
+            className="ml-8 pr-12 flex-grow"
+            dangerouslySetInnerHTML={{ __html: termPolicy.content }}
+          />
+        </section>
+      </div>
+    </div>
   );
 }
 

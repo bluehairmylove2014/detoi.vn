@@ -6,7 +6,7 @@ import IconButton from '@presentational/atoms/IconButton';
 function Header() {
   return (
     // <header className="w-screen bg-white sticky top-0 z-30">
-    <header className="w-screen bg-white  fixed top-0 z-30 shadow-md">
+    <header className="w-screen bg-white sticky top-0 z-30 shadow-md">
       <div className="mx-auto xl:container xl:px-0 px-[30px] py-[18px]">
         <nav>
           <div className="flex flex-wrap justify-between items-center max-w-full min-w-full">

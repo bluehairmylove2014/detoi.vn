@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import '@presentational/styles/global.scss';
+
+body {
+  overflow: visible !important;
+}
