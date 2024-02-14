@@ -1,5 +1,6 @@
 'use client';
 import { ITermPolicy } from '@business-layer/services/entities/termPolicy';
+import TemplateContent from '@presentational/atoms/TemplateContent';
 import { useEffect, useState } from 'react';
 
 function TermPolicy({ termPolicy }: { termPolicy: ITermPolicy }) {
@@ -33,7 +34,7 @@ function TermPolicy({ termPolicy }: { termPolicy: ITermPolicy }) {
             element.getBoundingClientRect().top + window.scrollY;
 
           // Adjust this value according to your desired margin in rem
-          const marginRem = 15;
+          const marginRem = 10;
           const remToPixels = parseFloat(
             getComputedStyle(document.documentElement).fontSize
           );
@@ -57,9 +58,8 @@ function TermPolicy({ termPolicy }: { termPolicy: ITermPolicy }) {
   }, []);
 
   const smoothScrollTo = (id: string, index: number) => {
-    console.log('Smooth scrolling to:', id);
     const element = document.getElementById(id);
-    console.log('Element:', element);
+
     if (element) {
       const remToPixels = parseFloat(
         getComputedStyle(document.documentElement).fontSize
@@ -68,7 +68,6 @@ function TermPolicy({ termPolicy }: { termPolicy: ITermPolicy }) {
       const marginRem = 5;
       const marginPixels = marginRem * remToPixels;
       const offsetTop = element.getBoundingClientRect().top;
-      setSelectedTitleIndex(index);
 
       window.scroll({
         top: window.scrollY + offsetTop - marginPixels,
@@ -78,43 +77,40 @@ function TermPolicy({ termPolicy }: { termPolicy: ITermPolicy }) {
   };
 
   return (
-    <div className="w-full">
-      <div className="bg-white container mx-auto relative w-full">
-        <section className=" pt-8">
-          <h1 className="font-black drop-shadow-md text-[2.5rem]">
-            {termPolicy.title}
-          </h1>
-          <p className="text-sm text-gray">
-            Có hiệu lực từ ngày 24 tháng 01 năm 2024
-          </p>
-        </section>
+    <div className="bg-white container mx-auto relative w-full px-12 md:px-0 xl:px-5">
+      <section className=" pt-8">
+        <h1 className="font-black drop-shadow-md text-[2.5rem]">
+          {termPolicy.title}
+        </h1>
+        <p className="text-sm text-gray">
+          Có hiệu lực từ ngày 24 tháng 01 năm 2024
+        </p>
+      </section>
 
-        <section className="flex items-start mt-10 pb-14">
-          {/* Sidebar */}
-          <aside className="w-2/5 sticky top-20 z-10 h-[65vh] overflow-y-auto">
-            {subTitleList &&
-              Array.from(subTitleList).map((title, index) => (
-                <div
-                  key={index}
-                  className={`py-2 px-3 rounded text-black cursor-pointer ${
-                    selectedTitleIndex === index ? 'bg-yellow' : 'bg-white'
-                  }`}
-                  onClick={() => smoothScrollTo(`section-${index + 1}`, index)}
-                >
-                  <span className="text-xs text-black font-semibold text-start">
-                    {title.innerText}
-                  </span>
-                </div>
-              ))}
-          </aside>
+      <section className="flex items-start mt-10 pb-14">
+        {/* Sidebar */}
+        <aside className="hidden md:block w-3/6 xl:w-2/5 sticky top-20 z-10 h-[65vh] overflow-y-auto">
+          {subTitleList &&
+            Array.from(subTitleList).map((title, index) => (
+              <div
+                key={index}
+                className={`py-2 px-3 rounded text-black cursor-pointer ${
+                  selectedTitleIndex === index ? 'bg-yellow' : 'bg-white'
+                }`}
+                onClick={() => smoothScrollTo(`section-${index + 1}`, index)}
+              >
+                <span className="text-xs text-black font-semibold text-start">
+                  {title.innerText}
+                </span>
+              </div>
+            ))}
+        </aside>
 
-          {/* Content Right */}
-          <main
-            className="ml-8 pr-12 flex-grow"
-            dangerouslySetInnerHTML={{ __html: termPolicy.content }}
-          />
-        </section>
-      </div>
+        {/* Content Right */}
+        <main className="md:ml-8 flex-grow">
+          <TemplateContent content={termPolicy.content} />
+        </main>
+      </section>
     </div>
   );
 }
