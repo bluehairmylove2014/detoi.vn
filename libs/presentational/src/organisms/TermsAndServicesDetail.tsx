@@ -34,7 +34,7 @@ function TermPolicy({ termPolicy }: { termPolicy: ITermPolicy }) {
             element.getBoundingClientRect().top + window.scrollY;
 
           // Adjust this value according to your desired margin in rem
-          const marginRem = 10;
+          const marginRem = 6;
           const remToPixels = parseFloat(
             getComputedStyle(document.documentElement).fontSize
           );
