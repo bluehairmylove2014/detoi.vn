@@ -1,8 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
 @layer components {
     .btn {
         @apply rounded transition-all shadow-sm w-full py-2 px-6 font-semibold text-xs;
@@ -33,27 +28,6 @@
     }
 
     .btn-white-black {
-        @apply bg-white text-black shadow-none
+        @apply bg-white text-black shadow-none hover:text-primary
     }
 }
-
-// @layer utilities {
-//     @layer responsive {
-//         .btn-primary {
-//             background-color: theme('colors.primary')
-//         }
-
-//         .text-primary {
-//             color: theme("colors.primary");
-//         }
-
-//         // .bg-secondary {
-//         //     background-color: theme("colors.secondary");
-//         // }
-
-//         // .text-secondary {
-//         //     color: theme("colors.secondary");
-//         // }
-
-//     }
-// }
