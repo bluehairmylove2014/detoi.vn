@@ -5,8 +5,18 @@ import CommonInput from '@presentational/atoms/CommonInput';
 import DoubleArrowBtn from '@presentational/atoms/DoubleArrowBtn';
 import useFriendlyCaptcha from '@presentational/atoms/FriendlyCaptcha';
 import { Text } from '@presentational/atoms';
-import { useForm } from 'react-hook-form';
+import { Resolver, useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useNotification } from '@presentational/atoms/Notification';
+
+const schema = yup.object().shape({
+  fullName: yup.string().required('Vui lòng nhập họ và tên'),
+  email: yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
+  topic: yup.string().required('Vui lòng nhập chủ đề'),
+  content: yup.string().required('Vui lòng nhập nội dung'),
+});
 
 type contactFormType = {
   fullName: string;
@@ -15,9 +25,9 @@ type contactFormType = {
   content: string;
   subscribeNews: boolean;
 };
-function ContactForm() {
-  const [ isFormError, setIsFormError ] = useState<Boolean>(false);
-  const { register, watch } = useForm<contactFormType>({
+function ContactForm() { 
+  const { register, handleSubmit, formState: { errors }, watch } = useForm<contactFormType>({
+    resolver: yupResolver(schema) as any,
     defaultValues: {
       fullName: '',
       email: '',
@@ -33,22 +43,12 @@ function ContactForm() {
     onSuccessVerify: onSuccessVerify,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!watch('fullName') || !watch('email') || !watch('topic') || !watch('content')) {
-      setIsFormError(true);
-      return;
-    }
-    setIsFormError(false);
-    alert('Submit success');
+  const {showSuccess } = useNotification()
+  const onSubmit = (data: contactFormType) => {
+    showSuccess("Submit Success")
   };
   return (
-    <form className="max-w-3xl mx-auto w-full h-fit " onSubmit={handleSubmit}>
-      <div className={`${isFormError? '':'invisible'}`}>
-        <Text align="left" style="text-rose font-bold" size="xl">
-          Vui lòng nhập đầy đủ thông tin
-        </Text>
-      </div>
+    <form className="max-w-3xl mx-auto w-full h-fit " onSubmit={handleSubmit(onSubmit)}> 
       <div className="grid grid-cols-2 grid-rows-3 gap-6 w-full h-fit">
         <div className="col-span-1 row-start-1 pr-5">
           <CommonInput
