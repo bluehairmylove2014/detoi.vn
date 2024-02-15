@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNotification } from '@presentational/atoms/Notification';
+import React from 'react';
 
 const schema = yup.object().shape({
   fullName: yup.string().required('Vui lòng nhập họ và tên'),

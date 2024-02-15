@@ -1,7 +1,7 @@
 'use client';
 
-import StylistReviewCard from '@presentational/molecules/StylistReviewCard';
-import CardController from '@presentational/molecules/NavigateSteps';
+import StylistReviewCard from '@presentational/next/molecules/StylistReviewCard';
+import CardController from '@presentational/next/molecules/NavigateSteps';
 import { IReviewBase } from '@business-layer/services/entities';
 import { PRODUCT_LOADER } from '@constants/base64img';
 import Image from 'next/image';

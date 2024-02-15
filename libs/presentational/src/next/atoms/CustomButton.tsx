@@ -21,8 +21,6 @@ type commonButtonType = {
   isShortLoading?: boolean;
 };
 
-const defaultType = 'button';
-
 function CustomButton({
   children,
   style,
@@ -47,7 +45,7 @@ function CustomButton({
       {loading ? (
         <ButtonLoader label={isShortLoading ? '' : 'Chờ chút...'} />
       ) : (
-        <>{children}</>
+        children
       )}
     </button>
   );

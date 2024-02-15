@@ -1,4 +1,4 @@
-import IconButton from '@presentational/atoms/IconButton';
+import IconButton from '@presentational/next/atoms/IconButton';
 import { Dispatch, SetStateAction } from 'react';
 
 function CardController({

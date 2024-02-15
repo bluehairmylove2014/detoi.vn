@@ -1,7 +1,6 @@
 import { formatDate } from '@utils/helpers';
-
 import { IReviewBase } from '@business-layer/services/entities';
-import RatingStar from '@presentational/atoms/RatingStar';
+import RatingStar from '@presentational/next/atoms/RatingStar';
 
 function StylistReviewCard({ review }: { review: IReviewBase }) {
   return (

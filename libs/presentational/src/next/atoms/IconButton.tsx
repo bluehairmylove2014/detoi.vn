@@ -37,7 +37,7 @@ function IconButton({
       className={`
       ${backgroundStyle[buttonStyle]} transition-all`}
     >
-      <CWEBFAIcon {...restProps} iconName={iconName} />
+      <CWEBFAIcon size={size} {...restProps} iconName={iconName} />
     </button>
   );
 }
