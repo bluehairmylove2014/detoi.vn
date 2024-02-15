@@ -4,10 +4,14 @@ import {
   faArrowLeft,
   faEnvelope,
   faPhone,
+  faCircleQuestion,
+  faBars,
+  faStar as faStarSolid,
+  faStarHalfStroke,
+  faPlus,
+  faMinus,
+  faXmarkCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-
 import {
   faApple,
   faFacebookF,
@@ -17,10 +21,6 @@ import {
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
-import {
-  faStar as faStarSolid,
-  faStarHalfStroke,
-} from '@fortawesome/free-solid-svg-icons';
 
 // Customer Web Icon
 export const CWEB_ICON_LIST = {
@@ -40,6 +40,9 @@ export const CWEB_ICON_LIST = {
   faStarSolid: faStarSolid,
   faStarHalfStroke: faStarHalfStroke,
   faBar: faBars,
+  plus: faPlus,
+  minus: faMinus,
+  faXmarkCircle: faXmarkCircle,
 };
 
 // Customer App Icon

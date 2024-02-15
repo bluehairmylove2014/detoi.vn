@@ -1,5 +1,5 @@
-import CustomButton from '@presentational/atoms/CustomButton';
-import CWEBFAIcon from '@presentational/atoms/CWEBFAIcon';
+import CustomButton from '@presentational/next/atoms/CustomButton';
+import CWEBFAIcon from '@presentational/next/atoms/CWEBFAIcon';
 import { Akshar } from 'next/font/google';
 import PhoneImg from '@assets/phone-single.png';
 import ArrowLeft from '@assets/arrow-left.png';
@@ -17,11 +17,15 @@ import step3_img from '@assets/step3.jpg';
 import CleaningIcon from '@assets/cleaning-110.png';
 import TrackingImage from '@assets/tracking.png';
 import Image from 'next/image';
-import CircleImage from '@presentational/atoms/CircleImage';
-import ColorfulDot from '@presentational/atoms/ColorfulDot';
-import ImageIcon from '@presentational/atoms/ImageIcon';
-import StepCardList from '@presentational/molecules/StepCardList';
-import StylistReviewCardList from '@presentational/organisms/StylistReviewCardList';
+import CircleImage from '@presentational/next/atoms/CircleImage';
+import ColorfulDot from '@presentational/next/atoms/ColorfulDot';
+import { Heading } from '@presentational/next/atoms';
+import ImageIcon from '@presentational/next/atoms/ImageIcon';
+import StepCardList from '@presentational/next/molecules/StepCardList';
+import StylistReviewCardList from '@presentational/next/organisms/StylistReviewCardList';
+import FAQ from '@presentational/next/organisms/FAQ';
+import ContactForm from '@presentational/next/organisms/ContactForm';
+import { FAQ_CONTENT } from '../../../constants/FAQ';
 
 const akshar = Akshar({
   subsets: ['latin'],
@@ -211,9 +215,7 @@ function Home() {
             <p className="text-base opacity-80 leading-10">
               <b className="text-rose">5.000+</b> ĐÁNH GIÁ TÍCH CỰC
             </p>
-            <h2 className="text-4xl leading-[3rem] font-extrabold">
-              UY TÍN, NHANH CHÓNG & TIỆN LỢI
-            </h2>
+            <Heading> UY TÍN, NHANH CHÓNG & TIỆN LỢI</Heading>
           </div>
           <div className="w-full flex-grow grid grid-cols-2 gap-6">
             <div className="col-span-1 flex flex-col justify-end w-full h-full">
@@ -250,6 +252,22 @@ function Home() {
             </div>
           </div>
         </div>
+      </section>
+      <section className="w-full h-screen bg-white relative grid place-items-center">
+        <div className="container h-screen py-16 flex flex-col justify-around items-start">
+          <div className="flex-shrink mx-auto">
+            <Heading style="text-rose"> LIÊN HỆ VỚI CHÚNG TÔI</Heading>
+            <p className="text-black text-base opacity-80 leading-10 text-center">
+              Có thắc mắc hay vấn đề cần giải quyết? Liên hệ để chúng tôi có thể
+              giúp đỡ bạn
+            </p>
+          </div>
+          <ContactForm />
+        </div>
+      </section>
+      <section>
+        <Heading>CÁC CÂU HỎI THƯỜNG GẶP</Heading>
+        <FAQ faqListContent={FAQ_CONTENT} />
       </section>
     </main>
   );
