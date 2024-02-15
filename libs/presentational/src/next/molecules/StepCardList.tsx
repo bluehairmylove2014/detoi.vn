@@ -1,5 +1,5 @@
 'use client';
-import StepCard from '@presentational/atoms/StepCard';
+import StepCard from '@presentational/next/atoms/StepCard';
 import { StaticImageData } from 'next/image';
 import { useState } from 'react';
 import CardController from './NavigateSteps';

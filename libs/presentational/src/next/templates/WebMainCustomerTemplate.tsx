@@ -1,4 +1,4 @@
-import Notification from '@presentational/atoms/Notification';
+import Notification from '@presentational/next/atoms/Notification';
 import React from 'react';
 
 type accessPageTemplateParams = {

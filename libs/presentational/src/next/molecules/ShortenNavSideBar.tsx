@@ -1,7 +1,7 @@
 'use client';
-import CWEBFAIcon from '@presentational/atoms/CWEBFAIcon';
-import CustomButton from '@presentational/atoms/CustomButton';
-import IconButton from '@presentational/atoms/IconButton';
+import CWEBFAIcon from '@presentational/next/atoms/CWEBFAIcon';
+import CustomButton from '@presentational/next/atoms/CustomButton';
+import IconButton from '@presentational/next/atoms/IconButton';
 import { toggleClass } from '@utils/helpers';
 import { useRef } from 'react';
 

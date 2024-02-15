@@ -1,8 +1,7 @@
-import Logo from '@presentational/molecules/Logo';
-import CWEBFAIcon from '@presentational/atoms/CWEBFAIcon';
-import CustomButton from '@presentational/atoms/CustomButton';
-import IconButton from '@presentational/atoms/IconButton';
-import ShortenNavSideBar from '@presentational/molecules/ShortenNavSideBar';
+import Logo from '@presentational/next/molecules/Logo';
+import CWEBFAIcon from '@presentational/next/atoms/CWEBFAIcon';
+import CustomButton from '@presentational/next/atoms/CustomButton';
+import ShortenNavSideBar from '@presentational/next/molecules/ShortenNavSideBar';
 
 function Header() {
   return (

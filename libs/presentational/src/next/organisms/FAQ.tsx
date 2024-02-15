@@ -1,8 +1,8 @@
 'use client'; // Added 'use strict' to enforce better coding practices
 
-import React, { useCallback, useMemo, useState } from 'react';
-import { Text } from '@presentational/atoms';
-import IconButton from '@presentational/atoms/IconButton';
+import React, { useCallback, useState } from 'react';
+import { Text } from '@presentational/next/atoms';
+import IconButton from '@presentational/next/atoms/IconButton';
 
 type TAccordionProps = {
   idx: number;
