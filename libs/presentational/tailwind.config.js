@@ -26,13 +26,12 @@ module.exports = {
       white: '#FFFFFF',
 
       rose: '#e11d48', // soft red
-      yellow: '#facc15', // USE FOR DECORATE DOT ONLY
-      lightYellow: '#fef08a',
+      lightYellow: '#FFE9AB',
       blue: '#2563eb', // USE FOR DECORATE DOT ONLY
       cyan: '#155e75', // soft blue
 
       transparent: 'transparent',
-      inherit: 'inherit'
+      inherit: 'inherit',
     },
     extend: {
       activeHQFormBox: '!w-80 !opacity-100',

@@ -163,7 +163,7 @@ function Home() {
               <div className="relative w-full h-full p-8">
                 <div className="flex flex-row justify-start gap-2 mb-2">
                   <ColorfulDot color="red" size="0.375rem" />
-                  <ColorfulDot color="yellow" size="0.375rem" />
+                  <ColorfulDot color="primary" size="0.375rem" />
                   <ColorfulDot color="blue" size="0.375rem" />
                 </div>
                 <h3>

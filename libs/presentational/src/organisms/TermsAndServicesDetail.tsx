@@ -95,7 +95,7 @@ function TermPolicy({ termPolicy }: { termPolicy: ITermPolicy }) {
               <div
                 key={index}
                 className={`py-2 px-3 rounded text-black cursor-pointer ${
-                  selectedTitleIndex === index ? 'bg-yellow' : 'bg-white'
+                  selectedTitleIndex === index ? 'bg-primary' : 'bg-white'
                 }`}
                 onClick={() => smoothScrollTo(`section-${index + 1}`, index)}
               >
