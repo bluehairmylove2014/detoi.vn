@@ -11,6 +11,7 @@ import {
   Linking,
 } from 'react-native';
 import Svg, { G, Path } from 'react-native-svg';
+import tw from 'twrnc';
 
 export const App = () => {
   const [whatsNextYCoord, setWhatsNextYCoord] = useState<number>(0);
@@ -32,7 +33,7 @@ export const App = () => {
           style={styles.scrollView}
         >
           <View style={styles.section}>
-            <Text style={styles.textLg}>Hello there,</Text>
+            <Text style={tw`bg-black`}>Hello there,</Text>
             <Text
               style={[styles.textXL, styles.appTitleText]}
               testID="heading"
