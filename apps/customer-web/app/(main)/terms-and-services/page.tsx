@@ -1,4 +1,4 @@
-import TermsAndServices from '@presentational/organisms/TermsAndServicesList';
+import TermsAndServices from '@presentational/next/organisms/TermsAndServicesList';
 import { ITermPolicy } from '@business-layer/services/entities/termPolicy';
 
 function TermPolicy() {

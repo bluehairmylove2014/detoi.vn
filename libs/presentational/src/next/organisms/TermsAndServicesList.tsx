@@ -2,7 +2,7 @@
 import { ITermPolicy } from '@business-layer/services/entities/termPolicy';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { TERMS_AND_SERVICES_PAGES } from '../../../constants/termsAndServicesPage';
+import { TERMS_AND_SERVICES_PAGES } from '@constants/termsAndServicesPage';
 
 import PrivatePolicy from '@assets/privatePolicy.png';
 import TermUse from '@assets/termUse.png';
@@ -35,7 +35,7 @@ function TermsAndServicesList({
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6 xl:gap-10 mt-10">
             {termsPoliciesList.map((termsPolicies, index) => (
               <div
-                className="w-full bg-primary rounded cursor-pointer block"
+                className="w-full bg-secondary rounded cursor-pointer block"
                 key={termsPolicies.title}
                 onClick={() => router.push(pathUrl[index])}
               >

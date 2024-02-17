@@ -163,7 +163,7 @@ function Home() {
               <div className="relative w-full h-full p-8">
                 <div className="flex flex-row justify-start gap-2 mb-2">
                   <ColorfulDot color="red" size="0.375rem" />
-                  <ColorfulDot color="yellow" size="0.375rem" />
+                  <ColorfulDot color="secondary" size="0.375rem" />
                   <ColorfulDot color="blue" size="0.375rem" />
                 </div>
                 <h3>
@@ -200,7 +200,7 @@ function Home() {
             <h2 className="text-4xl leading-[3rem] ">
               Đặt dịch vụ chưa bao giờ
               <br />
-              là <span className="text-yellow-500">dễ đến thế</span>
+              là <span className="text-secondary">dễ đến thế</span>
             </h2>
           </div>
 
