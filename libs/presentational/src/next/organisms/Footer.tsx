@@ -8,7 +8,7 @@ import {
   INSTRUCTION,
   POLICY,
   SWITCH_BOARD,
-} from '@constants/infoFooter';
+} from '../../../constants/infoFooter';
 
 function Footer() {
   return (

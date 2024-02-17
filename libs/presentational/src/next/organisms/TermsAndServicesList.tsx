@@ -2,7 +2,7 @@
 import { ITermPolicy } from '@business-layer/services/entities/termPolicy';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { TERMS_AND_SERVICES_PAGES } from '@constants/termsAndServicesPage';
+import { TERMS_AND_SERVICES_PAGES } from '../../../constants/termsAndServicesPage';
 
 import PrivatePolicy from '@assets/privatePolicy.png';
 import TermUse from '@assets/termUse.png';

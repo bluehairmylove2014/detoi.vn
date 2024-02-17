@@ -28,13 +28,14 @@ module.exports = {
 
       // Accent Color
       rose: '#e11d48', // soft red
-      lightYellow: '#FFE9AB',
+      yellow: '#facc15', // USE FOR DECORATE DOT ONLY
+      lightYellow: '#fef08a',
       blue: '#2563eb', // USE FOR DECORATE DOT ONLY
       cyan: '#155e75', // soft blue
 
       // Default
       transparent: 'transparent',
-      inherit: 'inherit',
+      inherit: 'inherit'
     },
     extend: {
       activeHQFormBox: '!w-80 !opacity-100',

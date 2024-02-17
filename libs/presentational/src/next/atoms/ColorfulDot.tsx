@@ -5,7 +5,7 @@ function getTailwindColorCls(color: colorType) {
     case 'red':
       return 'bg-rose';
     case 'yellow':
-      return 'bg-primary';
+      return 'bg-yellow';
     case 'blue':
       return 'bg-blue';
     default:
