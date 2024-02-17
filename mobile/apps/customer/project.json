@@ -1,8 +1,0 @@
-{
-  "name": "customer",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/customer/src",
-  "projectType": "application",
-  "targets": {},
-  "tags": []
-}
