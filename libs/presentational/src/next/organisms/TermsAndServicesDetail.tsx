@@ -1,6 +1,6 @@
 'use client';
 import { ITermPolicy } from '@business-layer/services/entities/termPolicy';
-import TemplateContent from '@presentational/atoms/TemplateContent';
+import TemplateContent from '@presentational/next/atoms/TemplateContent';
 import { useEffect, useState } from 'react';
 
 function TermPolicy({ termPolicy }: { termPolicy: ITermPolicy }) {

@@ -1,9 +1,9 @@
 'use client';
 
-import Checkbox from '@presentational/atoms/Checkbox';
-import CommonInput from '@presentational/atoms/CommonInput';
-import DoubleArrowBtn from '@presentational/atoms/DoubleArrowBtn';
-import useFriendlyCaptcha from '@presentational/atoms/FriendlyCaptcha';
+import Checkbox from '@presentational/next/atoms/Checkbox';
+import CommonInput from '@presentational/next/atoms/CommonInput';
+import DoubleArrowBtn from '@presentational/next/atoms/DoubleArrowBtn';
+import useFriendlyCaptcha from '@presentational/next/atoms/FriendlyCaptcha';
 import { useForm } from 'react-hook-form';
 
 type contactFormType = {

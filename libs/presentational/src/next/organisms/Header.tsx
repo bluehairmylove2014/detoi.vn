@@ -1,7 +1,7 @@
-import Logo from '@presentational/molecules/Logo';
-import CWEBFAIcon from '@presentational/atoms/CWEBFAIcon';
-import CustomButton from '@presentational/atoms/CustomButton';
-import IconButton from '@presentational/atoms/IconButton';
+import Logo from '@presentational/next/molecules/Logo';
+import CWEBFAIcon from '@presentational/next/atoms/CWEBFAIcon';
+import CustomButton from '@presentational/next/atoms/CustomButton';
+import ShortenNavSideBar from '@presentational/next/molecules/ShortenNavSideBar';
 
 function Header() {
   return (
@@ -16,19 +16,14 @@ function Header() {
                 <CustomButton style="btn-white-black" type="link" href="#">
                   <CWEBFAIcon
                     iconName="faCircleQuestion"
-                    className="text-[16px]"
+                    className="text-base md:text-sm"
                   />
-                  <span className="ml-1 text-[16px]">Hỗ trợ</span>
+                  <span className="ml-2 text-base md:text-sm">Hỗ trợ</span>
                 </CustomButton>
               </div>
-              <div className="hidden md:block ">
+              <div className="hidden md:block mr-6">
                 <CustomButton style="btn-white-black" type="link" href="#">
-                  <span className="text-[16px]">Trở thành Freelancer</span>
-                </CustomButton>
-              </div>
-              <div className="hidden md:block ">
-                <CustomButton style="btn-white-black" type="link" href="#">
-                  <span className="text-[16px]">Chính sách</span>
+                  <span className="text-base md:text-sm">Chính sách</span>
                 </CustomButton>
               </div>
               <div className="w-29">
@@ -37,11 +32,13 @@ function Header() {
                   type="link"
                   href="#"
                 >
-                  <span className="text-[16px]">Đăng nhập</span>
+                  <span className="text-base md:text-sm">
+                    Trở thành Freelancer
+                  </span>
                 </CustomButton>
               </div>
-              <div className="md:hidden">
-                <IconButton iconName="faBar" />
+              <div className="md:hidden ml-4">
+                <ShortenNavSideBar />
               </div>
             </div>
           </div>

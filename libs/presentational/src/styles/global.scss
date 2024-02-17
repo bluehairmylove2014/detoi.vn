@@ -1,9 +1,10 @@
-// @tailwind base;
-// @tailwind components;
-// @tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "./animations.scss";
 @import "./customClass.scss";
 @import './button.scss';
+@import './shadow.scss';
 @import '@fortawesome/fontawesome-svg-core/styles.css';
 
 // Responsive settings

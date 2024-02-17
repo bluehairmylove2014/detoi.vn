@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import phone from '@assets/phone.svg';
-import CustomButton from '@presentational/atoms/CustomButton';
-import CWEBFAIcon from '@presentational/atoms/CWEBFAIcon';
-import LoginForm from '@presentational/molecules/LoginForm';
+import CustomButton from '@presentational/next/atoms/CustomButton';
+import CWEBFAIcon from '@presentational/next/atoms/CWEBFAIcon';
+import LoginForm from '@presentational/next/molecules/LoginForm';
 
 function Login() {
   return (

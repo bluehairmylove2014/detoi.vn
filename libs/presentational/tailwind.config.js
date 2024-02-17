@@ -12,10 +12,13 @@ module.exports = {
   ],
   theme: {
     colors: {
-      primary: '#F2BA1E',
-      secondary: '#9C5722',
-
+      // Dominant Color
+      primary: '#775C11',
+      secondary: '#F2BA1E',
+      soft: '#FFE9AB',
       black: '#000000',
+      white: '#FFFFFF',
+
       nearBlack: '#566483',
       stone: '#1c1917', // light black
       lightStone: '#292524',
@@ -23,13 +26,13 @@ module.exports = {
       midgray: '#79747E',
       zinc: '#e4e4e7', // light gray
 
-      white: '#FFFFFF',
-
+      // Accent Color
       rose: '#e11d48', // soft red
       lightYellow: '#FFE9AB',
       blue: '#2563eb', // USE FOR DECORATE DOT ONLY
       cyan: '#155e75', // soft blue
 
+      // Default
       transparent: 'transparent',
       inherit: 'inherit',
     },

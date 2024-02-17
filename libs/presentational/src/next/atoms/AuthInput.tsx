@@ -1,7 +1,5 @@
 'use client';
 import { Controller } from 'react-hook-form';
-import { useRef } from 'react';
-import { addClass, removeClass } from '@utils/helpers';
 
 const inputDefinition = {
   EMAIL: {

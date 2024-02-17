@@ -1,5 +1,5 @@
-import CWEBFAIcon from '@presentational/atoms/CWEBFAIcon';
-import IconButton from '@presentational/atoms/IconButton';
+import CWEBFAIcon from '@presentational/next/atoms/CWEBFAIcon';
+import IconButton from '@presentational/next/atoms/IconButton';
 import Image from 'next/image';
 import Link from 'next/link';
 import qrDetoi from '@assets/qrDetoi.png';

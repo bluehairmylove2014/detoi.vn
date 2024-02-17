@@ -1,5 +1,5 @@
-import CustomButton from '@presentational/atoms/CustomButton';
-import CWEBFAIcon from '@presentational/atoms/CWEBFAIcon';
+import CustomButton from '@presentational/next/atoms/CustomButton';
+import CWEBFAIcon from '@presentational/next/atoms/CWEBFAIcon';
 import { Akshar } from 'next/font/google';
 import PhoneImg from '@assets/phone-single.png';
 import ArrowLeft from '@assets/arrow-left.png';
@@ -17,14 +17,14 @@ import step3_img from '@assets/step3.jpg';
 import CleaningIcon from '@assets/cleaning-110.png';
 import TrackingImage from '@assets/tracking.png';
 import Image from 'next/image';
-import CircleImage from '@presentational/atoms/CircleImage';
-import ColorfulDot from '@presentational/atoms/ColorfulDot';
-import { Heading } from '@presentational/atoms';
-import ImageIcon from '@presentational/atoms/ImageIcon';
-import StepCardList from '@presentational/molecules/StepCardList';
-import StylistReviewCardList from '@presentational/organisms/StylistReviewCardList';
-import FAQ from '@presentational/organisms/FAQ';
-import ContactForm from '@presentational/organisms/ContactForm';
+import CircleImage from '@presentational/next/atoms/CircleImage';
+import ColorfulDot from '@presentational/next/atoms/ColorfulDot';
+import { Heading } from '@presentational/next/atoms';
+import ImageIcon from '@presentational/next/atoms/ImageIcon';
+import StepCardList from '@presentational/next/molecules/StepCardList';
+import StylistReviewCardList from '@presentational/next/organisms/StylistReviewCardList';
+import FAQ from '@presentational/next/organisms/FAQ';
+import ContactForm from '@presentational/next/organisms/ContactForm';
 import { FAQ_CONTENT } from '../../../constants/FAQ';
 
 const akshar = Akshar({

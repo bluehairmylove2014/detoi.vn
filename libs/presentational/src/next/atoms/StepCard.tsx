@@ -1,9 +1,8 @@
 'use client';
-import CircleImage from '@presentational/atoms/CircleImage';
-import NextArrowLabel from '@presentational/atoms/NextArrowLabel';
+import CircleImage from '@presentational/next/atoms/CircleImage';
+import NextArrowLabel from '@presentational/next/atoms/NextArrowLabel';
 import { StaticImageData } from 'next/image';
-import Link from 'next/link';
-import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 type stepCardProps = {
   step: string;
