@@ -51,6 +51,20 @@
         "startTargetName": "start",
         "testTargetName": "test"
       }
+    },
+    {
+      "plugin": "@nx/react-native/plugin",
+      "options": {
+        "startTargetName": "start",
+        "podInstallTargetName": "pod-install",
+        "bundleTargetName": "bundle",
+        "runIosTargetName": "run-ios",
+        "runAndroidTargetName": "run-android",
+        "buildIosTargetName": "build-ios",
+        "buildAndroidTargetName": "build-android",
+        "syncDepsTargetName": "sync-deps",
+        "upgradeTargetname": "upgrade"
+      }
     }
   ],
   "nxCloudAccessToken": "MzZmMzJjMzEtMDYyZS00NGU5LWEyNWMtYWZmMjk4ZmNkZmNifHJlYWQtd3JpdGU="

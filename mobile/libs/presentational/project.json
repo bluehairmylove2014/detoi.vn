@@ -1,0 +1,8 @@
+{
+  "name": "presentational",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/presentational/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {}
+}

@@ -14,7 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@assets/*": ["libs/presentational/src/assets/*"],
+      "@business-layer/*": ["libs/business-layer/src/*"],
+      "@constants/*": ["libs/constants/*"],
+      "@presentational/*": ["libs/presentational/src/*"],
+      "@utils/*": ["libs/utils/*"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,0 +1,60 @@
+.button-swap-text-ani {
+    overflow: hidden;
+
+    &>p,
+    &>span {
+        transition: all 0.1s ease-in-out;
+        user-select: none;
+    }
+
+    &>p {
+        position: relative;
+    }
+
+    &>span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        opacity: 0;
+        visibility: hidden;
+
+        svg {
+            transform: rotate(0deg);
+            transition: all 0.3s ease-in-out;
+        }
+    }
+
+    &:hover {
+        &>p {
+            // transform: translateY(100%);
+            // -webkit-transform: translateY(100%);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        &>span {
+            opacity: 100;
+            visibility: visible;
+
+            svg {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+}
+
+@keyframes gain-momentum-surge-forward {
+    0% {
+        transform: translateX(0);
+    }
+
+    60% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        transform: translateX(20px);
+    }
+}
