@@ -7,17 +7,17 @@
   "dependencies": {
     "@expo/metro-config": "~0.17.3",
     "@expo/metro-runtime": "~3.1.1",
-    "expo": "~50.0.3",
+    "expo": "^49.0.23",
     "expo-splash-screen": "~0.26.1",
     "expo-status-bar": "~1.11.1",
+    "nativewind": "^2.0.11",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.73.2",
     "react-native-svg": "14.1.0",
     "react-native-svg-transformer": "1.2.0",
     "react-native-web": "~0.19.9",
-    "tslib": "^2.3.0",
-    "twrnc": "^4.0.0"
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@config-plugins/detox": "~6.0.0",
