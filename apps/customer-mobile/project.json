@@ -1,5 +1,6 @@
 {
   "root": "apps/customer-mobile",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/customer-mobile/src",
   "projectType": "application",
   "targets": {
@@ -7,81 +8,147 @@
       "executor": "@nx/expo:start",
       "options": {
         "port": 8081
-      }
-    },
-    "web": {
-      "executor": "@nx/expo:start",
-      "options": {
-        "port": 8081
-      }
+      },
+      "dependsOn": [
+        "sync-deps"
+      ]
     },
     "serve": {
-      "executor": "@nx/workspace:run-commands",
+      "executor": "@nx/expo:serve",
       "options": {
-        "command": "nx start customer-mobile"
+        "port": 8081
       }
     },
     "run-ios": {
       "executor": "@nx/expo:run",
       "options": {
         "platform": "ios"
-      }
+      },
+      "dependsOn": [
+        "sync-deps"
+      ]
     },
     "run-android": {
       "executor": "@nx/expo:run",
       "options": {
         "platform": "android"
+      },
+      "dependsOn": [
+        "sync-deps"
+      ]
+    },
+    "build": {
+      "executor": "@nx/expo:build",
+      "options": {},
+      "configurations": {
+        "preview": {
+          "profile": "preview"
+        },
+        "development": {
+          "profile": "development"
+        },
+        "production": {
+          "profile": "production"
+        }
       }
     },
-    "build-ios": {
-      "executor": "@nx/expo:build-ios",
-      "options": {}
-    },
-    "build-android": {
-      "executor": "@nx/expo:build-android",
-      "options": {}
-    },
-    "build-web": {
-      "executor": "@nx/expo:build-web",
-      "options": {}
-    },
-    "build-status": {
-      "executor": "@nx/expo:build-web",
+    "build-list": {
+      "executor": "@nx/expo:build-list",
       "options": {}
     },
     "sync-deps": {
       "executor": "@nx/expo:sync-deps",
       "options": {}
     },
-    "ensure-symlink": {
-      "executor": "@nx/expo:ensure-symlink",
+    "prebuild": {
+      "executor": "@nx/expo:prebuild",
+      "options": {},
+      "dependsOn": [
+        "sync-deps"
+      ]
+    },
+    "install": {
+      "executor": "@nx/expo:install",
       "options": {}
     },
-    "publish": {
-      "executor": "@nx/expo:publish",
+    "update": {
+      "executor": "@nx/expo:update",
       "options": {}
     },
-    "publish-set": {
-      "executor": "@nx/expo:publish-set",
+    "submit": {
+      "executor": "@nx/expo:submit",
       "options": {}
     },
-    "rollback": {
-      "executor": "@nx/expo:rollback",
-      "options": {}
+    "export": {
+      "executor": "@nx/expo:export",
+      "options": {
+        "outputDir": "dist/apps/cats"
+      },
+      "dependsOn": [
+        "sync-deps"
+      ],
+      "outputs": [
+        "{options.outputDir}"
+      ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/customer-mobile/**/*.{ts,tsx,js,jsx}"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": [
+        "{options.outputFile}"
+      ]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["coverage/apps/customer-mobile"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
-        "jestConfig": "apps/customer-mobile/jest.config.js",
-        "passWithNoTests": true
+        "jestConfig": "apps/cats/jest.config.ts"
+      }
+    },
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "apps/cats/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": [
+        "{options.outputDir}"
+      ],
+      "options": {
+        "outputDir": "dist/storybook/cats",
+        "configDir": "apps/cats/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c apps/cats/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "cats:build-storybook",
+        "staticFilePath": "dist/storybook/cats"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "cats:build-storybook:ci"
+        }
       }
     }
   },

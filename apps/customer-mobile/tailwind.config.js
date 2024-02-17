@@ -1,12 +1,13 @@
 // @ts-check
 
+const { theme } = require('../../libs/presentational/tailwind.config');
 
-/**
- * @type {import('tailwindcss').Config}
- */
 module.exports = {
-  content: ['./App.tsx'],
-  theme: { 
+  content: ['./App.tsx', './index.js'],
+  theme: {
+    extend: {
+      ...theme,
+    },
   },
   plugins: [],
-}
+};

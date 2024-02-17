@@ -13,18 +13,31 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "com.blogapp.app",
-      "jsEngine": "hermes"
+      "supportsTablet": true
     },
     "android": {
-      "package": "com.blogapp.app",
-      "jsEngine": "hermes"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "e86e2ed0-f890-41b2-b9ee-273ea2de8a0a"
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
       }
-    }
+    },
+    "web": {
+      "favicon": "./assets/logo.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "@config-plugins/detox",
+        {
+          "skipProguard": false,
+          "subdomains": ["10.0.2.2", "localhost"]
+        }
+      ]
+    ]
   }
 }
