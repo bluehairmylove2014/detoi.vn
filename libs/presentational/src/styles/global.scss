@@ -1,13 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "./animations.scss";
-@import "./customClass.scss";
-@import './button.scss';
-@import './shadow.scss';
 @import '@fortawesome/fontawesome-svg-core/styles.css';
 
-// Responsive settings
 $desktop-breakpoint: 1024px;
 $tablet-breakpoint: 768px;
 $mobile-breakpoint: 480px;
@@ -17,7 +12,6 @@ $container-width: 1400px;
 @font-face {
     font-family: 'LuckiestGuy';
     src: url('/assets/fonts/luckiest_guy/LuckiestGuy-Regular.ttf') format('woff2');
-    // url('/path/to/your/font.woff') format('woff');
 }
 
 /* Smooth scroll behavior*/
@@ -86,24 +80,6 @@ body {
     scrollbar-width: none;
     /* Firefox */
 }
-
-// .container {
-//   margin: 0px auto;
-//   padding: 0px 100px;
-//   max-width: $container-width;
-// }
-
-// @media (max-width: $desktop-breakpoint) {
-//   .container {
-//     padding: 0px 50px;
-//   }
-// }
-
-// @media (max-width: $mobile-breakpoint) {
-//   .container {
-//     padding: 0px 30px;
-//   }
-// }
 
 h1,
 h2,
@@ -201,9 +177,6 @@ textarea {
     }
 }
 
-// .scrollbar::-webkit-scrollbar-thumb:hover {
-//   background: #888;
-// }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

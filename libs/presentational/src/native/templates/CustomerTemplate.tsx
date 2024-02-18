@@ -1,9 +1,9 @@
-import { SafeAreaView } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import tw from 'twrnc';
 
 const CustomerTemplate = ({ children }: { children: React.ReactNode }) => {
-  return <SafeAreaView style={tw`w-full`}>{children}</SafeAreaView>;
+  return <View style={tw`flex-1`}>{children}</View>;
 };
 
 export default CustomerTemplate;

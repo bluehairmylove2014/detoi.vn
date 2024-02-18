@@ -19,12 +19,11 @@ module.exports = {
       black: '#000000',
       white: '#FFFFFF',
 
-      nearBlack: '#566483',
       stone: '#1c1917', // light black
       lightStone: '#292524',
       gray: '#808080',
-      midgray: '#79747E',
       zinc: '#e4e4e7', // light gray
+      softBg: '#FFD8E4',
 
       // Accent Color
       rose: '#e11d48', // soft red

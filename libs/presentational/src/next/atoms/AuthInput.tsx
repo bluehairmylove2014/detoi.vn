@@ -41,7 +41,7 @@ const AuthInput = ({
               <span className="">{label}</span>
             </label>
             <input
-              className="text-xs border border-midgray outline-none bg-transparent px-3 w-full h-full rounded-sm"
+              className="text-xs border border-gray outline-none bg-transparent px-3 w-full h-full rounded-sm"
               type={inputDefinition[type].type}
               id={name}
               disabled={disabled}

@@ -1,6 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { customerRootStackParamList } from '../config';
+
+// Import screen component here
 import HomeScreen from '../screens/home/Home';
 import ChooseLocationScreen from '../screens/chooseLocation/ChooseLocation';
 
@@ -13,8 +15,17 @@ export const RootNavigationContainer = ({
   return (
     <NavigationContainer>
       <RStack.Navigator initialRouteName={initRoute}>
-        <RStack.Screen component={HomeScreen} name="Home" />
-        <RStack.Screen component={ChooseLocationScreen} name="ChooseLocation" />
+        {/* Then, put stack.screen for your screen component here (in the end) */}
+        <RStack.Screen
+          component={HomeScreen}
+          name="Home"
+          options={{ headerShown: false }}
+        />
+        <RStack.Screen
+          component={ChooseLocationScreen}
+          name="ChooseLocation"
+          options={{ headerShown: false }}
+        />
       </RStack.Navigator>
     </NavigationContainer>
   );

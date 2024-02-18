@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer components {
     .btn {
         @apply rounded transition-all shadow-sm w-full py-2 px-6 font-semibold text-xs;

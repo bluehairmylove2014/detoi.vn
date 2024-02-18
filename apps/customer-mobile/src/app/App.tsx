@@ -1,16 +1,19 @@
 // import { BusinessLogicProvider } from '@business-layer/business-logic/provider/provider';
 // import { activeModules } from '../config/modules';
-// import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
+import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
 import { RootNavigationContainer } from './RootStack';
-import { SafeAreaView } from 'react-native';
-import tw from 'twrnc';
+import '@presentational/styles/global.scss';
+import '@presentational/styles/animations.scss';
+import '@presentational/styles/customClass.scss';
+import '@presentational/styles/button.scss';
+import '@presentational/styles/shadow.scss';
 
 const App = () => {
   return (
     // <BusinessLogicProvider activeModules={activeModules}>
-    <SafeAreaView style={tw`w-full`}>
+    <CustomerTemplate>
       <RootNavigationContainer initRoute="Home" />
-    </SafeAreaView>
+    </CustomerTemplate>
     // </BusinessLogicProvider>
   );
 };
