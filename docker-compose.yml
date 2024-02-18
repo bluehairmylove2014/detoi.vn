@@ -1,0 +1,30 @@
+version: '3.4'
+
+networks:
+  detoidockernetwork:
+
+services:
+  detoidb:
+    container_name: detoi-server-database-container
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 8005:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Password@12345#
+    networks:
+      - detoidockernetwork
+  detoiserver:
+    container_name: detoi-server-container
+    image: cuong457/detoiserver:latest
+    ports:
+      - 8000:8080
+      - 8001:8081
+    depends_on:
+      - detoidb
+    environment:
+      - DB_HOST=detoidb
+      - DB_NAME=DeToiVN
+      - DB_SA_PASSWORD=Password@12345#
+    networks:
+      - detoidockernetwork
