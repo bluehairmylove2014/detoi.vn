@@ -11,8 +11,7 @@
     "react-native-svg": "*",
     "react-native-web": "*",
     "react-native-screens": "*",
-    "react-native-safe-area-context": "*",
-    "sass": "*"
+    "react-native-safe-area-context": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && node tools/scripts/eas-build-pre-install.mjs . apps/customer-mobile && cp package-lock.json apps/customer-mobile",

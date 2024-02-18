@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 @import '@fortawesome/fontawesome-svg-core/styles.css';
+@import './animations.scss';
+@import './button.scss';
+@import './customClass.scss';
+@import './shadow.scss';
 
 $desktop-breakpoint: 1024px;
 $tablet-breakpoint: 768px;

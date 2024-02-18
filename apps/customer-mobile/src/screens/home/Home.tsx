@@ -1,12 +1,41 @@
-import { View, Text, Button } from 'react-native';
-import React from 'react';
+import { View, SafeAreaView, Image } from 'react-native';
+import React, { useState } from 'react';
 import { HomeProps } from '../../config';
-import tw from 'twrnc';
+import { homeScreenStyle } from './styles';
+import { FAIcon, PrimaryTitle, SmallParagraph } from '@present-native/atoms';
+import { IEvent } from '@business-layer/services/entities';
+import { colors } from '@presentational/native/styles';
+import { SubtitleLink } from '@present-native/atoms';
 
 const Home: React.FC<HomeProps> = ({ route, navigation }) => {
+  // Event must be get from API
+  const [event, setEvent] = useState<IEvent>({
+    title: 'Chào đón những người dùng đầu tiên - ưu đãi lên đến 70k',
+    subtitle: 'Xem ưu đãi ngay!',
+    screenName: 'ChooseLocation',
+    image: 'https://detoivn.sirv.com/events/001.png',
+  });
+
   return (
-    <View style={tw`w-full h-full bg-black`}>
-      <View style={tw`w-full h-1/5`}></View>
+    <View style={homeScreenStyle.container}>
+      <View style={homeScreenStyle.topLabel_container}>
+        <View style={homeScreenStyle.topLabel_event}>
+          <SafeAreaView style={homeScreenStyle.topLabelEvent_safeView}>
+            <View style={homeScreenStyle.topLabelEvent_content}>
+              <PrimaryTitle>{event.title}</PrimaryTitle>
+              <SubtitleLink screenName="ChooseLocation">
+                <SmallParagraph>{event.subtitle}</SmallParagraph>
+                <FAIcon iconName="faCircleArrowRight" color={colors.primary} />
+              </SubtitleLink>
+            </View>
+            <View style={homeScreenStyle.topLabelEvent_spacer} />
+            <Image
+              source={{ uri: event.image }}
+              style={homeScreenStyle.topLabelEvent_image}
+            />
+          </SafeAreaView>
+        </View>
+      </View>
     </View>
   );
 };

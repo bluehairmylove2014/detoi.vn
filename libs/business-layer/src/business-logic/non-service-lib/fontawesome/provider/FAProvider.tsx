@@ -5,7 +5,7 @@ import {
   CAPP_ICON_LIST,
   FAPP_ICON_LIST,
   AWEB_ICON_LIST,
-} from '../';
+} from '../config';
 
 function getIconListByAppType(appType: string): {
   [key: string]: IconDefinition;

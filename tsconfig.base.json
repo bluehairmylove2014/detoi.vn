@@ -19,6 +19,8 @@
       "@business-layer/*": ["libs/business-layer/src/*"],
       "@constants/*": ["libs/constants/*"],
       "@presentational/*": ["libs/presentational/src/*"],
+      "@present-native/*": ["libs/presentational/src/native/*"],
+      "@present-next/*": ["libs/presentational/src/next/*"],
       "@utils/*": ["libs/utils/*"]
     }
   },
