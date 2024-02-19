@@ -13,8 +13,11 @@ export const homeScreenStyle = StyleSheet.create({
     height: '25%',
   },
   topLabel_event: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     width: '100%',
-    height: '90%',
+    height: '100%',
     backgroundColor: colors.soft,
     paddingHorizontal: screenHorizontalPadding,
   },
@@ -39,5 +42,11 @@ export const homeScreenStyle = StyleSheet.create({
     width: '20%',
   },
 
-  topLabel_interaction: {},
+  topLabel_interaction: {
+    paddingHorizontal: screenHorizontalPadding,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignContent: 'center',
+  },
 });

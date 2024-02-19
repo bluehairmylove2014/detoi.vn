@@ -2,7 +2,14 @@ import { View, SafeAreaView, Image } from 'react-native';
 import React, { useState } from 'react';
 import { HomeProps } from '../../config';
 import { homeScreenStyle } from './styles';
-import { FAIcon, PrimaryTitle, SmallParagraph } from '@present-native/atoms';
+import {
+  FAIcon,
+  HorizontalSpacer,
+  PrimaryTitle,
+  SmallParagraph,
+  VerticalSpacer,
+  WhitePrimaryIconButton,
+} from '@present-native/atoms';
 import { IEvent } from '@business-layer/services/entities';
 import { colors } from '@presentational/native/styles';
 import { SubtitleLink } from '@present-native/atoms';
@@ -24,9 +31,15 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
           <SafeAreaView style={homeScreenStyle.topLabelEvent_safeView}>
             <View style={homeScreenStyle.topLabelEvent_content}>
               <PrimaryTitle>{event.title}</PrimaryTitle>
+              <VerticalSpacer size="m" />
               <SubtitleLink screenName="ChooseLocation">
                 <SmallParagraph>{event.subtitle}</SmallParagraph>
-                <FAIcon iconName="faCircleArrowRight" color={colors.primary} />
+                <HorizontalSpacer size="m" />
+                <FAIcon
+                  iconName="faCircleArrowRight"
+                  color={colors.primary}
+                  size={14}
+                />
               </SubtitleLink>
             </View>
             <View style={homeScreenStyle.topLabelEvent_spacer} />
@@ -35,6 +48,9 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
               style={homeScreenStyle.topLabelEvent_image}
             />
           </SafeAreaView>
+        </View>
+        <View style={homeScreenStyle.topLabel_interaction}>
+          <WhitePrimaryIconButton iconName="faBell" onPress={() => {}} />
         </View>
       </View>
     </View>

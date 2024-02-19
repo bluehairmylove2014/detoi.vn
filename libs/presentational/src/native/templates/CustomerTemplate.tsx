@@ -19,7 +19,7 @@ const CustomerTemplate = ({ children }: { children: React.ReactNode }) => {
     return <Intro />;
   }
   return (
-    <FAProvider appType="customer-mobile-app">
+    <FAProvider appType="native">
       <View style={globalStyles.container}>{children}</View>
     </FAProvider>
   );

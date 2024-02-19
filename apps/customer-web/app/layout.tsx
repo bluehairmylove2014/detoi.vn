@@ -29,7 +29,7 @@ export default function RootLayout({
       {/* </Head> */}
       <BusinessLogicProvider activeModules={ACTIVE_MODULES_LIST}>
         <Notification />
-        <FAProvider appType="customer-web">
+        <FAProvider appType="web">
           <body className={montserrat.className}>{children}</body>
         </FAProvider>
       </BusinessLogicProvider>

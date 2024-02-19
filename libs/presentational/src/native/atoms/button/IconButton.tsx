@@ -1,15 +1,15 @@
 import { TouchableHighlight } from 'react-native';
 import { FAIcon } from '../icon';
-import { NATIVE_ICONS } from '@business-layer/business-logic/non-service-lib/fontawesome';
+import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { colors, commonButtonStyles } from '@presentational/native/styles';
 
 type iconButtonProps = {
-  iconName: keyof typeof NATIVE_ICONS;
+  iconName: nativeIconNameType;
   onPress: () => void;
   iconSize?: number;
 };
 
-const DEFAULT_ICON_SIZE = 14;
+const DEFAULT_ICON_SIZE = 20;
 
 const WhitePrimaryIconButton = ({
   onPress,
