@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply rounded transition-all shadow-sm w-full py-2 px-6 font-semibold text-xs;
+    }
+
+    .btn-disable {
+        @apply disabled:bg-gray disabled:cursor-not-allowed;
+    }
+
+    .btn-primary {
+        @apply bg-primary text-white;
+    }
+
+    .btn-secondary {
+        @apply bg-secondary text-white;
+    }
+
+    .btn-white {
+        @apply bg-white text-secondary border-solid border-black;
+    }
+
+    .btn-black {
+        @apply bg-black text-white hover:bg-stone
+    }
+
+    .btn-black-only-border {
+        @apply bg-black bg-opacity-0 border border-solid border-black rounded text-black hover:bg-opacity-100 hover:text-white
+    }
+
+    .btn-white-black {
+        @apply bg-white text-black shadow-none hover:text-primary
+    }
+}

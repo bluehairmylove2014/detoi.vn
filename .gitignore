@@ -57,3 +57,6 @@ cache/
 
 
 apps/customer-mobile-e2e/artifacts
+
+# Next.js
+.next
