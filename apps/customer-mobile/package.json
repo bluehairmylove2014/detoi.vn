@@ -39,7 +39,8 @@
     "@expo-google-fonts/montserrat": "*",
     "@fortawesome/free-regular-svg-icons": "*",
     "next": "*",
-    "react-native-linear-gradient": "*"
+    "react-native-linear-gradient": "*",
+    "react-native-element-dropdown": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && node tools/scripts/eas-build-pre-install.mjs . apps/customer-mobile && cp package-lock.json apps/customer-mobile",
