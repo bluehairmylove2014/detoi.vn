@@ -18,12 +18,22 @@ export const horizontalSpacerStyles = StyleSheet.create({
     userSelect: 'none',
   },
   xs: {
-    width: 16,
+    width: 18,
     backgroundColor: colors.transparent,
     userSelect: 'none',
   },
   xl: {
-    width: 20,
+    width: 26,
+    backgroundColor: colors.transparent,
+    userSelect: 'none',
+  },
+  xxl: {
+    width: 32,
+    backgroundColor: colors.transparent,
+    userSelect: 'none',
+  },
+  xxxl: {
+    width: 40,
     backgroundColor: colors.transparent,
     userSelect: 'none',
   },
@@ -46,12 +56,22 @@ export const verticalSpacerStyles = StyleSheet.create({
     userSelect: 'none',
   },
   xs: {
-    height: 16,
+    height: 18,
     backgroundColor: colors.transparent,
     userSelect: 'none',
   },
   xl: {
-    height: 20,
+    height: 26,
+    backgroundColor: colors.transparent,
+    userSelect: 'none',
+  },
+  xxl: {
+    height: 32,
+    backgroundColor: colors.transparent,
+    userSelect: 'none',
+  },
+  xxxl: {
+    height: 40,
     backgroundColor: colors.transparent,
     userSelect: 'none',
   },

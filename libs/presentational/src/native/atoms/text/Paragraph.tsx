@@ -6,4 +6,8 @@ const SmallParagraph = ({ children }: { children: React.ReactNode }) => (
   <Text style={paragraphStyles.small}>{children}</Text>
 );
 
-export { SmallParagraph };
+const LightPrimaryParagraph = ({ children }: { children: React.ReactNode }) => (
+  <Text style={paragraphStyles.lightPrimary}>{children}</Text>
+);
+
+export { SmallParagraph, LightPrimaryParagraph };

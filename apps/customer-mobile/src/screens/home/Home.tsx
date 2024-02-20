@@ -1,18 +1,26 @@
-import { View, SafeAreaView, Image } from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native';
 import React, { useState } from 'react';
 import { HomeProps } from '../../config';
-import { homeScreenStyle } from './styles';
+import { homeScreenStyle, topLabelStyle, serviceSectionStyle } from './styles';
 import {
   FAIcon,
   HorizontalSpacer,
   PrimaryTitle,
   SmallParagraph,
   VerticalSpacer,
-  WhitePrimaryIconButton,
+  BellIconButton,
+  SubtitleLink,
+  EventTitle,
 } from '@present-native/atoms';
-import { IEvent } from '@business-layer/services/entities';
-import { colors } from '@presentational/native/styles';
-import { SubtitleLink } from '@present-native/atoms';
+import { ICategory, IEvent } from '@business-layer/services/entities';
+import { colors } from '@present-native/styles';
+import { CategoryAndServiceSearchBox } from '@present-native/molecules';
 
 const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   // Event must be get from API
@@ -24,13 +32,54 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
     image: 'https://detoivn.sirv.com/events/001.png',
   });
 
+  // Real time get notifications
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [notifications, setNotification] = useState<number[] | null>([
+    1, 2, 3, 4, 5,
+  ]);
+
+  // Get category from api
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [category, setCategory] = useState<ICategory[]>([
+    {
+      id: 0,
+      image: 'https://detoivn.sirv.com/services/dondep/category.png',
+      name: 'Dọn dẹp',
+      description: '',
+    },
+    {
+      id: 1,
+      image: 'https://detoivn.sirv.com/services/sauchua/category.png',
+      name: 'Sửa chữa',
+      description: '',
+    },
+    {
+      id: 2,
+      image: 'https://detoivn.sirv.com/services/chuyennhaphongtro/category.png',
+      name: 'Chuyển nhà, phòng trọ',
+      description: '',
+    },
+    // {
+    //   id: 3,
+    //   image: 'https://detoivn.sirv.com/services/dicho/category.png',
+    //   name: 'Đi chợ',
+    //   description: '',
+    // },
+    // {
+    //   id: 4,
+    //   image: 'https://detoivn.sirv.com/services/vesinhmaylanh/category.png',
+    //   name: 'Vệ sinh máy lạnh',
+    //   description: '',
+    // },
+  ]);
+
   return (
     <View style={homeScreenStyle.container}>
-      <View style={homeScreenStyle.topLabel_container}>
-        <View style={homeScreenStyle.topLabel_event}>
-          <SafeAreaView style={homeScreenStyle.topLabelEvent_safeView}>
-            <View style={homeScreenStyle.topLabelEvent_content}>
-              <PrimaryTitle>{event.title}</PrimaryTitle>
+      <View style={topLabelStyle.container}>
+        <View style={topLabelStyle.event}>
+          <SafeAreaView style={topLabelStyle.event_safeView}>
+            <View style={topLabelStyle.event_content}>
+              <EventTitle>{event.title}</EventTitle>
               <VerticalSpacer size="m" />
               <SubtitleLink screenName="ChooseLocation">
                 <SmallParagraph>{event.subtitle}</SmallParagraph>
@@ -42,15 +91,47 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
                 />
               </SubtitleLink>
             </View>
-            <View style={homeScreenStyle.topLabelEvent_spacer} />
+            <View style={topLabelStyle.event_spacer} />
             <Image
               source={{ uri: event.image }}
-              style={homeScreenStyle.topLabelEvent_image}
+              style={topLabelStyle.event_image}
             />
           </SafeAreaView>
         </View>
-        <View style={homeScreenStyle.topLabel_interaction}>
-          <WhitePrimaryIconButton iconName="faBell" onPress={() => {}} />
+        <View style={topLabelStyle.interaction}>
+          <View style={topLabelStyle.interaction_background_top} />
+          <View style={topLabelStyle.interaction_background_bottom} />
+          <View style={topLabelStyle.interaction_inner}>
+            <BellIconButton
+              iconName="faBell"
+              notificationCount={notifications ? notifications.length : null}
+            />
+            <HorizontalSpacer size="l" />
+            <CategoryAndServiceSearchBox />
+          </View>
+        </View>
+      </View>
+      <VerticalSpacer size="xxl" />
+      <View style={serviceSectionStyle.container}>
+        <PrimaryTitle>Chúng tôi có thể giúp gì cho bạn?</PrimaryTitle>
+        <View style={serviceSectionStyle.categoriesContainer}>
+          <FlatList
+            data={category}
+            renderItem={(itemInfo) => (
+              <TouchableOpacity
+                style={serviceSectionStyle.category}
+                key={itemInfo.item.id}
+              >
+                <Image
+                  source={{ uri: itemInfo.item.image }}
+                  style={serviceSectionStyle.categoryImage}
+                />
+              </TouchableOpacity>
+            )}
+            keyExtractor={(c) => `category@${c.id}`}
+            numColumns={3}
+            columnWrapperStyle={serviceSectionStyle.categoriesContainer}
+          />
         </View>
       </View>
     </View>

@@ -1,30 +1,46 @@
-import { TouchableHighlight } from 'react-native';
+import { TouchableHighlight, View, Text } from 'react-native';
 import { FAIcon } from '../icon';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { colors, commonButtonStyles } from '@presentational/native/styles';
+import React from 'react';
 
 type iconButtonProps = {
   iconName: nativeIconNameType;
-  onPress: () => void;
   iconSize?: number;
+  notificationCount: number | null;
 };
 
-const DEFAULT_ICON_SIZE = 20;
+const DEFAULT_ICON_SIZE = 22;
 
-const WhitePrimaryIconButton = ({
-  onPress,
+const BellIconButton = ({
   iconName,
   iconSize = DEFAULT_ICON_SIZE,
+  notificationCount,
 }: iconButtonProps) => {
+  // methods
+  const handleBellClick = () => {
+    // TODO
+  };
   return (
     <TouchableHighlight
-      onPress={onPress}
-      underlayColor={colors.zinc} // Màu nền khi button được nhấn
-      style={commonButtonStyles.button_icon_whitePrimary}
+      onPress={handleBellClick}
+      underlayColor={colors.softBg} // Màu nền khi button được nhấn
+      style={commonButtonStyles.bellIconButton}
     >
-      <FAIcon iconName={iconName} size={iconSize} color={colors.primary} />
+      <View style={commonButtonStyles.bellIconButton_innerContainer}>
+        <FAIcon iconName={iconName} size={iconSize} color={colors.primary} />
+        {notificationCount ? (
+          <View style={commonButtonStyles.bellIconButton_badge}>
+            <Text style={commonButtonStyles.bellIconButton_badgeText}>
+              {notificationCount}
+            </Text>
+          </View>
+        ) : (
+          <React.Fragment />
+        )}
+      </View>
     </TouchableHighlight>
   );
 };
 
-export { WhitePrimaryIconButton };
+export { BellIconButton };

@@ -38,7 +38,8 @@
     "@fortawesome/free-brands-svg-icons": "*",
     "@expo-google-fonts/montserrat": "*",
     "@fortawesome/free-regular-svg-icons": "*",
-    "next": "*"
+    "next": "*",
+    "react-native-linear-gradient": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && node tools/scripts/eas-build-pre-install.mjs . apps/customer-mobile && cp package-lock.json apps/customer-mobile",
