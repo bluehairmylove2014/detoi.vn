@@ -47,8 +47,9 @@ namespace DeToiServer.Dtos.LocationDtos
         public string? House_number { get; set; }
         public string? Road { get; set; }
 
-        public string Ward { get; set; } = string.Empty;
-        public string District { get; set; } = string.Empty;
-        public string City { get; set; } = string.Empty;
+        public string Ward { get; set; } = string.Empty; // Phường - Xã, thị trấn
+        public string District { get; set; } = string.Empty; // Quận - Huyện
+        public string Province { get; set; } = string.Empty; // tỉnh - thành phố
+        public string Country { get; set; } = string.Empty; // Quốc gia
     }
 }
