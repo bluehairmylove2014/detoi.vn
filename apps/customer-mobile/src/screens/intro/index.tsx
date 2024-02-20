@@ -60,9 +60,9 @@ const IntroPage = () => {
       </View>
       <View style={introSCreenStyle.introPolicySection}>
         <SmallParagraph color="black">
-          Bằng việc đăng ký hoặc đăng nhập, bạn đã đồng ý với các
-          <SmallParagraph fontWeight="bold">Điều khoản dịch vụ</SmallParagraph>
-          và
+          Bằng việc đăng ký hoặc đăng nhập, bạn đã đồng ý với các{' '}
+          <SmallParagraph fontWeight="bold">Điều khoản dịch vụ</SmallParagraph>{' '}
+          và{' '}
           <SmallParagraph fontWeight="bold">Chính sách bảo mật</SmallParagraph>
         </SmallParagraph>
       </View>
