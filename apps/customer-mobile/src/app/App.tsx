@@ -7,7 +7,7 @@ const App = () => {
   return (
     // <BusinessLogicProvider activeModules={activeModules}>
     <CustomerTemplate>
-      <RootNavigationContainer initRoute="Home" />
+      <RootNavigationContainer initRoute="Intro" />
     </CustomerTemplate>
     // </BusinessLogicProvider>
   );
