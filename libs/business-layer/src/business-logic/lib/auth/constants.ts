@@ -1,0 +1,7 @@
+export const TOKEN_EXPIRY_DAYS = {
+  NON_REMEMBER: 12,
+  REMEMBER: 12,
+};
+export const BROADCAST_CHANNEL = {
+  AUTH_CHANNEL: 'BC_AUTHENTICATION',
+};
