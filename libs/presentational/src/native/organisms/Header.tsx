@@ -1,51 +1,93 @@
-import Logo from '@presentational/next/molecules/Logo';
-import CWEBFAIcon from '@presentational/next/atoms/CWEBFAIcon';
-import CustomButton from '@presentational/next/atoms/CustomButton';
-import ShortenNavSideBar from '@presentational/next/molecules/ShortenNavSideBar';
+import React, { ReactNode, useState } from 'react';
+import { View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { SelectCountry } from 'react-native-element-dropdown';
+import { screenVerrizontalPadding } from '@present-native/styles';
+import { NATIVE_ICONS } from '@business-layer/business-logic/non-service-lib/fontawesome';
 
-function Header() {
-  return (
-    // <header className="w-screen bg-white sticky top-0 z-30">
-    <header className="w-screen bg-white">
-      <div className="mx-auto xl:container xl:px-0 px-[30px] py-[18px]">
-        <nav>
-          <div className="flex flex-wrap justify-between items-center max-w-full min-w-full">
-            <Logo />
-            <div className=" flex items-center justify-center md:gap-0">
-              <div className="hidden md:block">
-                <CustomButton style="btn-white-black" type="link" href="#">
-                  <CWEBFAIcon
-                    iconName="faCircleQuestion"
-                    className="text-base md:text-sm"
-                  />
-                  <span className="ml-2 text-base md:text-sm">Hỗ trợ</span>
-                </CustomButton>
-              </div>
-              <div className="hidden md:block mr-6">
-                <CustomButton style="btn-white-black" type="link" href="#">
-                  <span className="text-base md:text-sm">Chính sách</span>
-                </CustomButton>
-              </div>
-              <div className="w-29">
-                <CustomButton
-                  style="btn-black-only-border"
-                  type="link"
-                  href="#"
-                >
-                  <span className="text-base md:text-sm">
-                    Trở thành Freelancer
-                  </span>
-                </CustomButton>
-              </div>
-              <div className="md:hidden ml-4">
-                <ShortenNavSideBar />
-              </div>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
-  );
+export enum EDTypeDisplayHeader {
+  BACK_BUTTON = 'back_button',
+  LANGUAGE_BUTTON = 'language_button',
 }
+type TDisplayType =
+  | EDTypeDisplayHeader.BACK_BUTTON
+  | EDTypeDisplayHeader.LANGUAGE_BUTTON;
+
+type Header = {
+  typeDisplay: TDisplayType[];
+};
+const local_data = [
+  {
+    value: '1',
+    lable: 'Tiếng Việt',
+    image: {
+      uri: 'https://cdn.countryflags.com/thumbs/vietnam/flag-round-250.png',
+    },
+  },
+  {
+    value: '2',
+    lable: 'English',
+    image: {
+      uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/United-kingdom_flag_icon_round.svg/1024px-United-kingdom_flag_icon_round.svg.png',
+    },
+  },
+];
+
+const Header = ({ typeDisplay }: Header) => {
+  const [country, setCountry] = useState('1');
+  return (
+    <View style={{ paddingVertical: screenVerrizontalPadding }}>
+      {typeDisplay.includes(EDTypeDisplayHeader.LANGUAGE_BUTTON) ? (
+        <View style={{ alignSelf: 'flex-end' }}>
+          <SelectCountry
+            style={styles.dropdown}
+            selectedTextStyle={styles.selectedTextStyle}
+            placeholderStyle={styles.placeholderStyle}
+            iconStyle={styles.iconStyle}
+            maxHeight={100}
+            value={country}
+            data={local_data}
+            imageStyle={styles.imageStyle}
+            valueField="value"
+            labelField="lable"
+            imageField="image"
+            placeholder="Select country"
+            searchPlaceholder="Search..."
+            onChange={(e) => {
+              setCountry(e.value);
+            }}
+          />
+        </View>
+      ) : (
+        <></>
+      )}
+    </View>
+  );
+};
+const styles = StyleSheet.create({
+  dropdown: {
+    margin: 16,
+    height: 30,
+    width: 90,
+    backgroundColor: '#EEEEEE',
+    borderRadius: 22,
+    paddingHorizontal: 8,
+  },
+  imageStyle: {
+    width: 14,
+    height: 14,
+    borderRadius: 100,
+  },
+  placeholderStyle: {
+    fontSize: 16,
+  },
+  selectedTextStyle: {
+    fontSize: 10,
+  },
+  iconStyle: {
+    width: 0,
+    height: 0,
+  },
+});
 
 export default Header;
