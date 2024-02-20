@@ -21,8 +21,6 @@ FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./DeToiServer.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-# SQL Server trusted connection problem
-
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .

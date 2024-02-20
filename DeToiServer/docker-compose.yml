@@ -8,7 +8,7 @@ services:
     container_name: detoi-server-database-container
     image: mcr.microsoft.com/mssql/server:2019-latest
     ports:
-      - 8002:1433
+      - 8004:1433
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=Password@12345#
@@ -21,8 +21,8 @@ services:
       context: .
       dockerfile: DeToiServer/Dockerfile
     ports:
+      - 8000:8080
       - 8001:8081
-      - 8005:8080
     depends_on:
       - detoidb
     environment:

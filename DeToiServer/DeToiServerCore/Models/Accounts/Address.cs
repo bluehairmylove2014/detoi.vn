@@ -10,6 +10,11 @@ namespace DeToiServerCore.Models.Accounts
     {
         public required CustomerAccount CustomerAccount { get; set; }
         public required int CustomerAccountId { get; set; }
-        public string AddressLine { get; set; } = string.Empty;
+        public string AddressLine { get; set; } = string.Empty; // thêm lat lon
+
+            //ward: string;
+            //district: string;
+            //province: string;
+            //country: string;
     }
 }

@@ -2,6 +2,7 @@
 using DeToiServer.Services.ServiceCategoryService;
 using DeToiServer.Services.ServiceTypeService;
 using DeToiServerData.Repositories;
+using DeToiServerData.Repositories.OrderRepo;
 using DeToiServerData.Repositories.PromotionRepo;
 using DeToiServerData.Repositories.ServiceCategoryRepo;
 using DeToiServerData.Repositories.ServiceTypeRepo;
@@ -19,6 +20,7 @@ namespace DeToiServerData
             services.AddScoped<IServiceTypeRepo, ServiceTypeRepo>();
             services.AddScoped<IServiceCategoryRepo, ServiceCategoryRepo>();
             services.AddScoped<IPromotionRepo, PromotionRepo>();
+            services.AddScoped<IOrderRepo, OrderRepo>();
             services.AddScoped<UnitOfWork>();
             return services;
         }
@@ -29,6 +31,7 @@ namespace DeToiServerData
             services.AddScoped<IServiceTypeService, ServiceTypeService>();
             services.AddScoped<IServiceCategoryService, ServiceCategoryService>();
             services.AddScoped<IPromotionRepo, PromotionRepo>();
+            services.AddScoped<IOrderRepo, OrderRepo>();
             return services;
         }
     }

@@ -48,11 +48,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddCors(options => options.AddPolicy(name: "NgOrigins",
     policy =>
     {
-        policy.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
     })
 );
 
-var dbHost = Environment.GetEnvironmentVariable("DB_HOST") ?? "localhost";
+var dbHost = Environment.GetEnvironmentVariable("DB_HOST") ?? "detoidb";
 var dbName = Environment.GetEnvironmentVariable("DB_NAME") ?? "DeToiVN";
 var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD") ?? "Password@12345#";
 string myDockerConnectionString = $"Data Source={dbHost};Initial Catalog={dbName};User ID=sa;Password={dbPassword};TrustServerCertificate=True;";
@@ -60,7 +60,7 @@ string myDockerConnectionString = $"Data Source={dbHost};Initial Catalog={dbName
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddServicesData();
 builder.Services.AddUnitOfWork(options => 
-    options.UseSqlServer(myDockerConnectionString)); //  builder.Configuration.GetConnectionString("local")
+    options.UseSqlServer(builder.Configuration.GetConnectionString("local"))); //  builder.Configuration.GetConnectionString("local") myDockerConnectionString
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();

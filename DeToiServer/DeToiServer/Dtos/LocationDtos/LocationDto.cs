@@ -1,54 +1,54 @@
 ﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace DeToiServer.Dtos.LocationDtos
 {
-    public class Coordinate
+    public class InputGeoCodeDto
     {
-        [JsonPropertyName("lat")] public double Latitude { get; set; }
-        [JsonPropertyName("lng")] public double Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
 
-    public class ViewPortResult
+    public class AddressResultDto
     {
-        [JsonPropertyName("northeast")] public required Coordinate NorthEast { get; set; }
-        [JsonPropertyName("southwest")] public required Coordinate SouthWest { get; set; }
+        public string? Amenity { get; set; }
+        public string? House_number { get; set; }
+        public string? Road { get; set; }
+        public string? Quarter { get; set; } // Phường
+        public string? Village { get; set; } // Xã
+        public string? Suburb { get; set; } // Quận
+        public string? City_district { get; set; } // Quận
+        public string? County { get; set; } // Quận
+        public string? City { get; set; } // Thành phố
+        public string? State { get; set; } // Thành phố
+        public string? Town { get; set; }
+        [JsonPropertyName("ISO3166-2-lvl4")] public string? IsoCode { get; set; }
+        public int? Postcode { get; set; }
+        public string? Country { get; set; }
+        public string? Country_code { get; set; }
     }
 
-    public class GeometryResult
+    public class RevGeoCodeResponseDto
     {
-        [JsonPropertyName("location")] public required Coordinate Location { get; set; }
-        [JsonPropertyName("location_type")] public string LocationType { get; set; } = string.Empty;
-        [JsonPropertyName("viewport")] public required ViewPortResult ViewPort { get; set; }
+        public double? Lat { get; set; }
+        public double? Lon { get; set; }
+        public string? Display_name { get; set; }
+        public AddressResultDto? Address { get; set; }
     }
 
-    public class PlusCodeResult
+    public class RevGeoCodeResultDto
     {
-        [JsonPropertyName("compound_code")] public string CompoundCode { get; set; } = string.Empty;
-        [JsonPropertyName("global_code")] public string GlobalCode { get; set; } = string.Empty;
-    }
+        public double Lat { get; set; }
+        public double Lon { get; set; }
+        public string? Display_name { get; set; } = string.Empty;
 
-    public class AddressComponentResult
-    {
-        [JsonPropertyName("long_name")] public string LongName { get; set; } = string.Empty;
-        [JsonPropertyName("short_name")] public string ShortName { get; set; } = string.Empty;
-        [JsonPropertyName("types")] public required IEnumerable<string> Types { get; set; }
-    }
+        public string? Amenity { get; set; }
+        public string? House_number { get; set; }
+        public string? Road { get; set; }
 
-    public class GeoCodeResultDto
-    {
-        [JsonPropertyName("address_components")] public required IEnumerable<AddressComponentResult> AddressComponents { get; set; }
-        [JsonPropertyName("formatted_address")] public string FormattedAddress { get; set; } = string.Empty;
-        [JsonPropertyName("geometry")] public required GeometryResult Geometry { get; set; }
-        [JsonPropertyName("place_id")] public string PlaceId { get; set; } = string.Empty;
-        [JsonPropertyName("plus_code")] public required PlusCodeResult PlusCode { get; set; }
-        [JsonPropertyName("types")] public required IEnumerable<string> Types { get; set; }
+        public string Ward { get; set; } = string.Empty;
+        public string District { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
     }
-
-    public class GeoCodeResponseDto
-    {
-        [JsonPropertyName("results")] public required IEnumerable<GeoCodeResultDto> Results { get; set; }
-        [JsonPropertyName("status")] public string Status { get; set; } = string.Empty;
-    }
-
 }
