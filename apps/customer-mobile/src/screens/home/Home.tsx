@@ -1,10 +1,4 @@
-import {
-  View,
-  SafeAreaView,
-  Image,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import { View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { HomeProps } from '../../config';
 import { homeScreenStyle, topLabelStyle, serviceSectionStyle } from './styles';
@@ -12,15 +6,15 @@ import {
   FAIcon,
   HorizontalSpacer,
   PrimaryTitle,
-  SmallParagraph,
+  PrimaryParagraph,
   VerticalSpacer,
   BellIconButton,
   SubtitleLink,
-  EventTitle,
 } from '@present-native/atoms';
 import { ICategory, IEvent } from '@business-layer/services/entities';
 import { colors } from '@present-native/styles';
 import { CategoryAndServiceSearchBox } from '@present-native/molecules';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   // Event must be get from API
@@ -49,7 +43,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
     },
     {
       id: 1,
-      image: 'https://detoivn.sirv.com/services/sauchua/category.png',
+      image: 'https://detoivn.sirv.com/services/suachua/category.png',
       name: 'Sửa chữa',
       description: '',
     },
@@ -59,18 +53,18 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
       name: 'Chuyển nhà, phòng trọ',
       description: '',
     },
-    // {
-    //   id: 3,
-    //   image: 'https://detoivn.sirv.com/services/dicho/category.png',
-    //   name: 'Đi chợ',
-    //   description: '',
-    // },
-    // {
-    //   id: 4,
-    //   image: 'https://detoivn.sirv.com/services/vesinhmaylanh/category.png',
-    //   name: 'Vệ sinh máy lạnh',
-    //   description: '',
-    // },
+    {
+      id: 3,
+      image: 'https://detoivn.sirv.com/services/dicho/category.png',
+      name: 'Đi chợ',
+      description: '',
+    },
+    {
+      id: 4,
+      image: 'https://detoivn.sirv.com/services/vesinhmaylanh/category.png',
+      name: 'Vệ sinh máy lạnh',
+      description: '',
+    },
   ]);
 
   return (
@@ -79,10 +73,12 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
         <View style={topLabelStyle.event}>
           <SafeAreaView style={topLabelStyle.event_safeView}>
             <View style={topLabelStyle.event_content}>
-              <EventTitle>{event.title}</EventTitle>
+              <PrimaryTitle theme="event">{event.title}</PrimaryTitle>
               <VerticalSpacer size="m" />
               <SubtitleLink screenName="ChooseLocation">
-                <SmallParagraph>{event.subtitle}</SmallParagraph>
+                <PrimaryParagraph theme="small">
+                  {event.subtitle}
+                </PrimaryParagraph>
                 <HorizontalSpacer size="m" />
                 <FAIcon
                   iconName="faCircleArrowRight"
@@ -113,25 +109,28 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
       </View>
       <VerticalSpacer size="xxl" />
       <View style={serviceSectionStyle.container}>
-        <PrimaryTitle>Chúng tôi có thể giúp gì cho bạn?</PrimaryTitle>
+        <PrimaryTitle theme="primary">
+          Chúng tôi có thể giúp gì cho bạn?
+        </PrimaryTitle>
+        <VerticalSpacer size="xs" />
         <View style={serviceSectionStyle.categoriesContainer}>
-          <FlatList
-            data={category}
-            renderItem={(itemInfo) => (
-              <TouchableOpacity
-                style={serviceSectionStyle.category}
-                key={itemInfo.item.id}
-              >
-                <Image
-                  source={{ uri: itemInfo.item.image }}
-                  style={serviceSectionStyle.categoryImage}
-                />
-              </TouchableOpacity>
-            )}
-            keyExtractor={(c) => `category@${c.id}`}
-            numColumns={3}
-            columnWrapperStyle={serviceSectionStyle.categoriesContainer}
-          />
+          {Array.isArray(category) && category.length > 0
+            ? category.map((c) => (
+                <TouchableOpacity
+                  style={serviceSectionStyle.category}
+                  key={c.id}
+                >
+                  <Image
+                    source={{ uri: c.image }}
+                    style={serviceSectionStyle.categoryImage}
+                  />
+                  <LinearGradient
+                    colors={[colors.transparent, colors.black]}
+                    style={serviceSectionStyle.categoryOverlay}
+                  />
+                </TouchableOpacity>
+              ))
+            : null}
         </View>
       </View>
     </View>

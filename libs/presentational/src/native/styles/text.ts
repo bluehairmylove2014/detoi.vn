@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { colors } from './color';
 
-const titleStyles = StyleSheet.create({
+const primaryTitleStyles = StyleSheet.create({
   event: {
     color: colors.primary,
     fontSize: 16,
@@ -15,15 +15,18 @@ const titleStyles = StyleSheet.create({
     userSelect: 'none',
   },
 });
+const whiteTitleStyle = StyleSheet.create({
+  categoryName: {},
+});
 
-const paragraphStyles = StyleSheet.create({
+const primaryParagraphStyles = StyleSheet.create({
   small: {
     fontFamily: 'Montserrat_400Regular',
     fontSize: 13,
     color: colors.primary,
     userSelect: 'none',
   },
-  lightPrimary: {
+  light: {
     fontFamily: 'Montserrat_400Regular',
     fontSize: 16,
     color: colors.primary,
@@ -31,4 +34,4 @@ const paragraphStyles = StyleSheet.create({
   },
 });
 
-export { titleStyles, paragraphStyles };
+export { primaryTitleStyles, primaryParagraphStyles, whiteTitleStyle };

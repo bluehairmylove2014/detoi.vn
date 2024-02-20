@@ -1,10 +1,11 @@
 import { colors, screenHorizontalPadding } from '@presentational/native/styles';
 import { StyleSheet } from 'react-native';
+import { windowHeight, windowWidth } from '@constants/dimension';
 
 const homeScreenStyle = StyleSheet.create({
   container: {
-    width: '100%',
-    minHeight: '100%',
+    width: windowWidth,
+    minHeight: windowHeight,
     height: 'auto',
     backgroundColor: colors.softBg,
   },
@@ -12,14 +13,14 @@ const homeScreenStyle = StyleSheet.create({
 
 const topLabelStyle = StyleSheet.create({
   container: {
-    width: '100%',
+    width: windowWidth,
     height: '25%',
   },
   event: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    width: '100%',
+    width: windowWidth,
     height: '75%',
     backgroundColor: colors.soft,
     paddingHorizontal: screenHorizontalPadding,
@@ -84,19 +85,35 @@ const topLabelStyle = StyleSheet.create({
 
 const serviceSectionStyle = StyleSheet.create({
   container: {
-    width: '100%',
+    width: windowWidth,
     paddingHorizontal: screenHorizontalPadding,
   },
   categoriesContainer: {
     width: '100%',
+    margin: 5,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+    gap: 14,
   },
   category: {
-    width: 'auto',
+    width: (windowWidth - 30 - screenHorizontalPadding * 2) / 3,
+    borderRadius: 8,
+    overflow: 'hidden',
+    position: 'relative',
   },
   categoryImage: {
     width: '100%',
     objectFit: 'cover',
     aspectRatio: 1,
+  },
+  categoryOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    height: '50%',
   },
 });
 

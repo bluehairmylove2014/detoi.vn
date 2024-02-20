@@ -1,12 +1,24 @@
 import { Text } from 'react-native';
 import React from 'react';
-import { titleStyles } from '@presentational/native/styles';
+import {
+  primaryTitleStyles,
+  whiteTitleStyle,
+} from '@presentational/native/styles';
 
-const EventTitle = ({ children }: { children: React.ReactNode }) => (
-  <Text style={titleStyles.event}>{children}</Text>
-);
-const PrimaryTitle = ({ children }: { children: React.ReactNode }) => (
-  <Text style={titleStyles.primary}>{children}</Text>
-);
+const PrimaryTitle = ({
+  children,
+  theme,
+}: {
+  children: React.ReactNode;
+  theme: keyof typeof primaryTitleStyles;
+}) => <Text style={primaryTitleStyles[theme]}>{children}</Text>;
 
-export { PrimaryTitle, EventTitle };
+const WhiteTitle = ({
+  children,
+  theme,
+}: {
+  children: React.ReactNode;
+  theme: keyof typeof whiteTitleStyle;
+}) => <Text style={whiteTitleStyle[theme]}>{children}</Text>;
+
+export { PrimaryTitle, WhiteTitle };

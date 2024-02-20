@@ -1,13 +1,13 @@
 import { Text } from 'react-native';
 import React from 'react';
-import { paragraphStyles } from '@presentational/native/styles';
+import { primaryParagraphStyles } from '@presentational/native/styles';
 
-const SmallParagraph = ({ children }: { children: React.ReactNode }) => (
-  <Text style={paragraphStyles.small}>{children}</Text>
-);
+const PrimaryParagraph = ({
+  children,
+  theme,
+}: {
+  children: React.ReactNode;
+  theme: keyof typeof primaryParagraphStyles;
+}) => <Text style={primaryParagraphStyles[theme]}>{children}</Text>;
 
-const LightPrimaryParagraph = ({ children }: { children: React.ReactNode }) => (
-  <Text style={paragraphStyles.lightPrimary}>{children}</Text>
-);
-
-export { SmallParagraph, LightPrimaryParagraph };
+export { PrimaryParagraph };
