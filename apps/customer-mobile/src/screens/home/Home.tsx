@@ -14,7 +14,7 @@ import {
 import { ICategory, IEvent } from '@business-layer/services/entities';
 import { colors } from '@present-native/styles';
 import { CategoryAndServiceSearchBox } from '@present-native/molecules';
-import { LinearGradient } from 'expo-linear-gradient';
+import CategoryThumbnail from '@present-native/molecules/category/CategoryThumbnail';
 
 const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   // Event must be get from API
@@ -114,23 +114,26 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
         </PrimaryTitle>
         <VerticalSpacer size="xs" />
         <View style={serviceSectionStyle.categoriesContainer}>
-          {Array.isArray(category) && category.length > 0
-            ? category.map((c) => (
-                <TouchableOpacity
-                  style={serviceSectionStyle.category}
-                  key={c.id}
-                >
-                  <Image
-                    source={{ uri: c.image }}
-                    style={serviceSectionStyle.categoryImage}
-                  />
-                  <LinearGradient
-                    colors={[colors.transparent, colors.black]}
-                    style={serviceSectionStyle.categoryOverlay}
-                  />
-                </TouchableOpacity>
-              ))
-            : null}
+          {Array.isArray(category) && category.length > 0 ? (
+            <>
+              {category.map((c) => (
+                <CategoryThumbnail category={c} key={`category@${c.id}`} />
+              ))}
+              <TouchableOpacity
+                style={serviceSectionStyle.categories_viewAllBtn}
+              >
+                <FAIcon
+                  iconName="faArrowRightLong"
+                  color={colors.primary}
+                  size={20}
+                />
+                <VerticalSpacer size="s" />
+                <PrimaryParagraph theme="smallBold">
+                  Xem tất cả
+                </PrimaryParagraph>
+              </TouchableOpacity>
+            </>
+          ) : null}
         </View>
       </View>
     </View>

@@ -97,23 +97,11 @@ const serviceSectionStyle = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 14,
   },
-  category: {
-    width: (windowWidth - 30 - screenHorizontalPadding * 2) / 3,
-    borderRadius: 8,
-    overflow: 'hidden',
-    position: 'relative',
-  },
-  categoryImage: {
-    width: '100%',
-    objectFit: 'cover',
-    aspectRatio: 1,
-  },
-  categoryOverlay: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    width: '100%',
-    height: '50%',
+  categories_viewAllBtn: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
