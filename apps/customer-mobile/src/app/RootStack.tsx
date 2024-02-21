@@ -5,6 +5,8 @@ import { customerRootStackParamList } from '../config';
 // Import screen component here
 import HomeScreen from '../screens/home/Home';
 import ChooseLocationScreen from '../screens/chooseLocation/ChooseLocation';
+import LoginScreen from '../screens/login/Login';
+import OTPVertificationScreen from '../screens/otpVertification/OTPVertification';
 
 export const RStack = createNativeStackNavigator<customerRootStackParamList>();
 export const RootNavigationContainer = ({
@@ -24,6 +26,16 @@ export const RootNavigationContainer = ({
         <RStack.Screen
           component={ChooseLocationScreen}
           name="ChooseLocation"
+          options={{ headerShown: false }}
+        />
+        <RStack.Screen
+          component={LoginScreen}
+          name="Login"
+          options={{ headerShown: false }}
+        />
+        <RStack.Screen
+          component={OTPVertificationScreen}
+          name="OTPVertification"
           options={{ headerShown: false }}
         />
       </RStack.Navigator>
