@@ -41,6 +41,13 @@ const commonButtonStyles = StyleSheet.create({
     fontFamily: 'Montserrat_600SemiBold',
     fontSize: 10,
   },
+
+  primaryButton: {
+    width: '100%',
+    backgroundColor: colors.secondary,
+    paddingVertical: 15,
+    alignItems: 'center',
+  },
 });
 const asyncButtonStyles = StyleSheet.create({});
 

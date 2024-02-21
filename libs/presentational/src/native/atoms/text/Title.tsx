@@ -3,6 +3,7 @@ import React from 'react';
 import {
   primaryTitleStyles,
   whiteTitleStyle,
+  blackTitleStyles,
 } from '@presentational/native/styles';
 
 const PrimaryTitle = ({
@@ -20,5 +21,13 @@ const WhiteTitle = ({
   children: React.ReactNode;
   theme: keyof typeof whiteTitleStyle;
 }) => <Text style={whiteTitleStyle[theme]}>{children}</Text>;
+
+const BlackTitle = ({
+  children,
+  theme,
+}: {
+  children: React.ReactNode;
+  theme: keyof typeof blackTitleStyles;
+}) => <Text style={blackTitleStyles[theme]}>{children}</Text>;
 
 export { PrimaryTitle, WhiteTitle };
