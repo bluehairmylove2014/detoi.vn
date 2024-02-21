@@ -10,6 +10,14 @@ import { OTPVertificationProps } from '../../config';
 import { otpVertificationScreenStyle } from './styles';
 import { colors } from '@present-native/styles';
 import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+const MAX_TRY = 4;
+const OTP_LENGTH = 4;
+
+type otpInputFormType = {
+  otp: string;
+};
 
 const OTPVertification: React.FC<OTPVertificationProps> = ({
   route,
@@ -17,14 +25,47 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
 }) => {
   //Handle OTP
   const trueOTP = '1234'; // The true OTP to compare with
-  const [userOTP, setUserOTP] = useState(''); // State variable to store user-entered OTP
-  const [countWrong, setCountWrong] = useState(2);
+  const [countWrong, setCountWrong] = useState<number>(MAX_TRY);
   const [activeWarning, setActiveWarning] = useState(false);
   const [loadingOTP, setLoadingOTP] = useState(false);
 
   //Handle Timer
   const [activeTimeCount, setActiveTimeCount] = useState(true);
   const [timerCount, setTimerCount] = useState(30);
+
+  const { handleSubmit, setValue, watch } = useForm<otpInputFormType>({
+    defaultValues: {
+      otp: '',
+    },
+  });
+  const otpWatcher = watch('otp');
+
+  // methods
+  const onSuccessSubmitOTP = ({ otp }: otpInputFormType) => {
+    console.log('CHECK: ', otp);
+    // Call api to check otp
+    // Wrong => ...
+
+    setLoadingOTP(true); // Start loading
+    setActiveTimeCount(false);
+
+    setTimeout(() => {
+      setLoadingOTP(false); // Stop loading after 1 second
+      // Compare OTP
+      if (otpWatcher !== trueOTP) {
+        setCountWrong((countWrong) => {
+          if (countWrong !== 1) return countWrong - 1;
+          else return MAX_TRY;
+        });
+      }
+      setActiveWarning(true);
+
+      //Set input otp blank
+      setValue('otp', '');
+    }, 1000);
+    // True
+    navigation.navigate('OTPVertification');
+  };
 
   useEffect(() => {
     if (activeTimeCount) {
@@ -41,27 +82,12 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
       // Cleanup function
       return () => clearInterval(interval);
     }
+  }, [activeTimeCount]);
 
-    if (userOTP.length === 4) {
-      setLoadingOTP(true); // Start loading
-      setActiveTimeCount(false);
-
-      setTimeout(() => {
-        setLoadingOTP(false); // Stop loading after 1 second
-        // Compare OTP
-        if (userOTP !== trueOTP) {
-          setCountWrong(countWrong - 1);
-        }
-        //If input wrong three times
-        if (countWrong === 0) setCountWrong(2);
-        //Else show warning
-        else setActiveWarning(true);
-
-        setUserOTP('');
-      }, 1000);
-    }
-  }, [activeTimeCount, userOTP]);
-
+  useEffect(() => {
+    otpWatcher.length === OTP_LENGTH && handleSubmit(onSuccessSubmitOTP)();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [otpWatcher]);
   return (
     <SafeAreaView>
       <View style={otpVertificationScreenStyle.container}>
@@ -84,9 +110,8 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
             placeholderTextColor={colors.gray}
             selectionColor={colors.black}
             keyboardType="numeric"
-            onChangeText={setUserOTP} // Update userOTP state when text changes
-            value={userOTP} // Bind TextInput value to userOTP state
             maxLength={4}
+            onChangeText={(value) => setValue('otp', value)}
           />
 
           {loadingOTP ? (
@@ -100,7 +125,9 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
                     color={colors.secondary}
                     style={{ marginRight: 5 }}
                   />
-                  <Text style={{ fontWeight: 'bold' }}>00:{timerCount}</Text>
+                  <Text style={{ fontWeight: 'bold' }}>
+                    00:{timerCount.toString().padStart(2, '0')}
+                  </Text>
                 </View>
               ) : (
                 <View>

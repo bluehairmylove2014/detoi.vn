@@ -23,6 +23,15 @@ const whiteTitleStyle = StyleSheet.create({
   },
 });
 
+const blackTitleStyles = StyleSheet.create({
+  boldBlack: {
+    color: colors.black,
+    fontSize: 18,
+    fontFamily: 'Montserrat_600SemiBold',
+    userSelect: 'none',
+  },
+});
+
 const primaryParagraphStyles = StyleSheet.create({
   small: {
     fontFamily: 'Montserrat_400Regular',
@@ -44,4 +53,21 @@ const primaryParagraphStyles = StyleSheet.create({
   },
 });
 
-export { primaryTitleStyles, primaryParagraphStyles, whiteTitleStyle };
+const blackParagraphStyles = StyleSheet.create({
+  boldPrimary: {
+    fontFamily: 'Montserrat_600SemiBold',
+    fontSize: 16,
+    color: colors.black,
+    userSelect: 'none',
+  },
+  normalPrimary: {
+    fontFamily: 'Montserrat_500Medium',
+    fontSize: 14,
+    color: colors.black,
+    userSelect: 'none',
+  },
+});
+
+export { primaryTitleStyles, whiteTitleStyle, blackTitleStyles };
+
+export { primaryParagraphStyles, blackParagraphStyles };
