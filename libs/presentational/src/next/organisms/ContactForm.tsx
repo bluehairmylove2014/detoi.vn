@@ -1,23 +1,16 @@
 'use client';
 
-import Checkbox from '@presentational/atoms/Checkbox';
-import CommonInput from '@presentational/atoms/CommonInput';
-import DoubleArrowBtn from '@presentational/atoms/DoubleArrowBtn';
-import useFriendlyCaptcha from '@presentational/atoms/FriendlyCaptcha';
-import { Text } from '@presentational/atoms';
+import Checkbox from '@presentational/next/atoms/Checkbox';
+import CommonInput from '@presentational/next/atoms/CommonInput';
+import DoubleArrowBtn from '@presentational/next/atoms/DoubleArrowBtn';
+import useFriendlyCaptcha from '@presentational/next/atoms/FriendlyCaptcha';
+import { Text } from '@presentational/next/atoms';
 import { Resolver, useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useNotification } from '@presentational/atoms/Notification';
+import { useNotification } from '@presentational/next/atoms/Notification';
 import React from 'react';
-
-const schema = yup.object().shape({
-  fullName: yup.string().required('Vui lòng nhập họ và tên'),
-  email: yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
-  topic: yup.string().required('Vui lòng nhập chủ đề'),
-  content: yup.string().required('Vui lòng nhập nội dung'),
-});
+import { useYupValidationResolver } from '@utils/validators/yup/resolvers';
+import { contactSchema } from '@utils/validators/yup';
 
 type contactFormType = {
   fullName: string;
@@ -26,9 +19,14 @@ type contactFormType = {
   content: string;
   subscribeNews: boolean;
 };
-function ContactForm() { 
-  const { register, handleSubmit, formState: { errors }, watch } = useForm<contactFormType>({
-    resolver: yupResolver(schema) as any,
+function ContactForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm<contactFormType>({
+    resolver: useYupValidationResolver(contactSchema) as any,
     defaultValues: {
       fullName: '',
       email: '',
@@ -44,12 +42,15 @@ function ContactForm() {
     onSuccessVerify: onSuccessVerify,
   });
 
-  const {showSuccess } = useNotification()
+  const { showSuccess, showError } = useNotification();
   const onSubmit = (data: contactFormType) => {
-    showSuccess("Submit Success")
+    showSuccess('Gửi thành công');
   };
   return (
-    <form className="max-w-3xl mx-auto w-full h-fit " onSubmit={handleSubmit(onSubmit)}> 
+    <form
+      className="max-w-3xl mx-auto w-full h-fit "
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="grid grid-cols-2 grid-rows-3 gap-6 w-full h-fit">
         <div className="col-span-1 row-start-1 pr-5">
           <CommonInput
