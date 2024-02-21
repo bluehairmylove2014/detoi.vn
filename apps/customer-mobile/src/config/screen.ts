@@ -4,6 +4,8 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 type customerRootStackParamList = {
   Home: undefined;
   ChooseLocation: undefined;
+  Login: undefined;
+  OTPVertification: undefined;
 };
 
 // 2. Props
@@ -12,6 +14,17 @@ type ChooseLocationProps = NativeStackScreenProps<
   customerRootStackParamList,
   'ChooseLocation'
 >;
+type LoginProps = NativeStackScreenProps<customerRootStackParamList, 'Login'>;
+type OTPVertificationProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'OTPVertification'
+>;
 
 // 3. Export props
-export { customerRootStackParamList, HomeProps, ChooseLocationProps };
+export {
+  customerRootStackParamList,
+  HomeProps,
+  ChooseLocationProps,
+  LoginProps,
+  OTPVertificationProps,
+};
