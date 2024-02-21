@@ -2,7 +2,10 @@ import {
   FontAwesomeIcon,
   FontAwesomeIconProps,
 } from '@fortawesome/react-fontawesome';
-import { CWEB_ICON_LIST } from '@business-layer/business-logic/non-service-lib/fontawesome';
+import {
+  WEB_ICONS,
+  webIconNameType,
+} from '@business-layer/business-logic/non-service-lib/fontawesome';
 
 const defaultStyles: FontAwesomeIconProps['style'] = {
   bottom: '0px',
@@ -13,12 +16,12 @@ function CWEBFAIcon({
   iconName,
   ...restProps
 }: {
-  iconName: keyof typeof CWEB_ICON_LIST;
+  iconName: webIconNameType;
 } & Omit<FontAwesomeIconProps, 'icon'>) {
   return (
     <FontAwesomeIcon
       {...restProps}
-      icon={CWEB_ICON_LIST[iconName]}
+      icon={WEB_ICONS[iconName]}
       style={{ ...defaultStyles, ...(restProps.style || {}) }}
     />
   );

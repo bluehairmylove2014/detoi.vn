@@ -1,12 +1,15 @@
-/* eslint-disable jsx-a11y/accessible-emoji */
-import React from 'react';
-import Home from './home/home';
+// import { BusinessLogicProvider } from '@business-layer/business-logic/provider/provider';
+// import { activeModules } from '../config/modules';
+import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
+import { RootNavigationContainer } from './RootStack';
 
 const App = () => {
-  return ( <div>
-      <Home /> 
-asdasdsa
-  </div>
+  return (
+    // <BusinessLogicProvider activeModules={activeModules}>
+    <CustomerTemplate>
+      <RootNavigationContainer initRoute="Home" />
+    </CustomerTemplate>
+    // </BusinessLogicProvider>
   );
 };
 

@@ -1,10 +1,9 @@
-import './global.scss';
 import { Montserrat } from 'next/font/google';
 import { BusinessLogicProvider } from '@business-layer/business-logic/provider';
 import Notification from '@presentational/next/atoms/Notification';
 import { ACTIVE_MODULES_LIST } from '../constants/modules';
 import { FAProvider } from '@business-layer/business-logic/non-service-lib/fontawesome';
-
+// import '@presentational/next/styles/global.scss';
 const montserrat = Montserrat({
   subsets: ['latin'],
 });
@@ -30,7 +29,7 @@ export default function RootLayout({
       {/* </Head> */}
       <BusinessLogicProvider activeModules={ACTIVE_MODULES_LIST}>
         <Notification />
-        <FAProvider appType="customer-web">
+        <FAProvider appType="web">
           <body className={montserrat.className}>{children}</body>
         </FAProvider>
       </BusinessLogicProvider>

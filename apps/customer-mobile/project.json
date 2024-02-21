@@ -1,53 +1,46 @@
 {
-  "root": "apps/customer-mobile",
+  "name": "customer-mobile",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/customer-mobile/src",
   "projectType": "application",
   "targets": {
     "start": {
       "executor": "@nx/expo:start",
+      "dependsOn": ["ensure-symlink", "sync-deps"],
       "options": {
         "port": 8081
       }
     },
-    "web": {
-      "executor": "@nx/expo:start",
-      "options": {
-        "port": 8081,
-        "webpack": true
-      }
-    },
     "serve": {
-      "executor": "@nx/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "nx start customer-mobile"
       }
     },
     "run-ios": {
       "executor": "@nx/expo:run",
+      "dependsOn": ["ensure-symlink", "sync-deps"],
       "options": {
         "platform": "ios"
       }
     },
     "run-android": {
       "executor": "@nx/expo:run",
+      "dependsOn": ["ensure-symlink", "sync-deps"],
       "options": {
         "platform": "android"
       }
     },
-    "build-ios": {
-      "executor": "@nx/expo:build-ios",
+    "build": {
+      "executor": "@nx/expo:build",
       "options": {}
     },
-    "build-android": {
-      "executor": "@nx/expo:build-android",
+    "submit": {
+      "executor": "@nx/expo:submit",
       "options": {}
     },
-    "build-web": {
-      "executor": "@nx/expo:build-web",
-      "options": {}
-    },
-    "build-status": {
-      "executor": "@nx/expo:build-web",
+    "build-list": {
+      "executor": "@nx/expo:build-list",
       "options": {}
     },
     "sync-deps": {
@@ -58,31 +51,42 @@
       "executor": "@nx/expo:ensure-symlink",
       "options": {}
     },
-    "publish": {
-      "executor": "@nx/expo:publish",
+    "prebuild": {
+      "executor": "@nx/expo:prebuild",
+      "dependsOn": ["ensure-symlink", "sync-deps"],
       "options": {}
     },
-    "publish-set": {
-      "executor": "@nx/expo:publish-set",
+    "install": {
+      "executor": "@nx/expo:install",
       "options": {}
     },
-    "rollback": {
-      "executor": "@nx/expo:rollback",
+    "update": {
+      "executor": "@nx/expo:update",
       "options": {}
+    },
+    "export": {
+      "executor": "@nx/expo:export",
+      "dependsOn": ["ensure-symlink", "sync-deps"],
+      "options": {
+        "platform": "all",
+        "outputDir": "../../dist/apps/customer-mobile"
+      }
+    },
+    "export-web": {
+      "executor": "@nx/expo:export",
+      "options": {
+        "bundler": "metro"
+      }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/customer-mobile/**/*.{ts,tsx,js,jsx}"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["coverage/apps/customer-mobile"],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/customer-mobile/jest.config.js",
-        "passWithNoTests": true
+        "jestConfig": "apps/customer-mobile/jest.config.ts"
       }
     }
   },

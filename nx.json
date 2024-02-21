@@ -18,10 +18,6 @@
         "{workspaceRoot}/eslint.config.js"
       ]
     },
-    "e2e": {
-      "cache": true,
-      "inputs": ["default", "^production"]
-    },
     "@nx/jest:jest": {
       "cache": true,
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
@@ -50,13 +46,23 @@
     ],
     "sharedGlobals": []
   },
-  "nxCloudAccessToken": "Mzk3MDQyMjMtYTE3YS00Yjg3LTk5ZTctZmM1NzcyM2MyMWZmfHJlYWQtd3JpdGU=",
-  "generators": {
-    "@nx/react": {
-      "application": {
-        "babel": true
+  "plugins": [
+    {
+      "plugin": "@nx/next/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "devTargetName": "dev",
+        "startTargetName": "start"
       }
     },
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    }
+  ],
+  "generators": {
     "@nx/next": {
       "application": {
         "style": "scss",

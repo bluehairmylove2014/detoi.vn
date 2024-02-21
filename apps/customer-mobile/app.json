@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "customer-mobile",
+    "name": "CustomerMobile",
     "slug": "customer-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,8 +15,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.test.test"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
@@ -24,6 +23,18 @@
         "backgroundColor": "#FFFFFF"
       }
     },
- 
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "@config-plugins/detox",
+        {
+          "skipProguard": false,
+          "subdomains": ["10.0.2.2", "localhost"]
+        }
+      ]
+    ]
   }
 }
