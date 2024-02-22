@@ -5,28 +5,14 @@ const corsProxyUrl = workerUrl + '/cors-proxy/';
 // AUTH
 export const loginEndpoint = '/api/v1/auth/login/customer';
 export const verifyOtpEndpoint = '/api/v1/auth/verify-otp/register-login';
-export const registerEndpoint = '/api/auth/register';
+export const resendOtpEndpoint = '/api/v1/auth/resend-otp/register-login';
 export const refreshTokenEndpoint = '/api/auth/refresh-token';
-export const updateAccountEndpoint = '/api/auth/login-social';
-
-// ACCOUNT
-export const hqGetAllAccountEndpoint = '/api/account/all';
-export const hqUnitModifyAccountEndpoint = '/api/account/unit-modify';
-
-// USER
-export const getAccountInfoEndpoint = '/api/account/info';
-export const modifyAccountInfoEndpoint = '/api/account/info';
 
 // SIRV
 export const sirvBaseUrlTemplate = 'https://api.sirv.com/v2';
 export const connectSirvUrl = sirvBaseUrlTemplate + '/token';
 export const uploadImageUrl = sirvBaseUrlTemplate + '/files/upload';
 export const deleteImageUrl = sirvBaseUrlTemplate + '/files/delete';
-
-// PASSWORD
-export const officerChangePasswordEndpoint = '/api/auth/change-password';
-export const officerForgotPasswordEndpoint = '/api/auth/forgot-password';
-export const officerResetPasswordEndpoint = '/api/auth/reset-password';
 
 // FCAPTCHA
 export const fCaptchaSiteverifyUrl =

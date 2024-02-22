@@ -16,6 +16,9 @@ const verifyOtpResponseSchema = z.object({
     expires: z.string(),
   }),
 });
+const resendOtpResponseSchema = z.object({
+  message: z.string(),
+});
 const refreshTokenResponseSchema = z.object({
   message: z.string(),
   token: z.string(),
@@ -24,5 +27,6 @@ const refreshTokenResponseSchema = z.object({
 export {
   loginResponseSchema,
   verifyOtpResponseSchema,
+  resendOtpResponseSchema,
   refreshTokenResponseSchema,
 };

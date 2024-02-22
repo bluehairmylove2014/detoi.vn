@@ -14,8 +14,12 @@ import {
   RoseParagraph,
 } from '@present-native/atoms';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useLogin } from '@business-layer/business-logic/lib/auth';
+import {
+  useYupValidationResolver,
+  loginByPhoneNumberSchema,
+} from '@utils/validators/yup';
 
 const DEFAULT_COUNTRY_CODE = {
   alpha2Code: 'VN',
@@ -35,13 +39,14 @@ type phoneInputFormType = {
 };
 
 const Login: React.FC<LoginProps> = ({ route, navigation }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const formResolver = useYupValidationResolver(loginByPhoneNumberSchema);
   const [countryCode, setCountryCode] =
     useState<ICountryCode>(DEFAULT_COUNTRY_CODE);
-  const { handleSubmit, setValue } = useForm<phoneInputFormType>({
+  const { handleSubmit, setValue, control } = useForm<phoneInputFormType>({
     defaultValues: {
       phone: '',
     },
+    resolver: formResolver,
   });
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { onLogin, isLoading } = useLogin();
@@ -56,6 +61,10 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
       .catch((error) => {
         console.error(error);
       });
+  };
+  const onErrorSubmit = (error: Record<string, any>) => {
+    console.log(error);
+    // HANDLE INVALID PHONE NUMBER HERE
   };
 
   return (
@@ -81,19 +90,29 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
             onSelect={(value) => setCountryCode(value)}
             defaultValue={DEFAULT_COUNTRY_CODE}
           />
-          <TextInput
-            style={loginScreenStyle.input}
-            placeholder="Nhập số điện thoại của bạn"
-            placeholderTextColor={colors.gray}
-            selectionColor={colors.black}
-            keyboardType="numeric"
-            onChangeText={(value) => setValue('phone', value)}
+          <Controller
+            name="phone"
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                style={loginScreenStyle.input}
+                placeholder="Nhập số điện thoại của bạn"
+                placeholderTextColor={colors.gray}
+                selectionColor={colors.black}
+                keyboardType="numeric"
+                {...field}
+                onChangeText={(value) => {
+                  field.onChange(value);
+                  setValue('phone', value);
+                }}
+              />
+            )}
           />
         </View>
 
         <View style={{ marginTop: 30 }}>
           <PrimaryButton
-            onPress={handleSubmit(onSuccessSubmitPhoneNumber)}
+            onPress={handleSubmit(onSuccessSubmitPhoneNumber, onErrorSubmit)}
             theme="full-rounded-bold"
             title="Tiếp tục"
           />

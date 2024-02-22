@@ -1,5 +1,5 @@
 import * as y from 'yup';
-import { vietnamPhoneNumber } from '../../regex';
+import { generalPhoneNumberWithoutCountryCodeRegex } from '../../regex';
 
 export const y_email = y
   .string()
@@ -11,7 +11,10 @@ export const y_dateOfBirth = y
   .required('Không được để trống ngày sinh');
 export const y_phone = y
   .string()
-  .matches(vietnamPhoneNumber, 'Số điện thoại không hợp lệ');
+  .matches(
+    generalPhoneNumberWithoutCountryCodeRegex,
+    'Số điện thoại không hợp lệ'
+  );
 export const y_password = y
   .string()
   .required('Không được để trống mật khẩu')
