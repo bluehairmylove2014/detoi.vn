@@ -11,12 +11,15 @@ import {
   BellIconButton,
   SubtitleLink,
 } from '@present-native/atoms';
-import { ICategory, IEvent } from '@business-layer/services/entities';
+import { IEvent } from '@business-layer/services/entities';
 import { colors } from '@present-native/styles';
 import { CategoryAndServiceSearchBox } from '@present-native/molecules';
 import CategoryThumbnail from '@present-native/molecules/category/CategoryThumbnail';
+import { useGetAllCategories } from '@business-layer/business-logic/lib/category';
 
 const Home: React.FC<HomeProps> = ({ route, navigation }) => {
+  const { data: categories } = useGetAllCategories();
+
   // Event must be get from API
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [event, setEvent] = useState<IEvent>({
@@ -30,41 +33,6 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [notifications, setNotification] = useState<number[] | null>([
     1, 2, 3, 4, 5,
-  ]);
-
-  // Get category from api
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [category, setCategory] = useState<ICategory[]>([
-    {
-      id: 0,
-      image: 'https://detoivn.sirv.com/services/dondep/category.png',
-      name: 'Dọn dẹp',
-      description: '',
-    },
-    {
-      id: 1,
-      image: 'https://detoivn.sirv.com/services/suachua/category.png',
-      name: 'Sửa chữa',
-      description: '',
-    },
-    {
-      id: 2,
-      image: 'https://detoivn.sirv.com/services/chuyennhaphongtro/category.png',
-      name: 'Chuyển nhà, phòng trọ',
-      description: '',
-    },
-    {
-      id: 3,
-      image: 'https://detoivn.sirv.com/services/dicho/category.png',
-      name: 'Đi chợ',
-      description: '',
-    },
-    {
-      id: 4,
-      image: 'https://detoivn.sirv.com/services/vesinhmaylanh/category.png',
-      name: 'Vệ sinh máy lạnh',
-      description: '',
-    },
   ]);
 
   return (
@@ -114,9 +82,9 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
         </PrimaryTitle>
         <VerticalSpacer size="xs" />
         <View style={serviceSectionStyle.categoriesContainer}>
-          {Array.isArray(category) && category.length > 0 ? (
+          {Array.isArray(categories) && categories.length > 0 ? (
             <>
-              {category.map((c) => (
+              {categories.slice(0, 5).map((c) => (
                 <CategoryThumbnail category={c} key={`category@${c.id}`} />
               ))}
               <TouchableOpacity

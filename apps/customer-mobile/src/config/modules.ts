@@ -1,3 +1,3 @@
 import { moduleKeyList } from '@business-layer/business-logic/configs';
 
-export const activeModules: moduleKeyList[] = ['auth'];
+export const activeModules: moduleKeyList[] = ['auth', 'category'];

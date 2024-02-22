@@ -1,4 +1,6 @@
 import { AuthProvider, AuthProviderType } from '../lib/auth/process/provider';
+import { categoryProviderType } from '../lib/category/process/provider';
+import { CategoryContextProvider } from '../lib/category/process/provider/ContextProvider';
 import {
   PaginationProvider,
   paginationProviderType,
@@ -9,6 +11,7 @@ import {
 } from '../realtime/provider/RealtimeProvider';
 
 export * from './socialConfig';
+export * from './constants';
 
 /**
  * MUTATION CONFIG FOR REACT-QUERY
@@ -22,9 +25,12 @@ export const mutationConfig = {
  * If you add 1 more module to providerConfig, you must
  * add to moduleKeyList and providerList as well
  */
-export type moduleKeyList = 'auth' | 'pagination' | 'realtime';
+export type moduleKeyList = 'auth' | 'category' | 'pagination' | 'realtime';
 export type providerList = React.FC<
-  AuthProviderType | paginationProviderType | realtimeProviderType
+  | AuthProviderType
+  | categoryProviderType
+  | paginationProviderType
+  | realtimeProviderType
 >;
 export const providerConfig: {
   key: moduleKeyList;
@@ -37,6 +43,10 @@ export const providerConfig: {
   {
     key: 'pagination',
     provider: PaginationProvider,
+  },
+  {
+    key: 'category',
+    provider: CategoryContextProvider,
   },
   {
     key: 'auth',
