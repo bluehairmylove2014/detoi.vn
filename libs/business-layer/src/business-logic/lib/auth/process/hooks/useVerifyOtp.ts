@@ -1,38 +1,48 @@
 // Importing necessary modules and functions
-import { verifyOtpParamsType } from '@business-layer/services';
 import { useVerifyOtpMutation } from '../../fetching/mutation';
 import { useAccessToken } from './useAccessToken';
 import { useHandleRefreshToken } from './useHandleRefreshToken';
+import { useAuthContext } from '../context';
 
 type useVerifyPasswordOtpType = {
-  onVerifyPasswordOtp: ({ phone, otp }: verifyOtpParamsType) => Promise<string>;
+  onVerifyOtp: ({ otp }: { otp: string }) => Promise<string>;
   isLoading: boolean;
 };
-export const useVerifyPasswordOtp = (): useVerifyPasswordOtpType => {
+export const useVerifyOtp = (): useVerifyPasswordOtpType => {
   const verifyOtpMutation = useVerifyOtpMutation();
   const { setToken } = useAccessToken();
   const { setRefreshToken } = useHandleRefreshToken();
+  const { state, dispatch } = useAuthContext();
 
-  const onVerifyPasswordOtp = ({
-    phone,
-    otp,
-  }: verifyOtpParamsType): Promise<string> => {
+  const onVerifyOtp = ({ otp }: { otp: string }): Promise<string> => {
     return new Promise((resolve, reject) => {
-      verifyOtpMutation
-        .mutateAsync({ phone, otp })
-        .then(({ token, refreshToken, message }) => {
-          setToken(token);
-          setRefreshToken(refreshToken);
-          resolve(message);
-        })
-        .catch((error) => {
-          reject(error);
-        });
+      const phone = state.onOtpPhoneNumber;
+
+      console.log('CHECK: ', { phone, otp });
+      if (phone) {
+        verifyOtpMutation
+          .mutateAsync({ phone, otp })
+          .then(({ token, refreshToken, message }) => {
+            setToken(token);
+            setRefreshToken(refreshToken);
+            dispatch({
+              type: 'SET_ON_OTP_PHONE_NUMBER',
+              payload: null,
+            });
+
+            resolve(message);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      } else {
+        reject(new Error('Phone number is not valid'));
+      }
     });
   };
 
   return {
-    onVerifyPasswordOtp,
+    onVerifyOtp,
     isLoading: verifyOtpMutation.isPending,
   };
 };

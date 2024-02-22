@@ -4,7 +4,7 @@ import { ISkill } from './skill';
 
 export interface IAccount {
   id: number;
-  phone?: string;
+  phone: string;
 }
 export interface IAccountDetail {
   id: number;

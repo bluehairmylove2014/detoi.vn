@@ -1,4 +1,3 @@
-import { isReactNative } from '../helper/platformDetect';
 import { AuthProvider, AuthProviderType } from '../lib/auth/process/provider';
 import {
   PaginationProvider,
@@ -8,17 +7,8 @@ import {
   RealtimeProvider,
   realtimeProviderType,
 } from '../realtime/provider/RealtimeProvider';
-import { cookiesController, secureStorageController } from '../storage';
 
 export * from './socialConfig';
-
-/**
- * CONFIG FOR AUTH MODULES
- */
-export const authConfig = {
-  isNeedRefreshToken: true,
-  authStorage: isReactNative() ? secureStorageController : cookiesController,
-};
 
 /**
  * MUTATION CONFIG FOR REACT-QUERY

@@ -1,10 +1,5 @@
 import { ZodSchema } from 'zod';
-import {
-  axios,
-  getAxiosNormalInstance,
-  isAxiosError,
-  isCancel,
-} from '../config/axios';
+import { axios, isAxiosError, isCancel } from '../config/axios';
 import { getApiUrl } from '../config/url';
 const unknownError: string = 'Unexpected error occurred';
 export class Services {
@@ -66,14 +61,11 @@ export class Services {
       signal,
       withCredentials,
     };
-    typeof window !== 'undefined' &&
-      window.addEventListener('beforeunload', this.cancelRequest);
-    const response = await (!isProduction
-      ? axios(mockParams)
-      : getAxiosNormalInstance()(mockParams));
-    const dataResponse = schema ? schema.parse(response.data) : response.data;
-    typeof window !== 'undefined' &&
-      window.removeEventListener('beforeunload', this.cancelRequest);
-    return transformResponse ? transformResponse(dataResponse) : dataResponse;
+    console.log('SEND: ', mockParams);
+    const response = await axios(mockParams);
+    console.log('RECEIVE: ', response.data.message);
+    const dataResponse = schema.parse(response.data);
+
+    return transformResponse(dataResponse);
   }
 }

@@ -1,21 +1,25 @@
 // Importing necessary constants
-import { authConfig } from '@business-layer/business-logic/configs';
+
+import { IToken } from '@business-layer/services/entities';
 import { COOKIE_KEYS } from '../../../../configs/constants';
 import { TOKEN_EXPIRY_DAYS } from '../../constants';
 // Importing authentication context
 import { useAuthContext } from '../context';
-
-const { getter, setter, remover } = authConfig.authStorage;
+import {
+  removeSecureStorageItem,
+  setSecureStorageItem,
+  getSecureStorageItem,
+} from '@business-layer/business-logic/helper/secureStorage';
 
 type AccessTokenHook = {
   getToken: () => Promise<string | null>;
-  setToken: (newToken: string) => void;
+  setToken: (newToken: IToken) => void;
   deleteToken: () => void;
 };
 
 // Function to get the token
-export const getToken = (): Promise<string | null> => {
-  return getter(COOKIE_KEYS.ACCESS_TOKEN);
+export const getToken = async (): Promise<string | null> => {
+  return getSecureStorageItem(COOKIE_KEYS.ACCESS_TOKEN);
 };
 
 export const useAccessToken = (): AccessTokenHook => {
@@ -23,26 +27,27 @@ export const useAccessToken = (): AccessTokenHook => {
   const { dispatch } = useAuthContext();
 
   // Function to set the token
-  const setToken = (newToken: string): void => {
+  const setToken = (newToken: IToken): void => {
     const date = new Date();
-    setter(COOKIE_KEYS.ACCESS_TOKEN, newToken, {
-      expires: date.setTime(
-        date.getTime() + TOKEN_EXPIRY_DAYS.REMEMBER * 60 * 60 * 1000
-      ),
-    });
+    // setSecureStorageItem(COOKIE_KEYS.ACCESS_TOKEN, newToken.value);
+    setSecureStorageItem(
+      COOKIE_KEYS.ACCESS_TOKEN,
+      newToken.value,
+      new Date(newToken.expires)
+    );
     // Dispatch the new token to the context
     dispatch({
-      type: 'SET_ACTION',
-      payload: newToken,
+      type: 'SET_TOKEN',
+      payload: newToken.value,
     });
   };
 
   // Function to delete the token
   const deleteToken = (): void => {
-    remover(COOKIE_KEYS.ACCESS_TOKEN);
+    removeSecureStorageItem(COOKIE_KEYS.ACCESS_TOKEN);
     // Remove the token from the context
     dispatch({
-      type: 'SET_ACTION',
+      type: 'SET_TOKEN',
       payload: null,
     });
   };

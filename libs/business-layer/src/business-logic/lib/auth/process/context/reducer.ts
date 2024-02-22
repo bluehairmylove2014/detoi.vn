@@ -1,6 +1,6 @@
 // This reducer handles actions to get and set the authentication token
 
-import { AuthAction, AuthState } from ".";
+import { AuthAction, AuthState } from '.';
 
 export const authReducer = (
   state: AuthState,
@@ -8,27 +8,32 @@ export const authReducer = (
 ): AuthState => {
   try {
     switch (action.type) {
-      case "SET_ACTION":
-        // Returns a new state with the new token when the action is to set the token
+      case 'SET_TOKEN':
         return {
           ...state,
           token: action.payload,
         };
-      case "SET_REFRESH_ACTION":
-        // Returns a new state with the new token when the action is to set the token
+      case 'SET_REFRESH_TOKEN':
         return {
           ...state,
           refreshToken: action.payload,
         };
-      case "SET_ALL_ACTION":
-        // Returns a new state with the new token when the action is to set the token
+      case 'SET_ON_OTP_PHONE_NUMBER':
+        console.log('SET: ', {
+          ...state,
+          onOtpPhoneNumber: action.payload,
+        });
+        return {
+          ...state,
+          onOtpPhoneNumber: action.payload,
+        };
+      case 'SET_ALL':
         return action.payload;
       default:
-        // Returns the current state for any other action
         return state;
     }
   } catch (error) {
-    console.error("Error in authReducer: ", error);
+    console.error('Error in authReducer: ', error);
     return state;
   }
 };

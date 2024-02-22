@@ -10,9 +10,13 @@ import { OTPVertificationProps } from '../../config';
 import { otpVertificationScreenStyle } from './styles';
 import { colors } from '@present-native/styles';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
+import {
+  useGetOnOtpPhoneNumber,
+  useVerifyOtp,
+} from '@business-layer/business-logic/lib/auth';
 
-const MAX_TRY = 4;
+const MAX_TRY = 3;
 const OTP_LENGTH = 4;
 
 type otpInputFormType = {
@@ -23,8 +27,8 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
   route,
   navigation,
 }) => {
+  const phoneNumber = useGetOnOtpPhoneNumber();
   //Handle OTP
-  const trueOTP = '1234'; // The true OTP to compare with
   const [countWrong, setCountWrong] = useState<number>(MAX_TRY);
   const [activeWarning, setActiveWarning] = useState(false);
   const [loadingOTP, setLoadingOTP] = useState(false);
@@ -33,38 +37,37 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
   const [activeTimeCount, setActiveTimeCount] = useState(true);
   const [timerCount, setTimerCount] = useState(30);
 
-  const { handleSubmit, setValue, watch } = useForm<otpInputFormType>({
+  const { handleSubmit, setValue, watch, control } = useForm<otpInputFormType>({
     defaultValues: {
       otp: '',
     },
   });
   const otpWatcher = watch('otp');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { onVerifyOtp, isLoading } = useVerifyOtp();
 
   // methods
   const onSuccessSubmitOTP = ({ otp }: otpInputFormType) => {
-    console.log('CHECK: ', otp);
-    // Call api to check otp
-    // Wrong => ...
-
     setLoadingOTP(true); // Start loading
     setActiveTimeCount(false);
-
-    setTimeout(() => {
-      setLoadingOTP(false); // Stop loading after 1 second
-      // Compare OTP
-      if (otpWatcher !== trueOTP) {
-        setCountWrong((countWrong) => {
-          if (countWrong !== 1) return countWrong - 1;
-          else return MAX_TRY;
-        });
-      }
-      setActiveWarning(true);
-
-      //Set input otp blank
-      setValue('otp', '');
-    }, 1000);
-    // True
-    navigation.navigate('OTPVertification');
+    // Call api to check otp
+    onVerifyOtp({ otp })
+      .then((msg) => {
+        navigation.navigate('Home');
+      })
+      .catch((error) => {
+        if (countWrong === 1) {
+          navigation.navigate('Login');
+        } else {
+          setCountWrong(countWrong - 1);
+          setActiveWarning(true);
+        }
+      })
+      .finally(() => {
+        setLoadingOTP(false); // Stop loading after 1 second
+        //Set input otp blank
+        setValue('otp', '');
+      });
   };
 
   useEffect(() => {
@@ -93,7 +96,7 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
       <View style={otpVertificationScreenStyle.container}>
         <Text style={{ fontSize: 14, marginTop: 5 }}>
           Mã OTP gồm 4 chữ số được gửi tới số
-          <Text style={{ fontWeight: 'bold' }}> (+84)337839146 </Text>
+          <Text style={{ fontWeight: 'bold' }}> {phoneNumber} </Text>
           thông qua tin nhắn
           <Text style={{ fontWeight: 'bold' }}> SMS</Text>
         </Text>
@@ -104,14 +107,24 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
         </Text>
 
         <View style={otpVertificationScreenStyle.inputContainer}>
-          <TextInput
-            style={otpVertificationScreenStyle.input}
-            placeholder="● ● ● ●"
-            placeholderTextColor={colors.gray}
-            selectionColor={colors.black}
-            keyboardType="numeric"
-            maxLength={4}
-            onChangeText={(value) => setValue('otp', value)}
+          <Controller
+            name="otp"
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                style={otpVertificationScreenStyle.input}
+                placeholder="● ● ● ●"
+                placeholderTextColor={colors.gray}
+                selectionColor={colors.black}
+                keyboardType="numeric"
+                maxLength={4}
+                {...field}
+                onChangeText={(value) => {
+                  field.onChange(value);
+                  setValue('otp', value);
+                }}
+              />
+            )}
           />
 
           {loadingOTP ? (

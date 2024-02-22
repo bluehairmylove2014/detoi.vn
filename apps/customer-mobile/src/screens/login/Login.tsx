@@ -15,6 +15,7 @@ import { CountryCodeSelect } from '@present-native/atoms/select/CountryCodeSelec
 import { BlackParagraph, PrimaryButton } from '@present-native/atoms';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { useForm } from 'react-hook-form';
+import { useLogin } from '@business-layer/business-logic/lib/auth';
 
 const DEFAULT_COUNTRY_CODE = {
   alpha2Code: 'VN',
@@ -23,6 +24,12 @@ const DEFAULT_COUNTRY_CODE = {
   flag: 'https://flagsapi.com/VN/flat/64.png',
 };
 
+function removeLeadingZero(phoneNumber: string): string {
+  if (phoneNumber.startsWith('0')) {
+    return phoneNumber.slice(1);
+  }
+  return phoneNumber;
+}
 type phoneInputFormType = {
   phone: string;
 };
@@ -36,11 +43,19 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
       phone: '',
     },
   });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { onLogin, isLoading } = useLogin();
 
   // methods
   const onSuccessSubmitPhoneNumber = ({ phone }: phoneInputFormType) => {
-    console.log(phone);
-    navigation.navigate('OTPVertification');
+    const phoneNumber = countryCode.callingCodes[0] + removeLeadingZero(phone);
+    onLogin({ phone: phoneNumber })
+      .then((msg) => {
+        navigation.navigate('OTPVertification');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (

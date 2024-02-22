@@ -3,8 +3,8 @@ const workerUrl = 'https://ura-ads.phucdat4102.workers.dev';
 const corsProxyUrl = workerUrl + '/cors-proxy/';
 
 // AUTH
-export const loginEndpoint = '/api/v1/auth/login';
-export const verifyOtpEndpoint = '/api/v1/auth/verify-otp';
+export const loginEndpoint = '/api/v1/auth/login/customer';
+export const verifyOtpEndpoint = '/api/v1/auth/verify-otp/register-login';
 export const registerEndpoint = '/api/auth/register';
 export const refreshTokenEndpoint = '/api/auth/refresh-token';
 export const updateAccountEndpoint = '/api/auth/login-social';

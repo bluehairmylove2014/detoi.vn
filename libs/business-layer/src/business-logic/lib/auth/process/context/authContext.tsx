@@ -6,6 +6,7 @@ export const AuthContext = React.createContext<AuthContextType>({
   state: {
     token: null,
     refreshToken: null,
+    onOtpPhoneNumber: null,
   },
   dispatch: () => undefined,
 });

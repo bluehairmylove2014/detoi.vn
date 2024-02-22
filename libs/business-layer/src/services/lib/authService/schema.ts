@@ -5,24 +5,24 @@ const loginResponseSchema = z.object({
 });
 const verifyOtpResponseSchema = z.object({
   message: z.string(),
-  token: z.string(),
-  refreshToken: z.string(),
+  token: z.object({
+    value: z.string(),
+    created: z.string(),
+    expires: z.string(),
+  }),
+  refreshToken: z.object({
+    value: z.string(),
+    created: z.string(),
+    expires: z.string(),
+  }),
 });
 const refreshTokenResponseSchema = z.object({
   message: z.string(),
   token: z.string(),
-});
-const messageResponseSchema = z.object({
-  message: z.string(),
-});
-const registerResponseSchema = z.object({
-  message: z.string(),
 });
 
 export {
   loginResponseSchema,
   verifyOtpResponseSchema,
   refreshTokenResponseSchema,
-  messageResponseSchema,
-  registerResponseSchema,
 };

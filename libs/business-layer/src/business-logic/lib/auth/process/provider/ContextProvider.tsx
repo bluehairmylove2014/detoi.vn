@@ -16,13 +16,17 @@ export const AuthContextProvider: React.FC<AuthProviderType> = ({
 }) => {
   const { getToken } = useAccessToken();
   // Using the reducer to manage the authentication state
-  const initialState = { token: null, refreshToken: null };
+  const initialState = {
+    token: null,
+    refreshToken: null,
+    onOtpPhoneNumber: null,
+  };
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
     if (!state.token) {
       getToken().then((token) => {
-        dispatch({ type: 'SET_ACTION', payload: token });
+        dispatch({ type: 'SET_TOKEN', payload: token });
       });
     }
   }, []);
