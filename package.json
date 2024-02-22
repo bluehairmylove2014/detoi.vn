@@ -43,6 +43,7 @@
     "utf-8-validate": "^5.0.10",
     "uuid": "^9.0.1",
     "ws": "^8.16.0",
+    "yup": "^1.3.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {

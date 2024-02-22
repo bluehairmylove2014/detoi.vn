@@ -19,10 +19,6 @@ export const authReducer = (
           refreshToken: action.payload,
         };
       case 'SET_ON_OTP_PHONE_NUMBER':
-        console.log('SET: ', {
-          ...state,
-          onOtpPhoneNumber: action.payload,
-        });
         return {
           ...state,
           onOtpPhoneNumber: action.payload,

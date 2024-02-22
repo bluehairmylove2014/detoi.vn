@@ -16,7 +16,6 @@ export const useLogin = (): UseLoginType => {
       loginMutation
         .mutateAsync({ phone })
         .then(({ message }: loginResponseType) => {
-          console.log('DISPATCH: ', dispatch, ' TO: ', phone);
           dispatch({
             type: 'SET_ON_OTP_PHONE_NUMBER',
             payload: phone,

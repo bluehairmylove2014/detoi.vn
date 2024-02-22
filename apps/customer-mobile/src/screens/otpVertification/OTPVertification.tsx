@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
   useGetOnOtpPhoneNumber,
+  useResendOtp,
   useVerifyOtp,
 } from '@business-layer/business-logic/lib/auth';
 
@@ -28,6 +29,7 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
   navigation,
 }) => {
   const phoneNumber = useGetOnOtpPhoneNumber();
+  const { onResendOtp } = useResendOtp();
   //Handle OTP
   const [countWrong, setCountWrong] = useState<number>(MAX_TRY);
   const [activeWarning, setActiveWarning] = useState(false);
@@ -69,6 +71,17 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
         setValue('otp', '');
       });
   };
+  const handleResendOtp = () => {
+    setActiveTimeCount(true);
+    setTimerCount(30);
+    onResendOtp()
+      .then((msg) => {
+        // TODO
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   useEffect(() => {
     if (activeTimeCount) {
@@ -88,7 +101,9 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
   }, [activeTimeCount]);
 
   useEffect(() => {
-    otpWatcher.length === OTP_LENGTH && handleSubmit(onSuccessSubmitOTP)();
+    otpWatcher &&
+      otpWatcher.length === OTP_LENGTH &&
+      handleSubmit(onSuccessSubmitOTP)();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [otpWatcher]);
   return (
@@ -145,10 +160,7 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
               ) : (
                 <View>
                   <TouchableOpacity
-                    onPress={() => {
-                      setActiveTimeCount(true);
-                      setTimerCount(30);
-                    }}
+                    onPress={handleResendOtp}
                     style={otpVertificationScreenStyle.buttonSendAgain}
                   >
                     <Text style={{ fontSize: 12, fontWeight: 'bold' }}>

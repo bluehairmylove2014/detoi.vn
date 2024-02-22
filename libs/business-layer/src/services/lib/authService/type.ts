@@ -12,6 +12,10 @@ export type verifyOtpResponseType = {
   token: IToken;
   refreshToken: IToken;
 };
+export type resendOtpParamsType = Pick<IAccount, 'phone'>;
+export type resendOtpResponseType = {
+  message: string;
+};
 
 // OLD
 
