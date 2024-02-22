@@ -8,6 +8,9 @@ export const verifyOtpEndpoint = '/api/v1/auth/verify-otp/register-login';
 export const resendOtpEndpoint = '/api/v1/auth/resend-otp/register-login';
 export const refreshTokenEndpoint = '/api/auth/refresh-token';
 
+// SERVICE & CATEGORY
+export const getAllCategoryEndpoint = '/api/v1/service-category';
+
 // SIRV
 export const sirvBaseUrlTemplate = 'https://api.sirv.com/v2';
 export const connectSirvUrl = sirvBaseUrlTemplate + '/token';
