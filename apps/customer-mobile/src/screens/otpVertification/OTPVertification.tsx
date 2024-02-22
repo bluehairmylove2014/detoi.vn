@@ -73,6 +73,7 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
         setValue('otp', '');
       });
   };
+
   const handleResendOtp = () => {
     setActiveTimeCount(true);
     setTimerCount(30);
@@ -164,10 +165,7 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
               ) : (
                 <View>
                   <SmallPrimaryButton
-                    onPress={() => {
-                      setActiveTimeCount(true);
-                      setTimerCount(30);
-                    }}
+                    onPress={handleResendOtp}
                     theme="full-rounded-bold"
                     title="Gửi lại"
                   />
