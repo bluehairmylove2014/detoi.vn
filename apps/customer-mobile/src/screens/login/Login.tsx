@@ -62,6 +62,7 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
         console.error(error);
       });
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onErrorSubmit = (error: Record<string, any>) => {
     console.log(error);
     // HANDLE INVALID PHONE NUMBER HERE

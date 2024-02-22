@@ -21,7 +21,8 @@
       "@present-native/*": ["libs/presentational/src/native/*"],
       "@present-next/*": ["libs/presentational/src/next/*"],
       "@presentational/*": ["libs/presentational/src/*"],
-      "@utils/*": ["libs/utils/*"]
+      "@utils/*": ["libs/utils/*"],
+      "@env": ["node_modules/react-native-dotenv"]
     }
   },
   "exclude": ["node_modules", "tmp"]
