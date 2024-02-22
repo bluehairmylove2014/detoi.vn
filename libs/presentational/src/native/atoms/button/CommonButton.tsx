@@ -26,9 +26,45 @@ const PrimaryButton = ({
         ...themeList[theme],
       }}
     >
-      <BlackParagraph theme="boldPrimary">{title}</BlackParagraph>
+      <BlackParagraph theme="normalBold">{title}</BlackParagraph>
     </TouchableOpacity>
   );
 };
 
-export { PrimaryButton };
+const SmallPrimaryButton = ({
+  title,
+  theme = 'square-rounded-bold',
+  onPress,
+}: commonButtonPros) => {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={{
+        ...commonButtonStyles.smallPrimaryButton,
+        ...themeList[theme],
+      }}
+    >
+      <BlackParagraph theme="smallBold">{title}</BlackParagraph>
+    </TouchableOpacity>
+  );
+};
+
+const BorderButton = ({
+  title,
+  theme = 'square-rounded-bold',
+  onPress,
+}: commonButtonPros) => {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={{
+        ...commonButtonStyles.borderButton,
+        ...themeList[theme],
+      }}
+    >
+      <BlackParagraph theme="smallBold">{title}</BlackParagraph>
+    </TouchableOpacity>
+  );
+};
+
+export { PrimaryButton, SmallPrimaryButton, BorderButton };

@@ -24,10 +24,10 @@ const whiteTitleStyle = StyleSheet.create({
 });
 
 const blackTitleStyles = StyleSheet.create({
-  boldBlack: {
+  largeBold: {
     color: colors.black,
-    fontSize: 18,
-    fontFamily: 'Montserrat_600SemiBold',
+    fontSize: 20,
+    fontFamily: 'Montserrat_700Bold',
     userSelect: 'none',
   },
 });
@@ -51,23 +51,70 @@ const primaryParagraphStyles = StyleSheet.create({
     color: colors.primary,
     userSelect: 'none',
   },
+  normalMedium: {
+    fontFamily: 'Montserrat_500Medium',
+    fontSize: 14,
+    color: colors.primary,
+    userSelect: 'none',
+  },
+  normalBold: {
+    fontFamily: 'Montserrat_700Bold',
+    fontSize: 14,
+    color: colors.primary,
+    userSelect: 'none',
+  },
 });
 
 const blackParagraphStyles = StyleSheet.create({
-  boldPrimary: {
+  largeBold: {
     fontFamily: 'Montserrat_600SemiBold',
     fontSize: 16,
     color: colors.black,
     userSelect: 'none',
   },
-  normalPrimary: {
+  largeMedium: {
+    color: colors.black,
+    fontSize: 16,
+    fontFamily: 'Montserrat_500Medium',
+    userSelect: 'none',
+  },
+
+  normalMedium: {
     fontFamily: 'Montserrat_500Medium',
     fontSize: 14,
     color: colors.black,
+    userSelect: 'none',
+  },
+  normalBold: {
+    fontFamily: 'Montserrat_700Bold',
+    fontSize: 14,
+    color: colors.black,
+    userSelect: 'none',
+  },
+
+  smallBold: {
+    fontFamily: 'Montserrat_700Bold',
+    fontSize: 12,
+    color: colors.black,
+    userSelect: 'none',
+  },
+});
+
+const roseParagraphStyles = StyleSheet.create({
+  largeMedium: {
+    color: colors.rose,
+    fontSize: 16,
+    fontFamily: 'Montserrat_500Medium',
+    userSelect: 'none',
+  },
+  normalMedium: {
+    fontFamily: 'Montserrat_500Medium',
+    fontSize: 14,
+    color: colors.rose,
     userSelect: 'none',
   },
 });
 
 export { primaryTitleStyles, whiteTitleStyle, blackTitleStyles };
 
-export { primaryParagraphStyles, blackParagraphStyles };
+export { primaryParagraphStyles, blackParagraphStyles, roseParagraphStyles };

@@ -30,4 +30,4 @@ const BlackTitle = ({
   theme: keyof typeof blackTitleStyles;
 }) => <Text style={blackTitleStyles[theme]}>{children}</Text>;
 
-export { PrimaryTitle, WhiteTitle };
+export { PrimaryTitle, WhiteTitle, BlackTitle };

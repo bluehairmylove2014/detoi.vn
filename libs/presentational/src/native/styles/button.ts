@@ -48,6 +48,27 @@ const commonButtonStyles = StyleSheet.create({
     paddingVertical: 15,
     alignItems: 'center',
   },
+  smallPrimaryButton: {
+    width: '100%',
+    backgroundColor: colors.secondary,
+    paddingVertical: 7,
+    paddingHorizontal: 15,
+    alignItems: 'center',
+  },
+  imageButton: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.zinc,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
+  borderButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderWidth: 1,
+    alignSelf: 'flex-start',
+  },
 });
 const asyncButtonStyles = StyleSheet.create({});
 

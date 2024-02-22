@@ -12,6 +12,7 @@ import { colors, countryCodeSelectStyle } from '@present-native/styles';
 import { FAIcon } from '../icon';
 import { BlackParagraph } from '../text';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
+import { ZincImageButton } from '../button/ImageButton';
 
 const CountryCodeSelect = ({
   onSelect,
@@ -61,9 +62,7 @@ const CountryCodeSelect = ({
             resizeMode="contain"
             style={countryCodeSelectStyle.optionImg}
           />
-          <Text style={{ color: colors.black, fontSize: 16 }}>
-            {item?.name}
-          </Text>
+          <BlackParagraph theme="largeMedium">{item?.name}</BlackParagraph>
         </TouchableOpacity>
       );
     };
@@ -72,37 +71,12 @@ const CountryCodeSelect = ({
       <Modal animationType="slide" transparent={true} visible={activeModal}>
         <TouchableWithoutFeedback onPress={() => {}}>
           <View style={countryCodeSelectStyle.modalContainer}>
-            <View
-              style={{
-                backgroundColor: colors.white,
-                width: '100%',
-                height: 'auto',
-                marginTop: 100,
-                borderTopLeftRadius: 15,
-                borderTopRightRadius: 15,
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  backgroundColor: colors.secondary,
-                  borderTopLeftRadius: 15,
-                  borderTopRightRadius: 15,
-                  paddingVertical: 14,
-                  paddingHorizontal: 20,
-                }}
-              >
-                <Text
-                  style={{
-                    alignItems: 'center',
-                    fontSize: 14,
-                    fontWeight: '700',
-                  }}
-                >
+            <View style={countryCodeSelectStyle.backgroundModal}>
+              <View style={countryCodeSelectStyle.topModalContainer}>
+                <BlackParagraph theme="largeBold">
                   Chọn quốc gia, khu vực
-                </Text>
+                </BlackParagraph>
+
                 {/* Close Button */}
                 <TouchableOpacity
                   style={{
@@ -133,27 +107,15 @@ const CountryCodeSelect = ({
 
   return (
     <>
-      <TouchableOpacity
-        style={countryCodeSelectStyle.selectFlagContainer}
+      <ZincImageButton
         onPress={() => {
           setActiveModal(true);
         }}
-      >
-        <View style={{ justifyContent: 'center' }}>
-          <Image
-            source={{
-              uri: selectedCountry?.flag,
-            }}
-            resizeMode="contain"
-            style={countryCodeSelectStyle.flagIcon}
-          />
-        </View>
-        <View>
-          <BlackParagraph theme="normalPrimary">
-            {selectedCountry?.callingCodes}
-          </BlackParagraph>
-        </View>
-      </TouchableOpacity>
+        title={selectedCountry?.callingCodes.toString()}
+        theme="full-rounded-bold"
+        uriImg={selectedCountry?.flag}
+      />
+
       {modalCountryList()}
     </>
   );

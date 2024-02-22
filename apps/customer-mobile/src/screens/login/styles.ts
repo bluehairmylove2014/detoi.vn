@@ -15,47 +15,15 @@ export const loginScreenStyle = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
-  selectFlagContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.zinc,
-    borderRadius: 100,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-  },
-
-  flagIcon: {
-    width: 30,
-    height: 25,
-  },
-
   input: {
     flex: 1,
     width: '100%',
     fontSize: 14,
+    fontFamily: 'Montserrat_500Medium',
     marginLeft: 15,
     alignSelf: 'stretch',
     borderBottomColor: colors.gray,
     borderBottomWidth: 1.5,
     paddingVertical: 5,
-  },
-
-  buttonContinue: {
-    backgroundColor: colors.secondary,
-    padding: 10,
-    borderRadius: 100,
-    alignItems: 'center',
-    marginTop: 30,
-  },
-
-  buttonProblem: {
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 100,
-    marginTop: 30,
-    borderWidth: 1,
-    fontSize: 13,
-    alignSelf: 'flex-start',
   },
 });
