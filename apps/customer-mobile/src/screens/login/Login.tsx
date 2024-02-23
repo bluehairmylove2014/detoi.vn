@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-  TextInput,
-  StatusBar,
-} from 'react-native';
+import { View, SafeAreaView, TextInput, StatusBar } from 'react-native';
 
 import { LoginProps } from '../../config';
 import { loginScreenStyle } from './styles';
 import { colors } from '@presentational/native/styles';
 import { CountryCodeSelect } from '@present-native/atoms/select/CountryCodeSelect';
-import { BlackParagraph, PrimaryButton } from '@present-native/atoms';
+import {
+  BlackParagraph,
+  BlackTitle,
+  BorderButton,
+  PrimaryButton,
+  PrimaryParagraph,
+  RoseParagraph,
+} from '@present-native/atoms';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { Controller, useForm } from 'react-hook-form';
 import { useLogin } from '@business-layer/business-logic/lib/auth';
@@ -73,17 +73,16 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
       <StatusBar hidden />
       <View style={loginScreenStyle.container}>
         <View>
-          <Text style={{ fontSize: 22, fontWeight: 'bold' }}>
-            Chỉ một bước nữa thôi!
-          </Text>
+          <BlackTitle theme="largeBold">Chỉ một bước nữa thôi!</BlackTitle>
+
           <View style={{ marginTop: 5 }}>
-            <BlackParagraph theme="normalPrimary">
+            <BlackParagraph theme="normalMedium">
               Nhập số điện thoại để đăng nhập
             </BlackParagraph>
           </View>
           <View style={{ marginTop: 30, flexDirection: 'row' }}>
-            <BlackParagraph theme="normalPrimary">Số điện thoại</BlackParagraph>
-            <BlackParagraph theme="normalPrimary"> *</BlackParagraph>
+            <BlackParagraph theme="normalMedium">Số điện thoại</BlackParagraph>
+            <RoseParagraph theme="normalMedium"> *</RoseParagraph>
           </View>
         </View>
 
@@ -120,29 +119,28 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
           />
         </View>
 
-        <View>
-          <Text style={{ fontSize: 14, marginTop: 20 }}>
+        <View style={{ marginTop: 20 }}>
+          <BlackParagraph theme="normalMedium">
             Tôi đồng ý với các
-            <Text style={{ color: colors.primary, fontWeight: 'bold' }}>
+            <PrimaryParagraph theme="normalBold">
               {' '}
               Điều khoản dịch vụ
-            </Text>{' '}
+            </PrimaryParagraph>{' '}
             và
-            <Text style={{ color: colors.primary, fontWeight: 'bold' }}>
+            <PrimaryParagraph theme="normalBold">
               {' '}
               Chính sách bảo mật
-            </Text>{' '}
+            </PrimaryParagraph>{' '}
             của Detoi
-          </Text>
+          </BlackParagraph>
 
-          <TouchableOpacity
-            onPress={() => {}}
-            style={loginScreenStyle.buttonProblem}
-          >
-            <Text style={{ fontSize: 12, fontWeight: '600' }}>
-              Có vấn đề với số điện thoại?
-            </Text>
-          </TouchableOpacity>
+          <View style={{ marginTop: 30 }}>
+            <BorderButton
+              onPress={() => {}}
+              title="Có vấn đề với số điện thoại?"
+              theme="full-rounded-bold"
+            />
+          </View>
         </View>
       </View>
     </SafeAreaView>

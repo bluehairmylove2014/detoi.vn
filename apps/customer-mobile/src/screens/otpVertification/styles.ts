@@ -21,6 +21,7 @@ export const otpVertificationScreenStyle = StyleSheet.create({
   input: {
     flex: 1,
     width: '100%',
+    fontFamily: 'Montserrat_500Medium',
     fontSize: 14,
     alignSelf: 'stretch',
     paddingVertical: 7,
@@ -31,13 +32,5 @@ export const otpVertificationScreenStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 7,
-  },
-
-  buttonSendAgain: {
-    backgroundColor: colors.secondary,
-    paddingVertical: 7,
-    paddingHorizontal: 15,
-    borderRadius: 999,
-    alignItems: 'center',
   },
 });

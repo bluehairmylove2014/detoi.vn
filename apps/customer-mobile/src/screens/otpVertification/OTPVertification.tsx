@@ -1,11 +1,4 @@
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TextInput,
-  ActivityIndicator,
-  TouchableOpacity,
-} from 'react-native';
+import { SafeAreaView, View, TextInput, ActivityIndicator } from 'react-native';
 import { OTPVertificationProps } from '../../config';
 import { otpVertificationScreenStyle } from './styles';
 import { colors } from '@present-native/styles';
@@ -16,6 +9,11 @@ import {
   useResendOtp,
   useVerifyOtp,
 } from '@business-layer/business-logic/lib/auth';
+import {
+  BlackParagraph,
+  RoseParagraph,
+  SmallPrimaryButton,
+} from '@present-native/atoms';
 
 const MAX_TRY = 3;
 const OTP_LENGTH = 4;
@@ -50,27 +48,32 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
 
   // methods
   const onSuccessSubmitOTP = ({ otp }: otpInputFormType) => {
-    setLoadingOTP(true); // Start loading
-    setActiveTimeCount(false);
+    // Start loading
+    setLoadingOTP(true);
+
     // Call api to check otp
     onVerifyOtp({ otp })
       .then((msg) => {
         navigation.navigate('Home');
       })
       .catch((error) => {
-        if (countWrong === 1) {
-          navigation.navigate('Login');
-        } else {
-          setCountWrong(countWrong - 1);
-          setActiveWarning(true);
-        }
+        setTimeout(() => {
+          if (countWrong === 1) {
+            navigation.navigate('Login');
+          } else {
+            setCountWrong(countWrong - 1);
+            setActiveWarning(true);
+          }
+
+          setLoadingOTP(false); // Stop loading
+        }, 1000);
       })
       .finally(() => {
-        setLoadingOTP(false); // Stop loading after 1 second
-        //Set input otp blank
+        // Set input otp blank
         setValue('otp', '');
       });
   };
+
   const handleResendOtp = () => {
     setActiveTimeCount(true);
     setTimerCount(30);
@@ -109,17 +112,19 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
   return (
     <SafeAreaView>
       <View style={otpVertificationScreenStyle.container}>
-        <Text style={{ fontSize: 14, marginTop: 5 }}>
-          Mã OTP gồm 4 chữ số được gửi tới số
-          <Text style={{ fontWeight: 'bold' }}> {phoneNumber} </Text>
-          thông qua tin nhắn
-          <Text style={{ fontWeight: 'bold' }}> SMS</Text>
-        </Text>
-
-        <Text style={{ fontSize: 16, marginTop: 30 }}>
+        <View style={{ marginTop: 5 }}>
+          <BlackParagraph theme="normalMedium">
+            Mã OTP gồm 4 chữ số được gửi tới số
+            <BlackParagraph theme="normalBold"> {phoneNumber} </BlackParagraph>
+            thông qua tin nhắn
+            <BlackParagraph theme="normalBold"> SMS</BlackParagraph>
+          </BlackParagraph>
+        </View>
+        <View style={{ marginTop: 30 }}></View>
+        <BlackParagraph theme="largeMedium">
           Nhập mã OTP
-          <Text style={{ fontSize: 16, color: colors.rose }}> *</Text>
-        </Text>
+          <RoseParagraph theme="largeMedium"> *</RoseParagraph>
+        </BlackParagraph>
 
         <View style={otpVertificationScreenStyle.inputContainer}>
           <Controller
@@ -153,20 +158,17 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
                     color={colors.secondary}
                     style={{ marginRight: 5 }}
                   />
-                  <Text style={{ fontWeight: 'bold' }}>
+                  <BlackParagraph theme="normalBold">
                     00:{timerCount.toString().padStart(2, '0')}
-                  </Text>
+                  </BlackParagraph>
                 </View>
               ) : (
                 <View>
-                  <TouchableOpacity
+                  <SmallPrimaryButton
                     onPress={handleResendOtp}
-                    style={otpVertificationScreenStyle.buttonSendAgain}
-                  >
-                    <Text style={{ fontSize: 12, fontWeight: 'bold' }}>
-                      Gửi lại
-                    </Text>
-                  </TouchableOpacity>
+                    theme="full-rounded-bold"
+                    title="Gửi lại"
+                  />
                 </View>
               )}
             </View>
@@ -174,17 +176,12 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
         </View>
 
         {activeWarning && (
-          <Text
-            style={{
-              marginTop: 15,
-              color: colors.rose,
-              fontSize: 14,
-              fontWeight: '500',
-            }}
-          >
-            Mã OTP bạn vừa nhập không hợp lệ. Bạn có thể thử thêm {countWrong}{' '}
-            lần nữa
-          </Text>
+          <View style={{ marginTop: 15 }}>
+            <RoseParagraph theme="normalMedium">
+              Mã OTP bạn vừa nhập không hợp lệ. Bạn có thể thử thêm {countWrong}{' '}
+              lần nữa
+            </RoseParagraph>
+          </View>
         )}
       </View>
     </SafeAreaView>

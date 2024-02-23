@@ -24,6 +24,26 @@ export const countryCodeSelectStyle = StyleSheet.create({
     zIndex: 30,
   },
 
+  backgroundModal: {
+    backgroundColor: colors.white,
+    width: '100%',
+    height: 'auto',
+    marginTop: 100,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+  },
+
+  topModalContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: colors.secondary,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+  },
+
   flagIcon: {
     width: 30,
     height: 25,
