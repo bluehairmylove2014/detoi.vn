@@ -39,7 +39,6 @@
     "@expo-google-fonts/montserrat": "*",
     "@fortawesome/free-regular-svg-icons": "*",
     "next": "*",
-    "react-native-linear-gradient": "*",
     "react-native-element-dropdown": "*"
   },
   "scripts": {

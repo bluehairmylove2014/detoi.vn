@@ -1,6 +1,6 @@
 import * as React from "react"
 import Svg, { Path, Defs, Pattern, Use, Image } from "react-native-svg"
-interface FacebookProps {
+type FacebookProps = {
     width: number;
     height: number;
   }

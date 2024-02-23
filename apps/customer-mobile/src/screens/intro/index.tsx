@@ -1,7 +1,6 @@
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import Header from '@present-native/organisms/Header';
 import { EDTypeDisplayHeader } from '@present-native/organisms/Header';
-import { colors } from '@present-native/styles';
 import {
   Logo,
   Google,
@@ -15,7 +14,7 @@ import {
 } from '@present-native/atoms';
 import React from 'react';
 import Button from '@present-native/atoms/button/Button';
-import { screenHorizontalPadding } from '@present-native/styles';
+import { introSCreenStyle } from './styles';
 
 const LIST_ITEM_BUTTON_LOGIN = [
   {
@@ -69,33 +68,5 @@ const IntroPage = () => {
     </View>
   );
 };
-
-const introSCreenStyle = StyleSheet.create({
-  container: {
-    width: '100%',
-    minHeight: '100%',
-    height: 'auto',
-    backgroundColor: colors.secondary,
-    paddingHorizontal: screenHorizontalPadding,
-  },
-  welcomeSection: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    gap: 10,
-    flex: 1,
-  },
-  buttonLoginSection: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    gap: 10,
-  },
-  introPolicySection: {
-    marginVertical: 35,
-  },
-});
 
 export default IntroPage;

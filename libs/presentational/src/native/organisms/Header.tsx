@@ -2,8 +2,8 @@ import React, { ReactNode, useState } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { SelectCountry } from 'react-native-element-dropdown';
-import { screenVerrizontalPadding } from '@present-native/styles';
-import { NATIVE_ICONS } from '@business-layer/business-logic/non-service-lib/fontawesome';
+import { colors, screenVertizontalPadding } from '@present-native/styles';
+import { VnFlag } from '@present-native/atoms/svg';
 
 export enum EDTypeDisplayHeader {
   BACK_BUTTON = 'back_button',
@@ -21,14 +21,14 @@ const local_data = [
     value: '1',
     lable: 'Tiếng Việt',
     image: {
-      uri: 'https://cdn.countryflags.com/thumbs/vietnam/flag-round-250.png',
+      uri: 'https://cdn.countryflags.com/thumbs/vietnam/flag-square-250.png',
     },
   },
   {
     value: '2',
     lable: 'English',
     image: {
-      uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/United-kingdom_flag_icon_round.svg/1024px-United-kingdom_flag_icon_round.svg.png',
+      uri: 'https://cdn.countryflags.com/thumbs/united-states-of-america/flag-square-250.png',
     },
   },
 ];
@@ -36,7 +36,7 @@ const local_data = [
 const Header = ({ typeDisplay }: Header) => {
   const [country, setCountry] = useState('1');
   return (
-    <View style={{ paddingVertical: screenVerrizontalPadding }}>
+    <View style={{ paddingVertical: screenVertizontalPadding }}>
       {typeDisplay.includes(EDTypeDisplayHeader.LANGUAGE_BUTTON) ? (
         <View style={{ alignSelf: 'flex-end' }}>
           <SelectCountry
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     margin: 16,
     height: 30,
     width: 90,
-    backgroundColor: '#EEEEEE',
+    backgroundColor: colors.white,
     borderRadius: 22,
     paddingHorizontal: 8,
   },
