@@ -22,6 +22,9 @@ services:
       - 8001:8081
     depends_on:
       - detoidb
+    env_file:
+      - path: docker.env
+        required: true
     environment:
       - DB_HOST=detoidb
       - DB_NAME=DeToiVN
