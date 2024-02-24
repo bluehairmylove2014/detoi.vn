@@ -10,6 +10,7 @@ import {
   VerticalSpacer,
   BellIconButton,
   SubtitleLink,
+  BlackParagraph,
 } from '@present-native/atoms';
 import { IEvent } from '@business-layer/services/entities';
 import { colors } from '@present-native/styles';
@@ -102,6 +103,26 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
               </TouchableOpacity>
             </>
           ) : null}
+        </View>
+        <VerticalSpacer size="xs" />
+        <View style={serviceSectionStyle.test}>
+          <TouchableOpacity style={serviceSectionStyle.feedback}>
+            <View>
+              <PrimaryParagraph theme="small">Góp ý</PrimaryParagraph>
+              <BlackParagraph theme="smallBold">
+                Thêm các dịch vụ khác
+              </BlackParagraph>
+            </View>
+            <Image source={require('.assets/feedback.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={serviceSectionStyle.feedback}>
+            <View>
+              <PrimaryParagraph theme="small">Góp ý</PrimaryParagraph>
+              <BlackParagraph theme="smallBold">
+                Thêm các dịch vụ khác
+              </BlackParagraph>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

@@ -103,6 +103,22 @@ const serviceSectionStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  test: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 3,
+  },
+    card: {
+    },
+    feedback: {
+      backgroundColor: '#FFE9AB',
+      display: 'flex',
+      flexDirection: 'row',
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      borderRadius: 5
+  }
 });
 
 export { homeScreenStyle, topLabelStyle, serviceSectionStyle };
