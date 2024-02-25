@@ -113,8 +113,8 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
         <VerticalSpacer size="xs" />
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <View style={serviceSectionStyle.test}>
-            <TouchableOpacity style={serviceSectionStyle.test.feedback}>
-              <View>
+            <TouchableOpacity style={serviceSectionStyle.card}>
+              <View style={serviceSectionStyle.text}>
                 <PrimaryParagraph theme="small">Góp ý</PrimaryParagraph>
                 <BlackParagraph theme="smallBold">
                   Thêm các dịch vụ khác
@@ -122,18 +122,29 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
               </View>
               <Image source={require('../../../assets/feedback.png')} />
             </TouchableOpacity>
-            <TouchableOpacity style={serviceSectionStyle.test.feedback}>
-              <View>
+            <TouchableOpacity style={serviceSectionStyle.card}>
+              <View style={serviceSectionStyle.text}>
                 <PrimaryParagraph theme="small">Điểm tích lũy</PrimaryParagraph>
-                <BlackParagraph theme="smallBold">106 điểm</BlackParagraph>
+                <BlackParagraph theme="smallBold">105 điểm</BlackParagraph>
               </View>
               <View style={{ display: 'flex', flexDirection: 'row' }}>
                 <Image source={require('../../../assets/point.png')} />
-                <PrimaryParagraph theme="small">Đổi ngay</PrimaryParagraph>
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    marginLeft: 10,
+                  }}
+                >
+                  <PrimaryParagraph theme="smallBold">Đổi </PrimaryParagraph>
+                  <PrimaryParagraph theme="smallBold">ngay</PrimaryParagraph>
+                </View>
               </View>
             </TouchableOpacity>
           </View>
         </ScrollView>
+        <VerticalSpacer size="xs" />
+        <PrimaryTitle theme="primary">Ưu đãi dành riêng cho bạn</PrimaryTitle>
       </View>
     </View>
   );

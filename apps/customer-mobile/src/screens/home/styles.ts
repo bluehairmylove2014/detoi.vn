@@ -107,17 +107,21 @@ const serviceSectionStyle = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: 3,
+    gap: 5,
     width: '100%',
-
-    feedback: {
-      backgroundColor: '#FFE9AB',
-      display: 'flex',
-      flexDirection: 'row',
-      paddingHorizontal: 10,
-      paddingVertical: 5,
-      borderRadius: 5,
-    }
+  },
+  card: {
+    backgroundColor: '#FFE9AB',
+    display: 'flex',
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    gap: 10,
+    borderRadius: 5,
+    minWidth: '50%',
+  },
+  text: {
+    // marginRight: 10
   },
 });
 

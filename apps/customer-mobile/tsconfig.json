@@ -11,12 +11,7 @@
         "skipLibCheck": true,
         "resolveJsonModule": true,
         "strict": true,
-        "declaration": true,
-        "paths": {
-            "@assets/*": [
-                "customer-mobile/assets/*"
-            ],
-        }
+        "declaration": true
     },
     "files": [],
     "include": [],
