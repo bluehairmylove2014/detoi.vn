@@ -1,4 +1,10 @@
-import { View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import React, { useState } from 'react';
 import { HomeProps } from '../../config';
 import { homeScreenStyle, topLabelStyle, serviceSectionStyle } from './styles';
@@ -105,25 +111,29 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
           ) : null}
         </View>
         <VerticalSpacer size="xs" />
-        <View style={serviceSectionStyle.test}>
-          <TouchableOpacity style={serviceSectionStyle.feedback}>
-            <View>
-              <PrimaryParagraph theme="small">Góp ý</PrimaryParagraph>
-              <BlackParagraph theme="smallBold">
-                Thêm các dịch vụ khác
-              </BlackParagraph>
-            </View>
-            <Image source={require('.assets/feedback.png')} />
-          </TouchableOpacity>
-          <TouchableOpacity style={serviceSectionStyle.feedback}>
-            <View>
-              <PrimaryParagraph theme="small">Góp ý</PrimaryParagraph>
-              <BlackParagraph theme="smallBold">
-                Thêm các dịch vụ khác
-              </BlackParagraph>
-            </View>
-          </TouchableOpacity>
-        </View>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <View style={serviceSectionStyle.test}>
+            <TouchableOpacity style={serviceSectionStyle.test.feedback}>
+              <View>
+                <PrimaryParagraph theme="small">Góp ý</PrimaryParagraph>
+                <BlackParagraph theme="smallBold">
+                  Thêm các dịch vụ khác
+                </BlackParagraph>
+              </View>
+              <Image source={require('../../../assets/feedback.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity style={serviceSectionStyle.test.feedback}>
+              <View>
+                <PrimaryParagraph theme="small">Điểm tích lũy</PrimaryParagraph>
+                <BlackParagraph theme="smallBold">106 điểm</BlackParagraph>
+              </View>
+              <View style={{ display: 'flex', flexDirection: 'row' }}>
+                <Image source={require('../../../assets/point.png')} />
+                <PrimaryParagraph theme="small">Đổi ngay</PrimaryParagraph>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </View>
     </View>
   );
