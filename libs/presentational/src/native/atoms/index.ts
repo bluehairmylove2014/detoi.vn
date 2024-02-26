@@ -5,3 +5,4 @@ export * from './link';
 export * from './button';
 export * from './spacer';
 export * from './select';
+export * from './theme';
