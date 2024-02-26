@@ -9,3 +9,4 @@ export * from './category';
 export * from './address';
 export * from './serviceProven';
 export * from './token';
+export * from './geocode';

@@ -1,7 +1,7 @@
 import z from 'zod';
 
 const getAccountInfoResponseSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   email: z.string(),
   fullName: z.string(),
   dateOfBirth: z.string(),

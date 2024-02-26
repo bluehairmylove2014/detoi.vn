@@ -11,6 +11,10 @@ export const refreshTokenEndpoint = '/api/auth/refresh-token';
 // SERVICE & CATEGORY
 export const getAllCategoryEndpoint = '/api/v1/service-category';
 
+// GEOCODE
+export const forwardGeocodingEndpoint = '/api/v1/geo-code/forward';
+export const reverseGeocodingEndpoint = '/api/v1/geo-code/reverse';
+
 // SIRV
 export const sirvBaseUrlTemplate = 'https://api.sirv.com/v2';
 export const connectSirvUrl = sirvBaseUrlTemplate + '/token';
