@@ -5,7 +5,7 @@ import { customerTabParamList } from '../config';
 // Import screen component here
 import HomeScreen from '../screens/home/Home';
 import LoginScreen from '../screens/login/Login';
-import { FAIcon, PrimaryParagraph } from '@present-native/atoms';
+import { FAIcon } from '@present-native/atoms';
 import { Text, View } from 'react-native';
 
 export const Tab = createBottomTabNavigator<customerTabParamList>();
