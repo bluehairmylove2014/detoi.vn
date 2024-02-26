@@ -8,18 +8,21 @@ import {
 import { BlackParagraph, RoseParagraph } from '../text';
 import { FAIcon } from '../icon';
 import { colors, serviceRequirementsSelectStyle } from '@present-native/styles';
-import {
-  IOption,
-  IServiceRequirement,
-} from '@business-layer/services/entities';
+import { IOption } from '@business-layer/services/entities';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { useEffect, useState } from 'react';
 import { BlurTheme } from '../theme';
 
 const ServiceRequirementsSelect = ({
-  serviceRequirement,
+  label,
+  labelIcon,
+  placeholder,
+  options,
 }: {
-  serviceRequirement: IServiceRequirement;
+  label: string;
+  labelIcon?: string;
+  placeholder: string;
+  options?: IOption[];
 }) => {
   const [activeModal, setActiveModal] = useState(false);
   const [optionSelected, setOptionSelected] = useState<string>('');
@@ -68,14 +71,10 @@ const ServiceRequirementsSelect = ({
 
               {/* List Option */}
               <FlatList
-                data={
-                  serviceRequirement.type.name === 'select'
-                    ? serviceRequirement.type.options
-                    : null
-                }
+                data={options}
                 renderItem={renderItem}
                 horizontal={false}
-                keyExtractor={(item) => item?.id ?? ''}
+                keyExtractor={(item) => item.id}
                 style={{ marginBottom: 30 }}
               />
             </View>
@@ -86,39 +85,41 @@ const ServiceRequirementsSelect = ({
   };
 
   useEffect(() => {
-    setOptionSelected(serviceRequirement.placeholder);
+    setOptionSelected(placeholder);
   }, []);
   return (
-    <>
-      <View style={serviceRequirementsSelectStyle.container}>
-        <View style={serviceRequirementsSelectStyle.labelContainer}>
+    <View style={serviceRequirementsSelectStyle.container}>
+      <View style={serviceRequirementsSelectStyle.labelContainer}>
+        {labelIcon ? (
           <FAIcon
-            iconName={serviceRequirement.labelIcon as nativeIconNameType}
+            iconName={labelIcon as nativeIconNameType}
             color={colors.black}
             size={15}
           />
+        ) : (
+          <></>
+        )}
 
-          <View style={{ marginLeft: 5 }}>
-            <BlackParagraph theme="normalBold">
-              | {serviceRequirement.label}
-              <RoseParagraph theme="largeMedium"> *</RoseParagraph>
+        <View style={{ marginLeft: 5 }}>
+          <BlackParagraph theme="normalBold">
+            {labelIcon ? ' | ' : ''} {label}
+            <RoseParagraph theme="largeMedium"> *</RoseParagraph>
+          </BlackParagraph>
+        </View>
+      </View>
+      <TouchableWithoutFeedback onPress={() => setActiveModal(true)}>
+        <View style={serviceRequirementsSelectStyle.dropdownContainer}>
+          <View style={{ marginRight: 15 }}>
+            <BlackParagraph theme="smallMedium">
+              {optionSelected}
             </BlackParagraph>
           </View>
-        </View>
-        <TouchableWithoutFeedback onPress={() => setActiveModal(true)}>
-          <View style={serviceRequirementsSelectStyle.dropdownContainer}>
-            <View style={{ marginRight: 15 }}>
-              <BlackParagraph theme="smallMedium">
-                {optionSelected}
-              </BlackParagraph>
-            </View>
 
-            <FAIcon iconName="faCaretDown" color={colors.black} size={18} />
-          </View>
-        </TouchableWithoutFeedback>
-        {modalListDropdown()}
-      </View>
-    </>
+          <FAIcon iconName="faCaretDown" color={colors.black} size={18} />
+        </View>
+      </TouchableWithoutFeedback>
+      {modalListDropdown()}
+    </View>
   );
 };
 export { ServiceRequirementsSelect };
