@@ -7,7 +7,13 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import { HomeProps } from '../../config';
-import { homeScreenStyle, topLabelStyle, serviceSectionStyle } from './styles';
+import {
+  homeScreenStyle,
+  topLabelStyle,
+  serviceSectionStyle,
+  endowSectionStyle,
+  memberSectionStyle,
+} from './styles';
 import {
   FAIcon,
   HorizontalSpacer,
@@ -112,7 +118,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
         </View>
         <VerticalSpacer size="xs" />
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <View style={serviceSectionStyle.test}>
+          <View style={serviceSectionStyle.other_service}>
             <TouchableOpacity style={serviceSectionStyle.card}>
               <View style={serviceSectionStyle.text}>
                 <PrimaryParagraph theme="small">Góp ý</PrimaryParagraph>
@@ -145,6 +151,60 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
         </ScrollView>
         <VerticalSpacer size="xs" />
         <PrimaryTitle theme="primary">Ưu đãi dành riêng cho bạn</PrimaryTitle>
+        <VerticalSpacer size="xs" />
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <View style={endowSectionStyle.container}>
+            <TouchableOpacity style={endowSectionStyle.item}>
+              <View>
+                <Image
+                  source={require('../../../assets/endow1.png')}
+                  resizeMode="contain"
+                  style={endowSectionStyle.endow_image}
+                />
+              </View>
+              <View style={endowSectionStyle.content}>
+                <BlackParagraph theme="normalMedium">
+                  Giảm nóng 20k cho lần đầu trải nghiệm dịch vụ
+                </BlackParagraph>
+                <PrimaryParagraph theme="small">
+                  Tất cả dịch vụ
+                </PrimaryParagraph>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={endowSectionStyle.item}>
+              <View>
+                <Image
+                  source={require('../../../assets/endow2.png')}
+                  resizeMode="contain"
+                  style={endowSectionStyle.endow_image}
+                />
+              </View>
+              <View style={endowSectionStyle.content}>
+                <BlackParagraph theme="normalMedium">
+                  Dọn nhà cuối năm, giảm tới 50k
+                </BlackParagraph>
+                <PrimaryParagraph theme="small">Dọn Dẹp</PrimaryParagraph>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+        <VerticalSpacer size="xs" />
+        <PrimaryTitle theme="primary">Gói hội viên Detoi</PrimaryTitle>
+        <VerticalSpacer size="xs" />
+        <View style={memberSectionStyle.container}>
+          <TouchableOpacity>
+            <Image
+              source={require('../../../assets/member1.png')}
+              style={{ height: 160, width: 160, borderRadius: 5 }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image
+              source={require('../../../assets/member2.png')}
+              style={{ height: 160, width: 160, borderRadius: 5 }}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
