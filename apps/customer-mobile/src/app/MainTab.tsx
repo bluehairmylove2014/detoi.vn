@@ -7,6 +7,7 @@ import HomeScreen from '../screens/home/Home';
 import LoginScreen from '../screens/login/Login';
 import { FAIcon } from '@present-native/atoms';
 import { Text, View } from 'react-native';
+import TabBarIcon from '@present-native/molecules/bottomTab/TabBarIcon';
 
 export const Tab = createBottomTabNavigator<customerTabParamList>();
 export const TabNavigationContainer = ({
@@ -24,14 +25,13 @@ export const TabNavigationContainer = ({
             height: 55,
           },
           tabBarShowLabel: false,
-          tabBarLabelStyle: {
-            color: '#595753',
-            marginBottom: 7,
-          },
+          //   tabBarLabelStyle: {
+          //     color: '#595753',
+          //     marginBottom: 7,
+          //   },
           headerShown: false,
         }}
       >
-        {/* Then, put stack.screen for your screen component here (in the end) */}
         <Tab.Screen
           component={HomeScreen}
           name="Home"
@@ -61,11 +61,7 @@ export const TabNavigationContainer = ({
               ),
           }}
         />
-        <Tab.Screen
-          component={LoginScreen}
-          name="Login"
-          options={{ headerShown: false }}
-        />
+        <Tab.Screen component={LoginScreen} name="Login" />
       </Tab.Navigator>
     </NavigationContainer>
   );

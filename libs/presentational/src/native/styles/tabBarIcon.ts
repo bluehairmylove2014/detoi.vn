@@ -11,7 +11,13 @@ export const BarIconSectionStyle = StyleSheet.create({
     },
 
     inactive_icon_container: {
-        alignItems: 'center', gap: 3
+        alignItems: 'center', 
+        gap: 3
+    },
+
+    label: {
+        color: '#595753', 
+        fontSize: 11
     }
 
 
