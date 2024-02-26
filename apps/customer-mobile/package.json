@@ -41,7 +41,8 @@
     "next": "*",
     "react-native-linear-gradient": "*",
     "expo-secure-store": "*",
-    "expo-linear-gradient": "*"
+    "expo-linear-gradient": "*",
+    "@react-navigation/bottom-tabs": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && node tools/scripts/eas-build-pre-install.mjs . apps/customer-mobile && cp package-lock.json apps/customer-mobile",

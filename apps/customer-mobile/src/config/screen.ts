@@ -8,6 +8,15 @@ type customerRootStackParamList = {
   OTPVertification: undefined;
 };
 
+type customerTabParamList = {
+    Home: undefined,
+    Endow: undefined,
+    Message: undefined,
+    SingleService: undefined,
+    Profile: undefined,
+    Login: undefined
+}
+
 // 2. Props
 type HomeProps = NativeStackScreenProps<customerRootStackParamList, 'Home'>;
 type ChooseLocationProps = NativeStackScreenProps<
@@ -27,4 +36,5 @@ export {
   ChooseLocationProps,
   LoginProps,
   OTPVertificationProps,
+  customerTabParamList
 };

@@ -161,6 +161,12 @@ const memberSectionStyle = StyleSheet.create({
         flexDirection: 'row',
         gap: 20,
         justifyContent: 'space-between'
+    },
+
+    member_image: {
+        height: 160, 
+        width: 160, 
+        borderRadius: 5
     }
 })
 

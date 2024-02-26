@@ -195,13 +195,13 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
           <TouchableOpacity>
             <Image
               source={require('../../../assets/member1.png')}
-              style={{ height: 160, width: 160, borderRadius: 5 }}
+              style={memberSectionStyle.member_image}
             />
           </TouchableOpacity>
           <TouchableOpacity>
             <Image
               source={require('../../../assets/member2.png')}
-              style={{ height: 160, width: 160, borderRadius: 5 }}
+              style={memberSectionStyle.member_image}
             />
           </TouchableOpacity>
         </View>
