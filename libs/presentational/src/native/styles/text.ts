@@ -92,6 +92,12 @@ const blackParagraphStyles = StyleSheet.create({
     userSelect: 'none',
   },
 
+  smallMedium: {
+    fontFamily: 'Montserrat_500Medium',
+    fontSize: 13,
+    color: colors.black,
+    userSelect: 'none',
+  },
   smallBold: {
     fontFamily: 'Montserrat_700Bold',
     fontSize: 12,
