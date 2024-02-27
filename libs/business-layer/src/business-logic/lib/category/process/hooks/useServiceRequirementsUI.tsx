@@ -1,32 +1,75 @@
 import { IUIServiceRequirement } from '@business-layer/services/entities';
+import { FieldValues, UseFormHandleSubmit, useForm } from 'react-hook-form';
+import { View } from 'react-native';
+import {
+  HorizontalSpacer,
+  ServiceRequirementsInput,
+  ServiceRequirementsSelect,
+} from '@present-native/atoms';
 
 type useServiceRequirementsUIType = {
-  onGenerateUI: () => JSX.Element;
+  onGenerateUI: ({
+    requirements,
+  }: {
+    requirements: IUIServiceRequirement[];
+  }) => JSX.Element;
+  getForm: () => {
+    handleSubmit: UseFormHandleSubmit<FieldValues, FieldValues>;
+  };
 };
 export const useServiceRequirementsUI = (): useServiceRequirementsUIType => {
-  const onGenerateUI = (): JSX.Element => {
-    const requirements: IUIServiceRequirement = {
-      id: '0',
-      type: { name: 'input', type: 'number' },
-      label: 'Số nhà, số phòng, hẻm (ngõ) *',
-      placeholder: 'Ví dụ: 257/43 Phòng 2014 Căn hộ Sunrise Continent',
-      validations: [
-        {
-          id: '0',
-          name: 'required',
-        },
-        {
-          id: '1',
-          name: 'maxLength',
-          value: 255,
-        },
-      ],
-    };
+  const { control, handleSubmit, setValue } = useForm();
 
-    return <>{requirements}</>;
+  const onGenerateUI = ({
+    requirements,
+  }: {
+    requirements: IUIServiceRequirement[];
+  }): JSX.Element => {
+    return (
+      <>
+        {requirements.map((r, i) => (
+          <View key={`requirement@${i}`}>
+            {r.inputMethod.method.name === 'input' ? (
+              <>
+                <ServiceRequirementsInput
+                  type={r.inputMethod.dataType}
+                  label={r.label}
+                  labelIcon={r.labelIcon}
+                  placeholder={r.placeholder}
+                  control={control}
+                  setValue={setValue}
+                  inputName={r.id}
+                />
+                <HorizontalSpacer size="m" />
+              </>
+            ) : r.inputMethod.method.name === 'select' ? (
+              <>
+                <ServiceRequirementsSelect
+                  label={r.label}
+                  labelIcon={r.labelIcon}
+                  placeholder={r.placeholder}
+                  options={r.inputMethod.method.options}
+                  control={control}
+                  setValue={setValue}
+                  selectName={r.id}
+                />
+                <HorizontalSpacer size="m" />
+              </>
+            ) : (
+              <></>
+            )}
+          </View>
+        ))}
+      </>
+    );
   };
+
+  const getForm = () => ({
+    handleSubmit,
+  });
 
   return {
     onGenerateUI,
+    getForm,
   };
 };
