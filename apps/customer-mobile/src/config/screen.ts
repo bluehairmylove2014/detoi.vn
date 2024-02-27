@@ -13,7 +13,7 @@ type customerTabParamList = {
     Endow: undefined,
     Message: undefined,
     SingleService: undefined,
-    Profile: undefined,
+    Account: undefined,
     Login: undefined
 }
 

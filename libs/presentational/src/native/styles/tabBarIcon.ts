@@ -7,7 +7,7 @@ export const BarIconSectionStyle = StyleSheet.create({
         borderColor: '#C89300',
         padding: 18,
         backgroundColor: '#FFFFFF',
-        marginBottom: 30,
+        marginBottom: 25,
     },
 
     inactive_icon_container: {

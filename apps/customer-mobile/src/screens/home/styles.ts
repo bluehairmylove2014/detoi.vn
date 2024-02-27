@@ -116,12 +116,8 @@ const serviceSectionStyle = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 10,
     paddingVertical: 5,
-    gap: 10,
+    gap: 7,
     borderRadius: 5,
-    minWidth: '50%',
-  },
-  text: {
-    // marginRight: 10
   },
 });
 

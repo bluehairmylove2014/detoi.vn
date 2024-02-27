@@ -116,39 +116,31 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
             </>
           ) : null}
         </View>
+
+        {/* Other service */}
         <VerticalSpacer size="xs" />
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <View style={serviceSectionStyle.other_service}>
-            <TouchableOpacity style={serviceSectionStyle.card}>
-              <View style={serviceSectionStyle.text}>
-                <PrimaryParagraph theme="small">Góp ý</PrimaryParagraph>
-                <BlackParagraph theme="smallBold">
-                  Thêm các dịch vụ khác
-                </BlackParagraph>
-              </View>
-              <Image source={require('../../../assets/feedback.png')} />
-            </TouchableOpacity>
-            <TouchableOpacity style={serviceSectionStyle.card}>
-              <View style={serviceSectionStyle.text}>
-                <PrimaryParagraph theme="small">Điểm tích lũy</PrimaryParagraph>
-                <BlackParagraph theme="smallBold">105 điểm</BlackParagraph>
-              </View>
-              <View style={{ display: 'flex', flexDirection: 'row' }}>
-                <Image source={require('../../../assets/point.png')} />
-                <View
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    marginLeft: 10,
-                  }}
-                >
-                  <PrimaryParagraph theme="smallBold">Đổi </PrimaryParagraph>
-                  <PrimaryParagraph theme="smallBold">ngay</PrimaryParagraph>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
+        {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}> */}
+        <View style={serviceSectionStyle.other_service}>
+          <TouchableOpacity style={serviceSectionStyle.card}>
+            <View>
+              <PrimaryParagraph theme="small">Góp ý</PrimaryParagraph>
+              <BlackParagraph theme="smallBold">
+                Thêm dịch vụ khác
+              </BlackParagraph>
+            </View>
+            <Image source={require('../../../assets/feedback.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={serviceSectionStyle.card}>
+            <View>
+              <PrimaryParagraph theme="small">Điểm tích lũy</PrimaryParagraph>
+              <BlackParagraph theme="smallBold">105 điểm</BlackParagraph>
+            </View>
+            <Image source={require('../../../assets/point.png')} />
+          </TouchableOpacity>
+        </View>
+        {/* </ScrollView> */}
+
+        {/* Endow */}
         <VerticalSpacer size="xs" />
         <PrimaryTitle theme="primary">Ưu đãi dành riêng cho bạn</PrimaryTitle>
         <VerticalSpacer size="xs" />
@@ -188,6 +180,8 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
             </TouchableOpacity>
           </View>
         </ScrollView>
+
+        {/* Member */}
         <VerticalSpacer size="xs" />
         <PrimaryTitle theme="primary">Gói hội viên Detoi</PrimaryTitle>
         <VerticalSpacer size="xs" />
