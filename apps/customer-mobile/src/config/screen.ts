@@ -6,6 +6,7 @@ type customerRootStackParamList = {
   ChooseLocation: undefined;
   Login: undefined;
   OTPVertification: undefined;
+  Intro: undefined;
 };
 
 // 2. Props
@@ -14,6 +15,7 @@ type ChooseLocationProps = NativeStackScreenProps<
   customerRootStackParamList,
   'ChooseLocation'
 >;
+type IntroProps = NativeStackScreenProps<customerRootStackParamList, 'Intro'>;
 type LoginProps = NativeStackScreenProps<customerRootStackParamList, 'Login'>;
 type OTPVertificationProps = NativeStackScreenProps<
   customerRootStackParamList,
@@ -27,4 +29,5 @@ export {
   ChooseLocationProps,
   LoginProps,
   OTPVertificationProps,
+  IntroProps
 };
