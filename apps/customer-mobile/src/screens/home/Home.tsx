@@ -29,6 +29,8 @@ import { colors } from '@present-native/styles';
 import { CategoryAndServiceSearchBox } from '@present-native/molecules';
 import CategoryThumbnail from '@present-native/molecules/category/CategoryThumbnail';
 import { useGetAllCategories } from '@business-layer/business-logic/lib/category';
+import Endow from '../endow/Endow';
+import EndowItem from '@present-native/molecules/endow/EndowItem';
 
 const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   const { data: categories } = useGetAllCategories();
@@ -41,6 +43,21 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
     screenName: 'ChooseLocation',
     image: 'https://detoivn.sirv.com/events/001.png',
   });
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [endows, setEndows] = useState([
+    {
+      image: null,
+      description: 'Giảm nóng 20k cho lần đầu trải nghiệm dịch vụ',
+      label: 'Tất cả dịch vụ',
+    },
+
+    {
+      image: null,
+      description: 'Dọn nhà cuối năm, giảm tới 50k',
+      label: 'Dọn dẹp',
+    },
+  ]);
 
   // Real time get notifications
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -146,7 +163,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
         <VerticalSpacer size="xs" />
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <View style={endowSectionStyle.container}>
-            <TouchableOpacity style={endowSectionStyle.item}>
+            {/* <TouchableOpacity style={endowSectionStyle.item}>
               <View>
                 <Image
                   source={require('../../../assets/endow1.png')}
@@ -162,22 +179,18 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
                   Tất cả dịch vụ
                 </PrimaryParagraph>
               </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={endowSectionStyle.item}>
-              <View>
-                <Image
-                  source={require('../../../assets/endow2.png')}
-                  resizeMode="contain"
-                  style={endowSectionStyle.endow_image}
+            </TouchableOpacity> */}
+
+            {Array.isArray(endows) &&
+              endows.length > 0 &&
+              endows.map((item, index) => (
+                <EndowItem
+                  key={index}
+                  image={item.image}
+                  description={item.description}
+                  label={item.label}
                 />
-              </View>
-              <View style={endowSectionStyle.content}>
-                <BlackParagraph theme="normalMedium">
-                  Dọn nhà cuối năm, giảm tới 50k
-                </BlackParagraph>
-                <PrimaryParagraph theme="small">Dọn Dẹp</PrimaryParagraph>
-              </View>
-            </TouchableOpacity>
+              ))}
           </View>
         </ScrollView>
 

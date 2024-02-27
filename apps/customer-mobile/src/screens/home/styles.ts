@@ -118,6 +118,7 @@ const serviceSectionStyle = StyleSheet.create({
     paddingVertical: 5,
     gap: 7,
     borderRadius: 5,
+    minWidth: '45%'
   },
 });
 
