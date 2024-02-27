@@ -121,6 +121,17 @@ const roseParagraphStyles = StyleSheet.create({
   },
 });
 
-export { primaryTitleStyles, whiteTitleStyle, blackTitleStyles };
+const paragraphStyles = StyleSheet.create({
+  primary: {
+    fontFamily: 'Montserrat_400Regular',
+    fontSize: 11,
+    color: colors.black,
+    userSelect: 'none',
+    
 
+  },
+});
+
+export { primaryTitleStyles, whiteTitleStyle, blackTitleStyles };
+export { paragraphStyles };
 export { primaryParagraphStyles, blackParagraphStyles, roseParagraphStyles };
