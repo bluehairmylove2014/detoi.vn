@@ -10,7 +10,7 @@ import { FAIcon } from '../icon';
 import { colors, serviceRequirementsSelectStyle } from '@present-native/styles';
 import {
   IOption,
-  IServiceRequirement,
+  IUIServiceRequirement,
 } from '@business-layer/services/entities';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { useEffect, useState } from 'react';
@@ -19,7 +19,7 @@ import { BlurTheme } from '../theme';
 const ServiceRequirementsSelect = ({
   serviceRequirement,
 }: {
-  serviceRequirement: IServiceRequirement;
+  serviceRequirement: IUIServiceRequirement;
 }) => {
   const [activeModal, setActiveModal] = useState(false);
   const [optionSelected, setOptionSelected] = useState<string>('');

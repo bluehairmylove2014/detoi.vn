@@ -1,0 +1,366 @@
+{
+  "categories": [
+    {
+      "id": "0",
+      "name": "Dọn Dẹp",
+      "services": [
+        {
+          "id": "0",
+          "name": "Phòng trọ",
+          "requirements": [
+            {
+              "id": "0",
+              "type": { "name": "inputText" },
+              "label": "Số nhà, số phòng, hẻm (ngõ) *",
+              "placeholder": "Ví dụ: 257/43 Phòng 2014 Căn hộ Sunrise Continent",
+              "validations": [
+                {
+                  "id": "0",
+                  "name": "required"
+                },
+                {
+                  "id": "1",
+                  "name": "maxLength",
+                  "value": 255
+                }
+              ]
+            },
+            {
+              "id": "1",
+              "type": {
+                "name": "select",
+                "options": [
+                  {
+                    "id": "0",
+                    "name": "Dọn trọn gói",
+                    "description": "Tất cả dịch vụ, dọn toàn bộ nhà / phòng"
+                  },
+                  {
+                    "id": "1",
+                    "name": "Dọn theo phòng",
+                    "description": "Trung bình 50.000đ / phòng, tiết kiệm và nhanh chóng"
+                  }
+                ]
+              },
+
+              "label": "Bạn muốn chúng tôi dọn như thế nào? *",
+              "labelIcon": "faFlag",
+              "placeholder": "Giúp nhân viên biết thêm về công việc cần làm",
+              "validations": [
+                {
+                  "id": "0",
+                  "name": "required"
+                }
+              ]
+            },
+            {
+              "id": "2",
+              "type": { "name": "inputNumber" },
+              "label": "Số lượng phòng *",
+              "labelIcon": "faHouse",
+              "placeholder": "Lưu ý: Nếu bạn chọn dịch vụ dọn theo phòng, vui lòng bổ sung số phòng cần dọn ở đây",
+              "validations": [
+                {
+                  "id": "0",
+                  "name": "required"
+                },
+                {
+                  "name": "min",
+                  "value": 1
+                }
+              ]
+            }
+          ],
+          "additionRequirements": [
+            {
+              "id": "0",
+              "icon": "faDog",
+              "label": "Nhà có thú cưng",
+              "autoSelect": true
+            },
+            {
+              "id": "1",
+              "icon": "faPC",
+              "label": "Nhà có nhiều đồ điện tử",
+              "autoSelect": false
+            },
+            {
+              "id": "2",
+              "icon": "faBroom",
+              "label": "Nhân viên tự mang theo dụng cụ",
+              "autoSelect": false,
+              "additionFee": 30000
+            }
+          ]
+        },
+        {
+          "id": "1",
+          "name": "Nhà / Nhà phố",
+          "requirements": [
+            {
+              "id": "0",
+              "type": { "name": "inputText" },
+              "label": "Số nhà, số phòng, hẻm (ngõ) *",
+              "placeholder": "Ví dụ: 257/43 Phòng 2014 Căn hộ Sunrise Continent",
+              "validations": [
+                {
+                  "id": "0",
+                  "name": "required"
+                },
+                {
+                  "id": "1",
+                  "name": "maxLength",
+                  "value": 255
+                }
+              ]
+            },
+            {
+              "id": "1",
+              "type": {
+                "name": "select",
+                "options": [
+                  {
+                    "id": "0",
+                    "name": "Dọn trọn gói",
+                    "description": "Tất cả dịch vụ, dọn toàn bộ nhà / phòng"
+                  },
+                  {
+                    "id": "1",
+                    "name": "Dọn theo phòng",
+                    "description": "Trung bình 50.000đ / phòng, tiết kiệm và nhanh chóng"
+                  }
+                ]
+              },
+
+              "label": "Bạn muốn chúng tôi dọn như thế nào? *",
+              "labelIcon": "faFlag",
+              "placeholder": "Giúp nhân viên biết thêm về công việc cần làm",
+              "validations": [
+                {
+                  "id": "0",
+                  "name": "required"
+                }
+              ]
+            },
+            {
+              "id": "2",
+              "type": { "name": "inputNumber" },
+              "label": "Số lượng phòng *",
+              "labelIcon": "faHouse",
+              "placeholder": "Lưu ý: Nếu bạn chọn dịch vụ dọn theo phòng, vui lòng bổ sung số phòng cần dọn ở đây",
+              "validations": [
+                {
+                  "id": "0",
+                  "name": "required"
+                },
+                {
+                  "name": "min",
+                  "value": 1
+                }
+              ]
+            }
+          ],
+          "additionRequirements": [
+            {
+              "id": "0",
+              "icon": "faDog",
+              "label": "Nhà có thú cưng",
+              "autoSelect": true
+            },
+            {
+              "id": "1",
+              "icon": "faPC",
+              "label": "Nhà có nhiều đồ điện tử",
+              "autoSelect": false
+            },
+            {
+              "id": "2",
+              "icon": "faBroom",
+              "label": "Nhân viên tự mang theo dụng cụ",
+              "autoSelect": false,
+              "additionFee": 30000
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Căn hộ chung cư",
+          "requirements": [
+            {
+              "id": "0",
+              "type": { "name": "inputText" },
+              "label": "Số nhà, số phòng, hẻm (ngõ) *",
+              "placeholder": "Ví dụ: 257/43 Phòng 2014 Căn hộ Sunrise Continent",
+              "validations": [
+                {
+                  "id": "0",
+                  "name": "required"
+                },
+                {
+                  "id": "1",
+                  "name": "maxLength",
+                  "value": 255
+                }
+              ]
+            },
+            {
+              "id": "1",
+              "type": {
+                "name": "select",
+                "options": [
+                  {
+                    "id": "0",
+                    "name": "Dọn trọn gói",
+                    "description": "Tất cả dịch vụ, dọn toàn bộ nhà / phòng"
+                  },
+                  {
+                    "id": "1",
+                    "name": "Dọn theo phòng",
+                    "description": "Trung bình 50.000đ / phòng, tiết kiệm và nhanh chóng"
+                  }
+                ]
+              },
+
+              "label": "Bạn muốn chúng tôi dọn như thế nào? *",
+              "labelIcon": "faFlag",
+              "placeholder": "Giúp nhân viên biết thêm về công việc cần làm",
+              "validations": [
+                {
+                  "id": "0",
+                  "name": "required"
+                }
+              ]
+            },
+            {
+              "id": "2",
+              "type": { "name": "inputNumber" },
+              "label": "Số lượng phòng *",
+              "labelIcon": "faHouse",
+              "placeholder": "Lưu ý: Nếu bạn chọn dịch vụ dọn theo phòng, vui lòng bổ sung số phòng cần dọn ở đây",
+              "validations": [
+                {
+                  "id": "0",
+                  "name": "required"
+                },
+                {
+                  "name": "min",
+                  "value": 1
+                }
+              ]
+            }
+          ],
+          "additionRequirements": [
+            {
+              "id": "0",
+              "icon": "faDog",
+              "label": "Nhà có thú cưng",
+              "autoSelect": true
+            },
+            {
+              "id": "1",
+              "icon": "faPC",
+              "label": "Nhà có nhiều đồ điện tử",
+              "autoSelect": false
+            },
+            {
+              "id": "2",
+              "icon": "faBroom",
+              "label": "Nhân viên tự mang theo dụng cụ",
+              "autoSelect": false,
+              "additionFee": 30000
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Biệt thự",
+          "requirements": [
+            {
+              "id": "0",
+              "type": { "name": "inputText" },
+              "label": "Số nhà, số phòng, hẻm (ngõ) *",
+              "placeholder": "Ví dụ: 257/43 Phòng 2014 Căn hộ Sunrise Continent",
+              "validations": [
+                {
+                  "id": "0",
+                  "name": "required"
+                },
+                {
+                  "id": "1",
+                  "name": "maxLength",
+                  "value": 255
+                }
+              ]
+            },
+            {
+              "id": "1",
+              "type": {
+                "name": "select",
+                "options": [
+                  {
+                    "id": "0",
+                    "name": "Dọn trọn gói",
+                    "description": "Tất cả dịch vụ, dọn toàn bộ nhà / phòng"
+                  },
+                  {
+                    "id": "1",
+                    "name": "Dọn theo phòng",
+                    "description": "Trung bình 50.000đ / phòng, tiết kiệm và nhanh chóng"
+                  }
+                ]
+              },
+
+              "label": "Bạn muốn chúng tôi dọn như thế nào? *",
+              "labelIcon": "faFlag",
+              "placeholder": "Giúp nhân viên biết thêm về công việc cần làm",
+              "validations": [
+                {
+                  "id": "0",
+                  "name": "required"
+                }
+              ]
+            },
+            {
+              "id": "2",
+              "type": { "name": "inputNumber" },
+              "label": "Số lượng phòng *",
+              "labelIcon": "faHouse",
+              "placeholder": "Lưu ý: Nếu bạn chọn dịch vụ dọn theo phòng, vui lòng bổ sung số phòng cần dọn ở đây",
+              "validations": [
+                {
+                  "id": "0",
+                  "name": "required"
+                },
+                {
+                  "name": "min",
+                  "value": 1
+                }
+              ]
+            }
+          ],
+          "additionRequirements": [
+            {
+              "id": "0",
+              "icon": "faDog",
+              "label": "Nhà có thú cưng",
+              "autoSelect": true
+            },
+            {
+              "id": "1",
+              "icon": "faPC",
+              "label": "Nhà có nhiều đồ điện tử",
+              "autoSelect": false
+            },
+            {
+              "id": "2",
+              "icon": "faBroom",
+              "label": "Nhân viên tự mang theo dụng cụ",
+              "autoSelect": false,
+              "additionFee": 30000
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

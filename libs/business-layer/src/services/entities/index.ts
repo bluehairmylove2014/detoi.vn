@@ -11,3 +11,4 @@ export * from './serviceProven';
 export * from './token';
 export * from './geocode';
 export * from './serviceRequirement';
+export * from './option';

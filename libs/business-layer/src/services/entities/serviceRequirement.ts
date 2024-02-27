@@ -1,20 +1,12 @@
+import { IOption } from './option';
+
 type typeServiceRequirements =
-  | { name: 'inputText' }
-  | { name: 'inputNumber' }
+  | { name: 'input'; type: 'text' }
+  | { name: 'input'; type: 'number' }
   | {
       name: 'select';
-      options?: {
-        id: string;
-        name: string;
-        description: string;
-      }[];
+      options?: IOption[];
     };
-
-export interface IOption {
-  id: string;
-  name: string;
-  description: string;
-}
 
 type typeValidation =
   | { name: 'maxLength'; value: number }
@@ -23,7 +15,7 @@ type typeValidation =
   | { name: 'min'; value: number }
   | { name: 'max'; value: number };
 
-export interface IServiceRequirement {
+export interface IUIServiceRequirement {
   id: string;
   type: typeServiceRequirements;
   label: string;
@@ -32,7 +24,7 @@ export interface IServiceRequirement {
   validations: ({ id: string } & typeValidation)[];
 }
 
-export interface IAdditionServiceRequirement {
+export interface IUIAdditionServiceRequirement {
   id: string;
   icon: string;
   label: string;
