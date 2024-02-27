@@ -7,3 +7,4 @@ export * from './spacer';
 export * from './select';
 export * from './theme';
 export * from './input';
+export * from './switch';
