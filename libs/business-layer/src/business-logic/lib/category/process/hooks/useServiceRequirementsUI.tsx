@@ -6,6 +6,7 @@ import { FieldValues, UseFormHandleSubmit, useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import {
   AdditionServiceRequirement,
+  BlackParagraph,
   HorizontalSpacer,
   ServiceRequirementsInput,
   ServiceRequirementsSelect,
@@ -62,20 +63,25 @@ export const useServiceRequirementsUI = (): useServiceRequirementsUIType => {
           </View>
         ))}
         {Array.isArray(additionalRequirements) ? (
-          additionalRequirements.map((ar, i) => (
-            <View key={`additionalRequirement@${i}`}>
-              <AdditionServiceRequirement
-                icon={ar.icon}
-                label={ar.label}
-                autoSelect={ar.autoSelect}
-                additionFee={ar.additionFee}
-                control={control}
-                setValue={setValue}
-                selectName={`additionalRequirement@${ar.id}`}
-              />
-              <HorizontalSpacer size="m" />
-            </View>
-          ))
+          <>
+            <BlackParagraph theme="normalBold">
+              Yêu cầu thêm cho nhân viên?
+            </BlackParagraph>
+            {additionalRequirements.map((ar, i) => (
+              <View key={`additionalRequirement@${i}`}>
+                <AdditionServiceRequirement
+                  icon={ar.icon}
+                  label={ar.label}
+                  autoSelect={ar.autoSelect}
+                  additionFee={ar.additionFee}
+                  control={control}
+                  setValue={setValue}
+                  selectName={`additionalRequirement@${ar.id}`}
+                />
+                <HorizontalSpacer size="m" />
+              </View>
+            ))}
+          </>
         ) : (
           <></>
         )}
