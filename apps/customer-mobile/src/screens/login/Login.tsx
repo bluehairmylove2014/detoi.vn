@@ -21,7 +21,7 @@ import {
   useYupValidationResolver,
   loginByPhoneNumberSchema,
 } from '@utils/validators/yup';
-import { IServiceRequirement } from '@business-layer/services/entities';
+import { IUIServiceRequirement } from '@business-layer/services/entities';
 
 const DEFAULT_COUNTRY_CODE = {
   alpha2Code: 'VN',
@@ -40,7 +40,7 @@ type phoneInputFormType = {
   phone: string;
 };
 
-const testData: IServiceRequirement = {
+const testDataSelect: IUIServiceRequirement = {
   id: '1',
   type: {
     name: 'select',
@@ -175,7 +175,16 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
         </View>
 
         <View style={{ marginTop: 50 }}>
-          <ServiceRequirementsSelect serviceRequirement={testData} />
+          <ServiceRequirementsSelect
+            label={testDataSelect.label}
+            labelIcon={testDataSelect.labelIcon}
+            placeholder={testDataSelect.placeholder}
+            options={
+              testDataSelect.type.name === 'select'
+                ? testDataSelect.type.options
+                : undefined
+            }
+          />
         </View>
       </View>
     </SafeAreaView>

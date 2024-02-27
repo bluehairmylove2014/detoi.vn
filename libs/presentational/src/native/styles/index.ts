@@ -6,3 +6,4 @@ export * from './link';
 export * from './searchBox';
 export * from './spacingConvention';
 export * from './select';
+export * from './input';

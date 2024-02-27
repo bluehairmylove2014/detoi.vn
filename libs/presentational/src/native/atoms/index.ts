@@ -6,3 +6,4 @@ export * from './button';
 export * from './spacer';
 export * from './select';
 export * from './theme';
+export * from './input';
