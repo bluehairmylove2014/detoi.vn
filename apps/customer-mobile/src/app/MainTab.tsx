@@ -53,6 +53,7 @@ export const TabNavigationContainer = ({
                 focused={focused}
                 iconName="faCommentDots"
                 tabBarLabel="Tin nhắn"
+                notification={true}
               />
             ),
           }}

@@ -111,7 +111,7 @@ const serviceSectionStyle = StyleSheet.create({
     width: '100%',
   },
   card: {
-    backgroundColor: '#FFE9AB',
+    backgroundColor: colors.soft,
     display: 'flex',
     flexDirection: 'row',
     paddingHorizontal: 10,

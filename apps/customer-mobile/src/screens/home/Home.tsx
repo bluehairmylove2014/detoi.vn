@@ -29,7 +29,6 @@ import { colors } from '@present-native/styles';
 import { CategoryAndServiceSearchBox } from '@present-native/molecules';
 import CategoryThumbnail from '@present-native/molecules/category/CategoryThumbnail';
 import { useGetAllCategories } from '@business-layer/business-logic/lib/category';
-import Endow from '../endow/Endow';
 import EndowItem from '@present-native/molecules/endow/EndowItem';
 
 const Home: React.FC<HomeProps> = ({ route, navigation }) => {

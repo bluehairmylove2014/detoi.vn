@@ -7,10 +7,12 @@ const TabBarIcon = ({
   focused,
   iconName,
   tabBarLabel,
+  notification,
 }: {
   focused: boolean;
   iconName: nativeIconNameType;
   tabBarLabel: string;
+  notification?: boolean;
 }) =>
   focused ? (
     <View style={BarIconSectionStyle.active_icon_container}>
@@ -19,6 +21,7 @@ const TabBarIcon = ({
   ) : (
     <View style={BarIconSectionStyle.inactive_icon_container}>
       <FAIcon iconName={iconName} color={'#595753'} size={20} />
+      {notification && <View style={BarIconSectionStyle.new_notif}></View>}
       <Text style={BarIconSectionStyle.label}>{tabBarLabel}</Text>
     </View>
   );

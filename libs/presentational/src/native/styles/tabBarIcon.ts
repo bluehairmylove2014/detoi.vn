@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "./color";
 
 export const BarIconSectionStyle = StyleSheet.create({
     active_icon_container: {
@@ -6,7 +7,7 @@ export const BarIconSectionStyle = StyleSheet.create({
         borderRadius: 999,
         borderColor: '#C89300',
         padding: 18,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.white,
         marginBottom: 25,
     },
 
@@ -18,7 +19,15 @@ export const BarIconSectionStyle = StyleSheet.create({
     label: {
         color: '#595753', 
         fontSize: 11
-    }
+    },
 
+    new_notif: {
+        position: 'absolute',
+        right: '12.5%',
+        backgroundColor: colors.rose,
+        minWidth: 5,
+        minHeight: 5,
+        borderRadius: 999,
+    }
 
 })
