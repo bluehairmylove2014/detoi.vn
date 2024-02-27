@@ -18,4 +18,5 @@ const BlurTheme = () => {
     />
   );
 };
+
 export { BlurTheme };
