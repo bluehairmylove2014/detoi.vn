@@ -1,0 +1,16 @@
+{
+  "name": "validator",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/business-layer/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/business-layer/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  }
+}

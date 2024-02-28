@@ -15,6 +15,9 @@ export const getAllCategoryEndpoint = '/api/v1/service-category';
 export const forwardGeocodingEndpoint = '/api/v1/geo-code/forward';
 export const reverseGeocodingEndpoint = '/api/v1/geo-code/reverse';
 
+// BOOKING
+export const serviceBookingEndpoint = '/api/v1/';
+
 // SIRV
 export const sirvBaseUrlTemplate = 'https://api.sirv.com/v2';
 export const connectSirvUrl = sirvBaseUrlTemplate + '/token';

@@ -12,7 +12,7 @@ import { colors, countryCodeSelectStyle } from '@present-native/styles';
 import { FAIcon } from '../icon';
 import { BlackParagraph } from '../text';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
-import { ZincImageButton } from '../button/ImageButton';
+import { CountryCodeButton } from '../button/ImageButton';
 
 const CountryCodeSelect = ({
   onSelect,
@@ -107,7 +107,7 @@ const CountryCodeSelect = ({
 
   return (
     <>
-      <ZincImageButton
+      <CountryCodeButton
         onPress={() => {
           setActiveModal(true);
         }}

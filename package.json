@@ -48,6 +48,9 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.23.9",
+    "@babel/plugin-transform-async-to-generator": "^7.23.3",
     "@config-plugins/detox": "~6.0.0",
     "@expo/cli": "~0.10.13",
     "@nx/detox": "17.2.8",

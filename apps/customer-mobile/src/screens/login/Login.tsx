@@ -12,7 +12,6 @@ import {
   PrimaryButton,
   PrimaryParagraph,
   RoseParagraph,
-  ServiceRequirementsSelect,
 } from '@present-native/atoms';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { Controller, useForm } from 'react-hook-form';
@@ -21,7 +20,11 @@ import {
   useYupValidationResolver,
   loginByPhoneNumberSchema,
 } from '@utils/validators/yup';
-import { IServiceRequirement } from '@business-layer/services/entities';
+import {
+  IUIAdditionServiceRequirement,
+  IUIServiceRequirement,
+} from '@business-layer/services/entities';
+import { useServiceRequirementsUI } from '@business-layer/business-logic/lib/category';
 
 const DEFAULT_COUNTRY_CODE = {
   alpha2Code: 'VN',
@@ -40,35 +43,78 @@ type phoneInputFormType = {
   phone: string;
 };
 
-const testData: IServiceRequirement = {
-  id: '1',
-  type: {
-    name: 'select',
-    options: [
-      {
+const testDataInput: IUIServiceRequirement[] = [
+  {
+    id: '0',
+    inputMethod: {
+      dataType: 'text',
+      method: {
+        name: 'input',
+      },
+
+      validation: {
         id: '0',
-        name: 'Dọn trọn gói',
-        description: 'Tất cả dịch vụ, dọn toàn bộ nhà / phòng',
+        name: 'required',
+        message: 'string',
       },
-      {
-        id: '1',
-        name: 'Dọn theo phòng',
-        description: 'Trung bình 50.000đ / phòng, tiết kiệm và nhanh chóng',
-      },
-    ],
-  },
-
-  label: 'Bạn muốn chúng tôi dọn như thế nào?',
-  labelIcon: 'faFlag',
-  placeholder: 'Giúp nhân viên biết thêm về công việc cần làm',
-  validations: [
-    {
-      id: '0',
-      name: 'required',
     },
-  ],
-};
 
+    label: 'Số nhà, số phòng, hẻm (ngõ)',
+    placeholder: 'Ví dụ: 257/43 Phòng 2014 Căn hộ Sunrise Continent',
+  },
+  {
+    id: '1',
+    inputMethod: {
+      dataType: 'text',
+      method: {
+        name: 'select',
+        options: [
+          {
+            id: '0',
+            name: 'Dọn trọn gói',
+            description: 'Tất cả dịch vụ, dọn toàn bộ nhà / phòng',
+          },
+          {
+            id: '1',
+            name: 'Dọn theo phòng',
+            description: 'Trung bình 50.000đ / phòng, tiết kiệm và nhanh chóng',
+          },
+        ],
+      },
+
+      validation: {
+        id: '0',
+        name: 'required',
+        message: 'string',
+      },
+    },
+
+    label: 'Bạn muốn chúng tôi dọn như thế nào?',
+    labelIcon: 'faFlag',
+    placeholder: 'Giúp nhân viên biết thêm về công việc cần làm',
+  },
+];
+
+const testSwitch: IUIAdditionServiceRequirement[] = [
+  {
+    id: '0',
+    icon: 'faDog',
+    label: 'Nhà có thú cưng',
+    autoSelect: true,
+  },
+  {
+    id: '1',
+    icon: 'faComputer',
+    label: 'Nhà có nhiều đồ điện tử',
+    autoSelect: false,
+  },
+  {
+    id: '2',
+    icon: 'faBroom',
+    label: 'Nhân viên tự mang theo dụng cụ',
+    autoSelect: false,
+  },
+];
 const Login: React.FC<LoginProps> = ({ route, navigation }) => {
   const formResolver = useYupValidationResolver(loginByPhoneNumberSchema);
   const [countryCode, setCountryCode] =
@@ -81,7 +127,6 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
   });
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { onLogin, isLoading } = useLogin();
-
   // methods
   const onSuccessSubmitPhoneNumber = ({ phone }: phoneInputFormType) => {
     const phoneNumber = countryCode.callingCodes[0] + removeLeadingZero(phone);
@@ -93,11 +138,14 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
         console.error(error);
       });
   };
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onErrorSubmit = (error: Record<string, any>) => {
     console.log(error);
     // HANDLE INVALID PHONE NUMBER HERE
   };
+
+  const { onGenerateUI } = useServiceRequirementsUI();
 
   return (
     <SafeAreaView>
@@ -107,13 +155,13 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
           <BlackTitle theme="largeBold">Chỉ một bước nữa thôi!</BlackTitle>
 
           <View style={{ marginTop: 5 }}>
-            <BlackParagraph theme="normalMedium">
+            <BlackParagraph theme="baseMedium">
               Nhập số điện thoại để đăng nhập
             </BlackParagraph>
           </View>
           <View style={{ marginTop: 30, flexDirection: 'row' }}>
-            <BlackParagraph theme="normalMedium">Số điện thoại</BlackParagraph>
-            <RoseParagraph theme="normalMedium"> *</RoseParagraph>
+            <BlackParagraph theme="baseMedium">Số điện thoại</BlackParagraph>
+            <RoseParagraph theme="baseMedium"> *</RoseParagraph>
           </View>
         </View>
 
@@ -151,14 +199,14 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
         </View>
 
         <View style={{ marginTop: 20 }}>
-          <BlackParagraph theme="normalMedium">
+          <BlackParagraph theme="baseMedium">
             Tôi đồng ý với các
-            <PrimaryParagraph theme="normalBold">
+            <PrimaryParagraph theme="baseBold">
               {' '}
               Điều khoản dịch vụ
             </PrimaryParagraph>{' '}
             và
-            <PrimaryParagraph theme="normalBold">
+            <PrimaryParagraph theme="baseBold">
               {' '}
               Chính sách bảo mật
             </PrimaryParagraph>{' '}
@@ -174,9 +222,10 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
           </View>
         </View>
 
-        <View style={{ marginTop: 50 }}>
-          <ServiceRequirementsSelect serviceRequirement={testData} />
-        </View>
+        {onGenerateUI({
+          requirements: testDataInput,
+          additionalRequirements: testSwitch,
+        })}
       </View>
     </SafeAreaView>
   );
