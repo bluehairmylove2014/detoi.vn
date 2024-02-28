@@ -1,5 +1,5 @@
 export interface IAddress {
-  id: number;
+  id: string;
   addressLine: string;
   ward: string;
   district: string;

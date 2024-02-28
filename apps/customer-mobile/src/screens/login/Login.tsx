@@ -12,6 +12,7 @@ import {
   PrimaryButton,
   PrimaryParagraph,
   RoseParagraph,
+  ServiceRequirementsSelect,
 } from '@present-native/atoms';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { Controller, useForm } from 'react-hook-form';
@@ -20,6 +21,7 @@ import {
   useYupValidationResolver,
   loginByPhoneNumberSchema,
 } from '@utils/validators/yup';
+import { IUIServiceRequirement } from '@business-layer/services/entities';
 
 const DEFAULT_COUNTRY_CODE = {
   alpha2Code: 'VN',
@@ -36,6 +38,35 @@ function removeLeadingZero(phoneNumber: string): string {
 }
 type phoneInputFormType = {
   phone: string;
+};
+
+const testDataSelect: IUIServiceRequirement = {
+  id: '1',
+  type: {
+    name: 'select',
+    options: [
+      {
+        id: '0',
+        name: 'Dọn trọn gói',
+        description: 'Tất cả dịch vụ, dọn toàn bộ nhà / phòng',
+      },
+      {
+        id: '1',
+        name: 'Dọn theo phòng',
+        description: 'Trung bình 50.000đ / phòng, tiết kiệm và nhanh chóng',
+      },
+    ],
+  },
+
+  label: 'Bạn muốn chúng tôi dọn như thế nào?',
+  labelIcon: 'faFlag',
+  placeholder: 'Giúp nhân viên biết thêm về công việc cần làm',
+  validations: [
+    {
+      id: '0',
+      name: 'required',
+    },
+  ],
 };
 
 const Login: React.FC<LoginProps> = ({ route, navigation }) => {
@@ -141,6 +172,19 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
               theme="full-rounded-bold"
             />
           </View>
+        </View>
+
+        <View style={{ marginTop: 50 }}>
+          <ServiceRequirementsSelect
+            label={testDataSelect.label}
+            labelIcon={testDataSelect.labelIcon}
+            placeholder={testDataSelect.placeholder}
+            options={
+              testDataSelect.type.name === 'select'
+                ? testDataSelect.type.options
+                : undefined
+            }
+          />
         </View>
       </View>
     </SafeAreaView>

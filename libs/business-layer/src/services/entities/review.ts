@@ -1,7 +1,7 @@
 import { IImageMedia } from './image';
 
 export interface IReviewBase {
-  id: number;
+  id: string;
   avt: string;
   name: string;
   content: string;

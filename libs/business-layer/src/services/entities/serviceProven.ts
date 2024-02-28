@@ -1,5 +1,5 @@
 export interface IServiceProven {
-  id: number;
+  id: string;
   serviceName: string;
   completedTime: string;
   price: number;

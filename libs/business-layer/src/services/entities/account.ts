@@ -3,11 +3,11 @@ import { IServiceProven } from './serviceProven';
 import { ISkill } from './skill';
 
 export interface IAccount {
-  id: number;
+  id: string;
   phone: string;
 }
 export interface IAccountDetail {
-  id: number;
+  id: string;
   avatar: string;
   fullName: string;
   dateOfBirth?: string;
@@ -16,14 +16,14 @@ export interface IAccountDetail {
 }
 
 export interface ICustomerAccountDetail extends IAccountDetail {
-  accountId: number;
+  accountId: string;
   address: IAddress[];
   customerRank: string;
   memberPoint: number;
 }
 
 export interface IFreelancerAccountDetail extends IAccountDetail {
-  accountId: number;
+  accountId: string;
   address: IAddress;
   rating: number;
   balance: number;

@@ -1,4 +1,4 @@
 export interface IImageMedia {
-  id: number;
+  id: string;
   image: string;
 }

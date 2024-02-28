@@ -105,7 +105,6 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
           <View style={topLabelStyle.interaction_background_bottom} />
           <View style={topLabelStyle.interaction_inner}>
             <BellIconButton
-              iconName="faBell"
               notificationCount={notifications ? notifications.length : null}
             />
             <HorizontalSpacer size="l" />

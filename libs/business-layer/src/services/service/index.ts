@@ -61,7 +61,6 @@ export class Services {
       signal,
       withCredentials,
     };
-    console.log('SEND: ', mockParams);
     const response = await axios(mockParams);
     console.log('RECEIVE: ', response.data.message);
     const dataResponse = schema.parse(response.data);

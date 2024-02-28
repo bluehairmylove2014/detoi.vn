@@ -4,11 +4,16 @@ import {
   faMagnifyingGlass,
   faArrowRightLong,
   faTimes,
+<<<<<<< HEAD
   faTags,
   faCommentDots,
   faFileInvoiceDollar,
   faUser,
   faHouseFire,
+=======
+  faCaretDown,
+  faFlag,
+>>>>>>> fe-dev--native
 } from '@fortawesome/free-solid-svg-icons';
 import { fa500px } from '@fortawesome/free-brands-svg-icons';
 import { faAddressCard } from '@fortawesome/free-regular-svg-icons';
@@ -19,11 +24,16 @@ export const NATIVE_ICONS = {
   faMagnifyingGlass,
   faArrowRightLong,
   faTimes,
+<<<<<<< HEAD
   faTags,
   faCommentDots,
   faFileInvoiceDollar,
   faUser,
   faHouseFire
+=======
+  faCaretDown,
+  faFlag,
+>>>>>>> fe-dev--native
 };
 
 export type nativeIconNameType = keyof typeof NATIVE_ICONS;
