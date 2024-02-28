@@ -2,7 +2,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import { BlackTitle, FAIcon, Paragraph } from '@present-native/atoms';
+import { BlackTitle, FAIcon, BlackParagraphLimitLine } from '@present-native/atoms';
 import { DividerHorizontal } from '@present-native/atoms';
 import { colors } from '@present-native/styles';
 
@@ -62,9 +62,9 @@ export const ReccomendationLocation = () => {
               </View>
               <View style={{ width: '80%' }}>
                 <BlackTitle>{recommendation_location.nameLocation}</BlackTitle>
-                <Paragraph numberLine={1}>
+                <BlackParagraphLimitLine numberLine={1} theme='normalMedium'>
                   {recommendation_location.address}
-                </Paragraph>
+                </BlackParagraphLimitLine>
               </View>
               <FAIcon iconName="faArrowRight" color={colors.black} size={18} />
             </TouchableOpacity>

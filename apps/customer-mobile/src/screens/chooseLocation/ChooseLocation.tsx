@@ -1,9 +1,9 @@
 import { View, ImageBackground, TextInput } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { ChooseLocationProps } from '../../config';
 import { chooseLocationScreenStyle } from './styles';
 import { WhiteTitle, SubtitleLink } from '@present-native/atoms';
-import { Paragraph } from '@present-native/atoms';
+import { WhiteParagraph } from '@present-native/atoms';
 import { colors } from '@present-native/styles';
 import { FAIcon } from '@present-native/atoms';
 import { ReccomendationLocation } from '@present-native/organisms';
@@ -12,7 +12,7 @@ const ChooseLocation: React.FC<ChooseLocationProps> = ({
   route,
   navigation,
 }) => {
-  const [number, onChangeNumber] = React.useState('');
+  const [textSearchInput, setTextSearchInput] = useState('');
   return (
     <View style={chooseLocationScreenStyle.container}>
       <ImageBackground
@@ -20,14 +20,14 @@ const ChooseLocation: React.FC<ChooseLocationProps> = ({
         style={chooseLocationScreenStyle.banner}
       >
         <WhiteTitle theme='categoryName'>DỊCH VỤ DỌN DẸP</WhiteTitle>
-        <Paragraph color={colors.white} textAlign="center">
+        <WhiteParagraph theme='normalMedium'>
           Hãy điền các thông tin cần thiết bên dưới để tiếp tục
-        </Paragraph>
+        </WhiteParagraph>
         <View style={chooseLocationScreenStyle.searchInputWrapper}>
           <TextInput
             style={chooseLocationScreenStyle.searchInput}
-            onChangeText={onChangeNumber}
-            value={number}
+            onChangeText={setTextSearchInput}
+            value={textSearchInput}
             placeholder="Địa chỉ nơi làm dịch vụ"
             keyboardType="numeric"
           />

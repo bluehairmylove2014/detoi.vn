@@ -4,7 +4,8 @@ import {
   blackParagraphStyles,
   primaryParagraphStyles,
   roseParagraphStyles,
-  paragraphStyles
+  blackParagraphLimitLineStyles,
+  whiteParagraphStyles
 } from '@presentational/native/styles';
 
 const PrimaryParagraph = ({
@@ -23,6 +24,14 @@ const BlackParagraph = ({
   theme: keyof typeof blackParagraphStyles;
 }) => <Text style={blackParagraphStyles[theme]}>{children}</Text>;
 
+const WhiteParagraph = ({
+  children,
+  theme,
+}: {
+  children: React.ReactNode;
+  theme: keyof typeof whiteParagraphStyles;
+}) => <Text style={whiteParagraphStyles[theme]}>{children}</Text>;
+
 const RoseParagraph = ({
   children,
   theme,
@@ -31,10 +40,14 @@ const RoseParagraph = ({
   theme: keyof typeof roseParagraphStyles;
 }) => <Text style={roseParagraphStyles[theme]}>{children}</Text>;
 
-const Paragraph = ({ ...props }) => {
-  const { children, numberLine,...restProps } = props;
-  const primaryStyles = { ...paragraphStyles.primary, ...restProps };
-  return <Text style={primaryStyles} numberOfLines={numberLine}>{children}</Text>;
-};
+const BlackParagraphLimitLine = ({
+  children,
+  theme,
+  numberLine
+}: {
+  children: React.ReactNode;
+  theme: keyof typeof blackParagraphLimitLineStyles;
+  numberLine: number;
+}) => <Text style={blackParagraphLimitLineStyles[theme]} numberOfLines={numberLine}>{children}</Text>;
 
-export { PrimaryParagraph, BlackParagraph, RoseParagraph, Paragraph };
+export { PrimaryParagraph, BlackParagraph, RoseParagraph, BlackParagraphLimitLine, WhiteParagraph };

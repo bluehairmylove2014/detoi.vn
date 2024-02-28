@@ -65,6 +65,55 @@ const primaryParagraphStyles = StyleSheet.create({
   },
 });
 
+const whiteParagraphStyles = StyleSheet.create({
+  normalMedium: {
+    fontFamily: 'Montserrat_500Medium',
+    fontSize: 14,
+    color: colors.white,
+    userSelect: 'none',
+    textAlign: 'center'
+  },
+  normalBold: {
+    fontFamily: 'Montserrat_700Bold',
+    fontSize: 14,
+    color: colors.white,
+    userSelect: 'none',
+  },
+});
+
+const blackParagraphLimitLineStyles = StyleSheet.create({
+  small: {
+    fontFamily: 'Montserrat_400Regular',
+    fontSize: 13,
+    color: colors.primary,
+    userSelect: 'none',
+  },
+  smallBold: {
+    fontFamily: 'Montserrat_700Bold',
+    fontSize: 13,
+    color: colors.primary,
+    userSelect: 'none',
+  },
+  light: {
+    fontFamily: 'Montserrat_400Regular',
+    fontSize: 16,
+    color: colors.primary,
+    userSelect: 'none',
+  },
+  normalMedium: {
+    fontFamily: 'Montserrat_500Medium',
+    fontSize: 14,
+    color: colors.primary,
+    userSelect: 'none',
+  },
+  normalBold: {
+    fontFamily: 'Montserrat_700Bold',
+    fontSize: 14,
+    color: colors.primary,
+    userSelect: 'none',
+  },
+});
+
 const blackParagraphStyles = StyleSheet.create({
   largeBold: {
     fontFamily: 'Montserrat_600SemiBold',
@@ -121,17 +170,5 @@ const roseParagraphStyles = StyleSheet.create({
   },
 });
 
-const paragraphStyles = StyleSheet.create({
-  primary: {
-    fontFamily: 'Montserrat_400Regular',
-    fontSize: 11,
-    color: colors.black,
-    userSelect: 'none',
-    
-
-  },
-});
-
 export { primaryTitleStyles, whiteTitleStyle, blackTitleStyles };
-export { paragraphStyles };
-export { primaryParagraphStyles, blackParagraphStyles, roseParagraphStyles };
+export { primaryParagraphStyles, blackParagraphStyles, roseParagraphStyles, blackParagraphLimitLineStyles, whiteParagraphStyles };
