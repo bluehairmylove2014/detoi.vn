@@ -5,6 +5,7 @@ export const BarIconSectionStyle = StyleSheet.create({
     active_icon_container: {
         borderWidth: 1.5,
         borderRadius: 999,
+        // Not in color.ts
         borderColor: '#C89300',
         padding: 18,
         backgroundColor: colors.white,
@@ -17,6 +18,7 @@ export const BarIconSectionStyle = StyleSheet.create({
     },
 
     label: {
+        // Not in color.ts
         color: '#595753', 
         fontSize: 11
     },

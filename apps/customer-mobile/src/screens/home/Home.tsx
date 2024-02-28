@@ -43,6 +43,11 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
     image: 'https://detoivn.sirv.com/events/001.png',
   });
 
+  // Get point from api
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [point, setPoint] = useState(105);
+
+  // Get endow from api
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [endows, setEndows] = useState([
     {
@@ -57,6 +62,10 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
       label: 'Dọn dẹp',
     },
   ]);
+
+  // Get member from api
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [members, setMember] = useState(['']);
 
   // Real time get notifications
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -149,7 +158,8 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
           <TouchableOpacity style={serviceSectionStyle.card}>
             <View>
               <PrimaryParagraph theme="small">Điểm tích lũy</PrimaryParagraph>
-              <BlackParagraph theme="smallBold">105 điểm</BlackParagraph>
+              {/* point from api */}
+              <BlackParagraph theme="smallBold">{point} điểm</BlackParagraph>
             </View>
             <Image source={require('../../../assets/point.png')} />
           </TouchableOpacity>
@@ -194,6 +204,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
         </ScrollView>
 
         {/* Member */}
+        {/* Use member state get from api */}
         <VerticalSpacer size="xs" />
         <PrimaryTitle theme="primary">Gói hội viên Detoi</PrimaryTitle>
         <VerticalSpacer size="xs" />

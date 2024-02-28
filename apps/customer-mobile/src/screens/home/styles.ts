@@ -136,6 +136,7 @@ const endowSectionStyle = StyleSheet.create({
         maxWidth: '90%',
         padding: 7,
         borderWidth: 1,
+        // Not in color.ts
         borderColor: '#CBCBCB',
         borderRadius: 5,
         alignItems: 'center',

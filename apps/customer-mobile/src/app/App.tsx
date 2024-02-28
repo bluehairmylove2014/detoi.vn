@@ -6,6 +6,7 @@ import { TabNavigationContainer } from './MainTab';
 
 const App = () => {
   // Can test other scren by modified this variable
+  // Use this variable to test screen, not for main flow of app
   const login = true;
 
   return (
