@@ -10,13 +10,16 @@ import {
   HorizontalSpacer,
   ServiceRequirementsInput,
   ServiceRequirementsSelect,
+  VerticalSpacer,
 } from '@present-native/atoms';
 
 type useServiceRequirementsUIType = {
   onGenerateUI: ({
     requirements,
+    additionalRequirements,
   }: {
     requirements: IUIServiceRequirement[];
+    additionalRequirements?: IUIAdditionServiceRequirement[];
   }) => JSX.Element;
   getForm: () => {
     handleSubmit: UseFormHandleSubmit<FieldValues, FieldValues>;
@@ -36,6 +39,8 @@ export const useServiceRequirementsUI = (): useServiceRequirementsUIType => {
       <>
         {requirements.map((r, i) => (
           <View key={`requirement@${i}`}>
+            <VerticalSpacer size="xxl"></VerticalSpacer>
+
             {r.inputMethod.method.name === 'input' ? (
               <ServiceRequirementsInput
                 type={r.inputMethod.dataType}
@@ -64,21 +69,25 @@ export const useServiceRequirementsUI = (): useServiceRequirementsUIType => {
         ))}
         {Array.isArray(additionalRequirements) ? (
           <>
-            <BlackParagraph theme="normalBold">
+            <VerticalSpacer size="xxxl"></VerticalSpacer>
+
+            <BlackParagraph theme="baseBold">
               Yêu cầu thêm cho nhân viên?
             </BlackParagraph>
             {additionalRequirements.map((ar, i) => (
-              <View key={`additionalRequirement@${i}`}>
-                <AdditionServiceRequirement
-                  icon={ar.icon}
-                  label={ar.label}
-                  autoSelect={ar.autoSelect}
-                  additionFee={ar.additionFee}
-                  control={control}
-                  setValue={setValue}
-                  selectName={`additionalRequirement@${ar.id}`}
-                />
-                <HorizontalSpacer size="m" />
+              <View key={`ar@${i}`}>
+                <View key={`additionalRequirement@${i}`}>
+                  <VerticalSpacer size="l"></VerticalSpacer>
+                  <AdditionServiceRequirement
+                    icon={ar.icon}
+                    label={ar.label}
+                    autoSelect={ar.autoSelect}
+                    control={control}
+                    setValue={setValue}
+                    selectName={`additionalRequirement@${ar.id}`}
+                  />
+                  <HorizontalSpacer size="m" />
+                </View>
               </View>
             ))}
           </>

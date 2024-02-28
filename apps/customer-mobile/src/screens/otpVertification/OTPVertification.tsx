@@ -113,11 +113,11 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
     <SafeAreaView>
       <View style={otpVertificationScreenStyle.container}>
         <View style={{ marginTop: 5 }}>
-          <BlackParagraph theme="normalMedium">
+          <BlackParagraph theme="baseMedium">
             Mã OTP gồm 4 chữ số được gửi tới số
-            <BlackParagraph theme="normalBold"> {phoneNumber} </BlackParagraph>
+            <BlackParagraph theme="baseBold"> {phoneNumber} </BlackParagraph>
             thông qua tin nhắn
-            <BlackParagraph theme="normalBold"> SMS</BlackParagraph>
+            <BlackParagraph theme="baseBold"> SMS</BlackParagraph>
           </BlackParagraph>
         </View>
         <View style={{ marginTop: 30 }}></View>
@@ -158,7 +158,7 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
                     color={colors.secondary}
                     style={{ marginRight: 5 }}
                   />
-                  <BlackParagraph theme="normalBold">
+                  <BlackParagraph theme="baseBold">
                     00:{timerCount.toString().padStart(2, '0')}
                   </BlackParagraph>
                 </View>
@@ -177,7 +177,7 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
 
         {activeWarning && (
           <View style={{ marginTop: 15 }}>
-            <RoseParagraph theme="normalMedium">
+            <RoseParagraph theme="baseMedium">
               Mã OTP bạn vừa nhập không hợp lệ. Bạn có thể thử thêm {countWrong}{' '}
               lần nữa
             </RoseParagraph>

@@ -26,7 +26,7 @@ const PrimaryButton = ({
         ...themeList[theme],
       }}
     >
-      <BlackParagraph theme="normalBold">{title}</BlackParagraph>
+      <BlackParagraph theme="baseBold">{title}</BlackParagraph>
     </TouchableOpacity>
   );
 };
