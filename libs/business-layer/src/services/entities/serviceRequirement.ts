@@ -8,6 +8,7 @@ type inputMethodType =
       name: 'select';
       options?: IOption[];
     };
+
 type serviceRequirementsInputMethodType = {
   dataType: 'number' | 'text';
   method: inputMethodType;
@@ -27,5 +28,4 @@ export interface IUIAdditionServiceRequirement {
   icon: string;
   label: string;
   autoSelect: boolean;
-  additionFee?: number;
 }
