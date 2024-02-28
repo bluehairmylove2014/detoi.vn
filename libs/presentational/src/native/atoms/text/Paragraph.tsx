@@ -3,8 +3,7 @@ import React from 'react';
 import {
   blackParagraphStyles,
   primaryParagraphStyles,
-  roseParagraphStyles,
-  paragraphStyles
+  roseParagraphStyles
 } from '@presentational/native/styles';
 
 const PrimaryParagraph = ({
@@ -31,10 +30,4 @@ const RoseParagraph = ({
   theme: keyof typeof roseParagraphStyles;
 }) => <Text style={roseParagraphStyles[theme]}>{children}</Text>;
 
-const Paragraph = ({ ...props }) => {
-  const { children, numberLine,...restProps } = props;
-  const primaryStyles = { ...paragraphStyles.primary, ...restProps };
-  return <Text style={primaryStyles} numberOfLines={numberLine}>{children}</Text>;
-};
-
-export { PrimaryParagraph, BlackParagraph, RoseParagraph, Paragraph };
+export { PrimaryParagraph, BlackParagraph, RoseParagraph };

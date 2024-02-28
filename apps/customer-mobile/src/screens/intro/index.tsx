@@ -7,7 +7,7 @@ import {
   Facebook,
   NumberPhone,
 } from '@presentational/native/atoms/svg';
-import { BlackTitle, Paragraph } from '@present-native/atoms';
+import { BlackTitle, BlackParagraph } from '@present-native/atoms';
 import React from 'react';
 import Button from '@present-native/atoms/button/ButtonFactory';
 import { introSCreenStyle } from './styles';
@@ -37,7 +37,7 @@ const IntroPage = () => {
       <View style={introSCreenStyle.welcomeSection}>
         <Logo width={200} height={150} />
         <BlackTitle theme="largeBold">Chào mừng đến với Detoi</BlackTitle>
-        <Paragraph color="black">Ứng dụng hỗ trợ mọi dịch vụ bạn cần</Paragraph>
+        <BlackParagraph theme='baseMedium'>Ứng dụng hỗ trợ mọi dịch vụ bạn cần</BlackParagraph>
       </View>
 
       <View style={introSCreenStyle.buttonLoginSection}>
@@ -52,11 +52,11 @@ const IntroPage = () => {
         ))}
       </View>
       <View style={introSCreenStyle.introPolicySection}>
-        <Paragraph color="black">
+        <BlackParagraph theme='baseMedium'>
           Bằng việc đăng ký hoặc đăng nhập, bạn đã đồng ý với các{' '}
-          <Paragraph fontWeight="bold">Điều khoản dịch vụ</Paragraph> và{' '}
-          <Paragraph fontWeight="bold">Chính sách bảo mật</Paragraph>
-        </Paragraph>
+          <BlackParagraph theme='baseBold'>Điều khoản dịch vụ</BlackParagraph> và{' '}
+          <BlackParagraph theme='baseBold'>Chính sách bảo mật</BlackParagraph>
+        </BlackParagraph>
       </View>
     </View>
   );

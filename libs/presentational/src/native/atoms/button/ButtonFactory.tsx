@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { Paragraph } from '../text';
+import { BlackParagraph } from '../text';
 import { colors } from '@present-native/styles';
 
 export type variant =
@@ -89,7 +89,7 @@ const Button = ({
       {leftIcon || <></>}
       <View style={{ flex: 1, alignItems: 'center' }}>
         {text ? (
-          <Paragraph color="black">{text}</Paragraph>
+          <BlackParagraph theme='baseMedium'>{text}</BlackParagraph>
         ) : null}
       </View>
 

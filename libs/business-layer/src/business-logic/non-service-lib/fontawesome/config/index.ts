@@ -6,7 +6,7 @@ import {
   faTimes,
   faCaretDown,
   faFlag,
-  faEarthAmericas
+  faEarthAmericas,
   faDog,
   faComputer,
   faBroom,

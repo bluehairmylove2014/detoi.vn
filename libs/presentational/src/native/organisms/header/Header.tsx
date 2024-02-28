@@ -5,8 +5,8 @@ import { SelectCountry } from 'react-native-element-dropdown';
 import { colors, screenVertizontalPadding } from '@present-native/styles';
 
 export enum EDTypeDisplayHeader {
-  BACK_BUTTON = 'back_button',
-  LANGUAGE_BUTTON = 'language_button',
+  BACK_BUTTON = 'backButton',
+  LANGUAGE_BUTTON = 'languageButton',
 }
 type TDisplayType =
   | EDTypeDisplayHeader.BACK_BUTTON
