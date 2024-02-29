@@ -1,20 +1,26 @@
 import { useAuthContext } from '@business-layer/business-logic/lib/auth/process/context';
-import { useGetAllCategoriesQuery } from '../../fetching/query';
-import { ICategory } from '@business-layer/services/entities';
+import { useGetAllServiceByCategoryIdQuery } from '../../fetching/query';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
+import { getAllServicesOfCategoryResponseType } from '@business-layer/services';
 
 type useGetAllServiceByCategoryIdType = {
-  data: ICategory[] | undefined;
+  data: getAllServicesOfCategoryResponseType | undefined;
   refetch: (
     options?: RefetchOptions | undefined
-  ) => Promise<QueryObserverResult<ICategory[], Error>>;
+  ) => Promise<
+    QueryObserverResult<getAllServicesOfCategoryResponseType, Error>
+  >;
 };
-export const useGetAllServiceByCategoryId =
-  (): useGetAllServiceByCategoryIdType => {
-    const { state } = useAuthContext();
-    const { data, refetch } = useGetAllCategoriesQuery(state.token);
-    return {
-      data,
-      refetch,
-    };
+export const useGetAllServiceByCategoryId = (
+  categoryId: string
+): useGetAllServiceByCategoryIdType => {
+  const { state } = useAuthContext();
+  const { data, refetch } = useGetAllServiceByCategoryIdQuery({
+    token: state.token,
+    categoryId,
+  });
+  return {
+    data,
+    refetch,
   };
+};
