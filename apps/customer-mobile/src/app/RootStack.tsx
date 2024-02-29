@@ -7,6 +7,7 @@ import HomeScreen from '../screens/home/Home';
 import ChooseLocationScreen from '../screens/chooseLocation/ChooseLocation';
 import LoginScreen from '../screens/login/Login';
 import OTPVertificationScreen from '../screens/otpVertification/OTPVertification';
+import IntroScreen from '../screens/intro';
 import ProvideDetailScreen from '../screens/provideDetail/ProvideDetail';
 
 export const RStack = createNativeStackNavigator<customerRootStackParamList>();
@@ -19,6 +20,11 @@ export const RootNavigationContainer = ({
     <NavigationContainer>
       <RStack.Navigator initialRouteName={initRoute}>
         {/* Then, put stack.screen for your screen component here (in the end) */}
+        <RStack.Screen
+          component={IntroScreen}
+          name="Intro"
+          options={{ headerShown: false }}
+        />
         <RStack.Screen
           component={HomeScreen}
           name="Home"

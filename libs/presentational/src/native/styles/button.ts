@@ -69,6 +69,15 @@ const commonButtonStyles = StyleSheet.create({
     borderWidth: 1,
     alignSelf: 'flex-start',
   },
+  iconTextButton: {
+    maxWidth: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    paddingVertical: 8,
+    backgroundColor: colors.white,
+  }
 });
 const asyncButtonStyles = StyleSheet.create({});
 
