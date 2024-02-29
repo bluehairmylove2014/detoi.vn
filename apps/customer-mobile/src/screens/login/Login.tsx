@@ -20,11 +20,6 @@ import {
   useYupValidationResolver,
   loginByPhoneNumberSchema,
 } from '@utils/validators/yup';
-import {
-  IUIAdditionServiceRequirement,
-  IUIServiceRequirement,
-} from '@business-layer/services/entities';
-import { useServiceRequirementsUI } from '@business-layer/business-logic/lib/category';
 
 const DEFAULT_COUNTRY_CODE = {
   alpha2Code: 'VN',
@@ -33,88 +28,16 @@ const DEFAULT_COUNTRY_CODE = {
   flag: 'https://flagsapi.com/VN/flat/64.png',
 };
 
-function removeLeadingZero(phoneNumber: string): string {
+function removeLeadingZeroFromPhoneNumber(phoneNumber: string): string {
   if (phoneNumber.startsWith('0')) {
     return phoneNumber.slice(1);
   }
   return phoneNumber;
 }
+
 type phoneInputFormType = {
   phone: string;
 };
-
-const testDataInput: IUIServiceRequirement[] = [
-  {
-    id: '0',
-    inputMethod: {
-      dataType: 'text',
-      method: {
-        name: 'input',
-      },
-
-      validation: {
-        id: '0',
-        name: 'required',
-        message: 'string',
-      },
-    },
-
-    label: 'Số nhà, số phòng, hẻm (ngõ)',
-    placeholder: 'Ví dụ: 257/43 Phòng 2014 Căn hộ Sunrise Continent',
-  },
-  {
-    id: '1',
-    inputMethod: {
-      dataType: 'text',
-      method: {
-        name: 'select',
-        options: [
-          {
-            id: '0',
-            name: 'Dọn trọn gói',
-            description: 'Tất cả dịch vụ, dọn toàn bộ nhà / phòng',
-          },
-          {
-            id: '1',
-            name: 'Dọn theo phòng',
-            description: 'Trung bình 50.000đ / phòng, tiết kiệm và nhanh chóng',
-          },
-        ],
-      },
-
-      validation: {
-        id: '0',
-        name: 'required',
-        message: 'string',
-      },
-    },
-
-    label: 'Bạn muốn chúng tôi dọn như thế nào?',
-    labelIcon: 'faFlag',
-    placeholder: 'Giúp nhân viên biết thêm về công việc cần làm',
-  },
-];
-
-const testSwitch: IUIAdditionServiceRequirement[] = [
-  {
-    id: '0',
-    icon: 'faDog',
-    label: 'Nhà có thú cưng',
-    autoSelect: true,
-  },
-  {
-    id: '1',
-    icon: 'faComputer',
-    label: 'Nhà có nhiều đồ điện tử',
-    autoSelect: false,
-  },
-  {
-    id: '2',
-    icon: 'faBroom',
-    label: 'Nhân viên tự mang theo dụng cụ',
-    autoSelect: false,
-  },
-];
 const Login: React.FC<LoginProps> = ({ route, navigation }) => {
   const formResolver = useYupValidationResolver(loginByPhoneNumberSchema);
   const [countryCode, setCountryCode] =
@@ -129,7 +52,8 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
   const { onLogin, isLoading } = useLogin();
   // methods
   const onSuccessSubmitPhoneNumber = ({ phone }: phoneInputFormType) => {
-    const phoneNumber = countryCode.callingCodes[0] + removeLeadingZero(phone);
+    const phoneNumber =
+      countryCode.callingCodes[0] + removeLeadingZeroFromPhoneNumber(phone);
     onLogin({ phone: phoneNumber })
       .then((msg) => {
         navigation.navigate('OTPVertification');
@@ -144,8 +68,6 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
     console.log(error);
     // HANDLE INVALID PHONE NUMBER HERE
   };
-
-  const { onGenerateUI } = useServiceRequirementsUI();
 
   return (
     <SafeAreaView>
@@ -221,11 +143,6 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
             />
           </View>
         </View>
-
-        {onGenerateUI({
-          requirements: testDataInput,
-          additionalRequirements: testSwitch,
-        })}
       </View>
     </SafeAreaView>
   );

@@ -1,7 +1,18 @@
 import { Services } from '@business-layer/services/service';
-import { getAllCategoryResponseSchema } from './schema';
-import { getAllCategoryParamsType, getAllCategoryResponseType } from './type';
-import { getAllCategoryEndpoint } from '@business-layer/services/config/apis';
+import {
+  getAllCategoryResponseSchema,
+  getAllServicesOfCategoryResponseSchema,
+} from './schema';
+import {
+  getAllCategoryPropsType,
+  getAllCategoryResponseType,
+  getAllServicesOfCategoryPropsType,
+  getAllServicesOfCategoryResponseType,
+} from './type';
+import {
+  getAllCategoryEndpoint,
+  getAllServicesOfCategoryEndpoint,
+} from '@business-layer/services/config/apis';
 
 const UNAUTHORIZED_MESSAGE = 'Unauthorized';
 
@@ -9,7 +20,7 @@ export * from './type';
 export class CategoryService extends Services {
   getAllCategory = async ({
     token,
-  }: getAllCategoryParamsType): Promise<getAllCategoryResponseType> => {
+  }: getAllCategoryPropsType): Promise<getAllCategoryResponseType> => {
     this.abortController = new AbortController();
     try {
       if (!token) {
@@ -34,20 +45,24 @@ export class CategoryService extends Services {
     }
   };
   getAllServicesOfCategory = async ({
+    categoryId,
     token,
-  }: getAllCategoryParamsType): Promise<getAllCategoryResponseType> => {
+  }: getAllServicesOfCategoryPropsType): Promise<getAllServicesOfCategoryResponseType> => {
     this.abortController = new AbortController();
     try {
       if (!token) {
         throw new Error(UNAUTHORIZED_MESSAGE);
       } else {
         return await this.fetchApi<
-          typeof getAllCategoryResponseSchema,
-          getAllCategoryResponseType
+          typeof getAllServicesOfCategoryResponseSchema,
+          getAllServicesOfCategoryResponseType
         >({
           method: 'GET',
-          url: getAllCategoryEndpoint,
-          schema: getAllCategoryResponseSchema,
+          url: getAllServicesOfCategoryEndpoint,
+          schema: getAllServicesOfCategoryResponseSchema,
+          params: {
+            id: categoryId,
+          },
           headers: {
             Authorization: `Bearer ${token}`,
           },

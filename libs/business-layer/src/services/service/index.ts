@@ -10,13 +10,12 @@ export class Services {
   }
 
   handleError(error: any): Error {
-    // console.error('service error: ', error);
+    console.error('service error: ', error);
     if (isCancel(error)) {
       this.cancelRequest();
       return error;
     }
     if (error?.name && error.name === 'ZodError') {
-      console.error(error);
       return new Error(unknownError);
     } else {
       return new Error(
