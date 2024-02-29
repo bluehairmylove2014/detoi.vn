@@ -6,6 +6,7 @@ type customerRootStackParamList = {
   ChooseLocation: undefined;
   Login: undefined;
   OTPVertification: undefined;
+  SummaryOrder: undefined;
 };
 
 // 2. Props
@@ -19,6 +20,7 @@ type OTPVertificationProps = NativeStackScreenProps<
   customerRootStackParamList,
   'OTPVertification'
 >;
+type SummaryOrderProps = NativeStackScreenProps<customerRootStackParamList, 'SummaryOrder'>;
 
 // 3. Export props
 export {
@@ -27,4 +29,5 @@ export {
   ChooseLocationProps,
   LoginProps,
   OTPVertificationProps,
+  SummaryOrderProps,
 };

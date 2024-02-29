@@ -78,7 +78,12 @@ const blackParagraphStyles = StyleSheet.create({
     fontFamily: 'Montserrat_500Medium',
     userSelect: 'none',
   },
-
+  baseNormal: {
+    fontFamily: 'Montserrat_400Regular',
+    fontSize: 14,
+    color: colors.black,
+    userSelect: 'none',
+  },
   baseMedium: {
     fontFamily: 'Montserrat_500Medium',
     fontSize: 14,
@@ -91,7 +96,12 @@ const blackParagraphStyles = StyleSheet.create({
     color: colors.black,
     userSelect: 'none',
   },
-
+  smallNormal: {
+    fontFamily: 'Montserrat_400Regular',
+    fontSize: 13,
+    color: colors.black,
+    userSelect: 'none',
+  },
   smallMedium: {
     fontFamily: 'Montserrat_500Medium',
     fontSize: 13,

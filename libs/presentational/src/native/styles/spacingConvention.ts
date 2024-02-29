@@ -1,2 +1,3 @@
 const screenHorizontalPadding = 20;
-export { screenHorizontalPadding };
+const gapSections = 20;
+export { screenHorizontalPadding, gapSections };
