@@ -14,6 +14,12 @@ const primaryTitleStyles = StyleSheet.create({
     fontFamily: 'Montserrat_600SemiBold',
     userSelect: 'none',
   },
+  primaryBold: {
+    color: colors.primary,
+    fontSize: 18,
+    fontFamily: 'Montserrat_700Bold',
+    userSelect: 'none',
+  }
 });
 const whiteTitleStyle = StyleSheet.create({
   categoryName: {
