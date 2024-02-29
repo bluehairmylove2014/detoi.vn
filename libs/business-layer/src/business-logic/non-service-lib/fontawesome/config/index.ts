@@ -11,6 +11,9 @@ import {
   faHouseFire,
   faCaretDown,
   faFlag,
+  faBoxOpen,
+  faShoppingBag,
+  faBox,
 } from '@fortawesome/free-solid-svg-icons';
 import { fa500px } from '@fortawesome/free-brands-svg-icons';
 import { faAddressCard } from '@fortawesome/free-regular-svg-icons';
@@ -28,6 +31,9 @@ export const NATIVE_ICONS = {
   faHouseFire,
   faCaretDown,
   faFlag,
+  faBoxOpen,
+  faShoppingBag,
+  faBox
 };
 
 export type nativeIconNameType = keyof typeof NATIVE_ICONS;

@@ -1,10 +1,4 @@
-import {
-  View,
-  SafeAreaView,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import { View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { HomeProps } from '../../config';
 import {
@@ -22,7 +16,6 @@ import {
   VerticalSpacer,
   BellIconButton,
   SubtitleLink,
-  BlackParagraph,
   PrimaryScrollView,
 } from '@present-native/atoms';
 import { IEvent } from '@business-layer/services/entities';
@@ -31,6 +24,7 @@ import { CategoryAndServiceSearchBox } from '@present-native/molecules';
 import CategoryThumbnail from '@present-native/molecules/category/CategoryThumbnail';
 import { useGetAllCategories } from '@business-layer/business-logic/lib/category';
 import EndowItem from '@present-native/molecules/endow/EndowItem';
+import ServiceCard from '@present-native/molecules/card/ServiceCard';
 
 const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   const { data: categories } = useGetAllCategories();
@@ -145,7 +139,23 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
         {/* Other service */}
         <VerticalSpacer size="xs" />
         <View style={serviceSectionStyle.other_service}>
-          <TouchableOpacity style={serviceSectionStyle.card}>
+          <ServiceCard
+            title="Thêm dịch vụ khác"
+            subtitle="Góp ý"
+            iconName="faBox"
+            onPress={() => {
+              console.log('Gop y');
+            }}
+          />
+          <ServiceCard
+            title={`${point} điểm`}
+            subtitle="Điểm tích lũy"
+            iconName="faShoppingBag"
+            onPress={() => {
+              console.log('Gop y');
+            }}
+          />
+          {/* <TouchableOpacity style={serviceSectionStyle.card}>
             <View>
               <PrimaryParagraph theme="small">Góp ý</PrimaryParagraph>
               <BlackParagraph theme="smallBold">
@@ -157,11 +167,10 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
           <TouchableOpacity style={serviceSectionStyle.card}>
             <View>
               <PrimaryParagraph theme="small">Điểm tích lũy</PrimaryParagraph>
-              {/* point from api */}
               <BlackParagraph theme="smallBold">{point} điểm</BlackParagraph>
             </View>
             <Image source={require('../../../assets/point.png')} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
 
         {/* Endow */}
