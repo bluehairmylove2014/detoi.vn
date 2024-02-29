@@ -20,6 +20,7 @@ export const PrimaryScrollView = ({
   return (
     <ScrollView
       {...directionProps[direction]}
+      // Config some general prop for ScrollView for all Apolication in here
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
     >

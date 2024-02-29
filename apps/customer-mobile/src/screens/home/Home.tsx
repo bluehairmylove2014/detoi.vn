@@ -23,6 +23,7 @@ import {
   BellIconButton,
   SubtitleLink,
   BlackParagraph,
+  PrimaryScrollView,
 } from '@present-native/atoms';
 import { IEvent } from '@business-layer/services/entities';
 import { colors } from '@present-native/styles';
@@ -143,7 +144,6 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
 
         {/* Other service */}
         <VerticalSpacer size="xs" />
-        {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}> */}
         <View style={serviceSectionStyle.other_service}>
           <TouchableOpacity style={serviceSectionStyle.card}>
             <View>
@@ -163,44 +163,27 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
             <Image source={require('../../../assets/point.png')} />
           </TouchableOpacity>
         </View>
-        {/* </ScrollView> */}
 
         {/* Endow */}
         <VerticalSpacer size="xs" />
         <PrimaryTitle theme="primary">Ưu đãi dành riêng cho bạn</PrimaryTitle>
         <VerticalSpacer size="xs" />
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <PrimaryScrollView direction="horizontal">
           <View style={endowSectionStyle.container}>
-            {/* <TouchableOpacity style={endowSectionStyle.item}>
-              <View>
-                <Image
-                  source={require('../../../assets/endow1.png')}
-                  resizeMode="contain"
-                  style={endowSectionStyle.endow_image}
-                />
-              </View>
-              <View style={endowSectionStyle.content}>
-                <BlackParagraph theme="normalMedium">
-                  Giảm nóng 20k cho lần đầu trải nghiệm dịch vụ
-                </BlackParagraph>
-                <PrimaryParagraph theme="small">
-                  Tất cả dịch vụ
-                </PrimaryParagraph>
-              </View>
-            </TouchableOpacity> */}
-
-            {Array.isArray(endows) &&
-              endows.length > 0 &&
-              endows.map((item, index) => (
-                <EndowItem
-                  key={index}
-                  image={item.image}
-                  description={item.description}
-                  label={item.label}
-                />
-              ))}
+            {Array.isArray(endows) && endows.length > 0 ? (
+              <>
+                {endows.map((item, index) => (
+                  <EndowItem
+                    key={index}
+                    image={item.image}
+                    description={item.description}
+                    label={item.label}
+                  />
+                ))}
+              </>
+            ) : null}
           </View>
-        </ScrollView>
+        </PrimaryScrollView>
 
         {/* Member */}
         {/* Use member state get from api */}
