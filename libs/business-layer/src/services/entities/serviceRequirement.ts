@@ -12,7 +12,7 @@ type inputMethodType =
 type serviceRequirementsInputMethodType = {
   dataType: 'number' | 'text';
   method: inputMethodType;
-  validation: { id: string } & validationType;
+  validation: ({ id: string } & validationType)[];
 };
 
 export interface IUIServiceRequirement {
