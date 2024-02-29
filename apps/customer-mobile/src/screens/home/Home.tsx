@@ -17,6 +17,7 @@ import {
   BellIconButton,
   SubtitleLink,
   PrimaryScrollView,
+  Thumbnail,
 } from '@present-native/atoms';
 import { IEvent } from '@business-layer/services/entities';
 import { colors } from '@present-native/styles';
@@ -200,18 +201,8 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
         <PrimaryTitle theme="primary">Gói hội viên Detoi</PrimaryTitle>
         <VerticalSpacer size="xs" />
         <View style={memberSectionStyle.container}>
-          <TouchableOpacity>
-            <Image
-              source={require('../../../assets/member1.png')}
-              style={memberSectionStyle.member_image}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              source={require('../../../assets/member2.png')}
-              style={memberSectionStyle.member_image}
-            />
-          </TouchableOpacity>
+          <Thumbnail theme="large" image="" />
+          <Thumbnail theme="large" image="" />
         </View>
       </View>
     </View>

@@ -110,16 +110,7 @@ const serviceSectionStyle = StyleSheet.create({
     gap: 5,
     width: '100%',
   },
-  card: {
-    backgroundColor: colors.soft,
-    display: 'flex',
-    flexDirection: 'row',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    gap: 7,
-    borderRadius: 5,
-    minWidth: '45%'
-  },
+  
 });
 
 
@@ -161,11 +152,7 @@ const memberSectionStyle = StyleSheet.create({
         justifyContent: 'space-between'
     },
 
-    member_image: {
-        height: 160, 
-        width: 160, 
-        borderRadius: 5
-    }
+    
 })
 
 export { homeScreenStyle, topLabelStyle, serviceSectionStyle, endowSectionStyle, memberSectionStyle };
