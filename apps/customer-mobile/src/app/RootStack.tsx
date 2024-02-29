@@ -23,7 +23,6 @@ export const RootNavigationContainer = ({
           component={IntroScreen}
           name="Intro"
           options={{ headerShown: false }}
-
         />
         <RStack.Screen
           component={HomeScreen}

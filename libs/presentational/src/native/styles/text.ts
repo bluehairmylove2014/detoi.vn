@@ -121,6 +121,6 @@ const roseParagraphStyles = StyleSheet.create({
   },
 });
 
-
 export { primaryTitleStyles, whiteTitleStyle, blackTitleStyles };
+
 export { primaryParagraphStyles, blackParagraphStyles, roseParagraphStyles };
