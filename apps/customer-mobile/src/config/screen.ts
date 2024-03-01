@@ -10,6 +10,15 @@ type customerRootStackParamList = {
   ProvideDetail: { categoryId: string };
 };
 
+type customerTabParamList = {
+    Home: undefined,
+    Endow: undefined,
+    Message: undefined,
+    SingleService: undefined,
+    Account: undefined,
+    Login: undefined
+}
+
 // 2. Props
 type HomeProps = NativeStackScreenProps<customerRootStackParamList, 'Home'>;
 type ChooseLocationProps = NativeStackScreenProps<
@@ -34,6 +43,7 @@ export {
   ChooseLocationProps,
   LoginProps,
   OTPVertificationProps,
+  customerTabParamList,
   IntroProps,
   ProvideDetailProps
 };

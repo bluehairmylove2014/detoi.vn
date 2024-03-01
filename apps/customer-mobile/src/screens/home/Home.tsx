@@ -1,7 +1,13 @@
 import { View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { HomeProps } from '../../config';
-import { homeScreenStyle, topLabelStyle, serviceSectionStyle } from './styles';
+import {
+  homeScreenStyle,
+  topLabelStyle,
+  serviceSectionStyle,
+  endowSectionStyle,
+  memberSectionStyle,
+} from './styles';
 import {
   FAIcon,
   HorizontalSpacer,
@@ -10,12 +16,16 @@ import {
   VerticalSpacer,
   BellIconButton,
   SubtitleLink,
+  PrimaryScrollView,
+  Thumbnail,
 } from '@present-native/atoms';
 import { IEvent } from '@business-layer/services/entities';
 import { colors } from '@present-native/styles';
 import { CategoryAndServiceSearchBox } from '@present-native/molecules';
 import CategoryThumbnail from '@present-native/molecules/category/CategoryThumbnail';
 import { useGetAllCategories } from '@business-layer/business-logic/lib/category';
+import EndowItem from '@present-native/molecules/endow/EndowItem';
+import ServiceCard from '@present-native/molecules/card/ServiceCard';
 
 const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   const { data: categories } = useGetAllCategories();
@@ -28,6 +38,30 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
     screenName: 'ChooseLocation',
     image: 'https://detoivn.sirv.com/events/001.png',
   });
+
+  // Get point from api
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [point, setPoint] = useState(105);
+
+  // Get endow from api
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [endows, setEndows] = useState([
+    {
+      image: null,
+      description: 'Giảm nóng 20k cho lần đầu trải nghiệm dịch vụ',
+      label: 'Tất cả dịch vụ',
+    },
+
+    {
+      image: null,
+      description: 'Dọn nhà cuối năm, giảm tới 50k',
+      label: 'Dọn dẹp',
+    },
+  ]);
+
+  // Get member from api
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [members, setMember] = useState(['']);
 
   // Real time get notifications
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -107,6 +141,74 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
               </TouchableOpacity>
             </>
           ) : null}
+        </View>
+
+        {/* Other service */}
+        <VerticalSpacer size="xs" />
+        <View style={serviceSectionStyle.other_service}>
+          <ServiceCard
+            title="Thêm dịch vụ khác"
+            subtitle="Góp ý"
+            iconName="faBox"
+            onPress={() => {
+              console.log('Gop y');
+            }}
+          />
+          <ServiceCard
+            title={`${point} điểm`}
+            subtitle="Điểm tích lũy"
+            iconName="faShoppingBag"
+            onPress={() => {
+              console.log('Gop y');
+            }}
+          />
+          {/* <TouchableOpacity style={serviceSectionStyle.card}>
+            <View>
+              <PrimaryParagraph theme="small">Góp ý</PrimaryParagraph>
+              <BlackParagraph theme="smallBold">
+                Thêm dịch vụ khác
+              </BlackParagraph>
+            </View>
+            <Image source={require('../../../assets/feedback.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={serviceSectionStyle.card}>
+            <View>
+              <PrimaryParagraph theme="small">Điểm tích lũy</PrimaryParagraph>
+              <BlackParagraph theme="smallBold">{point} điểm</BlackParagraph>
+            </View>
+            <Image source={require('../../../assets/point.png')} />
+          </TouchableOpacity> */}
+        </View>
+
+        {/* Endow */}
+        <VerticalSpacer size="xs" />
+        <PrimaryTitle theme="primary">Ưu đãi dành riêng cho bạn</PrimaryTitle>
+        <VerticalSpacer size="xs" />
+        <PrimaryScrollView direction="horizontal">
+          <View style={endowSectionStyle.container}>
+            {Array.isArray(endows) && endows.length > 0 ? (
+              <>
+                {endows.map((item, index) => (
+                  <EndowItem
+                    key={index}
+                    image={item.image}
+                    description={item.description}
+                    label={item.label}
+                  />
+                ))}
+              </>
+            ) : null}
+          </View>
+        </PrimaryScrollView>
+
+        {/* Member */}
+        {/* Use member state get from api */}
+        <VerticalSpacer size="xs" />
+        <PrimaryTitle theme="primary">Gói hội viên Detoi</PrimaryTitle>
+        <VerticalSpacer size="xs" />
+        <View style={memberSectionStyle.container}>
+          <Thumbnail theme="large" image="" />
+          <Thumbnail theme="large" image="" />
         </View>
       </View>
     </View>
