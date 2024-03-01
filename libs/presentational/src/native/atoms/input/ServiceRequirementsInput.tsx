@@ -31,17 +31,19 @@ const ServiceRequirementsInput = ({
     <View style={ServiceRequirementsInputStyle.container}>
       <View style={ServiceRequirementsInputStyle.labelContainer}>
         {labelIcon ? (
-          <FAIcon
-            iconName={labelIcon as nativeIconNameType}
-            color={colors.black}
-            size={15}
-          />
+          <View style={{ marginRight: 5 }}>
+            <FAIcon
+              iconName={labelIcon as nativeIconNameType}
+              color={colors.black}
+              size={15}
+            />
+          </View>
         ) : (
           <></>
         )}
 
-        <View style={{ marginLeft: 5 }}>
-          <BlackParagraph theme="normalBold">
+        <View>
+          <BlackParagraph theme="baseBold">
             {labelIcon ? ' | ' : ''} {label}
             <RoseParagraph theme="largeMedium"> *</RoseParagraph>
           </BlackParagraph>

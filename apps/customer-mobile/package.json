@@ -43,6 +43,7 @@
     "expo-secure-store": "*",
     "expo-linear-gradient": "*",
     "@react-navigation/bottom-tabs": "*",
+    "react-native-element-dropdown": "*",
     "uuid": "*",
     "yup": "*"
   },

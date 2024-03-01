@@ -118,7 +118,13 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
           {Array.isArray(categories) && categories.length > 0 ? (
             <>
               {categories.slice(0, 5).map((c) => (
-                <CategoryThumbnail category={c} key={`category@${c.id}`} />
+                <CategoryThumbnail
+                  category={c}
+                  key={`category@${c.id}`}
+                  onPress={() => {
+                    navigation.navigate('ProvideDetail', { categoryId: c.id });
+                  }}
+                />
               ))}
               <TouchableOpacity
                 style={serviceSectionStyle.categories_viewAllBtn}

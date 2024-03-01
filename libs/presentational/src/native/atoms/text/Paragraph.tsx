@@ -3,7 +3,7 @@ import React from 'react';
 import {
   blackParagraphStyles,
   primaryParagraphStyles,
-  roseParagraphStyles,
+  roseParagraphStyles
 } from '@presentational/native/styles';
 
 const PrimaryParagraph = ({

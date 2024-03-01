@@ -5,9 +5,15 @@ import { colors } from '@present-native/styles';
 import { WhiteTitle } from '@present-native/atoms';
 import { ICategory } from '@business-layer/services/entities';
 
-const CategoryThumbnail = ({ category }: { category: ICategory }) => {
+const CategoryThumbnail = ({
+  category,
+  onPress,
+}: {
+  category: ICategory;
+  onPress: () => void;
+}) => {
   return (
-    <TouchableOpacity style={categoryThumbnailStyle.category}>
+    <TouchableOpacity style={categoryThumbnailStyle.category} onPress={onPress}>
       <Image
         source={{ uri: category.image }}
         style={categoryThumbnailStyle.categoryImage}

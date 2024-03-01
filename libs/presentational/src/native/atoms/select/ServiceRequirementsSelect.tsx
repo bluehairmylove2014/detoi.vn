@@ -45,9 +45,7 @@ const ServiceRequirementsSelect = ({
       >
         <BlackParagraph theme="largeBold">{item.name}</BlackParagraph>
         <View style={{ marginTop: 5 }}>
-          <BlackParagraph theme="normalMedium">
-            {item.description}
-          </BlackParagraph>
+          <BlackParagraph theme="baseMedium">{item.description}</BlackParagraph>
         </View>
       </TouchableOpacity>
     );
@@ -98,17 +96,19 @@ const ServiceRequirementsSelect = ({
     <View style={serviceRequirementsSelectStyle.container}>
       <View style={serviceRequirementsSelectStyle.labelContainer}>
         {labelIcon ? (
-          <FAIcon
-            iconName={labelIcon as nativeIconNameType}
-            color={colors.black}
-            size={15}
-          />
+          <View style={{ marginRight: 5 }}>
+            <FAIcon
+              iconName={labelIcon as nativeIconNameType}
+              color={colors.black}
+              size={15}
+            />
+          </View>
         ) : (
           <></>
         )}
 
-        <View style={{ marginLeft: 5 }}>
-          <BlackParagraph theme="normalBold">
+        <View>
+          <BlackParagraph theme="baseBold">
             {labelIcon ? ' | ' : ''} {label}
             <RoseParagraph theme="largeMedium"> *</RoseParagraph>
           </BlackParagraph>

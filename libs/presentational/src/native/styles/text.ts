@@ -57,13 +57,13 @@ const primaryParagraphStyles = StyleSheet.create({
     color: colors.primary,
     userSelect: 'none',
   },
-  normalMedium: {
+  baseMedium: {
     fontFamily: 'Montserrat_500Medium',
     fontSize: 14,
     color: colors.primary,
     userSelect: 'none',
   },
-  normalBold: {
+  baseBold: {
     fontFamily: 'Montserrat_700Bold',
     fontSize: 14,
     color: colors.primary,
@@ -85,13 +85,13 @@ const blackParagraphStyles = StyleSheet.create({
     userSelect: 'none',
   },
 
-  normalMedium: {
+  baseMedium: {
     fontFamily: 'Montserrat_500Medium',
     fontSize: 14,
     color: colors.black,
     userSelect: 'none',
   },
-  normalBold: {
+  baseBold: {
     fontFamily: 'Montserrat_700Bold',
     fontSize: 14,
     color: colors.black,
@@ -119,7 +119,7 @@ const roseParagraphStyles = StyleSheet.create({
     fontFamily: 'Montserrat_500Medium',
     userSelect: 'none',
   },
-  normalMedium: {
+  baseMedium: {
     fontFamily: 'Montserrat_500Medium',
     fontSize: 14,
     color: colors.rose,

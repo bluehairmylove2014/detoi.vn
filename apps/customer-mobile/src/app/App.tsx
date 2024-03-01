@@ -15,7 +15,7 @@ const App = () => {
         {login ? (
           <TabNavigationContainer initRoute="Home" />
         ) : (
-          <RootNavigationContainer initRoute="Login" />
+          <RootNavigationContainer initRoute="Intro" />
         )}
       </CustomerTemplate>
     </BusinessLogicProvider>

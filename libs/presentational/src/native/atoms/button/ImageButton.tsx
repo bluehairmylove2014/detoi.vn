@@ -36,7 +36,7 @@ const CountryCodeButton: React.FC<imageButtonProps> = ({
         />
       </View>
       <View>
-        <BlackParagraph theme="normalMedium">{title}</BlackParagraph>
+        <BlackParagraph theme="baseMedium">{title}</BlackParagraph>
       </View>
     </TouchableOpacity>
   );
