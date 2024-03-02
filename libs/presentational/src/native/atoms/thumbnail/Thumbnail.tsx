@@ -10,10 +10,7 @@ const Thumbnail = ({
 }) => {
   return (
     <TouchableOpacity>
-      <Image
-        source={require('@assets/member1.png')}
-        style={ThumbnailSectionStyle[theme]}
-      />
+      <Image source={{ uri: image }} style={ThumbnailSectionStyle[theme]} />
     </TouchableOpacity>
   );
 };

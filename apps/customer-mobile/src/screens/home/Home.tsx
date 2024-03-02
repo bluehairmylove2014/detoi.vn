@@ -47,13 +47,14 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [endows, setEndows] = useState([
     {
-      image: null,
+      image:
+        'https://detoivn.sirv.com/voucher/_636da2ee-7b55-4d92-969f-b51607820058.jpg',
       description: 'Giảm nóng 20k cho lần đầu trải nghiệm dịch vụ',
       label: 'Tất cả dịch vụ',
     },
 
     {
-      image: null,
+      image: 'https://detoivn.sirv.com/voucher/sale.png',
       description: 'Dọn nhà cuối năm, giảm tới 50k',
       label: 'Dọn dẹp',
     },
@@ -61,7 +62,18 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
 
   // Get member from api
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [members, setMember] = useState(['']);
+  const [members, setMember] = useState([
+    {
+      id: '1',
+      thumbnail:
+        'https://detoivn.sirv.com/subscribe/_49dca4ad-3405-40d8-b33d-facfaeff071a.png',
+    },
+    {
+      id: '2',
+      thumbnail:
+        'https://detoivn.sirv.com/subscribe/_3cf1c993-becb-4b65-bfe5-dda32fd03b31.png',
+    },
+  ]);
 
   // Real time get notifications
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -149,7 +161,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
           <ServiceCard
             title="Thêm dịch vụ khác"
             subtitle="Góp ý"
-            iconName="faBox"
+            iconName="container"
             onPress={() => {
               console.log('Gop y');
             }}
@@ -157,27 +169,11 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
           <ServiceCard
             title={`${point} điểm`}
             subtitle="Điểm tích lũy"
-            iconName="faShoppingBag"
+            iconName="shoppingBag"
             onPress={() => {
-              console.log('Gop y');
+              console.log('Điểm tích lũy');
             }}
           />
-          {/* <TouchableOpacity style={serviceSectionStyle.card}>
-            <View>
-              <PrimaryParagraph theme="small">Góp ý</PrimaryParagraph>
-              <BlackParagraph theme="smallBold">
-                Thêm dịch vụ khác
-              </BlackParagraph>
-            </View>
-            <Image source={require('../../../assets/feedback.png')} />
-          </TouchableOpacity>
-          <TouchableOpacity style={serviceSectionStyle.card}>
-            <View>
-              <PrimaryParagraph theme="small">Điểm tích lũy</PrimaryParagraph>
-              <BlackParagraph theme="smallBold">{point} điểm</BlackParagraph>
-            </View>
-            <Image source={require('../../../assets/point.png')} />
-          </TouchableOpacity> */}
         </View>
 
         {/* Endow */}
@@ -203,13 +199,18 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
 
         {/* Member */}
         {/* Use member state get from api */}
-        <VerticalSpacer size="xs" />
-        <PrimaryTitle theme="primary">Gói hội viên Detoi</PrimaryTitle>
-        <VerticalSpacer size="xs" />
-        <View style={memberSectionStyle.container}>
-          <Thumbnail theme="large" image="" />
-          <Thumbnail theme="large" image="" />
-        </View>
+        {Array.isArray(members) && members.length > 0 ? (
+          <>
+            <VerticalSpacer size="xs" />
+            <PrimaryTitle theme="primary">Gói hội viên Detoi</PrimaryTitle>
+            <VerticalSpacer size="xs" />
+            <View style={memberSectionStyle.container}>
+              {members.map((m) => (
+                <Thumbnail theme="large" image={m.thumbnail} key={m.id} />
+              ))}
+            </View>
+          </>
+        ) : null}
       </View>
     </View>
   );

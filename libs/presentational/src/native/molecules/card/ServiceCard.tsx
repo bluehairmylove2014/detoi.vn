@@ -1,16 +1,18 @@
-import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
-import {
-  BlackParagraph,
-  FAIcon,
-  PrimaryParagraph,
-} from '@present-native/atoms';
+import { BlackParagraph, PrimaryParagraph } from '@present-native/atoms';
 import { ServiceCardSectionStyle } from '@present-native/styles/card';
 import { View, TouchableOpacity, Image } from 'react-native';
+import ContainerIcon from '@assets/feedback.png';
+import ShoppingBagIcon from '@assets/point.png';
+
+const iconImgMapper = {
+  container: ContainerIcon,
+  shoppingBag: ShoppingBagIcon,
+};
 
 type serviceCardType = {
   title: string;
   subtitle: string;
-  iconName: nativeIconNameType;
+  iconName: 'container' | 'shoppingBag';
   onPress: () => void;
 };
 
@@ -26,7 +28,7 @@ const ServiceCard = ({
       <BlackParagraph theme="smallBold">{title}</BlackParagraph>
     </View>
     <View style={ServiceCardSectionStyle.icon}>
-      <FAIcon iconName={iconName} size={20} />
+      <Image source={iconImgMapper[iconName]} />
     </View>
   </TouchableOpacity>
 );

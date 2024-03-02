@@ -107,52 +107,54 @@ const serviceSectionStyle = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: 5,
+    gap: 10,
     width: '100%',
   },
-  
 });
 
-
 const endowSectionStyle = StyleSheet.create({
-    container: {
-       display: 'flex', 
-       flexDirection: 'row', 
-       gap: 10  
-    },
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 10,
+  },
 
-    item: {
-        display: 'flex',
-        flexDirection: 'row',
-        maxWidth: '90%',
-        padding: 7,
-        borderWidth: 1,
-        // Not in color.ts
-        borderColor: '#CBCBCB',
-        borderRadius: 5,
-        alignItems: 'center',
-        gap: 10,
-    },
+  item: {
+    display: 'flex',
+    flexDirection: 'row',
+    maxWidth: '90%',
+    padding: 7,
+    borderWidth: 1,
+    // Not in color.ts
+    borderColor: '#CBCBCB',
+    borderRadius: 5,
+    alignItems: 'center',
+    gap: 10,
+  },
 
-    endow_image: {
-        width: 65, 
-        height: 70
-    },
+  endow_image: {
+    width: 65,
+    height: 70,
+  },
 
-    content: {
-        maxWidth: 220
-    }
-})
+  content: {
+    maxWidth: 220,
+  },
+});
 
 const memberSectionStyle = StyleSheet.create({
-    container: {
-        display: 'flex',
-        flexDirection: 'row',
-        gap: 20,
-        justifyContent: 'space-between'
-    },
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 20,
+    justifyContent: 'space-between',
+  },
+});
 
-    
-})
-
-export { homeScreenStyle, topLabelStyle, serviceSectionStyle, endowSectionStyle, memberSectionStyle };
+export {
+  homeScreenStyle,
+  topLabelStyle,
+  serviceSectionStyle,
+  endowSectionStyle,
+  memberSectionStyle,
+};
