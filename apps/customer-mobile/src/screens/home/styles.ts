@@ -5,8 +5,8 @@ import { windowHeight, windowWidth } from '@constants/dimension';
 const homeScreenStyle = StyleSheet.create({
   container: {
     width: windowWidth,
-    minHeight: windowHeight,
-    height: 'auto',
+    height: windowHeight,
+    overflow: 'scroll',
     backgroundColor: colors.softBg,
   },
 });

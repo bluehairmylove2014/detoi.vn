@@ -9,8 +9,11 @@ const Thumbnail = ({
   image: string;
 }) => {
   return (
-    <TouchableOpacity>
-      <Image source={{ uri: image }} style={ThumbnailSectionStyle[theme]} />
+    <TouchableOpacity style={ThumbnailSectionStyle[theme]}>
+      <Image
+        source={{ uri: image }}
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+      />
     </TouchableOpacity>
   );
 };

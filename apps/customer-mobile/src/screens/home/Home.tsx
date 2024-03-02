@@ -206,7 +206,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
             <VerticalSpacer size="xs" />
             <View style={memberSectionStyle.container}>
               {members.map((m) => (
-                <Thumbnail theme="large" image={m.thumbnail} key={m.id} />
+                <Thumbnail theme="fullWidth" image={m.thumbnail} key={m.id} />
               ))}
             </View>
           </>
