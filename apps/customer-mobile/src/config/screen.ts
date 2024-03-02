@@ -1,9 +1,10 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ICategory } from '@business-layer/services/entities';
 
 // 1. Params config
 type customerRootStackParamList = {
   Home: undefined;
-  ChooseLocation: undefined;
+  ChooseLocation: { category: ICategory };
   Login: undefined;
   OTPVertification: undefined;
   Intro: undefined;
@@ -11,12 +12,12 @@ type customerRootStackParamList = {
 };
 
 type customerTabParamList = {
-    Home: undefined,
-    Endow: undefined,
-    Message: undefined,
-    SingleService: undefined,
-    Account: undefined,
-    Login: undefined
+  Home: undefined,
+  Endow: undefined,
+  Message: undefined,
+  SingleService: undefined,
+  Account: undefined,
+  Login: undefined
 }
 
 // 2. Props

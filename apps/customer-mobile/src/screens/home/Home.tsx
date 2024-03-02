@@ -134,7 +134,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
                   category={c}
                   key={`category@${c.id}`}
                   onPress={() => {
-                    navigation.navigate('ChooseLocation');
+                    navigation.navigate('ChooseLocation', { category: c });
                   }}
                 />
               ))}

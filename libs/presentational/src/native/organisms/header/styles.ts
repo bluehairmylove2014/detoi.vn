@@ -3,7 +3,11 @@ import { colors, screenHorizontalPadding, screenVertizontalPadding } from '@pres
 
 const headerStyle = StyleSheet.create({
     container: {
-        paddingVertical: screenVertizontalPadding
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width:"100%"
     },
     languageButtonContainer: {
         alignSelf: 'flex-end'
