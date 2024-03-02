@@ -11,16 +11,12 @@ const App = () => {
 
   return (
     <BusinessLogicProvider activeModules={activeModules}>
-      <CustomerTemplate>
-<<<<<<< HEAD
-        <RootNavigationContainer initRoute="ChooseLocation" />
-=======
+      <CustomerTemplate> 
         {login ? (
           <TabNavigationContainer initRoute="Home" />
         ) : (
-          <RootNavigationContainer initRoute="Intro" />
+          <RootNavigationContainer initRoute="Home" />
         )}
->>>>>>> df7fc680d20d2c8b9ff51d92e2f8d1fe37a30b02
       </CustomerTemplate>
     </BusinessLogicProvider>
   );

@@ -1,3 +1,4 @@
+import { colors } from '@present-native/styles';
 import React from 'react';
 import { View } from 'react-native';
 
@@ -11,7 +12,7 @@ type DividerProps = {
 export const DividerHorizontal: React.FC<DividerProps> = ({
   width = 1,
   orientation = 'horizontal',
-  color = zz,
+  color = colors.gray,
   dividerStyle,
 }) => {
   const dividerStyles = [
