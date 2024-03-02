@@ -38,11 +38,11 @@ export const Header: React.FC<HeaderProps> = ({ typeDisplay }) => {
   return (
     <View style={headerStyle.container}>
       {typeDisplay.includes(ETypeDisplayHeader.BACK_BUTTON) ? (
-        <BackButton />
-      ) : (
-        <></>
-      )}
-      {<></>}
+        <View style={headerStyle.backButtonContainer}>
+          <BackButton />
+        </View>
+      ) : <View style={{flex:1}}/>}
+
       {typeDisplay.includes(ETypeDisplayHeader.LANGUAGE_BUTTON) ? (
         <View style={headerStyle.languageButtonContainer}>
           <SelectCountry
@@ -62,9 +62,7 @@ export const Header: React.FC<HeaderProps> = ({ typeDisplay }) => {
             }}
           />
         </View>
-      ) : (
-        <></>
-      )}
+      ) : <View style={{flex:1}}/>}
     </View>
   );
 };
