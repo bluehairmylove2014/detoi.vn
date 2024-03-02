@@ -14,26 +14,32 @@ import {
 import React from 'react';
 import { MethodLoginButton } from '@present-native/atoms/button';
 import { introSCreenStyle } from './styles';
+import { IntroProps } from '../../config';
 
-const LIST_ITEM_BUTTON_LOGIN = [
-  {
-    text: 'Tiếp tục với Facebook',
-    icon: <Facebook width={30} height={30} />,
-    action: () => {},
-  },
-  {
-    text: 'Tiếp tục với Google',
-    icon: <Google width={30} height={30} />,
-    action: () => {},
-  },
-  {
-    text: 'Tiếp tục với số điện thoại',
-    icon: <NumberPhone width={30} height={30} />,
-    action: () => {},
-  },
-];
-
-const IntroPage = () => {
+const IntroPage: React.FC<IntroProps> = ({ route, navigation }) => {
+  const LIST_ITEM_BUTTON_LOGIN = [
+    {
+      text: 'Tiếp tục với Facebook',
+      icon: <Facebook width={30} height={30} />,
+      action: () => {
+        // TODO
+      },
+    },
+    {
+      text: 'Tiếp tục với Google',
+      icon: <Google width={30} height={30} />,
+      action: () => {
+        // TODO
+      },
+    },
+    {
+      text: 'Tiếp tục với số điện thoại',
+      icon: <NumberPhone width={30} height={30} />,
+      action: () => {
+        navigation.navigate('Login');
+      },
+    },
+  ];
   return (
     <View style={introSCreenStyle.container}>
       <Header typeDisplay={[ETypeDisplayHeader.languageButton]} />

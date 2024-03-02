@@ -2,21 +2,14 @@ import { BusinessLogicProvider } from '@business-layer/business-logic/provider/p
 import { activeModules } from '../config/modules';
 import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
 import { RootNavigationContainer } from './RootStack';
-import { TabNavigationContainer } from './MainTab';
 
 const App = () => {
-  // Can test other scren by modified this variable
-  // Use this variable to test screen, not for main flow of app
-  const login = true;
-
+  const isLogged = true;
+  const initRoute = isLogged ? 'Home' : 'Intro';
   return (
     <BusinessLogicProvider activeModules={activeModules}>
       <CustomerTemplate>
-        {login ? (
-          <TabNavigationContainer initRoute="Home" />
-        ) : (
-          <RootNavigationContainer initRoute="Intro" />
-        )}
+        <RootNavigationContainer initRoute={initRoute} />
       </CustomerTemplate>
     </BusinessLogicProvider>
   );
