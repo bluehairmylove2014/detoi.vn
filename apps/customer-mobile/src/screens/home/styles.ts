@@ -1,12 +1,11 @@
 import { colors, screenHorizontalPadding } from '@presentational/native/styles';
 import { StyleSheet } from 'react-native';
-import { windowHeight, windowWidth } from '@constants/dimension';
+import { windowWidth } from '@constants/dimension';
 
 const homeScreenStyle = StyleSheet.create({
   container: {
-    width: windowWidth,
-    height: windowHeight,
-    overflow: 'scroll',
+    flex: 1,
+    height: 'auto',
     backgroundColor: colors.softBg,
   },
 });
@@ -14,7 +13,7 @@ const homeScreenStyle = StyleSheet.create({
 const topLabelStyle = StyleSheet.create({
   container: {
     width: windowWidth,
-    height: '25%',
+    height: 220,
   },
   event: {
     display: 'flex',

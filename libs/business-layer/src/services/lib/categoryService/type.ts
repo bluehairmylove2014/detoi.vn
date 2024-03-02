@@ -1,11 +1,11 @@
-import { ICategory } from '@business-layer/services/entities';
+import { ICategory, ICategoryDetail } from '@business-layer/services/entities';
 import { IService } from '@business-layer/services/entities/service';
 
 export type getAllCategoryPropsType = { token: string | null };
 export type getAllCategoryResponseType = ICategory[];
 
-export type getAllServicesOfCategoryPropsType = {
+export type getCategoryDetailPropsType = {
   token: string | null;
   categoryId: string;
 };
-export type getAllServicesOfCategoryResponseType = IService[];
+export type getCategoryDetailResponseType = ICategoryDetail;

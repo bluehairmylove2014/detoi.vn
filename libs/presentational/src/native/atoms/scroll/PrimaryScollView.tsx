@@ -23,6 +23,10 @@ export const PrimaryScrollView = ({
       // Config some general prop for ScrollView for all Apolication in here
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
+      removeClippedSubviews={true}
+      keyboardShouldPersistTaps="always"
+      bounces={false}
+      nestedScrollEnabled={true}
     >
       {children}
     </ScrollView>

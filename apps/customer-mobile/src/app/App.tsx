@@ -1,16 +1,22 @@
 import { BusinessLogicProvider } from '@business-layer/business-logic/provider/provider';
-import { activeModules } from '../config/modules';
-import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
 import { RootNavigationContainer } from './RootStack';
+import { customerRootStackParamList, activeModules } from '../config';
+import { Intro } from '@present-native/atoms';
+import { useGoogleFonts } from '@business-layer/business-logic/non-service-lib/googleFont';
 
 const App = () => {
-  const isLogged = true;
-  const initRoute = isLogged ? 'Home' : 'Intro';
+  const isLogged = false;
+  const initRoute: keyof customerRootStackParamList = isLogged
+    ? 'Home'
+    : 'Intro';
+  const { isLoading } = useGoogleFonts();
+
+  if (isLoading) {
+    return <Intro />;
+  }
   return (
     <BusinessLogicProvider activeModules={activeModules}>
-      <CustomerTemplate>
-        <RootNavigationContainer initRoute={initRoute} />
-      </CustomerTemplate>
+      <RootNavigationContainer initRoute={initRoute} />
     </BusinessLogicProvider>
   );
 };

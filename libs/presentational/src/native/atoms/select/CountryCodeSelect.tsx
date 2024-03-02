@@ -12,7 +12,7 @@ import { colors, countryCodeSelectStyle } from '@present-native/styles';
 import { FAIcon } from '../icon';
 import { BlackParagraph } from '../text';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
-import { CountryCodeButton } from '../button/ImageButton';
+import { CountryCodeButton } from '../button';
 
 const CountryCodeSelect = ({
   onSelect,
