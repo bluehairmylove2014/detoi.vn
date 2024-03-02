@@ -12,7 +12,6 @@ import {
   PrimaryButton,
   PrimaryParagraph,
   RoseParagraph,
-  ServiceRequirementsSelect,
 } from '@present-native/atoms';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { Controller, useForm } from 'react-hook-form';
@@ -21,7 +20,6 @@ import {
   useYupValidationResolver,
   loginByPhoneNumberSchema,
 } from '@utils/validators/yup';
-import { IServiceRequirement } from '@business-layer/services/entities';
 
 const DEFAULT_COUNTRY_CODE = {
   alpha2Code: 'VN',
@@ -30,45 +28,16 @@ const DEFAULT_COUNTRY_CODE = {
   flag: 'https://flagsapi.com/VN/flat/64.png',
 };
 
-function removeLeadingZero(phoneNumber: string): string {
+function removeLeadingZeroFromPhoneNumber(phoneNumber: string): string {
   if (phoneNumber.startsWith('0')) {
     return phoneNumber.slice(1);
   }
   return phoneNumber;
 }
+
 type phoneInputFormType = {
   phone: string;
 };
-
-const testData: IServiceRequirement = {
-  id: '1',
-  type: {
-    name: 'select',
-    options: [
-      {
-        id: '0',
-        name: 'Dọn trọn gói',
-        description: 'Tất cả dịch vụ, dọn toàn bộ nhà / phòng',
-      },
-      {
-        id: '1',
-        name: 'Dọn theo phòng',
-        description: 'Trung bình 50.000đ / phòng, tiết kiệm và nhanh chóng',
-      },
-    ],
-  },
-
-  label: 'Bạn muốn chúng tôi dọn như thế nào?',
-  labelIcon: 'faFlag',
-  placeholder: 'Giúp nhân viên biết thêm về công việc cần làm',
-  validations: [
-    {
-      id: '0',
-      name: 'required',
-    },
-  ],
-};
-
 const Login: React.FC<LoginProps> = ({ route, navigation }) => {
   const formResolver = useYupValidationResolver(loginByPhoneNumberSchema);
   const [countryCode, setCountryCode] =
@@ -81,10 +50,10 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
   });
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { onLogin, isLoading } = useLogin();
-
   // methods
   const onSuccessSubmitPhoneNumber = ({ phone }: phoneInputFormType) => {
-    const phoneNumber = countryCode.callingCodes[0] + removeLeadingZero(phone);
+    const phoneNumber =
+      countryCode.callingCodes[0] + removeLeadingZeroFromPhoneNumber(phone);
     onLogin({ phone: phoneNumber })
       .then((msg) => {
         navigation.navigate('OTPVertification');
@@ -93,6 +62,7 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
         console.error(error);
       });
   };
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onErrorSubmit = (error: Record<string, any>) => {
     console.log(error);
@@ -107,13 +77,13 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
           <BlackTitle theme="largeBold">Chỉ một bước nữa thôi!</BlackTitle>
 
           <View style={{ marginTop: 5 }}>
-            <BlackParagraph theme="normalMedium">
+            <BlackParagraph theme="baseMedium">
               Nhập số điện thoại để đăng nhập
             </BlackParagraph>
           </View>
           <View style={{ marginTop: 30, flexDirection: 'row' }}>
-            <BlackParagraph theme="normalMedium">Số điện thoại</BlackParagraph>
-            <RoseParagraph theme="normalMedium"> *</RoseParagraph>
+            <BlackParagraph theme="baseMedium">Số điện thoại</BlackParagraph>
+            <RoseParagraph theme="baseMedium"> *</RoseParagraph>
           </View>
         </View>
 
@@ -151,14 +121,14 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
         </View>
 
         <View style={{ marginTop: 20 }}>
-          <BlackParagraph theme="normalMedium">
+          <BlackParagraph theme="baseMedium">
             Tôi đồng ý với các
-            <PrimaryParagraph theme="normalBold">
+            <PrimaryParagraph theme="baseBold">
               {' '}
               Điều khoản dịch vụ
             </PrimaryParagraph>{' '}
             và
-            <PrimaryParagraph theme="normalBold">
+            <PrimaryParagraph theme="baseBold">
               {' '}
               Chính sách bảo mật
             </PrimaryParagraph>{' '}
@@ -172,10 +142,6 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
               theme="full-rounded-bold"
             />
           </View>
-        </View>
-
-        <View style={{ marginTop: 50 }}>
-          <ServiceRequirementsSelect serviceRequirement={testData} />
         </View>
       </View>
     </SafeAreaView>

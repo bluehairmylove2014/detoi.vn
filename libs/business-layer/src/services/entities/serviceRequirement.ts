@@ -1,41 +1,31 @@
-type typeServiceRequirements =
-  | { name: 'inputText' }
-  | { name: 'inputNumber' }
+import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
+import { IOption } from './option';
+import { validationType } from '@utils/validators/yup';
+
+type inputMethodType =
+  | { name: 'input' }
   | {
       name: 'select';
-      options?: {
-        id: string;
-        name: string;
-        description: string;
-      }[];
+      options?: IOption[];
     };
 
-export interface IOption {
-  id: string;
-  name: string;
-  description: string;
-}
+type serviceRequirementsInputMethodType = {
+  dataType: 'number' | 'text';
+  method: inputMethodType;
+  validation: ({ id: string } & validationType)[];
+};
 
-type typeValidation =
-  | { name: 'maxLength'; value: number }
-  | { name: 'minLength'; value: number }
-  | { name: 'required' }
-  | { name: 'min'; value: number }
-  | { name: 'max'; value: number };
-
-export interface IServiceRequirement {
+export interface IUIServiceRequirement {
   id: string;
-  type: typeServiceRequirements;
+  inputMethod: serviceRequirementsInputMethodType;
   label: string;
-  labelIcon?: string;
+  labelIcon?: nativeIconNameType;
   placeholder: string;
-  validations: ({ id: string } & typeValidation)[];
 }
 
-export interface IAdditionServiceRequirement {
+export interface IUIAdditionServiceRequirement {
   id: string;
   icon: string;
   label: string;
   autoSelect: boolean;
-  additionFee?: number;
 }

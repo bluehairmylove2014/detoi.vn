@@ -8,7 +8,8 @@ const path = require('path');
 // Find the project and workspace directories
 const projectRoot = __dirname;
 // This can be replaced with `find-yarn-workspace-root`
-const monorepoRoot = path.resolve(projectRoot, '../..');
+const libsRoot = path.resolve(projectRoot, '../../libs/**');
+const nodeModulesRoot = path.resolve(projectRoot, '../../node_modules/**');
 const defaultConfig = getDefaultConfig(__dirname);
 const { assetExts, sourceExts } = defaultConfig.resolver;
 
@@ -26,6 +27,11 @@ const customConfig = {
     assetExts: assetExts.filter((ext) => ext !== 'svg'),
     sourceExts: [...sourceExts, 'svg'],
     blockList: exclusionList([/^(?!.*node_modules).*\/dist\/.*/]),
+    unstable_conditionNames: ['browser', 'require', 'react-native'],
+    alias: {
+      'react-hook-form': './node_modules/react-hook-form',
+      // Thay 'path/to/react-hook-form' bằng đường dẫn thực tế đến thư mục hoặc tệp của 'react-hook-form'
+    },
     // unstable_enableSymlinks: true,
     // unstable_enablePackageExports: true,
   },
@@ -38,5 +44,5 @@ module.exports = withNxMetro(mergeConfig(defaultConfig, customConfig), {
   // all the file extensions used for imports other than 'ts', 'tsx', 'js', 'jsx', 'json'
   extensions: [],
   // Specify folders to watch, in addition to Nx defaults (workspace libraries and node_modules)
-  watchFolders: [monorepoRoot],
+  watchFolders: [libsRoot, nodeModulesRoot],
 });

@@ -6,7 +6,18 @@ type customerRootStackParamList = {
   ChooseLocation: undefined;
   Login: undefined;
   OTPVertification: undefined;
+  Intro: undefined;
+  ProvideDetail: { categoryId: string };
 };
+
+type customerTabParamList = {
+    Home: undefined,
+    Endow: undefined,
+    Message: undefined,
+    SingleService: undefined,
+    Account: undefined,
+    Login: undefined
+}
 
 // 2. Props
 type HomeProps = NativeStackScreenProps<customerRootStackParamList, 'Home'>;
@@ -14,10 +25,15 @@ type ChooseLocationProps = NativeStackScreenProps<
   customerRootStackParamList,
   'ChooseLocation'
 >;
+type IntroProps = NativeStackScreenProps<customerRootStackParamList, 'Intro'>;
 type LoginProps = NativeStackScreenProps<customerRootStackParamList, 'Login'>;
 type OTPVertificationProps = NativeStackScreenProps<
   customerRootStackParamList,
   'OTPVertification'
+>;
+type ProvideDetailProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'ProvideDetail'
 >;
 
 // 3. Export props
@@ -27,4 +43,7 @@ export {
   ChooseLocationProps,
   LoginProps,
   OTPVertificationProps,
+  customerTabParamList,
+  IntroProps,
+  ProvideDetailProps
 };

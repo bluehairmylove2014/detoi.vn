@@ -15,7 +15,7 @@ type imageButtonProps = {
   onPress: () => void;
 };
 
-const ZincImageButton: React.FC<imageButtonProps> = ({
+const CountryCodeButton: React.FC<imageButtonProps> = ({
   title,
   uriImg,
   theme = 'square-rounded-bold',
@@ -36,10 +36,10 @@ const ZincImageButton: React.FC<imageButtonProps> = ({
         />
       </View>
       <View>
-        <BlackParagraph theme="normalMedium">{title}</BlackParagraph>
+        <BlackParagraph theme="baseMedium">{title}</BlackParagraph>
       </View>
     </TouchableOpacity>
   );
 };
 
-export { ZincImageButton };
+export { CountryCodeButton };
