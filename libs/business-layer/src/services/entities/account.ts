@@ -15,15 +15,17 @@ export interface IAccountDetail {
   role: string;
 }
 
-export interface ICustomerAccountDetail extends IAccountDetail {
+export interface ICustomerAccountDetail {
   accountId: string;
+  account: IAccountDetail;
   address: IAddress[];
   customerRank: string;
   memberPoint: number;
 }
 
-export interface IFreelancerAccountDetail extends IAccountDetail {
+export interface IFreelancerAccountDetail {
   accountId: string;
+  account: IAccountDetail;
   address: IAddress;
   rating: number;
   balance: number;
@@ -32,6 +34,7 @@ export interface IFreelancerAccountDetail extends IAccountDetail {
   positiveReviewCount: number;
   identityNumber: string;
   isTeam: boolean;
+  teamMemberCount: number;
   skills: ISkill[];
   description: string;
   serviceProven: IServiceProven[];

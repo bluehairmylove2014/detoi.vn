@@ -26,6 +26,7 @@ import CategoryThumbnail from '@present-native/molecules/category/CategoryThumbn
 import { useGetAllCategories } from '@business-layer/business-logic/lib/category';
 import EndowItem from '@present-native/molecules/endow/EndowItem';
 import ServiceCard from '@present-native/molecules/card/ServiceCard';
+import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
 
 const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   const { data: categories } = useGetAllCategories();
@@ -82,137 +83,139 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   ]);
 
   return (
-    <View style={homeScreenStyle.container}>
-      <View style={topLabelStyle.container}>
-        <View style={topLabelStyle.event}>
-          <SafeAreaView style={topLabelStyle.event_safeView}>
-            <View style={topLabelStyle.event_content}>
-              <PrimaryTitle theme="event">{event.title}</PrimaryTitle>
-              <VerticalSpacer size="m" />
-              <SubtitleLink screenName="ChooseLocation">
-                <PrimaryParagraph theme="small">
-                  {event.subtitle}
-                </PrimaryParagraph>
-                <HorizontalSpacer size="m" />
-                <FAIcon
-                  iconName="faCircleArrowRight"
-                  color={colors.primary}
-                  size={14}
-                />
-              </SubtitleLink>
+    <CustomerTemplate>
+      <View style={homeScreenStyle.container}>
+        <View style={topLabelStyle.container}>
+          <View style={topLabelStyle.event}>
+            <SafeAreaView style={topLabelStyle.event_safeView}>
+              <View style={topLabelStyle.event_content}>
+                <PrimaryTitle theme="event">{event.title}</PrimaryTitle>
+                <VerticalSpacer size="m" />
+                <SubtitleLink screenName="ChooseLocation">
+                  <PrimaryParagraph theme="small">
+                    {event.subtitle}
+                  </PrimaryParagraph>
+                  <HorizontalSpacer size="m" />
+                  <FAIcon
+                    iconName="faCircleArrowRight"
+                    color={colors.primary}
+                    size={14}
+                  />
+                </SubtitleLink>
+              </View>
+              <View style={topLabelStyle.event_spacer} />
+              <Image
+                source={{ uri: event.image }}
+                style={topLabelStyle.event_image}
+              />
+            </SafeAreaView>
+          </View>
+          <View style={topLabelStyle.interaction}>
+            <View style={topLabelStyle.interaction_background_top} />
+            <View style={topLabelStyle.interaction_background_bottom} />
+            <View style={topLabelStyle.interaction_inner}>
+              <BellIconButton
+                notificationCount={notifications ? notifications.length : null}
+              />
+              <HorizontalSpacer size="l" />
+              <CategoryAndServiceSearchBox />
             </View>
-            <View style={topLabelStyle.event_spacer} />
-            <Image
-              source={{ uri: event.image }}
-              style={topLabelStyle.event_image}
-            />
-          </SafeAreaView>
-        </View>
-        <View style={topLabelStyle.interaction}>
-          <View style={topLabelStyle.interaction_background_top} />
-          <View style={topLabelStyle.interaction_background_bottom} />
-          <View style={topLabelStyle.interaction_inner}>
-            <BellIconButton
-              notificationCount={notifications ? notifications.length : null}
-            />
-            <HorizontalSpacer size="l" />
-            <CategoryAndServiceSearchBox />
           </View>
         </View>
-      </View>
-      <VerticalSpacer size="xxl" />
-      <View style={serviceSectionStyle.container}>
-        <PrimaryTitle theme="primary">
-          Chúng tôi có thể giúp gì cho bạn?
-        </PrimaryTitle>
-        <VerticalSpacer size="xs" />
-        <View style={serviceSectionStyle.categoriesContainer}>
-          {Array.isArray(categories) && categories.length > 0 ? (
-            <>
-              {categories.slice(0, 5).map((c) => (
-                <CategoryThumbnail
-                  category={c}
-                  key={`category@${c.id}`}
-                  onPress={() => {
-                    navigation.navigate('ChooseLocation');
-                  }}
-                />
-              ))}
-              <TouchableOpacity
-                style={serviceSectionStyle.categories_viewAllBtn}
-              >
-                <FAIcon
-                  iconName="faArrowRightLong"
-                  color={colors.primary}
-                  size={20}
-                />
-                <VerticalSpacer size="s" />
-                <PrimaryParagraph theme="smallBold">
-                  Xem tất cả
-                </PrimaryParagraph>
-              </TouchableOpacity>
-            </>
-          ) : null}
-        </View>
-
-        {/* Other service */}
-        <VerticalSpacer size="xs" />
-        <View style={serviceSectionStyle.other_service}>
-          <ServiceCard
-            title="Thêm dịch vụ khác"
-            subtitle="Góp ý"
-            iconName="container"
-            onPress={() => {
-              console.log('Gop y');
-            }}
-          />
-          <ServiceCard
-            title={`${point} điểm`}
-            subtitle="Điểm tích lũy"
-            iconName="shoppingBag"
-            onPress={() => {
-              console.log('Điểm tích lũy');
-            }}
-          />
-        </View>
-
-        {/* Endow */}
-        <VerticalSpacer size="xs" />
-        <PrimaryTitle theme="primary">Ưu đãi dành riêng cho bạn</PrimaryTitle>
-        <VerticalSpacer size="xs" />
-        <PrimaryScrollView direction="horizontal">
-          <View style={endowSectionStyle.container}>
-            {Array.isArray(endows) && endows.length > 0 ? (
+        <VerticalSpacer size="xxl" />
+        <View style={serviceSectionStyle.container}>
+          <PrimaryTitle theme="primary">
+            Chúng tôi có thể giúp gì cho bạn?
+          </PrimaryTitle>
+          <VerticalSpacer size="xs" />
+          <View style={serviceSectionStyle.categoriesContainer}>
+            {Array.isArray(categories) && categories.length > 0 ? (
               <>
-                {endows.map((item, index) => (
-                  <EndowItem
-                    key={index}
-                    image={item.image}
-                    description={item.description}
-                    label={item.label}
+                {categories.slice(0, 5).map((c) => (
+                  <CategoryThumbnail
+                    category={c}
+                    key={`category@${c.id}`}
+                    onPress={() => {
+                      navigation.navigate('ChooseLocation');
+                    }}
                   />
                 ))}
+                <TouchableOpacity
+                  style={serviceSectionStyle.categories_viewAllBtn}
+                >
+                  <FAIcon
+                    iconName="faArrowRightLong"
+                    color={colors.primary}
+                    size={20}
+                  />
+                  <VerticalSpacer size="s" />
+                  <PrimaryParagraph theme="smallBold">
+                    Xem tất cả
+                  </PrimaryParagraph>
+                </TouchableOpacity>
               </>
             ) : null}
           </View>
-        </PrimaryScrollView>
 
-        {/* Member */}
-        {/* Use member state get from api */}
-        {Array.isArray(members) && members.length > 0 ? (
-          <>
-            <VerticalSpacer size="xs" />
-            <PrimaryTitle theme="primary">Gói hội viên Detoi</PrimaryTitle>
-            <VerticalSpacer size="xs" />
-            <View style={memberSectionStyle.container}>
-              {members.map((m) => (
-                <Thumbnail theme="fullWidth" image={m.thumbnail} key={m.id} />
-              ))}
+          {/* Other service */}
+          <VerticalSpacer size="xs" />
+          <View style={serviceSectionStyle.other_service}>
+            <ServiceCard
+              title="Thêm dịch vụ khác"
+              subtitle="Góp ý"
+              iconName="container"
+              onPress={() => {
+                console.log('Gop y');
+              }}
+            />
+            <ServiceCard
+              title={`${point} điểm`}
+              subtitle="Điểm tích lũy"
+              iconName="shoppingBag"
+              onPress={() => {
+                console.log('Điểm tích lũy');
+              }}
+            />
+          </View>
+
+          {/* Endow */}
+          <VerticalSpacer size="xs" />
+          <PrimaryTitle theme="primary">Ưu đãi dành riêng cho bạn</PrimaryTitle>
+          <VerticalSpacer size="xs" />
+          <PrimaryScrollView direction="horizontal">
+            <View style={endowSectionStyle.container}>
+              {Array.isArray(endows) && endows.length > 0 ? (
+                <>
+                  {endows.map((item, index) => (
+                    <EndowItem
+                      key={index}
+                      image={item.image}
+                      description={item.description}
+                      label={item.label}
+                    />
+                  ))}
+                </>
+              ) : null}
             </View>
-          </>
-        ) : null}
+          </PrimaryScrollView>
+
+          {/* Member */}
+          {/* Use member state get from api */}
+          {Array.isArray(members) && members.length > 0 ? (
+            <>
+              <VerticalSpacer size="xs" />
+              <PrimaryTitle theme="primary">Gói hội viên Detoi</PrimaryTitle>
+              <VerticalSpacer size="xs" />
+              <View style={memberSectionStyle.container}>
+                {members.map((m) => (
+                  <Thumbnail theme="fullWidth" image={m.thumbnail} key={m.id} />
+                ))}
+              </View>
+            </>
+          ) : null}
+        </View>
       </View>
-    </View>
+    </CustomerTemplate>
   );
 };
 

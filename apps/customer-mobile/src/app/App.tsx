@@ -1,6 +1,5 @@
 import { BusinessLogicProvider } from '@business-layer/business-logic/provider/provider';
 import { activeModules } from '../config/modules';
-import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
 import { RootNavigationContainer } from './RootStack';
 
 const App = () => {
@@ -8,9 +7,7 @@ const App = () => {
   const initRoute = isLogged ? 'Home' : 'Intro';
   return (
     <BusinessLogicProvider activeModules={activeModules}>
-      <CustomerTemplate>
-        <RootNavigationContainer initRoute={initRoute} />
-      </CustomerTemplate>
+      <RootNavigationContainer initRoute={initRoute} />
     </BusinessLogicProvider>
   );
 };
