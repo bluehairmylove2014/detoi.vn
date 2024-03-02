@@ -8,6 +8,7 @@ export interface IService {
   name: string;
   basePrice: number;
   description: string;
+  image: string;
   requirements: IUIServiceRequirement[];
   additionalRequirements: IUIAdditionServiceRequirement[];
 }

@@ -13,12 +13,12 @@ export const TransparentView = ({
 const transparentViewThemeMapper = StyleSheet.create({
   horizontal: {
     height: '100%',
-    width: 100,
+    width: 50,
     backgroundColor: colors.transparent,
   },
   vertical: {
     width: '100%',
-    height: 100,
+    height: 50,
     backgroundColor: colors.transparent,
   },
 });

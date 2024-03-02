@@ -22,7 +22,7 @@ import {
 import { IEvent } from '@business-layer/services/entities';
 import { colors } from '@present-native/styles';
 import { CategoryAndServiceSearchBox } from '@present-native/molecules';
-import CategoryThumbnail from '@present-native/molecules/category/CategoryThumbnail';
+import { CategoryThumbnail } from '@present-native/molecules/category/CategoryThumbnail';
 import { useGetAllCategories } from '@business-layer/business-logic/lib/category';
 import EndowItem from '@present-native/molecules/endow/EndowItem';
 import ServiceCard from '@present-native/molecules/card/ServiceCard';
@@ -136,7 +136,9 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
                     category={c}
                     key={`category@${c.id}`}
                     onPress={() => {
-                      navigation.navigate('ChooseLocation');
+                      navigation.navigate('ProvideDetail', {
+                        categoryId: c.id,
+                      });
                     }}
                   />
                 ))}

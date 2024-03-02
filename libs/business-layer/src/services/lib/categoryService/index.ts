@@ -1,17 +1,17 @@
 import { Services } from '@business-layer/services/service';
 import {
   getAllCategoryResponseSchema,
-  getAllServicesOfCategoryResponseSchema,
+  getCategoryDetailResponseSchema,
 } from './schema';
 import {
   getAllCategoryPropsType,
   getAllCategoryResponseType,
-  getAllServicesOfCategoryPropsType,
-  getAllServicesOfCategoryResponseType,
+  getCategoryDetailPropsType,
+  getCategoryDetailResponseType,
 } from './type';
 import {
   getAllCategoryEndpoint,
-  getAllServicesOfCategoryEndpoint,
+  getCategoryDetailEndpoint,
 } from '@business-layer/services/config/apis';
 
 const UNAUTHORIZED_MESSAGE = 'Unauthorized';
@@ -44,22 +44,22 @@ export class CategoryService extends Services {
       throw this.handleError(error);
     }
   };
-  getAllServicesOfCategory = async ({
+  getCategoryDetail = async ({
     categoryId,
     token,
-  }: getAllServicesOfCategoryPropsType): Promise<getAllServicesOfCategoryResponseType> => {
+  }: getCategoryDetailPropsType): Promise<getCategoryDetailResponseType> => {
     this.abortController = new AbortController();
     try {
       if (!token) {
         throw new Error(UNAUTHORIZED_MESSAGE);
       } else {
         return await this.fetchApi<
-          typeof getAllServicesOfCategoryResponseSchema,
-          getAllServicesOfCategoryResponseType
+          typeof getCategoryDetailResponseSchema,
+          getCategoryDetailResponseType
         >({
           method: 'GET',
-          url: getAllServicesOfCategoryEndpoint,
-          schema: getAllServicesOfCategoryResponseSchema,
+          url: getCategoryDetailEndpoint,
+          schema: getCategoryDetailResponseSchema,
           params: {
             id: categoryId,
           },

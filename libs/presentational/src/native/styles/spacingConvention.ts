@@ -1,4 +1,4 @@
 const screenHorizontalPadding = 20;
-const screenVertizontalPadding = 30;
+const screenVerticalPadding = 30;
 
-export { screenHorizontalPadding, screenVertizontalPadding };
+export { screenHorizontalPadding, screenVerticalPadding };

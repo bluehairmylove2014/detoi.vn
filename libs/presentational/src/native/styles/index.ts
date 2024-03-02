@@ -8,3 +8,4 @@ export * from './spacingConvention';
 export * from './select';
 export * from './input';
 export * from './switch';
+export * from './image';

@@ -5,7 +5,7 @@ import { colors } from '@present-native/styles';
 import { WhiteTitle } from '@present-native/atoms';
 import { ICategory } from '@business-layer/services/entities';
 
-const CategoryThumbnail = ({
+export const CategoryThumbnail = ({
   category,
   onPress,
 }: {
@@ -28,5 +28,3 @@ const CategoryThumbnail = ({
     </TouchableOpacity>
   );
 };
-
-export default CategoryThumbnail;

@@ -1,13 +1,12 @@
 import z from 'zod';
 
-const getAllCategoryResponseSchema = z.array(
-  z.object({
-    id: z.string(),
-    name: z.string(),
-    image: z.string(),
-    description: z.string(),
-  })
-);
+const categorySchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  image: z.string(),
+  description: z.string(),
+});
+const getAllCategoryResponseSchema = z.array(categorySchema);
 
 const selectOptionSchema = z.object({
   id: z.string(),
@@ -62,14 +61,19 @@ const additionServiceRequirementSchema = z.object({
   autoSelect: z.boolean(),
 });
 
-const getAllServicesOfCategoryResponseSchema = z.array(
+const getCategoryDetailResponseSchema = categorySchema.and(
   z.object({
-    id: z.string(),
-    name: z.string(),
-    basePrice: z.number(),
-    description: z.string(),
-    requirements: z.array(serviceRequirementSchema),
-    additionalRequirements: z.array(additionServiceRequirementSchema),
+    serviceTypes: z.array(
+      z.object({
+        id: z.string(),
+        name: z.string(),
+        basePrice: z.number(),
+        description: z.string(),
+        image: z.string(),
+        // requirements: z.array(serviceRequirementSchema),
+        // additionalRequirements: z.array(additionServiceRequirementSchema),
+      })
+    ),
   })
 );
-export { getAllCategoryResponseSchema, getAllServicesOfCategoryResponseSchema };
+export { getAllCategoryResponseSchema, getCategoryDetailResponseSchema };
