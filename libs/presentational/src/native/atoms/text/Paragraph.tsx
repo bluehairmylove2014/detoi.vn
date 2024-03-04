@@ -1,33 +1,40 @@
 import { Text } from 'react-native';
 import React from 'react';
 import {
-  blackParagraphStyles,
-  primaryParagraphStyles,
-  roseParagraphStyles
+  textAlignStyles,
+  textColorStyles,
+  textDecorationStyles,
+  textCommonStyles,
+  paragraphFontStyles,
 } from '@presentational/native/styles';
 
-const PrimaryParagraph = ({
+const Paragraph = ({
   children,
   theme,
+  lineNumber,
+  color = 'black',
+  align = 'left',
+  decoration = 'normal',
 }: {
   children: React.ReactNode;
-  theme: keyof typeof primaryParagraphStyles;
-}) => <Text style={primaryParagraphStyles[theme]}>{children}</Text>;
+  theme: keyof typeof paragraphFontStyles;
+  lineNumber?: number;
+  color?: 'primary' | 'black' | 'rose';
+  align?: 'left' | 'right' | 'center' | 'justify';
+  decoration?: 'underline' | 'normal' | 'lineThrough';
+}) => (
+  <Text
+    style={[
+      paragraphFontStyles[theme],
+      textColorStyles[color],
+      textAlignStyles[align],
+      textDecorationStyles[decoration],
+      textCommonStyles.behavior,
+    ]}
+    numberOfLines={lineNumber}
+  >
+    {children}
+  </Text>
+);
 
-const BlackParagraph = ({
-  children,
-  theme,
-}: {
-  children: React.ReactNode;
-  theme: keyof typeof blackParagraphStyles;
-}) => <Text style={blackParagraphStyles[theme]}>{children}</Text>;
-
-const RoseParagraph = ({
-  children,
-  theme,
-}: {
-  children: React.ReactNode;
-  theme: keyof typeof roseParagraphStyles;
-}) => <Text style={roseParagraphStyles[theme]}>{children}</Text>;
-
-export { PrimaryParagraph, BlackParagraph, RoseParagraph };
+export { Paragraph };

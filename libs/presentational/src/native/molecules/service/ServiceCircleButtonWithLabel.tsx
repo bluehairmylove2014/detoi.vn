@@ -1,5 +1,5 @@
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { BlackParagraph } from '../../atoms/text';
+import { Paragraph } from '../../atoms/text';
 import { CircleImage } from '@present-native/atoms/image';
 
 export const ServiceCircleButtonWithLabel = ({
@@ -14,7 +14,7 @@ export const ServiceCircleButtonWithLabel = ({
   return (
     <TouchableOpacity style={{ ...styles.button, width }}>
       <CircleImage source={{ uri: serviceImageUrl }} />
-      <BlackParagraph theme="baseBold">{serviceName}</BlackParagraph>
+      <Paragraph theme="baseBold">{serviceName}</Paragraph>
     </TouchableOpacity>
   );
 };

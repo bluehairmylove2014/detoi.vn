@@ -9,6 +9,7 @@ type customerRootStackParamList = {
   ChooseLocation: undefined;
   ChooseService: { categoryId: string };
   ProvideDetail: { serviceId: string };
+  Summary: undefined;
 };
 
 type customerTabParamList = {
@@ -40,6 +41,10 @@ type ProvideDetailProps = NativeStackScreenProps<
   customerRootStackParamList,
   'ProvideDetail'
 >;
+type SummaryProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'Summary'
+>;
 
 // 3. Export props
 export {
@@ -48,6 +53,7 @@ export {
   ChooseLocationProps,
   LoginProps,
   OTPVertificationProps,
+  SummaryProps,
   ProvideDetailProps,
   customerTabParamList,
   IntroProps,

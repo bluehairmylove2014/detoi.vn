@@ -3,11 +3,7 @@ import React from 'react';
 import { ChooseServiceProps } from '../../config';
 import { provideDetailStyle } from './styles';
 import { useGetCategoryDetail } from '@business-layer/business-logic/lib/category';
-import {
-  CommonLink,
-  PrimaryTitle,
-  VerticalSpacer,
-} from '@present-native/atoms';
+import { CommonLink, Title, VerticalSpacer } from '@present-native/atoms';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { ServicesList } from '@present-native/molecules';
 
@@ -24,9 +20,9 @@ const ChooseService: React.FC<ChooseServiceProps> = ({ route, navigation }) => {
       <View style={{ width: '100%', height: 150 }} />
       <View style={provideDetailStyle.container}>
         <View>
-          <PrimaryTitle theme="primaryBold">
+          <Title theme="baseBold" color="primary">
             Dịch vụ bạn muốn sử dụng
-          </PrimaryTitle>
+          </Title>
           <VerticalSpacer size="xs" />
           {categoryDetail && Array.isArray(categoryDetail.serviceTypes) ? (
             categoryDetail.serviceTypes.length > 0 ? (

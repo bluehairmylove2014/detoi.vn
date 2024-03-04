@@ -6,7 +6,7 @@ import { FieldValues, UseFormHandleSubmit, useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import {
   AdditionServiceRequirement,
-  BlackParagraph,
+  Paragraph,
   HorizontalSpacer,
   ServiceRequirementsInput,
   ServiceRequirementsSelect,
@@ -71,9 +71,7 @@ export const useServiceRequirementsUI = (): useServiceRequirementsUIType => {
           <>
             <VerticalSpacer size="xxxl"></VerticalSpacer>
 
-            <BlackParagraph theme="baseBold">
-              Yêu cầu thêm cho nhân viên?
-            </BlackParagraph>
+            <Paragraph theme="baseBold">Yêu cầu thêm cho nhân viên?</Paragraph>
             {additionalRequirements.map((ar, i) => (
               <View key={`ar@${i}`}>
                 <View key={`additionalRequirement@${i}`}>

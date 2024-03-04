@@ -11,8 +11,8 @@ import {
 import {
   FAIcon,
   HorizontalSpacer,
-  PrimaryTitle,
-  PrimaryParagraph,
+  Title,
+  Paragraph,
   VerticalSpacer,
   BellIconButton,
   SubtitleLink,
@@ -89,12 +89,14 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
           <View style={topLabelStyle.event}>
             <SafeAreaView style={topLabelStyle.event_safeView}>
               <View style={topLabelStyle.event_content}>
-                <PrimaryTitle theme="event">{event.title}</PrimaryTitle>
+                <Title theme="baseMedium" color="primary">
+                  {event.title}
+                </Title>
                 <VerticalSpacer size="m" />
                 <SubtitleLink screenName="ChooseLocation">
-                  <PrimaryParagraph theme="small">
+                  <Paragraph theme="smallMedium" color="primary">
                     {event.subtitle}
-                  </PrimaryParagraph>
+                  </Paragraph>
                   <HorizontalSpacer size="m" />
                   <FAIcon
                     iconName="faCircleArrowRight"
@@ -124,9 +126,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
         </View>
         <VerticalSpacer size="xxl" />
         <View style={serviceSectionStyle.container}>
-          <PrimaryTitle theme="primary">
-            Chúng tôi có thể giúp gì cho bạn?
-          </PrimaryTitle>
+          <Title theme="baseBold">Chúng tôi có thể giúp gì cho bạn?</Title>
           <VerticalSpacer size="xs" />
           <View style={serviceSectionStyle.categoriesContainer}>
             {Array.isArray(categories) && categories.length > 0 ? (
@@ -151,9 +151,9 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
                     size={20}
                   />
                   <VerticalSpacer size="s" />
-                  <PrimaryParagraph theme="smallBold">
+                  <Paragraph theme="smallBold" color="primary">
                     Xem tất cả
-                  </PrimaryParagraph>
+                  </Paragraph>
                 </TouchableOpacity>
               </>
             ) : null}
@@ -182,7 +182,9 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
 
           {/* Endow */}
           <VerticalSpacer size="xs" />
-          <PrimaryTitle theme="primary">Ưu đãi dành riêng cho bạn</PrimaryTitle>
+          <Title theme="baseBold" color="primary">
+            Ưu đãi dành riêng cho bạn
+          </Title>
           <VerticalSpacer size="xs" />
           <PrimaryScrollView direction="horizontal">
             <View style={endowSectionStyle.container}>
@@ -206,7 +208,9 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
           {Array.isArray(members) && members.length > 0 ? (
             <>
               <VerticalSpacer size="xs" />
-              <PrimaryTitle theme="primary">Gói hội viên Detoi</PrimaryTitle>
+              <Title theme="baseBold" color="primary">
+                Gói hội viên Detoi
+              </Title>
               <VerticalSpacer size="xs" />
               <View style={memberSectionStyle.container}>
                 {members.map((m) => (

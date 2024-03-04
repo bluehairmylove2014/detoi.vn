@@ -2,7 +2,7 @@ import { View, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { categoryThumbnailStyle } from '@present-native/styles/category';
 import { colors } from '@present-native/styles';
-import { WhiteTitle } from '@present-native/atoms';
+import { Title } from '@present-native/atoms';
 import { ICategory } from '@business-layer/services/entities';
 
 export const CategoryThumbnail = ({
@@ -23,7 +23,9 @@ export const CategoryThumbnail = ({
         style={categoryThumbnailStyle.categoryOverlay}
       />
       <View style={categoryThumbnailStyle.categoryName}>
-        <WhiteTitle theme="categoryName">{category.name}</WhiteTitle>
+        <Title theme="baseBold" color="white">
+          {category.name}
+        </Title>
       </View>
     </TouchableOpacity>
   );
