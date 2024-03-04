@@ -116,6 +116,15 @@ const textCommonStyles = StyleSheet.create({
   },
 });
 
+const staticServiceRequirementDetailStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+});
+
 export {
   paragraphFontStyles,
   titleFontStyles,
@@ -123,4 +132,5 @@ export {
   textAlignStyles,
   textCommonStyles,
   textDecorationStyles,
+  staticServiceRequirementDetailStyles,
 };
