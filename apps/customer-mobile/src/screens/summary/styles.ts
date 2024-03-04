@@ -13,4 +13,25 @@ export const summaryStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  serviceDetailContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    gap: 20,
+  },
+  paymentMethodTitleContainer: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  paymentMethodTitle: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    gap: 10,
+  },
 });
