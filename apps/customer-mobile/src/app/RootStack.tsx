@@ -9,6 +9,7 @@ import LoginScreen from '../screens/login/Login';
 import OTPVertificationScreen from '../screens/otpVertification/OTPVertification';
 import IntroScreen from '../screens/intro/Intro';
 import ProvideDetailScreen from '../screens/provideDetail/ProvideDetail';
+import MatchingScreen from '../screens/matching/Matching';
 
 export const RStack = createNativeStackNavigator<customerRootStackParamList>();
 export const RootNavigationContainer = ({
@@ -48,6 +49,11 @@ export const RootNavigationContainer = ({
         <RStack.Screen
           component={ProvideDetailScreen}
           name="ProvideDetail"
+          options={{ headerShown: false }}
+        />
+        <RStack.Screen
+          component={MatchingScreen}
+          name="Test"
           options={{ headerShown: false }}
         />
       </RStack.Navigator>

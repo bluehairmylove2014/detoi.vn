@@ -45,7 +45,8 @@
     "@react-navigation/bottom-tabs": "*",
     "react-native-element-dropdown": "*",
     "uuid": "*",
-    "yup": "*"
+    "yup": "*",
+    "react-native-progress": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && node tools/scripts/eas-build-pre-install.mjs . apps/customer-mobile && cp package-lock.json apps/customer-mobile",

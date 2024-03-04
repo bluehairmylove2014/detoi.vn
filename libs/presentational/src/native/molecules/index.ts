@@ -5,3 +5,4 @@ export * from './endow';
 export * from './card';
 export * from './service';
 export * from './textLoading'
+export * from './serviceInfoMatching'
