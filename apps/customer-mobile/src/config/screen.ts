@@ -8,6 +8,7 @@ type customerRootStackParamList = {
   OTPVertification: undefined;
   Intro: undefined;
   ProvideDetail: { categoryId: string };
+  HomeTab: undefined
 };
 
 type customerTabParamList = {

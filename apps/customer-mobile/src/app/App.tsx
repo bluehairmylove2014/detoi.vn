@@ -3,11 +3,12 @@ import { RootNavigationContainer } from './RootStack';
 import { customerRootStackParamList, activeModules } from '../config';
 import { Intro } from '@present-native/atoms';
 import { useGoogleFonts } from '@business-layer/business-logic/non-service-lib/googleFont';
+import { NavigationContainer } from '@react-navigation/native';
 
 const App = () => {
   const isLogged = false;
   const initRoute: keyof customerRootStackParamList = isLogged
-    ? 'Home'
+    ? 'HomeTab'
     : 'Intro';
   const { isLoading } = useGoogleFonts();
 
@@ -16,7 +17,9 @@ const App = () => {
   }
   return (
     <BusinessLogicProvider activeModules={activeModules}>
-      <RootNavigationContainer initRoute={initRoute} />
+      <NavigationContainer>
+        <RootNavigationContainer initRoute={initRoute} />
+      </NavigationContainer>
     </BusinessLogicProvider>
   );
 };

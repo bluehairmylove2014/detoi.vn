@@ -215,6 +215,18 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
               </View>
             </>
           ) : null}
+          {Array.isArray(members) && members.length > 0 ? (
+            <>
+              <VerticalSpacer size="xs" />
+              <PrimaryTitle theme="primary">Gói hội viên Detoi</PrimaryTitle>
+              <VerticalSpacer size="xs" />
+              <View style={memberSectionStyle.container}>
+                {members.map((m) => (
+                  <Thumbnail theme="fullWidth" image={m.thumbnail} key={m.id} />
+                ))}
+              </View>
+            </>
+          ) : null}
         </View>
       </View>
     </CustomerTemplate>
