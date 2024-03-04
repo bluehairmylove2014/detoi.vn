@@ -1,15 +1,9 @@
 import { colors, serviceRequirementsSwitchStyle } from '@present-native/styles';
 import { Control, FieldValues, UseFormSetValue } from 'react-hook-form';
-import {
-  Animated,
-  Pressable,
-  Switch,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Animated, Pressable, View } from 'react-native';
 import { FAIcon } from '../icon';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
-import { BlackParagraph } from '../text';
+import { Paragraph } from '../text';
 import { HorizontalSpacer } from '../spacer';
 import { useState } from 'react';
 
@@ -53,7 +47,7 @@ const AdditionServiceRequirement = ({
           <></>
         )}
         <HorizontalSpacer size="l" />
-        <BlackParagraph theme="largeMedium">{label}</BlackParagraph>
+        <Paragraph theme="largeMedium">{label}</Paragraph>
         <HorizontalSpacer size="l"></HorizontalSpacer>
       </View>
       <View style={{ alignSelf: 'flex-start' }}>

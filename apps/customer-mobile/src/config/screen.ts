@@ -5,10 +5,14 @@ import { ICategory } from '@business-layer/services/entities';
 type customerRootStackParamList = {
   Home: undefined;
   ChooseLocation: { category: ICategory };
+  Intro: undefined;
   Login: undefined;
   OTPVertification: undefined;
-  Intro: undefined;
-  ProvideDetail: { categoryId: string };
+  Home: undefined;
+  ChooseLocation: undefined;
+  ChooseService: { categoryId: string };
+  ProvideDetail: { serviceId: string };
+  Summary: undefined;
 };
 
 type customerTabParamList = {
@@ -32,9 +36,17 @@ type OTPVertificationProps = NativeStackScreenProps<
   customerRootStackParamList,
   'OTPVertification'
 >;
+type ChooseServiceProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'ChooseService'
+>;
 type ProvideDetailProps = NativeStackScreenProps<
   customerRootStackParamList,
   'ProvideDetail'
+>;
+type SummaryProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'Summary'
 >;
 
 // 3. Export props
@@ -44,7 +56,9 @@ export {
   ChooseLocationProps,
   LoginProps,
   OTPVertificationProps,
+  SummaryProps,
+  ProvideDetailProps,
   customerTabParamList,
   IntroProps,
-  ProvideDetailProps
+  ChooseServiceProps,
 };

@@ -5,9 +5,14 @@ import {
   primaryParagraphStyles,
   roseParagraphStyles,
   whiteParagraphStyles,
+  textAlignStyles,
+  textColorStyles,
+  textDecorationStyles,
+  textCommonStyles,
+  paragraphFontStyles,
 } from '@presentational/native/styles';
 
-const PrimaryParagraph = ({
+const Paragraph = ({
   children,
   theme,
   align = 'left',
@@ -16,7 +21,28 @@ const PrimaryParagraph = ({
   theme: keyof typeof primaryParagraphStyles;
   align?: 'left' | 'right' | 'center';
 }) => (
-  <Text style={[primaryParagraphStyles[theme], { textAlign: align }]}>
+  lineNumber,
+  color = 'black',
+  align = 'left',
+  decoration = 'normal',
+}: {
+  children: React.ReactNode;
+  theme: keyof typeof paragraphFontStyles;
+  lineNumber?: number;
+  color?: 'primary' | 'black' | 'rose' | 'white';
+  align?: 'left' | 'right' | 'center' | 'justify';
+  decoration?: 'underline' | 'normal' | 'lineThrough';
+}) => (
+  <Text
+    style={[
+      paragraphFontStyles[theme],
+      textColorStyles[color],
+      textAlignStyles[align],
+      textDecorationStyles[decoration],
+      textCommonStyles.behavior,
+    ]}
+    numberOfLines={lineNumber}
+  >
     {children}
   </Text>
 );
@@ -74,3 +100,4 @@ const RoseParagraph = ({
 );
 
 export { PrimaryParagraph, BlackParagraph, RoseParagraph, WhiteParagraph };
+export { Paragraph };

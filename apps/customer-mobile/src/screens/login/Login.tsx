@@ -6,12 +6,10 @@ import { loginScreenStyle } from './styles';
 import { colors } from '@presentational/native/styles';
 import { CountryCodeSelect } from '@present-native/atoms/select/CountryCodeSelect';
 import {
-  BlackParagraph,
-  BlackTitle,
+  Paragraph,
+  Title,
   BorderButton,
   PrimaryButton,
-  PrimaryParagraph,
-  RoseParagraph,
 } from '@present-native/atoms';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { Controller, useForm } from 'react-hook-form';
@@ -74,16 +72,17 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
       <StatusBar hidden />
       <View style={loginScreenStyle.container}>
         <View>
-          <BlackTitle theme="largeBold">Chỉ một bước nữa thôi!</BlackTitle>
+          <Title theme="largeBold" color="black">
+            Chỉ một bước nữa thôi!
+          </Title>
 
           <View style={{ marginTop: 5 }}>
-            <BlackParagraph theme="baseMedium">
+            <Paragraph theme="baseMedium">
               Nhập số điện thoại để đăng nhập
-            </BlackParagraph>
+            </Paragraph>
           </View>
           <View style={{ marginTop: 30, flexDirection: 'row' }}>
-            <BlackParagraph theme="baseMedium">Số điện thoại</BlackParagraph>
-            <RoseParagraph theme="baseMedium"> *</RoseParagraph>
+            <Paragraph theme="baseMedium">Số điện thoại</Paragraph>
           </View>
         </View>
 
@@ -121,19 +120,19 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
         </View>
 
         <View style={{ marginTop: 20 }}>
-          <BlackParagraph theme="baseMedium">
+          <Paragraph theme="baseMedium">
             Tôi đồng ý với các
-            <PrimaryParagraph theme="baseBold">
+            <Paragraph theme="baseBold" color="primary">
               {' '}
               Điều khoản dịch vụ
-            </PrimaryParagraph>{' '}
+            </Paragraph>{' '}
             và
-            <PrimaryParagraph theme="baseBold">
+            <Paragraph theme="baseBold" color="primary">
               {' '}
               Chính sách bảo mật
-            </PrimaryParagraph>{' '}
+            </Paragraph>{' '}
             của Detoi
-          </BlackParagraph>
+          </Paragraph>
 
           <View style={{ marginTop: 30 }}>
             <BorderButton

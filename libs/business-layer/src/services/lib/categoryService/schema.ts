@@ -17,6 +17,7 @@ const validationSchema = z.union([
   z.object({
     id: z.string(),
     name: z.literal('required'),
+    value: z.null(),
     message: z.string(),
   }),
   z.object({
@@ -50,7 +51,7 @@ const serviceRequirementSchema = z.object({
   id: z.string(),
   inputMethod: serviceRequirementsInputMethodType,
   label: z.string(),
-  labelIcon: z.string().optional(),
+  labelIcon: z.string().nullable(),
   placeholder: z.string(),
 });
 
@@ -61,19 +62,28 @@ const additionServiceRequirementSchema = z.object({
   autoSelect: z.boolean(),
 });
 
+const serviceSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  basePrice: z.number(),
+  description: z.string(),
+  image: z.string(),
+});
+
 const getCategoryDetailResponseSchema = categorySchema.and(
   z.object({
-    serviceTypes: z.array(
-      z.object({
-        id: z.string(),
-        name: z.string(),
-        basePrice: z.number(),
-        description: z.string(),
-        image: z.string(),
-        // requirements: z.array(serviceRequirementSchema),
-        // additionalRequirements: z.array(additionServiceRequirementSchema),
-      })
-    ),
+    serviceTypes: z.array(serviceSchema),
   })
 );
-export { getAllCategoryResponseSchema, getCategoryDetailResponseSchema };
+
+const getServiceDetailResponseSchema = serviceSchema.and(
+  z.object({
+    requirements: z.array(serviceRequirementSchema),
+    additionalRequirements: z.array(additionServiceRequirementSchema),
+  })
+);
+export {
+  getAllCategoryResponseSchema,
+  getCategoryDetailResponseSchema,
+  getServiceDetailResponseSchema,
+};

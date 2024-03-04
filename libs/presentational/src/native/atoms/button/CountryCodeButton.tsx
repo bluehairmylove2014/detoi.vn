@@ -1,5 +1,5 @@
 import { TouchableOpacity, View, Image } from 'react-native';
-import { BlackParagraph } from '../text';
+import { Paragraph } from '../text';
 import { commonButtonStyles } from '@present-native/styles';
 import React from 'react';
 
@@ -36,7 +36,7 @@ const CountryCodeButton: React.FC<imageButtonProps> = ({
         />
       </View>
       <View>
-        <BlackParagraph theme="baseMedium">{title}</BlackParagraph>
+        <Paragraph theme="baseMedium">{title}</Paragraph>
       </View>
     </TouchableOpacity>
   );
