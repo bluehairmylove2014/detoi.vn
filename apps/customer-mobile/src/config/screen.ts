@@ -2,22 +2,23 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 // 1. Params config
 type customerRootStackParamList = {
-  Home: undefined;
-  ChooseLocation: undefined;
+  Intro: undefined;
   Login: undefined;
   OTPVertification: undefined;
-  Intro: undefined;
-  ProvideDetail: { categoryId: string };
+  Home: undefined;
+  ChooseLocation: undefined;
+  ChooseService: { categoryId: string };
+  ProvideDetail: { serviceId: string };
 };
 
 type customerTabParamList = {
-    Home: undefined,
-    Endow: undefined,
-    Message: undefined,
-    SingleService: undefined,
-    Account: undefined,
-    Login: undefined
-}
+  Home: undefined;
+  Endow: undefined;
+  Message: undefined;
+  SingleService: undefined;
+  Account: undefined;
+  Login: undefined;
+};
 
 // 2. Props
 type HomeProps = NativeStackScreenProps<customerRootStackParamList, 'Home'>;
@@ -31,6 +32,10 @@ type OTPVertificationProps = NativeStackScreenProps<
   customerRootStackParamList,
   'OTPVertification'
 >;
+type ChooseServiceProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'ChooseService'
+>;
 type ProvideDetailProps = NativeStackScreenProps<
   customerRootStackParamList,
   'ProvideDetail'
@@ -43,7 +48,8 @@ export {
   ChooseLocationProps,
   LoginProps,
   OTPVertificationProps,
+  ProvideDetailProps,
   customerTabParamList,
   IntroProps,
-  ProvideDetailProps
+  ChooseServiceProps,
 };
