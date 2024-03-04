@@ -8,7 +8,7 @@ import { TextInput, View } from 'react-native';
 import { FAIcon } from '../icon';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { ServiceRequirementsInputStyle, colors } from '@present-native/styles';
-import { BlackParagraph, RoseParagraph } from '../text';
+import { Paragraph } from '../text';
 
 const ServiceRequirementsInput = ({
   type,
@@ -21,7 +21,7 @@ const ServiceRequirementsInput = ({
 }: {
   type: 'text' | 'number';
   label: string;
-  labelIcon?: nativeIconNameType;
+  labelIcon: nativeIconNameType | null;
   placeholder: string;
   control: Control<FieldValues, any, FieldValues>;
   setValue: UseFormSetValue<FieldValues>;
@@ -43,10 +43,10 @@ const ServiceRequirementsInput = ({
         )}
 
         <View>
-          <BlackParagraph theme="baseBold">
+          <Paragraph theme="baseBold">
             {labelIcon ? ' | ' : ''} {label}
-            <RoseParagraph theme="largeMedium"> *</RoseParagraph>
-          </BlackParagraph>
+            <Paragraph theme="largeMedium"> *</Paragraph>
+          </Paragraph>
         </View>
       </View>
       <Controller

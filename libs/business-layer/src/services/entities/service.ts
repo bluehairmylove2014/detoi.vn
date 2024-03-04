@@ -9,6 +9,9 @@ export interface IService {
   basePrice: number;
   description: string;
   image: string;
+}
+
+export interface IServiceDetail extends IService {
   requirements: IUIServiceRequirement[];
   additionalRequirements: IUIAdditionServiceRequirement[];
 }

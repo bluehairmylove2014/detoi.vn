@@ -1,10 +1,7 @@
-import { Text, SafeAreaView, View, Image } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import React from 'react';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
-import { circleImageStyles, colors } from '@present-native/styles';
 import { topLabelStyle } from '../home/styles';
-import { PrimaryTitle } from '@present-native/atoms';
-import { CircleImage } from '@present-native/atoms/image';
 import ServiceInfoMatching from '@present-native/molecules/serviceInfoMatching/ServiceInfoMatching';
 
 export default function Matching() {

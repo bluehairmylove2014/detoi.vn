@@ -19,7 +19,7 @@ export interface IUIServiceRequirement {
   id: string;
   inputMethod: serviceRequirementsInputMethodType;
   label: string;
-  labelIcon?: nativeIconNameType;
+  labelIcon: nativeIconNameType | null;
   placeholder: string;
 }
 

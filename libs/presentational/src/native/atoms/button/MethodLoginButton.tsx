@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { colors, commonButtonStyles } from '@presentational/native/styles';
 import React from 'react';
-import { BlackParagraph } from '../text';
+import { Paragraph } from '../text';
 
 const themeList = {
   'square-rounded-bold': { borderRadius: 5 },
@@ -33,7 +33,7 @@ const MethodLoginButton = ({
     >
       {orientation === 'left' ? icon : <></>}
       <View style={{ flex: 1, alignItems: 'center' }}>
-        <BlackParagraph theme="smallMedium">{title}</BlackParagraph>
+        <Paragraph theme="smallMedium">{title}</Paragraph>
       </View>
       {orientation === 'right' ? icon : <></>}
     </TouchableOpacity>

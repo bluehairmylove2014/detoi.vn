@@ -1,4 +1,4 @@
-import { BlackParagraph, BlackTitle } from '@present-native/atoms';
+import { Paragraph } from '@present-native/atoms';
 import { CircleImage } from '@present-native/atoms/image';
 import { View, Text } from 'react-native';
 
@@ -14,7 +14,9 @@ export default function ServiceInfoMatching() {
         />
       </View>
       <View style={{ display: 'flex', flexDirection: 'column' }}>
-        <BlackParagraph theme="largeBold">Dọn nhà phổ thông</BlackParagraph>
+        <Paragraph theme="largeBold" color="black">
+          Dọn nhà phổ thông
+        </Paragraph>
         <View></View>
         <Text numberOfLines={1}>Joy Citipoint, Quốc Lộ 1A, KCX Lnh Trung</Text>
       </View>

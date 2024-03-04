@@ -1,33 +1,40 @@
 import { Text } from 'react-native';
 import React from 'react';
 import {
-  primaryTitleStyles,
-  whiteTitleStyle,
-  blackTitleStyles,
+  textAlignStyles,
+  textColorStyles,
+  textDecorationStyles,
+  textCommonStyles,
+  titleFontStyles,
 } from '@presentational/native/styles';
 
-const PrimaryTitle = ({
+const Title = ({
   children,
   theme,
+  lineNumber,
+  color = 'black',
+  align = 'left',
+  decoration = 'normal',
 }: {
   children: React.ReactNode;
-  theme: keyof typeof primaryTitleStyles;
-}) => <Text style={primaryTitleStyles[theme]}>{children}</Text>;
+  theme: keyof typeof titleFontStyles;
+  lineNumber?: number;
+  color?: 'primary' | 'black' | 'white';
+  align?: 'left' | 'right' | 'center' | 'justify';
+  decoration?: 'underline' | 'normal' | 'lineThrough';
+}) => (
+  <Text
+    style={[
+      titleFontStyles[theme],
+      textColorStyles[color],
+      textAlignStyles[align],
+      textDecorationStyles[decoration],
+      textCommonStyles.behavior,
+    ]}
+    numberOfLines={lineNumber}
+  >
+    {children}
+  </Text>
+);
 
-const WhiteTitle = ({
-  children,
-  theme,
-}: {
-  children: React.ReactNode;
-  theme: keyof typeof whiteTitleStyle;
-}) => <Text style={whiteTitleStyle[theme]}>{children}</Text>;
-
-const BlackTitle = ({
-  children,
-  theme,
-}: {
-  children: React.ReactNode;
-  theme: keyof typeof blackTitleStyles;
-}) => <Text style={blackTitleStyles[theme]}>{children}</Text>;
-
-export { PrimaryTitle, WhiteTitle, BlackTitle };
+export { Title };

@@ -6,11 +6,7 @@ import {
   Facebook,
   NumberPhone,
 } from '@presentational/native/atoms/svg';
-import {
-  BlackTitle,
-  BlackParagraph,
-  PrimaryParagraph,
-} from '@present-native/atoms';
+import { Title, Paragraph } from '@present-native/atoms';
 import React from 'react';
 import { MethodLoginButton } from '@present-native/atoms/button';
 import { introSCreenStyle } from './styles';
@@ -45,10 +41,12 @@ const IntroPage: React.FC<IntroProps> = ({ route, navigation }) => {
       <Header typeDisplay={[ETypeDisplayHeader.languageButton]} />
       <View style={introSCreenStyle.welcomeSection}>
         <Logo width={150} height={150} />
-        <BlackTitle theme="largeBold">Chào mừng đến với Detoi</BlackTitle>
-        <BlackParagraph theme="baseMedium">
+        <Title theme="largeBold" color="black">
+          Chào mừng đến với Detoi
+        </Title>
+        <Paragraph theme="baseMedium">
           Ứng dụng hỗ trợ mọi dịch vụ bạn cần
-        </BlackParagraph>
+        </Paragraph>
       </View>
       <View style={introSCreenStyle.buttonLoginSection}>
         {LIST_ITEM_BUTTON_LOGIN.map((item, index) => (
@@ -63,16 +61,16 @@ const IntroPage: React.FC<IntroProps> = ({ route, navigation }) => {
         ))}
       </View>
       <View style={introSCreenStyle.introPolicySection}>
-        <BlackParagraph theme="smallMedium">
+        <Paragraph theme="smallMedium">
           Bằng việc đăng ký hoặc đăng nhập, bạn đã đồng ý với các{' '}
-          <PrimaryParagraph theme="smallBold">
+          <Paragraph theme="smallBold" color="primary">
             Điều khoản dịch vụ
-          </PrimaryParagraph>{' '}
+          </Paragraph>{' '}
           và{' '}
-          <PrimaryParagraph theme="smallBold">
+          <Paragraph theme="smallBold" color="primary">
             Chính sách bảo mật
-          </PrimaryParagraph>
-        </BlackParagraph>
+          </Paragraph>
+        </Paragraph>
       </View>
     </View>
   );
