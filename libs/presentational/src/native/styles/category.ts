@@ -32,5 +32,6 @@ export const categoryThumbnailStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 20,
+    paddingHorizontal: 5,
   },
 });

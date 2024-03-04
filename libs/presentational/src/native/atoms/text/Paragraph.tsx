@@ -19,7 +19,7 @@ const Paragraph = ({
   children: React.ReactNode;
   theme: keyof typeof paragraphFontStyles;
   lineNumber?: number;
-  color?: 'primary' | 'black' | 'rose';
+  color?: 'primary' | 'black' | 'rose' | 'white';
   align?: 'left' | 'right' | 'center' | 'justify';
   decoration?: 'underline' | 'normal' | 'lineThrough';
 }) => (
