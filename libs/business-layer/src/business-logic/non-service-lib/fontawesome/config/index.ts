@@ -20,6 +20,12 @@ import {
   faBroom,
   faPersonShelter,
   faClock,
+  faLocationCrosshairs,
+  faBookBookmark,
+  faArrowRight,
+  faArrowLeftLong,
+  faClockRotateLeft,
+  faLocationDot,
   faCircleDollarToSlot,
 } from '@fortawesome/free-solid-svg-icons';
 import { fa500px } from '@fortawesome/free-brands-svg-icons';
@@ -47,6 +53,12 @@ export const NATIVE_ICONS = {
   faBroom,
   faPersonShelter,
   faClock,
+  faLocationCrosshairs,
+  faBookBookmark,
+  faArrowRight,
+  faArrowLeftLong,
+  faClockRotateLeft,
+  faLocationDot,
   faCircleDollarToSlot,
 };
 

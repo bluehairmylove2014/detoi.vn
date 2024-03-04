@@ -8,4 +8,7 @@ export * from './spacingConvention';
 export * from './select';
 export * from './input';
 export * from './switch';
+export * from './overlay';
+export * from './banner';
+export * from './divider';
 export * from './image';
