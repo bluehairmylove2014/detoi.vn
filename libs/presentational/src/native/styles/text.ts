@@ -47,7 +47,7 @@ const paragraphFontStyles = StyleSheet.create({
     fontSize: 16,
   },
   largeBold: {
-    fontFamily: 'Montserrat_600SemiBold',
+    fontFamily: 'Montserrat_700Bold',
     fontSize: 16,
   },
 });
