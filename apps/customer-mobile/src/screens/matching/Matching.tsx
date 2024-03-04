@@ -1,27 +1,45 @@
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 import React from 'react';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
-import { topLabelStyle } from '../home/styles';
 import ServiceInfoMatching from '@present-native/molecules/serviceInfoMatching/ServiceInfoMatching';
+import { matchingScreenStyle, topLabelStyle } from './style';
+import { CircleImage } from '@present-native/atoms/image';
+import { Paragraph } from '@present-native/atoms';
 
 export default function Matching() {
   return (
-    <CustomerTemplate>
-      <View style={topLabelStyle.event}>
-        <SafeAreaView style={topLabelStyle.event_safeView}>
-          <View style={topLabelStyle.event_content}>
-            <ServiceInfoMatching />
-          </View>
-        </SafeAreaView>
+    <SafeAreaView>
+      <View
+        style={{
+          width: '100%',
+          minHeight: '100%',
+          height: 'auto',
+          padding: 20,
+          overflow: 'hidden',
+        }}
+      >
+        <ServiceInfoMatching />
       </View>
-      {/* <View
-        style={{ flex: 1, margin: 'auto', backgroundColor: colors.softBg }}
-      ></View>
-      <SafeAreaView>
-        <View style={{ backgroundColor: colors.soft, minHeight: 400 }}>
-          <Text>Matchingggg</Text>
-        </View>
-      </SafeAreaView> */}
-    </CustomerTemplate>
+      <Text>Hello</Text>
+    </SafeAreaView>
+    // <CustomerTemplate>
+    //   <View style={matchingScreenStyle.container}>
+    //     <View style={topLabelStyle.container}>
+    //       <View style={topLabelStyle.event}>
+    //         <SafeAreaView>
+    //           {/* <View style={topLabelStyle.event_content}></View> */}
+    //         </SafeAreaView>
+    //       </View>
+    //     </View>
+    //   </View>
+    //   {/* <View
+    //     style={{ flex: 1, margin: 'auto', backgroundColor: colors.softBg }}
+    //   ></View>
+    //   <SafeAreaView>
+    //     <View style={{ backgroundColor: colors.soft, minHeight: 400 }}>
+    //       <Text>Matchingggg</Text>
+    //     </View>
+    //   </SafeAreaView> */}
+    // </CustomerTemplate>
   );
 }
