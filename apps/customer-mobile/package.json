@@ -46,7 +46,6 @@
     "react-native-element-dropdown": "*",
     "uuid": "*",
     "yup": "*",
-    "@react-native-picker/picker": "*",
     "@react-native-community/datetimepicker": "*"
   },
   "scripts": {
