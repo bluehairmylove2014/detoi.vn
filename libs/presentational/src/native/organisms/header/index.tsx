@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { SelectCountry } from 'react-native-element-dropdown';
 import { headerStyle, languageSelectorStyle } from './styles';
+import { BackButton } from '@present-native/atoms';
 
 export enum ETypeDisplayHeader {
-  backButton,
-  languageButton,
+  BACK_BUTTON,
+  LANGUAGE_BUTTON,
 }
 type TDisplayType =
-  | ETypeDisplayHeader.backButton
-  | ETypeDisplayHeader.languageButton;
+  | ETypeDisplayHeader.BACK_BUTTON
+  | ETypeDisplayHeader.LANGUAGE_BUTTON;
 
 type HeaderProps = {
   typeDisplay: TDisplayType[];
@@ -36,7 +37,13 @@ export const Header: React.FC<HeaderProps> = ({ typeDisplay }) => {
 
   return (
     <View style={headerStyle.container}>
-      {typeDisplay.includes(ETypeDisplayHeader.languageButton) ? (
+      {typeDisplay.includes(ETypeDisplayHeader.BACK_BUTTON) ? (
+        <View style={headerStyle.backButtonContainer}>
+          <BackButton />
+        </View>
+      ) : <View style={{flex:1}}/>}
+
+      {typeDisplay.includes(ETypeDisplayHeader.LANGUAGE_BUTTON) ? (
         <View style={headerStyle.languageButtonContainer}>
           <SelectCountry
             style={languageSelectorStyle.dropdown}
@@ -55,9 +62,7 @@ export const Header: React.FC<HeaderProps> = ({ typeDisplay }) => {
             }}
           />
         </View>
-      ) : (
-        <></>
-      )}
+      ) : <View style={{flex:1}}/>}
     </View>
   );
 };

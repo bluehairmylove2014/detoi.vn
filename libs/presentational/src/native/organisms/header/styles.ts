@@ -7,10 +7,18 @@ import {
 
 const headerStyle = StyleSheet.create({
   container: {
-    paddingVertical: screenVerticalPadding,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
   },
   languageButtonContainer: {
     alignSelf: 'flex-end',
+  },
+  backButtonContainer: {
+
+    alignSelf: 'flex-start',
   },
 });
 
