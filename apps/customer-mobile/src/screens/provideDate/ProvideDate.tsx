@@ -27,6 +27,7 @@ import { useMemo, useState } from 'react';
 import { colors } from '@present-native/styles';
 import TimePicker from '@present-native/molecules/timePicker/TimePicker';
 import { Controller, useForm } from 'react-hook-form';
+import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 
 type requirementInputFormType = {
   require: string;
@@ -145,115 +146,117 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
     );
   };
   return (
-    <SafeAreaView>
-      {actveBlur ? <BlurTheme /> : <></>}
+    <CustomerTemplate>
+      <SafeAreaView>
+        {actveBlur ? <BlurTheme /> : <></>}
 
-      <View style={provideDateStyle.container}>
-        <View style={provideDateStyle.labelTime}>
-          <SecondaryParagraph theme="largeBold">
-            Thời gian làm việc
-          </SecondaryParagraph>
-          <BlackParagraph theme="baseSemiBold">
-            Tháng {(0 + (selectedDate.getMonth() + 1)).toString().slice(-2)},
-            năm {selectedDate.getFullYear()}
-          </BlackParagraph>
-        </View>
-
-        <VerticalSpacer size="xxl" />
-        <View>
-          <BlackParagraph theme="baseMedium">Chọn ngày làm</BlackParagraph>
-          <VerticalSpacer size="l" />
-          <FlatList
-            data={dateList}
-            renderItem={renderItem}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
-
-        <VerticalSpacer size="xl" />
-        <View style={provideDateStyle.chooseTimeContainer}>
-          <View style={provideDateStyle.chooseTimeLabel}>
-            <FAIcon iconName="faClock" size={20} color={colors.secondary} />
-            <HorizontalSpacer size="m"></HorizontalSpacer>
-            <BlackParagraph theme="baseBold">Chọn giờ làm</BlackParagraph>
+        <View style={provideDateStyle.container}>
+          <View style={provideDateStyle.labelTime}>
+            <SecondaryParagraph theme="largeBold">
+              Thời gian làm việc
+            </SecondaryParagraph>
+            <BlackParagraph theme="baseSemiBold">
+              Tháng {(0 + (selectedDate.getMonth() + 1)).toString().slice(-2)},
+              năm {selectedDate.getFullYear()}
+            </BlackParagraph>
           </View>
-          <TouchableOpacity
-            style={provideDateStyle.chooseTimeButton}
-            onPress={() => {
-              setActiveModal(true);
-              setActiveBlur(true);
-            }}
-          >
-            <BlackParagraph theme="baseBold">14</BlackParagraph>
-            <BlackParagraph theme="baseMedium">|</BlackParagraph>
-            <BlackParagraph theme="baseBold">00</BlackParagraph>
-          </TouchableOpacity>
-        </View>
 
-        <VerticalSpacer size="xxxl" />
-        <View style={provideDateStyle.inputRequirementAddContainer}>
-          <BlackParagraph theme="baseBold">
-            Yêu cầu thêm cho nhân viên
-          </BlackParagraph>
-
-          <VerticalSpacer size="s" />
-          <GrayParagraph theme="smallMedium">
-            Bạn có yêu cầu gì thêm cho nhân viên không?
-          </GrayParagraph>
-
-          <VerticalSpacer size="l" />
-          <View style={provideDateStyle.inputContainer}>
-            <Controller
-              name="require"
-              control={control}
-              render={({ field }) => (
-                <TextInput
-                  style={provideDateStyle.input}
-                  placeholder="Nhập yêu cầu ở đây..."
-                  placeholderTextColor={colors.gray}
-                  selectionColor={colors.black}
-                  numberOfLines={4}
-                  multiline={true}
-                  {...field}
-                  onChangeText={(value) => {
-                    field.onChange(value);
-                    setValue('require', value);
-                  }}
-                />
-              )}
+          <VerticalSpacer size="xxl" />
+          <View>
+            <BlackParagraph theme="baseMedium">Chọn ngày làm</BlackParagraph>
+            <VerticalSpacer size="l" />
+            <FlatList
+              data={dateList}
+              renderItem={renderItem}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
             />
           </View>
-        </View>
 
-        <VerticalSpacer size="xxxl" />
-        <VerticalSpacer size="xl" />
-        <View style={provideDateStyle.buttonContainer}>
-          <PrimaryButton
-            title="Ghép cặp ngay"
-            theme="square-rounded-bold"
-            onPress={handleSubmit(onSuccessSubmitDate, onErrorSubmit)}
-          />
-        </View>
+          <VerticalSpacer size="xl" />
+          <View style={provideDateStyle.chooseTimeContainer}>
+            <View style={provideDateStyle.chooseTimeLabel}>
+              <FAIcon iconName="faClock" size={20} color={colors.secondary} />
+              <HorizontalSpacer size="m"></HorizontalSpacer>
+              <BlackParagraph theme="baseBold">Chọn giờ làm</BlackParagraph>
+            </View>
+            <TouchableOpacity
+              style={provideDateStyle.chooseTimeButton}
+              onPress={() => {
+                setActiveModal(true);
+                setActiveBlur(true);
+              }}
+            >
+              <BlackParagraph theme="baseBold">14</BlackParagraph>
+              <BlackParagraph theme="baseMedium">|</BlackParagraph>
+              <BlackParagraph theme="baseBold">00</BlackParagraph>
+            </TouchableOpacity>
+          </View>
 
-        <VerticalSpacer size="xl" />
-        <View>
-          <BlackParagraph theme="smallBold" align="center">
-            Lưu ý:
-            <BlackParagraph theme="smallMedium">
-              {' '}
-              Sau khi ghép cặp, chúng tôi sẽ tìm các nhân viên phù hợp với bạn,
-              mỗi người sẽ đưa ra mức giá khác nhau
-              <BlackParagraph theme="smallBold">
-                , hãy chọn người và mức giá phù hợp nhất với bạn
+          <VerticalSpacer size="xxxl" />
+          <View style={provideDateStyle.inputRequirementAddContainer}>
+            <BlackParagraph theme="baseBold">
+              Yêu cầu thêm cho nhân viên
+            </BlackParagraph>
+
+            <VerticalSpacer size="s" />
+            <GrayParagraph theme="smallMedium">
+              Bạn có yêu cầu gì thêm cho nhân viên không?
+            </GrayParagraph>
+
+            <VerticalSpacer size="l" />
+            <View style={provideDateStyle.inputContainer}>
+              <Controller
+                name="require"
+                control={control}
+                render={({ field }) => (
+                  <TextInput
+                    style={provideDateStyle.input}
+                    placeholder="Nhập yêu cầu ở đây..."
+                    placeholderTextColor={colors.gray}
+                    selectionColor={colors.black}
+                    numberOfLines={4}
+                    multiline={true}
+                    {...field}
+                    onChangeText={(value) => {
+                      field.onChange(value);
+                      setValue('require', value);
+                    }}
+                  />
+                )}
+              />
+            </View>
+          </View>
+
+          <VerticalSpacer size="xxxl" />
+          <VerticalSpacer size="xl" />
+          <View style={provideDateStyle.buttonContainer}>
+            <PrimaryButton
+              title="Ghép cặp ngay"
+              theme="square-rounded-bold"
+              onPress={handleSubmit(onSuccessSubmitDate, onErrorSubmit)}
+            />
+          </View>
+
+          <VerticalSpacer size="xl" />
+          <View>
+            <BlackParagraph theme="smallBold" align="center">
+              Lưu ý:
+              <BlackParagraph theme="smallMedium">
+                {' '}
+                Sau khi ghép cặp, chúng tôi sẽ tìm các nhân viên phù hợp với
+                bạn, mỗi người sẽ đưa ra mức giá khác nhau
+                <BlackParagraph theme="smallBold">
+                  , hãy chọn người và mức giá phù hợp nhất với bạn
+                </BlackParagraph>
               </BlackParagraph>
             </BlackParagraph>
-          </BlackParagraph>
-        </View>
+          </View>
 
-        {modalTimePicker()}
-      </View>
-    </SafeAreaView>
+          {modalTimePicker()}
+        </View>
+      </SafeAreaView>
+    </CustomerTemplate>
   );
 };
 
