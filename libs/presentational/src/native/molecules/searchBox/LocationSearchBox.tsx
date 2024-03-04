@@ -3,13 +3,13 @@ import { TextInput, View } from 'react-native';
 import { colors, locationSearchBox } from '@present-native/styles';
 import { FAIcon } from '@present-native/atoms';
 
-type LocationSearchBoxProps = {
+type locationSearchBoxProps = {
   textSearchInputed: string;
   setTextSearchInputed: (text: string) => void;
 };
 
 export const LocationSearchBox = React.memo(
-  ({ textSearchInputed, setTextSearchInputed }: LocationSearchBoxProps) => {
+  ({ textSearchInputed, setTextSearchInputed }: locationSearchBoxProps) => {
     return (
       <View style={locationSearchBox.searchBoxWrapper}>
         <TextInput

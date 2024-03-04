@@ -1,7 +1,6 @@
-import { TouchableHighlight, View, Text, TouchableOpacity } from 'react-native';
+import { TouchableHighlight, View, Text } from 'react-native';
 import { FAIcon } from '../icon';
 import { colors, commonButtonStyles } from '@presentational/native/styles';
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
 type iconButtonProps = {
@@ -41,26 +40,4 @@ const BellIconButton = ({
   );
 };
 
-type iconBackButtonProps = {
-  iconSize?: number;
-};
-
-const BackButton = React.memo(
-  ({ iconSize = DEFAULT_ICON_SIZE }: iconBackButtonProps) => {
-    const navigation = useNavigation();
-    const handleBackClick = () => {
-      navigation.goBack();
-    };
-    return (
-      <TouchableOpacity onPress={handleBackClick}>
-        <FAIcon
-          iconName="faArrowLeftLong"
-          size={iconSize}
-          color={colors.white}
-        />
-      </TouchableOpacity>
-    );
-  }
-);
-
-export { BellIconButton, BackButton };
+export { BellIconButton };

@@ -12,7 +12,7 @@ export enum ETypesRecommedationGeo {
   HISTORY,
   BOOK_MARK,
 }
-export type TRecommendationGeo = IForwardGeocode & {
+export type recommendationGeoType = IForwardGeocode & {
   typeRecommedationGeo:
   | ETypesRecommedationGeo.RESULT_SEARCHING
   | ETypesRecommedationGeo.HISTORY

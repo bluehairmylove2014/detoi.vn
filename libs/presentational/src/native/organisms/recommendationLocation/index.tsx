@@ -1,12 +1,12 @@
 import {
-  BlackLimitLineParagraph,
+  BlackParagraph,
   GrayDivider,
   FAIcon,
   VerticalSpacer,
 } from '@present-native/atoms';
 import { colors } from '@present-native/styles';
 import React from 'react';
-import { TRecommendationGeo } from '@business-layer/services';
+import { recommendationGeoType } from '@business-layer/services';
 import { TouchableOpacity, View } from 'react-native';
 import { IconGeo } from '@present-native/atoms/icon/IconGeo';
 import { recommendationLocationStyle } from './styles';
@@ -16,7 +16,7 @@ export const RecommendationLocation = React.memo(
   ({
     dataRecommendationGeo,
   }: {
-    dataRecommendationGeo: TRecommendationGeo[];
+    dataRecommendationGeo: recommendationGeoType[];
   }) => {
     return (
       <React.Fragment>
@@ -31,9 +31,9 @@ export const RecommendationLocation = React.memo(
                   <IconGeo typeGeo={itemGeo.typeRecommedationGeo} />
                 </View>
                 <View style={recommendationLocationStyle.wrapperDisplayName}>
-                  <BlackLimitLineParagraph numberLine={1} theme="smallMedium">
+                  <BlackParagraph limitLineNumber={1} theme="smallMedium">
                     {itemGeo.display_name}
-                  </BlackLimitLineParagraph>
+                  </BlackParagraph>
                 </View>
                 <FAIcon
                   iconName="faArrowRight"

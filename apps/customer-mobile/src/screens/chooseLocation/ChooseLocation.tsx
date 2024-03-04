@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { ChooseLocationProps } from '../../config';
 import { BannerTopSection, LocationSearchBox } from '@present-native/molecules';
 import {
-  BlackUnderlineParagraph,
   SubtitleLink,
   WhiteParagraph,
   WhiteTitle,
@@ -18,7 +17,7 @@ import { useForwardGeocoding } from '@business-layer/business-logic/lib/geocode'
 import { debouncePromise } from '@business-layer/business-logic/helper';
 import {
   forwardGeocodingResponseType,
-  TRecommendationGeo,
+  recommendationGeoType,
   ETypesRecommedationGeo,
 } from '@business-layer/services';
 import { chooseLocationScreenStyle } from './styles';
@@ -30,7 +29,7 @@ const ChooseLocation = React.memo(
 
     const [textSearchInputed, setTextSearchInputed] = useState('');
     const [dataRecommendationGeo, setDataRecommendationGeo] = useState<
-      TRecommendationGeo[]
+      recommendationGeoType[]
     >([]);
 
     const { onForwardGeocoding } = useForwardGeocoding();
@@ -52,7 +51,7 @@ const ChooseLocation = React.memo(
           setDataRecommendationGeo([]);
           console.log({ error });
         });
-    }, [textSearchInputed]);
+    }, [onForwardGeocoding, textSearchInputed]);
 
     return (
       <CustomerTemplate>
@@ -77,10 +76,12 @@ const ChooseLocation = React.memo(
               dataRecommendationGeo={dataRecommendationGeo}
             />
             <VerticalSpacer size="xxxl" />
-            <SubtitleLink screenName="Home" algin="center">
-              <BlackUnderlineParagraph theme="smallMedium">
-                Chọn từ sổ địa chỉ?
-              </BlackUnderlineParagraph>
+            <SubtitleLink
+              screenName="Home"
+              algin="center"
+              decoration="underline"
+            >
+              Chọn từ sổ địa chỉ?
             </SubtitleLink>
           </View>
         </View>
