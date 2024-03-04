@@ -1,6 +1,8 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import { ProvideDateProps } from '../../config';
 import {
   BlackParagraph,
+  BlurTheme,
   FAIcon,
   GrayParagraph,
   HorizontalSpacer,
@@ -32,6 +34,8 @@ type requirementInputFormType = {
 
 const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
   const [activeModal, setActiveModal] = useState(false);
+  const [actveBlur, setActiveBlur] = useState(false);
+
   const [selectedDate, setSelectedDate] = useState<Date>(() => {
     const currentDate = new Date();
     const followingDay = new Date();
@@ -108,7 +112,12 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
   // Design Modal List To Choose Time
   const modalTimePicker = () => {
     return (
-      <Modal animationType="slide" transparent={true} visible={activeModal}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={activeModal}
+        style={{ height: 50 }}
+      >
         <TouchableWithoutFeedback>
           <View style={provideDateStyle.modalContainer}>
             <View style={provideDateStyle.backgroundModal}>
@@ -122,6 +131,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
                   }}
                   onPress={() => {
                     setActiveModal(false);
+                    setActiveBlur(false);
                   }}
                 >
                   <FAIcon iconName="faTimes" color={colors.black} size={25} />
@@ -136,6 +146,8 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
   };
   return (
     <SafeAreaView>
+      {actveBlur ? <BlurTheme /> : <></>}
+
       <View style={provideDateStyle.container}>
         <View style={provideDateStyle.labelTime}>
           <SecondaryParagraph theme="largeBold">
@@ -170,6 +182,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
             style={provideDateStyle.chooseTimeButton}
             onPress={() => {
               setActiveModal(true);
+              setActiveBlur(true);
             }}
           >
             <BlackParagraph theme="baseBold">14</BlackParagraph>

@@ -1,11 +1,5 @@
 import { colors } from '@present-native/styles';
-import {
-  Dimensions,
-  Modal,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import { Dimensions, TouchableWithoutFeedback, View } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -21,6 +15,7 @@ const BlurTheme = () => {
           top: 0,
           left: 0,
           opacity: 0.6,
+          zIndex: 10,
         }}
       />
     </TouchableWithoutFeedback>

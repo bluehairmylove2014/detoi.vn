@@ -57,6 +57,8 @@ const provideDateStyle = StyleSheet.create({
     width: '100%',
     backgroundColor: colors.white,
     bottom: 0,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
   },
 
   backgroundModal: {

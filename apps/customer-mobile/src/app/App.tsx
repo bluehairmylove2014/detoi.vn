@@ -3,13 +3,12 @@ import { RootNavigationContainer } from './RootStack';
 import { customerRootStackParamList, activeModules } from '../config';
 import { Intro } from '@present-native/atoms';
 import { useGoogleFonts } from '@business-layer/business-logic/non-service-lib/googleFont';
-import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 
 const App = () => {
   const isLogged = false;
   const initRoute: keyof customerRootStackParamList = isLogged
     ? 'Home'
-    : 'Intro';
+    : 'Login';
   const { isLoading } = useGoogleFonts();
 
   if (isLoading) {
@@ -17,9 +16,7 @@ const App = () => {
   }
   return (
     <BusinessLogicProvider activeModules={activeModules}>
-      <CustomerTemplate>
-        <RootNavigationContainer initRoute="ProvideDate" />
-      </CustomerTemplate>
+      <RootNavigationContainer initRoute={initRoute} />
     </BusinessLogicProvider>
   );
 };
