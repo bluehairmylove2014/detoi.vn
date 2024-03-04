@@ -1,11 +1,10 @@
 import { colors, screenHorizontalPadding } from '@presentational/native/styles';
 import { StyleSheet } from 'react-native';
-import { windowHeight, windowWidth } from '@constants/dimension';
+import { windowWidth } from '@constants/dimension';
 
 const homeScreenStyle = StyleSheet.create({
   container: {
-    width: windowWidth,
-    minHeight: windowHeight,
+    flex: 1,
     height: 'auto',
     backgroundColor: colors.softBg,
   },
@@ -14,7 +13,7 @@ const homeScreenStyle = StyleSheet.create({
 const topLabelStyle = StyleSheet.create({
   container: {
     width: windowWidth,
-    height: '25%',
+    height: 220,
   },
   event: {
     display: 'flex',
@@ -103,6 +102,58 @@ const serviceSectionStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  other_service: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 10,
+    width: '100%',
+  },
 });
 
-export { homeScreenStyle, topLabelStyle, serviceSectionStyle };
+const endowSectionStyle = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 10,
+  },
+
+  item: {
+    display: 'flex',
+    flexDirection: 'row',
+    maxWidth: '90%',
+    padding: 7,
+    borderWidth: 1,
+    // Not in color.ts
+    borderColor: '#CBCBCB',
+    borderRadius: 5,
+    alignItems: 'center',
+    gap: 10,
+  },
+
+  endow_image: {
+    width: 65,
+    height: 70,
+  },
+
+  content: {
+    maxWidth: 220,
+  },
+});
+
+const memberSectionStyle = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 20,
+    justifyContent: 'space-between',
+  },
+});
+
+export {
+  homeScreenStyle,
+  topLabelStyle,
+  serviceSectionStyle,
+  endowSectionStyle,
+  memberSectionStyle,
+};

@@ -1,3 +1,4 @@
 export * from './useGetAllCategories';
 export * from './useServiceRequirementsUI';
-export * from './useGetAllServiceByCategoryId';
+export * from './useGetCategoryDetail';
+export * from './useGetServiceDetail';

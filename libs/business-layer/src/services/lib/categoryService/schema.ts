@@ -1,13 +1,12 @@
 import z from 'zod';
 
-const getAllCategoryResponseSchema = z.array(
-  z.object({
-    id: z.string(),
-    name: z.string(),
-    image: z.string(),
-    description: z.string(),
-  })
-);
+const categorySchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  image: z.string(),
+  description: z.string(),
+});
+const getAllCategoryResponseSchema = z.array(categorySchema);
 
 const selectOptionSchema = z.object({
   id: z.string(),
@@ -18,6 +17,7 @@ const validationSchema = z.union([
   z.object({
     id: z.string(),
     name: z.literal('required'),
+    value: z.null(),
     message: z.string(),
   }),
   z.object({
@@ -51,7 +51,7 @@ const serviceRequirementSchema = z.object({
   id: z.string(),
   inputMethod: serviceRequirementsInputMethodType,
   label: z.string(),
-  labelIcon: z.string().optional(),
+  labelIcon: z.string().nullable(),
   placeholder: z.string(),
 });
 
@@ -62,14 +62,28 @@ const additionServiceRequirementSchema = z.object({
   autoSelect: z.boolean(),
 });
 
-const getAllServicesOfCategoryResponseSchema = z.array(
+const serviceSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  basePrice: z.number(),
+  description: z.string(),
+  image: z.string(),
+});
+
+const getCategoryDetailResponseSchema = categorySchema.and(
   z.object({
-    id: z.string(),
-    name: z.string(),
-    basePrice: z.number(),
-    description: z.string(),
+    serviceTypes: z.array(serviceSchema),
+  })
+);
+
+const getServiceDetailResponseSchema = serviceSchema.and(
+  z.object({
     requirements: z.array(serviceRequirementSchema),
     additionalRequirements: z.array(additionServiceRequirementSchema),
   })
 );
-export { getAllCategoryResponseSchema, getAllServicesOfCategoryResponseSchema };
+export {
+  getAllCategoryResponseSchema,
+  getCategoryDetailResponseSchema,
+  getServiceDetailResponseSchema,
+};

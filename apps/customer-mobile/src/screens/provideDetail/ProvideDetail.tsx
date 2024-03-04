@@ -1,20 +1,24 @@
 import { View } from 'react-native';
 import React from 'react';
 import { ProvideDetailProps } from '../../config';
-import { provideDetailStyle } from './styles';
-import { useServiceRequirementsUI } from '@business-layer/business-logic/lib/category';
-import { testDataInput, testSwitch } from './__mock__';
+import {
+  useGetServiceDetail,
+  useServiceRequirementsUI,
+} from '@business-layer/business-logic/lib/category';
 
 const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
+  const { serviceId } = route.params;
+  const { data: serviceDetail } = useGetServiceDetail(serviceId);
   const { onGenerateUI } = useServiceRequirementsUI();
-  const { categoryId } = route.params;
-  console.log('PAGE: ', categoryId);
+  console.log(serviceDetail);
   return (
-    <View style={provideDetailStyle.container}>
-      {onGenerateUI({
-        requirements: testDataInput,
-        additionalRequirements: testSwitch,
-      })}
+    <View>
+      {serviceDetail
+        ? onGenerateUI({
+            requirements: serviceDetail.requirements,
+            additionalRequirements: serviceDetail.additionalRequirements,
+          })
+        : null}
     </View>
   );
 };

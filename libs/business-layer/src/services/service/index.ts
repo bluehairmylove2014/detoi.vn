@@ -10,13 +10,12 @@ export class Services {
   }
 
   handleError(error: any): Error {
-    // console.error('service error: ', error);
+    console.error('service error: ', error);
     if (isCancel(error)) {
       this.cancelRequest();
       return error;
     }
     if (error?.name && error.name === 'ZodError') {
-      console.error(error);
       return new Error(unknownError);
     } else {
       return new Error(
@@ -62,7 +61,7 @@ export class Services {
       withCredentials,
     };
     const response = await axios(mockParams);
-    console.log('RECEIVE: ', response.data.message);
+    // console.log('RECEIVE: ', response.data.message);
     const dataResponse = schema.parse(response.data);
 
     return transformResponse(dataResponse);

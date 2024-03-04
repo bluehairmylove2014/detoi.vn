@@ -7,6 +7,8 @@ import HomeScreen from '../screens/home/Home';
 import ChooseLocationScreen from '../screens/chooseLocation/ChooseLocation';
 import LoginScreen from '../screens/login/Login';
 import OTPVertificationScreen from '../screens/otpVertification/OTPVertification';
+import IntroScreen from '../screens/intro/Intro';
+import ChooseServiceScreen from '../screens/chooseService/ChooseService';
 import ProvideDetailScreen from '../screens/provideDetail/ProvideDetail';
 import ProvideDateScreen from '../screens/provideDate/ProvideDate';
 
@@ -21,13 +23,8 @@ export const RootNavigationContainer = ({
       <RStack.Navigator initialRouteName={initRoute}>
         {/* Then, put stack.screen for your screen component here (in the end) */}
         <RStack.Screen
-          component={HomeScreen}
-          name="Home"
-          options={{ headerShown: false }}
-        />
-        <RStack.Screen
-          component={ChooseLocationScreen}
-          name="ChooseLocation"
+          component={IntroScreen}
+          name="Intro"
           options={{ headerShown: false }}
         />
         <RStack.Screen
@@ -38,6 +35,21 @@ export const RootNavigationContainer = ({
         <RStack.Screen
           component={OTPVertificationScreen}
           name="OTPVertification"
+          options={{ headerShown: false }}
+        />
+        <RStack.Screen
+          component={HomeScreen}
+          name="Home"
+          options={{ headerShown: false }}
+        />
+        <RStack.Screen
+          component={ChooseLocationScreen}
+          name="ChooseLocation"
+          options={{ headerShown: false }}
+        />
+        <RStack.Screen
+          component={ChooseServiceScreen}
+          name="ChooseService"
           options={{ headerShown: false }}
         />
         <RStack.Screen

@@ -10,8 +10,8 @@ export const refreshTokenEndpoint = '/api/auth/refresh-token';
 
 // SERVICE & CATEGORY
 export const getAllCategoryEndpoint = '/api/v1/service-category';
-export const getAllServicesOfCategoryEndpoint =
-  '/api/v1/service-category/detail';
+export const getCategoryDetailEndpoint = '/api/v1/service-category/detail';
+export const getServiceDetailEndpoint = '/api/v1/service-type/detail';
 
 // GEOCODE
 export const forwardGeocodingEndpoint = '/api/v1/geo-code/forward';

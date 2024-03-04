@@ -34,6 +34,7 @@ export const testDataInput: IUIServiceRequirement[] = [
     },
 
     label: 'Số nhà, số phòng, hẻm (ngõ)',
+    labelIcon: null,
     placeholder: 'Ví dụ: 257/43 Phòng 2014 Căn hộ Sunrise Continent',
   },
   {

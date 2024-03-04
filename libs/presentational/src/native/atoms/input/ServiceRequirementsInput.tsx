@@ -21,7 +21,7 @@ const ServiceRequirementsInput = ({
 }: {
   type: 'text' | 'number';
   label: string;
-  labelIcon?: nativeIconNameType;
+  labelIcon: nativeIconNameType | null;
   placeholder: string;
   control: Control<FieldValues, any, FieldValues>;
   setValue: UseFormSetValue<FieldValues>;

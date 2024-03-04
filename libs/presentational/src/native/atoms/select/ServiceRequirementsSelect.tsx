@@ -24,7 +24,7 @@ const ServiceRequirementsSelect = ({
   selectName,
 }: {
   label: string;
-  labelIcon?: nativeIconNameType;
+  labelIcon: nativeIconNameType | null;
   placeholder: string;
   options?: IOption[];
   control: Control<FieldValues, any, FieldValues>;
