@@ -4,9 +4,9 @@ import { ChooseLocationProps } from '../../config';
 import { BannerTopSection, LocationSearchBox } from '@present-native/molecules';
 import {
   SubtitleLink,
-  WhiteParagraph,
-  WhiteTitle,
+  Paragraph,
   VerticalSpacer,
+  Title,
 } from '@present-native/atoms';
 import {
   RecommendationLocation,
@@ -55,36 +55,38 @@ const ChooseLocation = React.memo(
 
     return (
       <CustomerTemplate>
-        <View style={chooseLocationScreenStyle.container}>
-          <BannerTopSection url={category?.image ?? '#'}>
-            <Header typeDisplay={[ETypeDisplayHeader.BACK_BUTTON]} />
-            <WhiteTitle theme="categoryName">
-              {category?.name.toUpperCase()}
-            </WhiteTitle>
-            <VerticalSpacer size="l" />
-            <WhiteParagraph theme="smallThin" align="center">
-              {category?.description}
-            </WhiteParagraph>
-            <LocationSearchBox
-              setTextSearchInputed={setTextSearchInputed}
-              textSearchInputed={textSearchInputed}
-            />
-          </BannerTopSection>
-          <View style={chooseLocationScreenStyle.bodyContainer}>
-            <VerticalSpacer size="xxxl" />
-            <RecommendationLocation
-              dataRecommendationGeo={dataRecommendationGeo}
-            />
-            <VerticalSpacer size="xxxl" />
-            <SubtitleLink
-              screenName="Home"
-              algin="center"
-              decoration="underline"
-            >
-              Chọn từ sổ địa chỉ?
-            </SubtitleLink>
+        {category ? (
+          <View style={chooseLocationScreenStyle.container}>
+            <BannerTopSection url={category?.image ?? '#'}>
+              <Header typeDisplay={[ETypeDisplayHeader.BACK_BUTTON]} />
+              <Title theme="baseMedium" color="white">
+                {category?.name.toUpperCase()}
+              </Title>
+              <VerticalSpacer size="l" />
+              <Paragraph theme="smallRegular" align="center">
+                {category?.description}
+              </Paragraph>
+              <LocationSearchBox
+                setTextSearchInputed={setTextSearchInputed}
+                textSearchInputed={textSearchInputed}
+              />
+            </BannerTopSection>
+            <View style={chooseLocationScreenStyle.bodyContainer}>
+              <VerticalSpacer size="xxxl" />
+              <RecommendationLocation
+                dataRecommendationGeo={dataRecommendationGeo}
+              />
+              <VerticalSpacer size="xxxl" />
+              <SubtitleLink
+                screenName="Home"
+                algin="center"
+                decoration="underline"
+              >
+                Chọn từ sổ địa chỉ?
+              </SubtitleLink>
+            </View>
           </View>
-        </View>
+        ) : null}
       </CustomerTemplate>
     );
   }

@@ -70,58 +70,6 @@ const titleFontStyles = StyleSheet.create({
   },
 });
 
-const whiteParagraphStyles = StyleSheet.create({
-  largeBold: {
-    fontFamily: 'Montserrat_600SemiBold',
-    fontSize: 16,
-    color: colors.white,
-    userSelect: 'none',
-  },
-  largeMedium: {
-    color: colors.white,
-    fontSize: 16,
-    fontFamily: 'Montserrat_500Medium',
-    userSelect: 'none',
-  },
-
-  baseMedium: {
-    fontFamily: 'Montserrat_500Medium',
-    fontSize: 14,
-    color: colors.white,
-    userSelect: 'none',
-  },
-  baseBold: {
-    fontFamily: 'Montserrat_700Bold',
-    fontSize: 14,
-    color: colors.white,
-    userSelect: 'none',
-  },
-  smallMedium: {
-    fontFamily: 'Montserrat_500Medium',
-    fontSize: 13,
-    color: colors.white,
-    userSelect: 'none',
-  },
-  smallBold: {
-    fontFamily: 'Montserrat_700Bold',
-    fontSize: 12,
-    color: colors.white,
-    userSelect: 'none',
-  },
-  smallThin: {
-    fontFamily: 'Montserrat_400Regular',
-    fontSize: 12,
-    color: colors.white,
-    userSelect: 'none',
-  }
-});
-
-const roseParagraphStyles = StyleSheet.create({
-  largeMedium: {
-    color: colors.rose,
-    fontSize: 16,
-    fontFamily: 'Montserrat_500Medium',
-    userSelect: 'none',
 const textColorStyles = StyleSheet.create({
   primary: {
     color: colors.primary,
@@ -168,9 +116,6 @@ const textCommonStyles = StyleSheet.create({
   },
 });
 
-export { primaryTitleStyles, whiteTitleStyle, blackTitleStyles };
-
-export { primaryParagraphStyles, blackParagraphStyles, roseParagraphStyles, whiteParagraphStyles };
 export {
   paragraphFontStyles,
   titleFontStyles,

@@ -1,5 +1,5 @@
 import {
-  BlackParagraph,
+  Paragraph,
   GrayDivider,
   FAIcon,
   VerticalSpacer,
@@ -31,9 +31,9 @@ export const RecommendationLocation = React.memo(
                   <IconGeo typeGeo={itemGeo.typeRecommedationGeo} />
                 </View>
                 <View style={recommendationLocationStyle.wrapperDisplayName}>
-                  <BlackParagraph limitLineNumber={1} theme="smallMedium">
+                  <Paragraph lineNumber={1} theme="smallMedium">
                     {itemGeo.display_name}
-                  </BlackParagraph>
+                  </Paragraph>
                 </View>
                 <FAIcon
                   iconName="faArrowRight"
