@@ -7,6 +7,7 @@ type customerRootStackParamList = {
   Login: undefined;
   OTPVertification: undefined;
   ProvideDetail: { categoryId: string };
+  ProvideDate: undefined;
 };
 
 // 2. Props
@@ -24,6 +25,10 @@ type ProvideDetailProps = NativeStackScreenProps<
   customerRootStackParamList,
   'ProvideDetail'
 >;
+type ProvideDateProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'ProvideDate'
+>;
 
 // 3. Export props
 export {
@@ -33,4 +38,5 @@ export {
   LoginProps,
   OTPVertificationProps,
   ProvideDetailProps,
+  ProvideDateProps,
 };

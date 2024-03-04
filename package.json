@@ -14,6 +14,7 @@
     "@fortawesome/react-native-fontawesome": "^0.3.0",
     "@microsoft/signalr": "^8.0.0",
     "@nrwl/next": "^18.0.4",
+    "@react-native-picker/picker": "^2.6.1",
     "@react-navigation/native": "^6.1.10",
     "@react-navigation/native-stack": "^6.9.18",
     "@tanstack/react-query": "^5.8.4",

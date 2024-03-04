@@ -9,6 +9,8 @@ import {
   faDog,
   faComputer,
   faBroom,
+  faPersonShelter,
+  faClock,
 } from '@fortawesome/free-solid-svg-icons';
 import { fa500px } from '@fortawesome/free-brands-svg-icons';
 import { faAddressCard } from '@fortawesome/free-regular-svg-icons';
@@ -24,6 +26,8 @@ export const NATIVE_ICONS = {
   faDog,
   faComputer,
   faBroom,
+  faPersonShelter,
+  faClock,
 };
 
 export type nativeIconNameType = keyof typeof NATIVE_ICONS;

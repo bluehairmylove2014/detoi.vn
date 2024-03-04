@@ -12,11 +12,25 @@ export const testDataInput: IUIServiceRequirement[] = [
         name: 'input',
       },
 
-      validation: {
-        id: '0',
-        name: 'required',
-        message: 'string',
-      },
+      validation: [
+        {
+          id: '0',
+          name: 'required',
+          message: 'string',
+        },
+        {
+          id: '1',
+          name: 'min',
+          value: 0,
+          message: 'string',
+        },
+        {
+          id: '2',
+          name: 'max',
+          value: 255,
+          message: 'string',
+        },
+      ],
     },
 
     label: 'Số nhà, số phòng, hẻm (ngõ)',
@@ -42,16 +56,52 @@ export const testDataInput: IUIServiceRequirement[] = [
         ],
       },
 
-      validation: {
-        id: '0',
-        name: 'required',
-        message: 'string',
-      },
+      validation: [
+        {
+          id: '0',
+          name: 'required',
+          message: 'string',
+        },
+      ],
     },
 
     label: 'Bạn muốn chúng tôi dọn như thế nào?',
     labelIcon: 'faFlag',
     placeholder: 'Giúp nhân viên biết thêm về công việc cần làm',
+  },
+  {
+    id: '2',
+    inputMethod: {
+      dataType: 'number',
+      method: {
+        name: 'input',
+      },
+
+      validation: [
+        {
+          id: '0',
+          name: 'required',
+          message: 'string',
+        },
+        {
+          id: '1',
+          name: 'min',
+          value: 0,
+          message: 'string',
+        },
+        {
+          id: '2',
+          name: 'max',
+          value: 10,
+          message: 'string',
+        },
+      ],
+    },
+
+    label: 'Số lượng phòng',
+    labelIcon: 'faPersonShelter',
+    placeholder:
+      'Lưu ý: Nếu bạn chọn dịch vụ dọn theo phòng, vui lòng bổ sung số phòng cần dọn ở đây',
   },
 ];
 
