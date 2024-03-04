@@ -161,24 +161,26 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
 
           {/* Other service */}
           <VerticalSpacer size="xs" />
-          <View style={serviceSectionStyle.other_service}>
-            <ServiceCard
-              title="Thêm dịch vụ khác"
-              subtitle="Góp ý"
-              iconName="container"
-              onPress={() => {
-                console.log('Gop y');
-              }}
-            />
-            <ServiceCard
-              title={`${point} điểm`}
-              subtitle="Điểm tích lũy"
-              iconName="shoppingBag"
-              onPress={() => {
-                console.log('Điểm tích lũy');
-              }}
-            />
-          </View>
+          <PrimaryScrollView direction="horizontal">
+            <View style={serviceSectionStyle.other_service}>
+              <ServiceCard
+                title="Thêm dịch vụ khác"
+                subtitle="Góp ý"
+                iconName="container"
+                onPress={() => {
+                  console.log('Gop y');
+                }}
+              />
+              <ServiceCard
+                title={`${point} điểm`}
+                subtitle="Điểm tích lũy"
+                iconName="shoppingBag"
+                onPress={() => {
+                  console.log('Điểm tích lũy');
+                }}
+              />
+            </View>
+          </PrimaryScrollView>
 
           {/* Endow */}
           <VerticalSpacer size="xs" />
