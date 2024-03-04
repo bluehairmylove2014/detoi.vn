@@ -1,4 +1,4 @@
-import { BlackParagraph, PrimaryParagraph } from '@present-native/atoms';
+import { Paragraph } from '@present-native/atoms';
 import { endowSectionStyle } from '@present-native/styles/endow';
 import { View, TouchableOpacity, Image } from 'react-native';
 
@@ -20,8 +20,8 @@ const EndowItem = ({
       />
     </View>
     <View style={endowSectionStyle.content}>
-      <BlackParagraph theme="normalMedium">{description}</BlackParagraph>
-      <PrimaryParagraph theme="small">{label}</PrimaryParagraph>
+      <Paragraph theme="baseMedium">{description}</Paragraph>
+      <Paragraph theme="smallRegular">{label}</Paragraph>
     </View>
   </TouchableOpacity>
 );

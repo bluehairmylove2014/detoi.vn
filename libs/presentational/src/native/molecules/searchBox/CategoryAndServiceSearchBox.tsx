@@ -1,9 +1,5 @@
 import { TouchableHighlight, View } from 'react-native';
-import {
-  FAIcon,
-  HorizontalSpacer,
-  PrimaryParagraph,
-} from '@present-native/atoms';
+import { FAIcon, HorizontalSpacer, Paragraph } from '@present-native/atoms';
 import {
   categoryAndServiceSearchBoxStyle,
   colors,
@@ -24,7 +20,7 @@ export const CategoryAndServiceSearchBox = () => {
       <View style={categoryAndServiceSearchBoxStyle.inner}>
         <FAIcon iconName="faMagnifyingGlass" color={colors.primary} size={20} />
         <HorizontalSpacer size="l" />
-        <PrimaryParagraph theme="light">Tìm dịch vụ ở đây...</PrimaryParagraph>
+        <Paragraph theme="baseRegular">Tìm dịch vụ ở đây...</Paragraph>
       </View>
     </TouchableHighlight>
   );

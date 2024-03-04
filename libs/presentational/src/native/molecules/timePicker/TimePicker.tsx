@@ -1,69 +1,134 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import { PrimaryButton, VerticalSpacer } from '@present-native/atoms';
+import React, { useEffect, useState } from 'react';
+import {
+  View,
+  Platform,
+  TouchableOpacity,
+  Modal,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import {
+  FAIcon,
+  HorizontalSpacer,
+  Paragraph,
+  PrimaryButton,
+  VerticalSpacer,
+} from '@present-native/atoms';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { colors } from '@present-native/styles';
+import { TimePickerStyle } from '@present-native/styles/timePicker';
 
-const TimePicker = () => {
-  const [selectedHour, setSelectedHour] = useState('00');
-  const [selectedMinute, setSelectedMinute] = useState('00');
+const constantTime = () => {
+  const defaultTime = new Date();
+  defaultTime.setHours(14); // Set hours to 14 (2 PM)
+  defaultTime.setMinutes(0); // Set minutes to 0
+  return defaultTime;
+};
 
-  // Generate hours from 00 to 23
-  const hours = Array.from({ length: 24 }, (_, i) => ('0' + i).slice(-2));
+export const TimePicker = ({
+  activeBlur,
+  setTime,
+}: {
+  activeBlur: (isActive: boolean) => void;
+  setTime: (timeSelected: Date) => void;
+}) => {
+  const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
+  const [timeChange, setTimeChange] = useState<Date>(constantTime);
+  const [activeModal, setActiveModal] = useState(false);
 
-  // Generate minutes from 00 to 59
-  const minutes = Array.from({ length: 60 }, (_, i) => ('0' + i).slice(-2));
+  useEffect(() => {
+    setTime(selectedTime);
+  }, [selectedTime]);
+
+  // Design Modal List To Choose Time
+  const modalTimePicker = () => {
+    return (
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={activeModal}
+        style={{ height: 50 }}
+      >
+        <TouchableWithoutFeedback>
+          <View style={TimePickerStyle.modalContainer}>
+            <View style={TimePickerStyle.backgroundModal}>
+              <View style={TimePickerStyle.topModalContainer}>
+                <Paragraph theme="baseBold">Chọn thời gian</Paragraph>
+
+                {/* Close Button */}
+                <TouchableOpacity
+                  style={{
+                    alignSelf: 'flex-start',
+                  }}
+                  onPress={() => {
+                    setActiveModal(false);
+                    activeBlur(false);
+                  }}
+                >
+                  <FAIcon iconName="faTimes" color={colors.black} size={25} />
+                </TouchableOpacity>
+              </View>
+
+              <VerticalSpacer size="xxxl" />
+              <View style={{ marginHorizontal: 30 }}>
+                <DateTimePicker
+                  display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                  mode="time"
+                  value={timeChange}
+                  textColor={colors.black}
+                  minuteInterval={5}
+                  onChange={(event, selected) => {
+                    if (selected) {
+                      setTimeChange(selected);
+                    }
+                  }}
+                />
+              </View>
+
+              <VerticalSpacer size="xxl" />
+              <View style={{ marginHorizontal: 30 }}>
+                <PrimaryButton
+                  title="XÁC NHẬN"
+                  theme="square-rounded-bold"
+                  onPress={() => {
+                    setSelectedTime(timeChange);
+                    setActiveModal(false);
+                    activeBlur(false);
+                  }}
+                />
+              </View>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+    );
+  };
 
   return (
     <>
-      <VerticalSpacer size="xxxl" />
-      <View style={styles.container}>
-        {/* Hour Picker */}
-        <Picker
-          style={{ flex: 1, borderRadius: 0 }}
-          selectedValue={selectedHour}
-          onValueChange={(itemValue, itemIndex) => setSelectedHour(itemValue)}
-          itemStyle={styles.item}
+      <View style={TimePickerStyle.chooseTimeContainer}>
+        <View style={TimePickerStyle.chooseTimeLabel}>
+          <FAIcon iconName="faClock" size={20} color={colors.secondary} />
+          <HorizontalSpacer size="m"></HorizontalSpacer>
+          <Paragraph theme="baseBold">Chọn giờ làm</Paragraph>
+        </View>
+        <TouchableOpacity
+          style={TimePickerStyle.chooseTimeButton}
+          onPress={() => {
+            setActiveModal(true);
+            activeBlur(true);
+          }}
         >
-          {hours.map((hour, index) => (
-            <Picker.Item key={index} label={hour} value={hour} />
-          ))}
-        </Picker>
+          <Paragraph theme="baseBold">
+            {('0' + selectedTime.getHours().toString()).slice(-2)}
+          </Paragraph>
+          <Paragraph theme="baseMedium">|</Paragraph>
+          <Paragraph theme="baseBold">
+            {('0' + selectedTime.getMinutes().toString()).slice(-2)}
+          </Paragraph>
+        </TouchableOpacity>
 
-        {/* Minute Picker */}
-        <Picker
-          style={{ flex: 1, borderRadius: 0 }}
-          selectedValue={selectedMinute}
-          onValueChange={(itemValue, itemIndex) => setSelectedMinute(itemValue)}
-          itemStyle={styles.item}
-        >
-          {minutes.map((minute, index) => (
-            <Picker.Item key={index} label={minute} value={minute} />
-          ))}
-        </Picker>
-      </View>
-
-      <VerticalSpacer size="xxl" />
-      <View style={{ marginHorizontal: 30 }}>
-        <PrimaryButton
-          title="XÁC NHẬN"
-          theme="square-rounded-bold"
-          onPress={() => {}}
-        />
+        {modalTimePicker()}
       </View>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    padding: 0,
-  },
-
-  item: {
-    padding: 0,
-    margin: 0,
-  },
-});
-
-export default TimePicker;

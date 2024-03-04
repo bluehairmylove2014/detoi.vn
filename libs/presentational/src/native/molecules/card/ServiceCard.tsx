@@ -1,4 +1,4 @@
-import { BlackParagraph, PrimaryParagraph } from '@present-native/atoms';
+import { Paragraph } from '@present-native/atoms';
 import { ServiceCardSectionStyle } from '@present-native/styles/card';
 import { View, TouchableOpacity, Image } from 'react-native';
 import ContainerIcon from '@assets/feedback.png';
@@ -24,8 +24,8 @@ const ServiceCard = ({
 }: serviceCardType) => (
   <TouchableOpacity style={ServiceCardSectionStyle.card}>
     <View>
-      <PrimaryParagraph theme="small">{subtitle}</PrimaryParagraph>
-      <BlackParagraph theme="smallBold">{title}</BlackParagraph>
+      <Paragraph theme="smallRegular">{subtitle}</Paragraph>
+      <Paragraph theme="smallBold">{title}</Paragraph>
     </View>
     <View style={ServiceCardSectionStyle.icon}>
       <Image source={iconImgMapper[iconName]} />

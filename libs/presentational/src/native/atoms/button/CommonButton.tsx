@@ -1,7 +1,6 @@
-import { View, Text, TouchableOpacity } from 'react-native';
-import React from 'react';
-import { colors, commonButtonStyles } from '@present-native/styles';
-import { BlackParagraph } from '../text';
+import { TouchableOpacity } from 'react-native';
+import { commonButtonStyles } from '@present-native/styles';
+import { Paragraph } from '../text';
 
 const themeList = {
   'square-rounded-bold': { borderRadius: 5 },
@@ -26,7 +25,7 @@ const PrimaryButton = ({
         ...themeList[theme],
       }}
     >
-      <BlackParagraph theme="baseBold">{title}</BlackParagraph>
+      <Paragraph theme="baseBold">{title}</Paragraph>
     </TouchableOpacity>
   );
 };
@@ -44,7 +43,7 @@ const SmallPrimaryButton = ({
         ...themeList[theme],
       }}
     >
-      <BlackParagraph theme="smallBold">{title}</BlackParagraph>
+      <Paragraph theme="smallBold">{title}</Paragraph>
     </TouchableOpacity>
   );
 };
@@ -62,7 +61,7 @@ const BorderButton = ({
         ...themeList[theme],
       }}
     >
-      <BlackParagraph theme="smallBold">{title}</BlackParagraph>
+      <Paragraph theme="smallBold">{title}</Paragraph>
     </TouchableOpacity>
   );
 };

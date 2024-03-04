@@ -9,11 +9,7 @@ import {
   useResendOtp,
   useVerifyOtp,
 } from '@business-layer/business-logic/lib/auth';
-import {
-  BlackParagraph,
-  RoseParagraph,
-  SmallPrimaryButton,
-} from '@present-native/atoms';
+import { Paragraph, SmallPrimaryButton } from '@present-native/atoms';
 
 const MAX_TRY = 3;
 const OTP_LENGTH = 4;
@@ -113,18 +109,15 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
     <SafeAreaView>
       <View style={otpVertificationScreenStyle.container}>
         <View style={{ marginTop: 5 }}>
-          <BlackParagraph theme="baseMedium">
+          <Paragraph theme="baseMedium">
             Mã OTP gồm 4 chữ số được gửi tới số
-            <BlackParagraph theme="baseBold"> {phoneNumber} </BlackParagraph>
+            <Paragraph theme="baseBold"> {phoneNumber} </Paragraph>
             thông qua tin nhắn
-            <BlackParagraph theme="baseBold"> SMS</BlackParagraph>
-          </BlackParagraph>
+            <Paragraph theme="baseBold"> SMS</Paragraph>
+          </Paragraph>
         </View>
         <View style={{ marginTop: 30 }}></View>
-        <BlackParagraph theme="largeMedium">
-          Nhập mã OTP
-          <RoseParagraph theme="largeMedium"> *</RoseParagraph>
-        </BlackParagraph>
+        <Paragraph theme="largeMedium">Nhập mã OTP</Paragraph>
 
         <View style={otpVertificationScreenStyle.inputContainer}>
           <Controller
@@ -158,9 +151,9 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
                     color={colors.secondary}
                     style={{ marginRight: 5 }}
                   />
-                  <BlackParagraph theme="baseBold">
+                  <Paragraph theme="baseBold">
                     00:{timerCount.toString().padStart(2, '0')}
-                  </BlackParagraph>
+                  </Paragraph>
                 </View>
               ) : (
                 <View>
@@ -177,10 +170,10 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
 
         {activeWarning && (
           <View style={{ marginTop: 15 }}>
-            <RoseParagraph theme="baseMedium">
+            <Paragraph theme="baseMedium" color="rose">
               Mã OTP bạn vừa nhập không hợp lệ. Bạn có thể thử thêm {countWrong}{' '}
               lần nữa
-            </RoseParagraph>
+            </Paragraph>
           </View>
         )}
       </View>

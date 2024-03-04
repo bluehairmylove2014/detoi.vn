@@ -10,7 +10,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { colors, countryCodeSelectStyle } from '@present-native/styles';
 import { FAIcon } from '../icon';
-import { BlackParagraph } from '../text';
+import { Paragraph } from '../text';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { CountryCodeButton } from '../button';
 
@@ -64,7 +64,7 @@ const CountryCodeSelect = ({
             resizeMode="contain"
             style={countryCodeSelectStyle.optionImg}
           />
-          <BlackParagraph theme="largeMedium">{item?.name}</BlackParagraph>
+          <Paragraph theme="largeMedium">{item?.name}</Paragraph>
         </TouchableOpacity>
       );
     };
@@ -75,9 +75,7 @@ const CountryCodeSelect = ({
           <View style={countryCodeSelectStyle.modalContainer}>
             <View style={countryCodeSelectStyle.backgroundModal}>
               <View style={countryCodeSelectStyle.topModalContainer}>
-                <BlackParagraph theme="largeBold">
-                  Chọn quốc gia, khu vực
-                </BlackParagraph>
+                <Paragraph theme="largeBold">Chọn quốc gia, khu vực</Paragraph>
 
                 {/* Close Button */}
                 <TouchableOpacity

@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { BlackParagraph, RoseParagraph } from '../text';
+import { Paragraph } from '../text';
 import { FAIcon } from '../icon';
 import { colors, serviceRequirementsSelectStyle } from '@present-native/styles';
 import { IOption } from '@business-layer/services/entities';
@@ -43,9 +43,9 @@ const ServiceRequirementsSelect = ({
           setActiveModal(false);
         }}
       >
-        <BlackParagraph theme="largeBold">{item.name}</BlackParagraph>
+        <Paragraph theme="largeBold">{item.name}</Paragraph>
         <View style={{ marginTop: 5 }}>
-          <BlackParagraph theme="baseMedium">{item.description}</BlackParagraph>
+          <Paragraph theme="baseMedium">{item.description}</Paragraph>
         </View>
       </TouchableOpacity>
     );
@@ -59,7 +59,7 @@ const ServiceRequirementsSelect = ({
           <View style={serviceRequirementsSelectStyle.modalContainer}>
             <View style={serviceRequirementsSelectStyle.backgroundModal}>
               <View style={serviceRequirementsSelectStyle.topModalContainer}>
-                <BlackParagraph theme="largeBold">Tuỳ chọn</BlackParagraph>
+                <Paragraph theme="largeBold">Tuỳ chọn</Paragraph>
 
                 {/* Close Button */}
                 <TouchableOpacity
@@ -108,18 +108,16 @@ const ServiceRequirementsSelect = ({
         )}
 
         <View>
-          <BlackParagraph theme="baseBold">
+          <Paragraph theme="baseBold">
             {labelIcon ? ' | ' : ''} {label}
-            <RoseParagraph theme="largeMedium"> *</RoseParagraph>
-          </BlackParagraph>
+            <Paragraph theme="largeMedium"> *</Paragraph>
+          </Paragraph>
         </View>
       </View>
       <TouchableWithoutFeedback onPress={() => setActiveModal(true)}>
         <View style={serviceRequirementsSelectStyle.dropdownContainer}>
           <View style={{ marginRight: 15 }}>
-            <BlackParagraph theme="smallMedium">
-              {optionSelected}
-            </BlackParagraph>
+            <Paragraph theme="smallMedium">{optionSelected}</Paragraph>
           </View>
 
           <FAIcon iconName="faCaretDown" color={colors.black} size={18} />

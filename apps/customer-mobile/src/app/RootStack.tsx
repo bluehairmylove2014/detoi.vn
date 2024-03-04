@@ -11,6 +11,7 @@ import IntroScreen from '../screens/intro/Intro';
 import ChooseServiceScreen from '../screens/chooseService/ChooseService';
 import ProvideDetailScreen from '../screens/provideDetail/ProvideDetail';
 import ProvideDateScreen from '../screens/provideDate/ProvideDate';
+import SummaryScreen from '../screens/summary/Summary';
 
 export const RStack = createNativeStackNavigator<customerRootStackParamList>();
 export const RootNavigationContainer = ({
@@ -60,6 +61,11 @@ export const RootNavigationContainer = ({
         <RStack.Screen
           component={ProvideDateScreen}
           name="ProvideDate"
+          options={{ headerShown: false }}
+        />
+        <RStack.Screen
+          component={SummaryScreen}
+          name="Summary"
           options={{ headerShown: false }}
         />
       </RStack.Navigator>

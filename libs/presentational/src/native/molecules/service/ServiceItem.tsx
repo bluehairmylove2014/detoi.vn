@@ -1,7 +1,7 @@
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { IService } from '@business-layer/services/entities/service';
 import { CircleImage } from '@present-native/atoms/image';
-import { BlackParagraph, HorizontalSpacer } from '@present-native/atoms';
+import { Paragraph, HorizontalSpacer } from '@present-native/atoms';
 
 export const ServiceItem = ({
   service,
@@ -20,10 +20,8 @@ export const ServiceItem = ({
       </View>
       <HorizontalSpacer size="l" />
       <View style={styles.textContainer}>
-        <BlackParagraph theme="largeBold">{service.name}</BlackParagraph>
-        <BlackParagraph theme="smallMedium">
-          {service.description}
-        </BlackParagraph>
+        <Paragraph theme="largeBold">{service.name}</Paragraph>
+        <Paragraph theme="smallMedium">{service.description}</Paragraph>
       </View>
     </TouchableOpacity>
   );
