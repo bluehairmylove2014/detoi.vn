@@ -1,6 +1,7 @@
 import { View } from 'react-native';
 import React from 'react';
 import { overlayStyle } from '@present-native/styles/overlay';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const themeList = {
   'black-gradient': {
@@ -21,9 +22,12 @@ export const OverlayColor = React.memo(
     theme: 'black-gradient' | 'black-opacity';
   }) => {
     return (
-      <View style={[overlayStyle.overlayBackground, themeList[theme]]}>
+      <LinearGradient
+        colors={['rgba(0,0,0,0)', 'rgba(0,0,0,1)']}
+        style={overlayStyle.overlayBackground}
+      >
         {children}
-      </View>
+      </LinearGradient>
     );
   }
 );

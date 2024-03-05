@@ -35,7 +35,7 @@ export const locationSearchBox = StyleSheet.create({
   searchBox: {
     backgroundColor: colors.white,
     borderRadius: 5,
-    height: 40,
+    height: 55,
     width: '100%',
     shadowColor: colors.black,
     shadowOffset: {
@@ -45,14 +45,18 @@ export const locationSearchBox = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    paddingHorizontal: 40,
+    paddingHorizontal: 45,
     position: 'relative',
   },
   searchBoxWrapper: {
-    position: 'absolute',
-    bottom: -20,
+    // position: 'absolute',
+    // bottom: -28,
     width: '100%',
-    zIndex: 99,
+    // zIndex: 20,
   },
-  searchBoxIcon: { position: 'absolute', top: 10, left: 10 },
+  searchBoxIcon: {
+    position: 'absolute',
+    top: 18,
+    left: 15,
+  },
 });

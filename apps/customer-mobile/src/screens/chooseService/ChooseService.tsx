@@ -5,19 +5,25 @@ import { provideDetailStyle } from './styles';
 import { useGetCategoryDetail } from '@business-layer/business-logic/lib/category';
 import { CommonLink, Title, VerticalSpacer } from '@present-native/atoms';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
-import { ServicesList } from '@present-native/molecules';
+import { BannerTopSection, ServicesList } from '@present-native/molecules';
+import { IService } from '@business-layer/services/entities/service';
 
 const ChooseService: React.FC<ChooseServiceProps> = ({ route, navigation }) => {
-  const { categoryId } = route.params;
-  const { data: categoryDetail } = useGetCategoryDetail(categoryId);
+  const { category } = route.params;
+  const { data: categoryDetail } = useGetCategoryDetail(category.id);
 
-  const handleSelectService = (serviceId: string) => {
-    navigation.navigate('ProvideDetail', { serviceId });
+  const handleSelectService = (service: IService) => {
+    navigation.navigate('ProvideDetail', { service });
   };
 
   return (
     <CustomerTemplate>
-      <View style={{ width: '100%', height: 150 }} />
+      <BannerTopSection
+        url={category?.image ?? '#'}
+        title={`DỊCH VỤ ${category?.name.toUpperCase()}`}
+        subtitle={category?.description}
+      />
+      <VerticalSpacer size="xxl" />
       <View style={provideDetailStyle.container}>
         <View>
           <Title theme="baseBold" color="primary">

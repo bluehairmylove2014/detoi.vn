@@ -15,22 +15,25 @@ const LIMIT_RESULT = 5;
 export const RecommendationLocation = React.memo(
   ({
     dataRecommendationGeo,
+    onPress,
   }: {
     dataRecommendationGeo: recommendationGeoType[];
+    onPress: (geo: recommendationGeoType) => void;
   }) => {
     return (
       <React.Fragment>
         {dataRecommendationGeo.slice(0, LIMIT_RESULT).map((itemGeo, index) => {
           return (
-            <View
+            <TouchableOpacity
               style={recommendationLocationStyle.container}
               key={`${itemGeo}-${index}`}
+              onPress={() => onPress(itemGeo)}
             >
-              <TouchableOpacity style={recommendationLocationStyle.wrapperItem}>
-                <View style={recommendationLocationStyle.wrapperIcon}>
-                  <IconGeo typeGeo={itemGeo.typeRecommedationGeo} />
-                </View>
+              <View style={recommendationLocationStyle.wrapperItem}>
                 <View style={recommendationLocationStyle.wrapperDisplayName}>
+                  <View style={recommendationLocationStyle.wrapperIcon}>
+                    <IconGeo typeGeo={itemGeo.typeRecommedationGeo} />
+                  </View>
                   <Paragraph lineNumber={1} theme="smallMedium">
                     {itemGeo.display_name}
                   </Paragraph>
@@ -40,11 +43,11 @@ export const RecommendationLocation = React.memo(
                   color={colors.black}
                   size={18}
                 />
-              </TouchableOpacity>
+              </View>
               <VerticalSpacer size="l" />
               <GrayDivider direction="horizontal" />
               <VerticalSpacer size="l" />
-            </View>
+            </TouchableOpacity>
           );
         })}
       </React.Fragment>

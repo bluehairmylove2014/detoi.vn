@@ -38,7 +38,7 @@ export const ChoosePaymentMethods = ({
       {Array.isArray(methods) && methods.length > 0
         ? methods.map((m) => (
             <>
-              <VerticalSpacer size="m" />
+              <VerticalSpacer size="m" key={`spacer@${m.id}`} />
               <PaymentMethod
                 method={m}
                 isActive={selectedMethodId === m.id}

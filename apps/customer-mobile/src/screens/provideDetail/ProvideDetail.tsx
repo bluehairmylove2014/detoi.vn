@@ -5,20 +5,44 @@ import {
   useGetServiceDetail,
   useServiceRequirementsUI,
 } from '@business-layer/business-logic/lib/category';
+import { BannerTopSection } from '@present-native/molecules';
+import { PrimaryButton, Title, VerticalSpacer } from '@present-native/atoms';
+import { screenHorizontalPadding } from '@present-native/styles';
 
 const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
-  const { serviceId } = route.params;
-  const { data: serviceDetail } = useGetServiceDetail(serviceId);
+  const { service } = route.params;
+  const { data: serviceDetail } = useGetServiceDetail(service.id);
   const { onGenerateUI } = useServiceRequirementsUI();
-  console.log(serviceDetail);
+
+  const handlePressNext = () => {
+    navigation.navigate('ProvideDate', { service });
+  };
+
   return (
     <View>
-      {serviceDetail
-        ? onGenerateUI({
-            requirements: serviceDetail.requirements,
-            additionalRequirements: serviceDetail.additionalRequirements,
-          })
-        : null}
+      <BannerTopSection
+        url={service.image}
+        title={`DỊCH VỤ ${service.name.toUpperCase()}`}
+        subtitle={service.description}
+      />
+      <VerticalSpacer size="xxl" />
+      <View style={{ paddingHorizontal: screenHorizontalPadding }}>
+        <Title theme="baseBold" color="primary">
+          Nhập đầy đủ thông tin bên dưới
+        </Title>
+        {serviceDetail
+          ? onGenerateUI({
+              requirements: serviceDetail.requirements,
+              additionalRequirements: serviceDetail.additionalRequirements,
+            })
+          : null}
+        <VerticalSpacer size="xxxl" />
+        <PrimaryButton
+          title="Tiếp theo"
+          theme="square-rounded-bold"
+          onPress={handlePressNext}
+        />
+      </View>
     </View>
   );
 };

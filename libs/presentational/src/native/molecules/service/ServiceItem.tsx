@@ -8,12 +8,12 @@ export const ServiceItem = ({
   onSelectService,
 }: {
   service: IService;
-  onSelectService: (serviceId: string) => void;
+  onSelectService: (service: IService) => void;
 }) => {
   return (
     <TouchableOpacity
       style={styles.button}
-      onPress={() => onSelectService(service.id)}
+      onPress={() => onSelectService(service)}
     >
       <View style={styles.imageContainer}>
         <CircleImage source={{ uri: service.image }} />

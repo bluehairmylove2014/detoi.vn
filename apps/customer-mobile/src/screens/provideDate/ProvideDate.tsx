@@ -15,7 +15,7 @@ import { useMemo, useState } from 'react';
 import { colors } from '@present-native/styles';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
-import { TimePicker } from '@present-native/molecules';
+import { BannerTopSection, TimePicker } from '@present-native/molecules';
 
 const NUMBER_OF_DAYS = 14;
 
@@ -35,6 +35,7 @@ const constantTime = () => {
 };
 
 const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
+  const { service } = route.params;
   const [actveBlur, setActiveBlur] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date>(calcFollowingDay);
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
@@ -61,6 +62,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
       'T' + (selectedDate.getDay() + 1) + ', ngay ' + selectedDate.getDate()
     );
     console.log(selectedTime.getHours() + ' : ' + selectedTime.getMinutes());
+    navigation.navigate('Summary', { service });
   };
 
   const renderDateList = ({ item }: { item: Date }) => {
@@ -102,6 +104,12 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
 
   return (
     <CustomerTemplate>
+      <BannerTopSection
+        url={service.image}
+        title={`DỊCH VỤ ${service.name.toUpperCase()}`}
+        subtitle={service.description}
+      />
+      <VerticalSpacer size="xxl" />
       <SafeAreaView>
         {actveBlur ? <BlurTheme /> : <></>}
 

@@ -4,28 +4,25 @@ import { colors, locationSearchBox } from '@present-native/styles';
 import { FAIcon } from '@present-native/atoms';
 
 type locationSearchBoxProps = {
-  textSearchInputed: string;
-  setTextSearchInputed: (text: string) => void;
+  onChange: (value: string) => void;
 };
 
-export const LocationSearchBox = React.memo(
-  ({ textSearchInputed, setTextSearchInputed }: locationSearchBoxProps) => {
-    return (
-      <View style={locationSearchBox.searchBoxWrapper}>
-        <TextInput
-          style={locationSearchBox.searchBox}
-          onChangeText={setTextSearchInputed}
-          value={textSearchInputed}
-          placeholder="Địa chỉ nơi làm dịch vụ"
-          placeholderTextColor={colors.primary}
-        />
-        <FAIcon
-          iconName="faLocationCrosshairs"
-          color={colors.secondary}
-          size={18}
-          style={locationSearchBox.searchBoxIcon}
-        />
-      </View>
-    );
-  }
-);
+export const LocationSearchBox = ({ onChange }: locationSearchBoxProps) => {
+  return (
+    <View style={locationSearchBox.searchBoxWrapper}>
+      <TextInput
+        style={locationSearchBox.searchBox}
+        onChangeText={(value) => onChange(value)}
+        placeholder="Địa chỉ nơi làm dịch vụ"
+        placeholderTextColor={colors.primary}
+        defaultValue=""
+      />
+      <FAIcon
+        iconName="faLocationCrosshairs"
+        color={colors.secondary}
+        size={18}
+        style={locationSearchBox.searchBoxIcon}
+      />
+    </View>
+  );
+};
