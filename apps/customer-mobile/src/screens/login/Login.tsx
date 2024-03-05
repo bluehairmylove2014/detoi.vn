@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState } from 'react';
 import { View, SafeAreaView, TextInput, StatusBar } from 'react-native';
 
@@ -10,6 +11,7 @@ import {
   Title,
   BorderButton,
   PrimaryButton,
+  BlurTheme,
 } from '@present-native/atoms';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { Controller, useForm } from 'react-hook-form';
@@ -40,6 +42,7 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
   const formResolver = useYupValidationResolver(loginByPhoneNumberSchema);
   const [countryCode, setCountryCode] =
     useState<ICountryCode>(DEFAULT_COUNTRY_CODE);
+  const [activeBlur, setActiveBlur] = useState(false);
   const { handleSubmit, setValue, control } = useForm<phoneInputFormType>({
     defaultValues: {
       phone: '',
@@ -69,6 +72,8 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
 
   return (
     <SafeAreaView>
+      {activeBlur ? <BlurTheme /> : <></>}
+
       <StatusBar hidden />
       <View style={loginScreenStyle.container}>
         <View>
@@ -88,7 +93,11 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
 
         <View style={loginScreenStyle.inputContainer}>
           <CountryCodeSelect
-            onSelect={(value) => setCountryCode(value)}
+            isActiveBlur={(isActive) => setActiveBlur(isActive)}
+            onSelect={(value) => {
+              setCountryCode(value);
+              setActiveBlur(false);
+            }}
             defaultValue={DEFAULT_COUNTRY_CODE}
           />
           <Controller

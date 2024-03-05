@@ -47,4 +47,11 @@ const paymentMethodStyles = StyleSheet.create({
   },
 });
 
-export { ServiceRequirementsInputStyle, paymentMethodStyles };
+const textAreaStyles = StyleSheet.create({
+  input: {
+    height: 150,
+    textAlignVertical: 'top',
+  },
+});
+
+export { ServiceRequirementsInputStyle, paymentMethodStyles, textAreaStyles };

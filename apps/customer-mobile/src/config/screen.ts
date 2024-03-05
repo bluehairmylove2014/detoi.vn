@@ -8,6 +8,7 @@ type customerRootStackParamList = {
   Intro: undefined;
   Login: undefined;
   OTPVertification: undefined;
+  ProvideDate: undefined;
   Home: undefined;
   ChooseLocation: undefined;
   ChooseService: { categoryId: string };
@@ -44,6 +45,11 @@ type ProvideDetailProps = NativeStackScreenProps<
   customerRootStackParamList,
   'ProvideDetail'
 >;
+type ProvideDateProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'ProvideDate'
+>;
+
 type SummaryProps = NativeStackScreenProps<
   customerRootStackParamList,
   'Summary'
@@ -58,6 +64,7 @@ export {
   OTPVertificationProps,
   SummaryProps,
   ProvideDetailProps,
+  ProvideDateProps,
   customerTabParamList,
   IntroProps,
   ChooseServiceProps,
