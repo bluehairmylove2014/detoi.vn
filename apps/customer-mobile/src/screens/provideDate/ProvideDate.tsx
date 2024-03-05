@@ -164,7 +164,6 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
           </View>
 
           <VerticalSpacer size="xxxl" />
-          <VerticalSpacer size="xl" />
           <View style={provideDateStyle.buttonContainer}>
             <PrimaryButton
               title="Ghép cặp ngay"

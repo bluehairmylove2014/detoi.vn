@@ -15,7 +15,7 @@ const BlurTheme = () => {
           top: 0,
           left: 0,
           opacity: 0.6,
-          zIndex: 10,
+          zIndex: 40,
         }}
       />
     </TouchableWithoutFeedback>

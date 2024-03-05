@@ -21,7 +21,7 @@ export const countryCodeSelectStyle = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 30,
+    zIndex: 50,
   },
 
   backgroundModal: {
@@ -100,6 +100,7 @@ export const serviceRequirementsSelectStyle = StyleSheet.create({
     width: '100%',
     backgroundColor: colors.white,
     bottom: 0,
+    zIndex: 50,
   },
 
   backgroundModal: {
