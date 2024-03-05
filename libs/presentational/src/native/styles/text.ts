@@ -116,6 +116,7 @@ const textCommonStyles = StyleSheet.create({
   behavior: {
     pointerEvents: 'none',
     userSelect: 'none',
+    flexShrink: 1,
   },
 });
 

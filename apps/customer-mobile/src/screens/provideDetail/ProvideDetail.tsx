@@ -2,6 +2,7 @@ import { View } from 'react-native';
 import React from 'react';
 import { ProvideDetailProps } from '../../config';
 import {
+  useCurrentOrderService,
   useGetServiceDetail,
   useServiceRequirementsUI,
 } from '@business-layer/business-logic/lib/category';
@@ -10,20 +11,20 @@ import { PrimaryButton, Title, VerticalSpacer } from '@present-native/atoms';
 import { screenHorizontalPadding } from '@present-native/styles';
 
 const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
-  const { service } = route.params;
-  const { data: serviceDetail } = useGetServiceDetail(service.id);
+  const { currentOrderService: service } = useCurrentOrderService();
+  const { data: serviceDetail } = useGetServiceDetail(service?.id ?? '0');
   const { onGenerateUI } = useServiceRequirementsUI();
 
   const handlePressNext = () => {
-    navigation.navigate('ProvideDate', { service });
+    navigation.navigate('ProvideDate');
   };
 
   return (
     <View>
       <BannerTopSection
-        url={service.image}
-        title={`DỊCH VỤ ${service.name.toUpperCase()}`}
-        subtitle={service.description}
+        url={service?.image ?? '#'}
+        title={`DỊCH VỤ ${service?.name.toUpperCase()}`}
+        subtitle={service?.description ?? ''}
       />
       <VerticalSpacer size="xxl" />
       <View style={{ paddingHorizontal: screenHorizontalPadding }}>

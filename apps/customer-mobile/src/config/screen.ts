@@ -1,18 +1,16 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ICategory } from '@business-layer/services/entities';
-import { IService } from '@business-layer/services/entities/service';
 
 // 1. Params config
 type customerRootStackParamList = {
-  Home: undefined;
-  ChooseLocation: { category: ICategory };
   Intro: undefined;
   Login: undefined;
   OTPVertification: undefined;
-  ProvideDate: { service: IService };
-  ChooseService: { category: ICategory };
-  ProvideDetail: { service: IService };
-  Summary: { service: IService };
+  Home: undefined;
+  ChooseLocation: undefined;
+  ChooseService: undefined;
+  ProvideDetail: undefined;
+  ProvideDate: undefined;
+  Summary: undefined;
 };
 
 type customerTabParamList = {

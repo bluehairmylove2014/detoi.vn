@@ -38,14 +38,19 @@ export const BannerTopSection: React.FC<BannerChooseLocationProps> = React.memo(
         >
           <View style={bannerTopSectionStyle.headerTitleContainer}>
             <BackButton />
-            <Title theme="largeBold" color="white">
+            <Title theme="largeBold" color="white" align="center">
               {title}
             </Title>
             <View style={{ width: 20 }} />
           </View>
           <VerticalSpacer size="m" />
           <View style={bannerTopSectionStyle.headerSubtitleContainer}>
-            <Paragraph theme="baseRegular" align="center" color="white">
+            <Paragraph
+              theme="baseRegular"
+              align="center"
+              lineNumber={2}
+              color="white"
+            >
               {subtitle}
             </Paragraph>
           </View>

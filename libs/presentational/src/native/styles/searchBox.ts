@@ -33,10 +33,10 @@ export const categoryAndServiceSearchBoxStyle = StyleSheet.create({
 
 export const locationSearchBox = StyleSheet.create({
   searchBox: {
-    backgroundColor: colors.white,
-    borderRadius: 5,
     height: 55,
     width: '100%',
+    backgroundColor: colors.white,
+    borderRadius: 5,
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,
@@ -49,10 +49,7 @@ export const locationSearchBox = StyleSheet.create({
     position: 'relative',
   },
   searchBoxWrapper: {
-    // position: 'absolute',
-    // bottom: -28,
     width: '100%',
-    // zIndex: 20,
   },
   searchBoxIcon: {
     position: 'absolute',

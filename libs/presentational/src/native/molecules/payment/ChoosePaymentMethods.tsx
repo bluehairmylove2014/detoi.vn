@@ -37,15 +37,14 @@ export const ChoosePaymentMethods = ({
     <View>
       {Array.isArray(methods) && methods.length > 0
         ? methods.map((m) => (
-            <>
-              <VerticalSpacer size="m" key={`spacer@${m.id}`} />
+            <View key={m.id}>
+              <VerticalSpacer size="m" />
               <PaymentMethod
                 method={m}
                 isActive={selectedMethodId === m.id}
-                key={m.id}
                 onSelect={handleSelectMethod}
               />
-            </>
+            </View>
           ))
         : null}
     </View>

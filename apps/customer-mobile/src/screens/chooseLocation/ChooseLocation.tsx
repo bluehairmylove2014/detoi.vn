@@ -4,7 +4,10 @@ import { ChooseLocationProps } from '../../config';
 import { BannerTopSection } from '@present-native/molecules';
 import { Paragraph, SubtitleLink, VerticalSpacer } from '@present-native/atoms';
 import { RecommendationLocation } from '@present-native/organisms';
-import { useForwardGeocoding } from '@business-layer/business-logic/lib/geocode';
+import {
+  useCurrentOrderAddress,
+  useForwardGeocoding,
+} from '@business-layer/business-logic/lib/geocode';
 import { debounce } from '@business-layer/business-logic/helper';
 import {
   recommendationGeoType,
@@ -12,10 +15,12 @@ import {
 } from '@business-layer/services';
 import { chooseLocationScreenStyle } from './styles';
 import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
+import { useCurrentOrderCategory } from '@business-layer/business-logic/lib/category';
 
 const ChooseLocation = React.memo(
   ({ route, navigation }: ChooseLocationProps) => {
-    const { category } = route.params;
+    const { currentOrderCategory: category } = useCurrentOrderCategory();
+    const { setCurrentOrderAddress } = useCurrentOrderAddress();
 
     const [dataRecommendationGeo, setDataRecommendationGeo] = useState<
       recommendationGeoType[]
@@ -43,8 +48,8 @@ const ChooseLocation = React.memo(
     }, 500);
 
     const handleSelectGeo = (geo: recommendationGeoType) => {
-      console.log(geo);
-      navigation.navigate('ChooseService', { category: category });
+      setCurrentOrderAddress({ addressGeo: geo });
+      navigation.navigate('ChooseService');
     };
 
     return (

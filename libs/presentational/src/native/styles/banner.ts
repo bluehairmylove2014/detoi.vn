@@ -37,6 +37,9 @@ const bannerTopSectionStyle = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    gap: 15,
+    flexWrap: 'nowrap',
+    overflow: 'hidden',
   },
   headerSubtitleContainer: {
     paddingHorizontal: 20,

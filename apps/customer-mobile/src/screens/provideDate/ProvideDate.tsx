@@ -7,7 +7,7 @@ import {
   Paragraph,
   RoseTextarea,
 } from '@present-native/atoms';
-import { FlatList, SafeAreaView, TouchableOpacity, View } from 'react-native';
+import { FlatList, TouchableOpacity, View } from 'react-native';
 
 import { provideDateStyle } from './styles';
 
@@ -16,6 +16,7 @@ import { colors } from '@present-native/styles';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { BannerTopSection, TimePicker } from '@present-native/molecules';
+import { useCurrentOrderService } from '@business-layer/business-logic/lib/category';
 
 const NUMBER_OF_DAYS = 14;
 
@@ -35,7 +36,7 @@ const constantTime = () => {
 };
 
 const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
-  const { service } = route.params;
+  const { currentOrderService: service } = useCurrentOrderService();
   const [actveBlur, setActiveBlur] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date>(calcFollowingDay);
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
@@ -62,7 +63,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
       'T' + (selectedDate.getDay() + 1) + ', ngay ' + selectedDate.getDate()
     );
     console.log(selectedTime.getHours() + ' : ' + selectedTime.getMinutes());
-    navigation.navigate('Summary', { service });
+    navigation.navigate('Summary');
   };
 
   const renderDateList = ({ item }: { item: Date }) => {
@@ -105,15 +106,15 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
   return (
     <CustomerTemplate>
       <BannerTopSection
-        url={service.image}
-        title={`DỊCH VỤ ${service.name.toUpperCase()}`}
-        subtitle={service.description}
+        url={service?.image ?? '#'}
+        title={`DỊCH VỤ ${service?.name.toUpperCase()}`}
+        subtitle={service?.description ?? ''}
       />
-      <VerticalSpacer size="xxl" />
-      <SafeAreaView>
+      <View>
         {actveBlur ? <BlurTheme /> : <></>}
 
         <View style={provideDateStyle.container}>
+          <VerticalSpacer size="l" />
           <View style={provideDateStyle.labelTime}>
             <Paragraph theme="largeBold" color="primary">
               Thời gian làm việc
@@ -187,7 +188,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
             </Paragraph>
           </View>
         </View>
-      </SafeAreaView>
+      </View>
     </CustomerTemplate>
   );
 };

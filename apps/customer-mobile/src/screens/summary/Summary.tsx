@@ -16,15 +16,16 @@ import {
 } from '@present-native/molecules';
 import { ChoosePaymentMethods } from '@present-native/molecules';
 import { SummaryProps } from '../../config';
+import { useCurrentOrderService } from '@business-layer/business-logic/lib/category';
 
 const Summary: React.FC<SummaryProps> = ({ route, navigation }) => {
-  const { service } = route.params;
+  const { currentOrderService: service } = useCurrentOrderService();
   return (
     <CustomerTemplate>
       <BannerTopSection
-        url={service.image}
-        title={`DỊCH VỤ ${service.name.toUpperCase()}`}
-        subtitle={service.description}
+        url={service?.image ?? '#'}
+        title={`DỊCH VỤ ${service?.name.toUpperCase()}`}
+        subtitle={service?.description ?? ''}
       />
       <VerticalSpacer size="xxl" />
       <View style={summaryStyles.container}>
