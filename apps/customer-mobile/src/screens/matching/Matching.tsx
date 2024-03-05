@@ -5,6 +5,7 @@ import ServiceInfoMatching from '@present-native/molecules/serviceInfoMatching/S
 import { matchingScreenStyle, topLabelStyle } from './style';
 import { CircleImage } from '@present-native/atoms/image';
 import { Paragraph } from '@present-native/atoms';
+import { colors } from '@present-native/styles';
 
 export default function Matching() {
   return (
@@ -16,6 +17,7 @@ export default function Matching() {
           height: 'auto',
           padding: 20,
           overflow: 'hidden',
+          backgroundColor: colors.soft,
         }}
       >
         <ServiceInfoMatching />

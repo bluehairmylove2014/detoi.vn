@@ -81,4 +81,22 @@ const commonButtonStyles = StyleSheet.create({
 });
 const asyncButtonStyles = StyleSheet.create({});
 
-export { commonButtonStyles, asyncButtonStyles };
+const secondaryButtonStyle = StyleSheet.create({
+    secondary: {
+        width: '100%',
+        backgroundColor: colors.primary,
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        alignItems: 'center',
+    },
+
+    primary: {
+        width: '100%',
+        backgroundColor: colors.secondary,
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        alignItems: 'center',
+    }
+})
+
+export { commonButtonStyles, asyncButtonStyles, secondaryButtonStyle };
