@@ -60,7 +60,7 @@ const ServiceRequirementsSelect = ({
 
   const modalListDropdown = () => {
     return (
-      <Modal animationType="none" transparent={true} visible={activeModal}>
+      <Modal animationType="slide" transparent={true} visible={activeModal}>
         <TouchableWithoutFeedback onPress={() => {}}>
           <View style={serviceRequirementsSelectStyle.modalContainer}>
             <View style={serviceRequirementsSelectStyle.backgroundModal}>
