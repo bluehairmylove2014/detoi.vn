@@ -3,9 +3,11 @@ import { Dimensions, TouchableWithoutFeedback, View } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
-const BlurTheme = () => {
+const BlurTheme = ({ isOpen }: { isOpen: boolean }) => {
+  if (!isOpen) return null; // Don't render if not open
+
   return (
-    <TouchableWithoutFeedback>
+    <TouchableWithoutFeedback onPress={() => {}}>
       <View
         style={{
           width: width,
@@ -15,7 +17,7 @@ const BlurTheme = () => {
           top: 0,
           left: 0,
           opacity: 0.6,
-          zIndex: 10,
+          zIndex: 40,
         }}
       />
     </TouchableWithoutFeedback>

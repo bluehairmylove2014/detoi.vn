@@ -25,10 +25,12 @@ const constantTime = () => {
 };
 
 export const TimePicker = ({
-  activeBlur,
+  openBlur,
+  closeBlur,
   setTime,
 }: {
-  activeBlur: (isActive: boolean) => void;
+  openBlur: () => void;
+  closeBlur: () => void;
   setTime: (timeSelected: Date) => void;
 }) => {
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
@@ -61,7 +63,7 @@ export const TimePicker = ({
                   }}
                   onPress={() => {
                     setActiveModal(false);
-                    activeBlur(false);
+                    closeBlur();
                   }}
                 >
                   <FAIcon iconName="faTimes" color={colors.black} size={25} />
@@ -92,7 +94,7 @@ export const TimePicker = ({
                   onPress={() => {
                     setSelectedTime(timeChange);
                     setActiveModal(false);
-                    activeBlur(false);
+                    closeBlur();
                   }}
                 />
               </View>
@@ -115,7 +117,7 @@ export const TimePicker = ({
           style={TimePickerStyle.chooseTimeButton}
           onPress={() => {
             setActiveModal(true);
-            activeBlur(true);
+            openBlur();
           }}
         >
           <Paragraph theme="baseBold">

@@ -11,7 +11,7 @@ import { colors, serviceRequirementsSelectStyle } from '@present-native/styles';
 import { IOption } from '@business-layer/services/entities';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { useEffect, useState } from 'react';
-import { BlurTheme } from '../theme';
+
 import { Control, FieldValues, UseFormSetValue } from 'react-hook-form';
 
 const ServiceRequirementsSelect = ({
@@ -22,6 +22,9 @@ const ServiceRequirementsSelect = ({
   control,
   setValue,
   selectName,
+
+  openBlurTheme,
+  closeBlurTheme,
 }: {
   label: string;
   labelIcon: nativeIconNameType | null;
@@ -30,6 +33,9 @@ const ServiceRequirementsSelect = ({
   control: Control<FieldValues, any, FieldValues>;
   setValue: UseFormSetValue<FieldValues>;
   selectName: string;
+
+  openBlurTheme: () => void;
+  closeBlurTheme: () => void;
 }) => {
   const [activeModal, setActiveModal] = useState(false);
   const [optionSelected, setOptionSelected] = useState<string>('');
@@ -41,6 +47,7 @@ const ServiceRequirementsSelect = ({
         onPress={() => {
           setOptionSelected(item.name);
           setActiveModal(false);
+          closeBlurTheme();
         }}
       >
         <Paragraph theme="largeBold">{item.name}</Paragraph>
@@ -53,8 +60,7 @@ const ServiceRequirementsSelect = ({
 
   const modalListDropdown = () => {
     return (
-      <Modal animationType="none" transparent={true} visible={activeModal}>
-        <BlurTheme />
+      <Modal animationType="slide" transparent={true} visible={activeModal}>
         <TouchableWithoutFeedback onPress={() => {}}>
           <View style={serviceRequirementsSelectStyle.modalContainer}>
             <View style={serviceRequirementsSelectStyle.backgroundModal}>
@@ -68,6 +74,7 @@ const ServiceRequirementsSelect = ({
                   }}
                   onPress={() => {
                     setActiveModal(false);
+                    closeBlurTheme();
                   }}
                 >
                   <FAIcon iconName="faTimes" color={colors.black} size={25} />
@@ -114,7 +121,12 @@ const ServiceRequirementsSelect = ({
           </Paragraph>
         </View>
       </View>
-      <TouchableWithoutFeedback onPress={() => setActiveModal(true)}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          setActiveModal(true);
+          openBlurTheme();
+        }}
+      >
         <View style={serviceRequirementsSelectStyle.dropdownContainer}>
           <View style={{ marginRight: 15 }}>
             <Paragraph theme="smallMedium">{optionSelected}</Paragraph>
