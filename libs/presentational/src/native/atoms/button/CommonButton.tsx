@@ -1,12 +1,15 @@
 import { TouchableOpacity } from 'react-native';
 import { commonButtonStyles } from '@present-native/styles';
 import { Paragraph } from '../text';
+import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
+import { FAIcon } from '../icon';
 
 const themeList = {
   'square-rounded-bold': { borderRadius: 5 },
   'full-rounded-bold': { borderRadius: 999 },
 };
 type commonButtonPros = {
+  iconName: nativeIconNameType;
   title: string;
   theme: 'square-rounded-bold' | 'full-rounded-bold';
   onPress: () => void;
@@ -31,6 +34,7 @@ const PrimaryButton = ({
 };
 
 const SmallPrimaryButton = ({
+  iconName,
   title,
   theme = 'square-rounded-bold',
   onPress,
@@ -43,6 +47,7 @@ const SmallPrimaryButton = ({
         ...themeList[theme],
       }}
     >
+      <FAIcon iconName={iconName} />
       <Paragraph theme="smallBold">{title}</Paragraph>
     </TouchableOpacity>
   );

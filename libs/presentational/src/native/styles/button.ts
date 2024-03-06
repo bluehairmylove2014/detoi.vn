@@ -81,22 +81,61 @@ const commonButtonStyles = StyleSheet.create({
 });
 const asyncButtonStyles = StyleSheet.create({});
 
-const secondaryButtonStyle = StyleSheet.create({
-    secondary: {
-        width: '100%',
-        backgroundColor: colors.primary,
-        paddingHorizontal: 15,
-        paddingVertical: 5,
-        alignItems: 'center',
-    },
-
+const customButtonThemeStyle = StyleSheet.create({
     primary: {
         width: '100%',
         backgroundColor: colors.secondary,
-        paddingHorizontal: 15,
-        paddingVertical: 5,
         alignItems: 'center',
+    },
+
+    secondary: {
+        width: '100%',
+        backgroundColor: colors.primary,
+        alignItems: 'center',
+    },
+
+    outlined: {
+        width: '100%',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        borderWidth: 1,
+        alignItems: 'center',
+    }
+
+})
+
+const customButtonSizeStyle = StyleSheet.create({
+    small: {
+        paddingHorizontal: 15,
+        paddingVertical: 6,
+    },
+
+    base: {
+        paddingVertical: 15
     }
 })
 
-export { commonButtonStyles, asyncButtonStyles, secondaryButtonStyle };
+const customButtonRadius = StyleSheet.create({
+    none: {},
+
+    square: {
+        borderRadius: 5
+    },
+
+    full: {
+        borderRadius: 999
+    }
+})
+
+const customIconTextButton = StyleSheet.create({
+    container: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        gap: 6
+    }
+})
+
+export { commonButtonStyles, asyncButtonStyles, customButtonThemeStyle, customButtonSizeStyle, customButtonRadius, customIconTextButton };

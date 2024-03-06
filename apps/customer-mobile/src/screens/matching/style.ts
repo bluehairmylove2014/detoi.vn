@@ -1,5 +1,5 @@
-import { windowWidth } from "@constants/dimension";
-import { colors, screenHorizontalPadding } from "@present-native/styles";
+import { windowHeight } from "@constants/dimension";
+import { colors, } from "@present-native/styles";
 import { StyleSheet } from "react-native";
 
 export const matchingScreenStyle = StyleSheet.create({
@@ -10,18 +10,34 @@ export const matchingScreenStyle = StyleSheet.create({
   },
 })
 
-export const topLabelStyle = StyleSheet.create({
+export const serviceInfo = StyleSheet.create({
   container: {
-    width: windowWidth,
-    height: 220,
-  },
-  event: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    width: windowWidth,
-    height: '75%',
+    width: '100%',
+    height: 140,
+    padding: 20,
+    overflow: 'hidden',
     backgroundColor: colors.soft,
-    paddingHorizontal: screenHorizontalPadding,
+    display: 'flex',
+    justifyContent: "flex-end",
+
   },
+})
+
+export const matchingResultStyle = StyleSheet.create({
+    container: {
+        width: '100%',
+        padding: 20,
+        overflow: 'hidden',
+  },
+
+  filter_container: {
+    display: "flex",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+
+  button_filter: {
+    minWidth: 50
+  }
 })

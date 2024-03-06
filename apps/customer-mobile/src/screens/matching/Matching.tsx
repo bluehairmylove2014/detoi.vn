@@ -1,29 +1,46 @@
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import React from 'react';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import ServiceInfoMatching from '@present-native/molecules/serviceInfoMatching/ServiceInfoMatching';
-import { matchingScreenStyle, topLabelStyle } from './style';
-import { CircleImage } from '@present-native/atoms/image';
-import { Paragraph } from '@present-native/atoms';
-import { colors } from '@present-native/styles';
+import { matchingResultStyle, serviceInfo } from './style';
+import { CustomButton, Title } from '@present-native/atoms';
+import TextLoading from '@present-native/molecules/textLoading/TextLoading';
 
 export default function Matching() {
   return (
-    <SafeAreaView>
-      <View
-        style={{
-          width: '100%',
-          minHeight: '100%',
-          height: 'auto',
-          padding: 20,
-          overflow: 'hidden',
-          backgroundColor: colors.soft,
-        }}
-      >
-        <ServiceInfoMatching />
-      </View>
-      <Text>Hello</Text>
-    </SafeAreaView>
+    <CustomerTemplate>
+      <SafeAreaView>
+        <View style={serviceInfo.container}>
+          <ServiceInfoMatching />
+        </View>
+        <View style={matchingResultStyle.container}>
+          <View style={matchingResultStyle.filter_container}>
+            <Title theme="baseBold" color="primary">
+              Chọn để xem chi tiết
+            </Title>
+            <View style={matchingResultStyle.button_filter}>
+              <CustomButton
+                title="Sắp xếp"
+                size="small"
+                theme="primary"
+                iconName="faArrowUpWideShort"
+                onPress={() => console.log('Lọc')}
+              />
+            </View>
+          </View>
+          <View
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: 500,
+            }}
+          >
+            <TextLoading title="Đang ghép cặp" />
+          </View>
+        </View>
+      </SafeAreaView>
+    </CustomerTemplate>
     // <CustomerTemplate>
     //   <View style={matchingScreenStyle.container}>
     //     <View style={topLabelStyle.container}>

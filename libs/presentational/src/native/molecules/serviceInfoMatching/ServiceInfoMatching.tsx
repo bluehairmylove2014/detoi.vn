@@ -1,9 +1,5 @@
 import { windowWidth } from '@constants/dimension';
-import {
-  Paragraph,
-  PrimaryButton,
-  SecondaryButton,
-} from '@present-native/atoms';
+import { Paragraph, CustomButton } from '@present-native/atoms';
 import { CircleImage } from '@present-native/atoms/image';
 import { View, Text } from 'react-native';
 
@@ -14,8 +10,6 @@ export default function ServiceInfoMatching() {
         display: 'flex',
         flexDirection: 'row',
         gap: 15,
-        // maxHeight: windowWidth,
-        marginTop: 300,
         justifyContent: 'center',
         alignItems: 'center',
       }}
@@ -46,7 +40,7 @@ export default function ServiceInfoMatching() {
         }}
       >
         <Paragraph theme="largeBold" color="black">
-          Dọn nhà phổ thôngg
+          Dọn nhà phổ thông
         </Paragraph>
         <Paragraph theme="smallRegular" color="black" lineNumber={1}>
           Joy Citipoint, Quốc Lộ 1A, KCX Lnh Trung
@@ -56,9 +50,10 @@ export default function ServiceInfoMatching() {
         </Paragraph>
       </View>
       <View style={{ flex: 5 }}>
-        <SecondaryButton
+        <CustomButton
           title="Hủy đơn"
-          theme="square-rounded-bold"
+          size="small"
+          theme="secondary"
           onPress={() => console.log('hello')}
         />
       </View>
