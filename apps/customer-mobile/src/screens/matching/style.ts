@@ -4,9 +4,9 @@ import { StyleSheet } from "react-native";
 
 export const matchingScreenStyle = StyleSheet.create({
     container: {
-    flex: 1,
-    height: 'auto',
-    backgroundColor: colors.softBg,
+        display: 'flex',
+        flexDirection: 'column',
+        height: windowHeight
   },
 })
 
@@ -28,6 +28,7 @@ export const matchingResultStyle = StyleSheet.create({
         width: '100%',
         padding: 20,
         overflow: 'hidden',
+        flex: 1,
   },
 
   filter_container: {
@@ -40,4 +41,13 @@ export const matchingResultStyle = StyleSheet.create({
   button_filter: {
     minWidth: 50
   }
+})
+
+export const matchingLoading = StyleSheet.create({
+    container: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+}
 })

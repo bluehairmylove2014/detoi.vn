@@ -74,6 +74,9 @@ const textColorStyles = StyleSheet.create({
   primary: {
     color: colors.primary,
   },
+  secondary: {
+    color: colors.secondary,
+  },
   black: {
     color: colors.black,
   },

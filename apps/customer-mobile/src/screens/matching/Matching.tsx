@@ -2,14 +2,19 @@ import { SafeAreaView, View } from 'react-native';
 import React from 'react';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import ServiceInfoMatching from '@present-native/molecules/serviceInfoMatching/ServiceInfoMatching';
-import { matchingResultStyle, serviceInfo } from './style';
+import {
+  matchingLoading,
+  matchingResultStyle,
+  matchingScreenStyle,
+  serviceInfo,
+} from './style';
 import { CustomButton, Title } from '@present-native/atoms';
 import TextLoading from '@present-native/molecules/textLoading/TextLoading';
 
 export default function Matching() {
   return (
     <CustomerTemplate>
-      <SafeAreaView>
+      <SafeAreaView style={matchingScreenStyle.container}>
         <View style={serviceInfo.container}>
           <ServiceInfoMatching />
         </View>
@@ -28,14 +33,7 @@ export default function Matching() {
               />
             </View>
           </View>
-          <View
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              minHeight: 500,
-            }}
-          >
+          <View style={matchingLoading.container}>
             <TextLoading title="Đang ghép cặp" />
           </View>
         </View>

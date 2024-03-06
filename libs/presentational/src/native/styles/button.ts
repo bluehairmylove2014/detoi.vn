@@ -94,13 +94,26 @@ const customButtonThemeStyle = StyleSheet.create({
         alignItems: 'center',
     },
 
-    outlined: {
+    outlined_black: {
         width: '100%',
-        paddingVertical: 10,
-        paddingHorizontal: 15,
+        borderWidth: 1,
+        alignItems: 'center',
+    },
+
+    outlined_primary: {
+        width: '100%',
+        borderColor: colors.secondary,
+        borderWidth: 1,
+        alignItems: 'center',
+    },
+
+    outlined_secondary: {
+        width: '100%',
+        borderColor: colors.primary,
         borderWidth: 1,
         alignItems: 'center',
     }
+
 
 })
 

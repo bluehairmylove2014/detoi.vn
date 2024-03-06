@@ -1,11 +1,13 @@
 import { TouchableOpacity, View } from 'react-native';
 import { Paragraph } from '../text';
 import {
+  colors,
   customButtonRadius,
   customButtonSizeStyle,
   customButtonThemeStyle,
   customIconTextButton,
   paragraphFontStyles,
+  textColorStyles,
 } from '@present-native/styles';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { FAIcon } from '../icon';
@@ -20,11 +22,13 @@ const textSize: Record<
 
 const textColor: Record<
   keyof typeof customButtonThemeStyle,
-  'primary' | 'black' | 'rose' | 'white'
+  keyof typeof textColorStyles
 > = {
   primary: 'black',
   secondary: 'white',
-  outlined: 'black',
+  outlined_black: 'black',
+  outlined_primary: 'primary',
+  outlined_secondary: 'secondary',
 };
 
 const iconSize: Record<keyof typeof customButtonSizeStyle, number> = {
