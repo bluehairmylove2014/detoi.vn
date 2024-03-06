@@ -17,6 +17,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { BannerTopSection, TimePicker } from '@present-native/molecules';
 import { useCurrentOrderService } from '@business-layer/business-logic/lib/category';
+import { useBlurTheme } from '@business-layer/business-logic/lib/blurTheme';
 
 const NUMBER_OF_DAYS = 14;
 
@@ -36,8 +37,8 @@ const constantTime = () => {
 };
 
 const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
+  const { isOpen, openBlurTheme, closeBlurTheme } = useBlurTheme();
   const { currentOrderService: service } = useCurrentOrderService();
-  const [actveBlur, setActiveBlur] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date>(calcFollowingDay);
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
   const { handleSubmit, setValue, control } = useForm();
@@ -105,14 +106,14 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
 
   return (
     <CustomerTemplate>
+      <BlurTheme isOpen={isOpen} />
+
       <BannerTopSection
         url={service?.image ?? '#'}
         title={`DỊCH VỤ ${service?.name.toUpperCase()}`}
         subtitle={service?.description ?? ''}
       />
       <View>
-        {actveBlur ? <BlurTheme /> : <></>}
-
         <View style={provideDateStyle.container}>
           <VerticalSpacer size="l" />
           <View style={provideDateStyle.labelTime}>
@@ -139,7 +140,8 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
 
           <VerticalSpacer size="xl" />
           <TimePicker
-            activeBlur={(isActive) => setActiveBlur(isActive)}
+            openBlur={openBlurTheme}
+            closeBlur={closeBlurTheme}
             setTime={(time) => setSelectedTime(time)}
           />
 

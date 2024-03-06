@@ -24,6 +24,8 @@ import {
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { Controller, useForm } from 'react-hook-form';
 import { useLogin } from '@business-layer/business-logic/lib/auth';
+import { useBlurTheme } from '@business-layer/business-logic/lib/blurTheme';
+
 import {
   useYupValidationResolver,
   loginByPhoneNumberSchema,
@@ -47,10 +49,10 @@ type phoneInputFormType = {
   phone: string;
 };
 const Login: React.FC<LoginProps> = ({ route, navigation }) => {
+  const { isOpen, openBlurTheme, closeBlurTheme } = useBlurTheme();
   const formResolver = useYupValidationResolver(loginByPhoneNumberSchema);
   const [countryCode, setCountryCode] =
     useState<ICountryCode>(DEFAULT_COUNTRY_CODE);
-  const [activeBlur, setActiveBlur] = useState(false);
 
   const [activeErrorBox, setActiveErrorBox] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
@@ -78,7 +80,6 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
   const MessageBox = () => {
     return (
       <Modal animationType="slide" transparent={true} visible={activeErrorBox}>
-        <BlurTheme />
         <Pressable style={loginScreenStyle.centeredView}>
           <View style={loginScreenStyle.modalView}>
             <Paragraph color="black" theme="largeMedium">
@@ -88,7 +89,10 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
             <PrimaryButton
               theme="square-rounded-bold"
               title="ĐÓNG"
-              onPress={() => setActiveErrorBox(false)}
+              onPress={() => {
+                setActiveErrorBox(false);
+                closeBlurTheme();
+              }}
             />
           </View>
         </Pressable>
@@ -97,16 +101,15 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onErrorSubmit = (error: Record<string, any>) => {
-    console.log(error);
-
     const errorMessage = error.phone.message || 'Xảy ra lỗi';
     setErrorMessage(errorMessage);
+    openBlurTheme();
     setActiveErrorBox(true);
   };
 
   return (
     <SafeAreaView>
-      {activeBlur ? <BlurTheme /> : <></>}
+      <BlurTheme isOpen={isOpen} />
 
       <StatusBar hidden />
       <View style={loginScreenStyle.container}>
@@ -127,10 +130,10 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
 
         <View style={loginScreenStyle.inputContainer}>
           <CountryCodeSelect
-            isActiveBlur={(isActive) => setActiveBlur(isActive)}
+            openBlurTheme={openBlurTheme}
+            closeBlurTheme={closeBlurTheme}
             onSelect={(value) => {
               setCountryCode(value);
-              setActiveBlur(false);
             }}
             defaultValue={DEFAULT_COUNTRY_CODE}
           />

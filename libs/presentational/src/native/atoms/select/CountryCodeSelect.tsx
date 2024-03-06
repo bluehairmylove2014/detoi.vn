@@ -17,11 +17,13 @@ import { CountryCodeButton } from '../button';
 const CountryCodeSelect = ({
   onSelect,
   defaultValue,
-  isActiveBlur,
+  openBlurTheme,
+  closeBlurTheme,
 }: {
   onSelect: (value: ICountryCode) => void;
-  isActiveBlur: (isActive: boolean) => void;
   defaultValue: ICountryCode;
+  openBlurTheme: () => void;
+  closeBlurTheme: () => void;
 }) => {
   const [listCountry, setListCountry] = useState<ICountryCode[]>([]);
   const [selectedCountry, setSelectedCountry] =
@@ -57,6 +59,7 @@ const CountryCodeSelect = ({
             setSelectedCountry(item);
             setActiveModal(false);
             onSelect(item);
+            closeBlurTheme();
           }}
         >
           <Image
@@ -84,7 +87,7 @@ const CountryCodeSelect = ({
                   }}
                   onPress={() => {
                     setActiveModal(false);
-                    isActiveBlur(false);
+                    closeBlurTheme();
                   }}
                 >
                   <FAIcon iconName="faTimes" color={colors.black} size={25} />
@@ -111,7 +114,7 @@ const CountryCodeSelect = ({
       <CountryCodeButton
         onPress={() => {
           setActiveModal(true);
-          isActiveBlur(true);
+          openBlurTheme();
         }}
         title={selectedCountry?.callingCodes.toString()}
         theme="full-rounded-bold"
