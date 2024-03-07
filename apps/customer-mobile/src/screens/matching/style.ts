@@ -10,7 +10,7 @@ export const matchingScreenStyle = StyleSheet.create({
   },
 })
 
-export const serviceInfo = StyleSheet.create({
+export const serviceInfoSectionStyle = StyleSheet.create({
   container: {
     width: '100%',
     height: 140,

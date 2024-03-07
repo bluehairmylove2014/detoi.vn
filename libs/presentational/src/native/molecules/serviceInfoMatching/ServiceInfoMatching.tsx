@@ -1,55 +1,42 @@
 import { windowWidth } from '@constants/dimension';
 import { Paragraph, CustomButton } from '@present-native/atoms';
 import { CircleImage } from '@present-native/atoms/image';
+import { matchingInfoSectionStyle } from '@present-native/styles/matching';
 import { View, Text } from 'react-native';
 
-export default function ServiceInfoMatching() {
+export default function ServiceInfoMatching({
+  uri_image,
+  service_name,
+  service_address,
+  service_time,
+}: {
+  uri_image: string;
+  service_name: string;
+  service_address: string;
+  service_time: string;
+}) {
   return (
-    <View
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        gap: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <View
-        style={{
-          width: 35,
-          height: 35,
-          flex: 2.5,
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
+    <View style={matchingInfoSectionStyle.container}>
+      <View style={matchingInfoSectionStyle.ava_image}>
         <CircleImage
           source={{
-            uri: 'https://detoivn.sirv.com/customer_avt/user-avt%20(2).png',
+            uri: uri_image,
           }}
           style={{ height: undefined, width: undefined }}
         />
       </View>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-start',
-          gap: 1.5,
-          flex: 9,
-        }}
-      >
-        <Paragraph theme="largeBold" color="black">
-          Dọn nhà phổ thông
+      <View style={matchingInfoSectionStyle.service_info}>
+        <Paragraph theme="largeBold" color="black" lineNumber={1}>
+          {service_name}
         </Paragraph>
         <Paragraph theme="smallRegular" color="black" lineNumber={1}>
-          Joy Citipoint, Quốc Lộ 1A, KCX Lnh Trung
+          {service_address}
         </Paragraph>
         <Paragraph theme="smallRegular" color="black" lineNumber={1}>
-          17:30 | Thứ 3, 20 - 5 - 2014
+          {service_time}
         </Paragraph>
       </View>
-      <View style={{ flex: 5 }}>
+      <View style={matchingInfoSectionStyle.cancel_button}>
         <CustomButton
           title="Hủy đơn"
           size="small"
