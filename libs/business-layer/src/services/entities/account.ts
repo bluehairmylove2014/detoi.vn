@@ -39,3 +39,16 @@ export interface IFreelancerAccountDetail {
   description: string;
   serviceProven: IServiceProven[];
 }
+
+export interface IMatchedFreelancer
+{
+    id: string;
+    rating: number;
+    orderCount: number;
+    loveCount: number;
+    positiveReviewCount: number;
+    isTeam: boolean;
+    teamMemberCount: number;
+    avatar: string;
+    previewPrice: number;
+}

@@ -10,6 +10,8 @@ import {
 } from './style';
 import { CustomButton, Title } from '@present-native/atoms';
 import TextLoading from '@present-native/molecules/textLoading/TextLoading';
+import { IMatchedFreelancer } from '@business-layer/services/entities';
+import { FreelancerMatchingThumbnail } from '@present-native/molecules';
 
 export default function Matching() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -19,6 +21,22 @@ export default function Matching() {
     service_address: 'Joy Citipoint, Quốc Lộ 1A, KCX Lnh Trung',
     service_time: '17:30 | Thứ 3, 20 - 5 - 2014',
   });
+
+  // Call api
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [matchingResult, setMatchingResult] = useState<IMatchedFreelancer[]>([
+    {
+      id: '1',
+      avatar: 'https://detoivn.sirv.com/freelancer/avatars/f1.png',
+      teamMemberCount: 1,
+      isTeam: false,
+      loveCount: 99,
+      orderCount: 1000,
+      positiveReviewCount: 100,
+      previewPrice: 800.0,
+      rating: 5,
+    },
+  ]);
 
   return (
     <CustomerTemplate>
@@ -46,9 +64,20 @@ export default function Matching() {
               />
             </View>
           </View>
-          <View style={matchingLoading.container}>
-            <TextLoading title="Đang ghép cặp" />
-          </View>
+          {matchingResult.length > 0 ? (
+            matchingResult.map((item, index) => {
+              return (
+                <FreelancerMatchingThumbnail
+                  freelancerMatched={item}
+                  onPress={() => console.log('Press Freelancer thumbnail')}
+                />
+              );
+            })
+          ) : (
+            <View style={matchingLoading.container}>
+              <TextLoading title="Đang ghép cặp" />
+            </View>
+          )}
         </View>
       </SafeAreaView>
     </CustomerTemplate>
