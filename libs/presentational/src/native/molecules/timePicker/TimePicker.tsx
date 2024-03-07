@@ -13,7 +13,7 @@ import {
   PrimaryButton,
   VerticalSpacer,
 } from '@present-native/atoms';
-import DateTimePicker from '@react-native-community/datetimepicker';
+// import DateTimePicker from '@react-native-community/datetimepicker';
 import { colors } from '@present-native/styles';
 import { TimePickerStyle } from '@present-native/styles/timePicker';
 
@@ -72,7 +72,7 @@ export const TimePicker = ({
 
               <VerticalSpacer size="xxxl" />
               <View style={{ marginHorizontal: 30 }}>
-                <DateTimePicker
+                {/* <DateTimePicker
                   display={Platform.OS === 'ios' ? 'spinner' : 'default'}
                   mode="time"
                   value={timeChange}
@@ -83,7 +83,7 @@ export const TimePicker = ({
                       setTimeChange(selected);
                     }
                   }}
-                />
+                /> */}
               </View>
 
               <VerticalSpacer size="xxl" />
@@ -107,7 +107,7 @@ export const TimePicker = ({
 
   return (
     <>
-      <View style={TimePickerStyle.chooseTimeContainer}>
+      {/* <View style={TimePickerStyle.chooseTimeContainer}>
         <View style={TimePickerStyle.chooseTimeLabel}>
           <FAIcon iconName="faClock" size={20} color={colors.secondary} />
           <HorizontalSpacer size="m"></HorizontalSpacer>
@@ -130,7 +130,7 @@ export const TimePicker = ({
         </TouchableOpacity>
 
         {modalTimePicker()}
-      </View>
+      </View> */}
     </>
   );
 };
