@@ -13,7 +13,7 @@ import {
   PrimaryButton,
   VerticalSpacer,
 } from '@present-native/atoms';
-// import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { colors } from '@present-native/styles';
 import { TimePickerStyle } from '@present-native/styles/timePicker';
 
@@ -35,19 +35,20 @@ export const TimePicker = ({
 }) => {
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
   const [timeChange, setTimeChange] = useState<Date>(constantTime);
-  const [activeModal, setActiveModal] = useState(false);
+  const [activeModalIOS, setActiveModalIOS] = useState(false);
+  const [activePickTimeAndroid, setActivePickTimeAndroid] = useState(false);
 
   useEffect(() => {
     setTime(selectedTime);
   }, [selectedTime]);
 
-  // Design Modal List To Choose Time
-  const modalTimePicker = () => {
+  // Design Modal Picker Time IOS To Choose Time
+  const modalTimePickerIOS = () => {
     return (
       <Modal
         animationType="slide"
         transparent={true}
-        visible={activeModal}
+        visible={activeModalIOS}
         style={{ height: 50 }}
       >
         <TouchableWithoutFeedback>
@@ -62,7 +63,7 @@ export const TimePicker = ({
                     alignSelf: 'flex-start',
                   }}
                   onPress={() => {
-                    setActiveModal(false);
+                    setActiveModalIOS(false);
                     closeBlur();
                   }}
                 >
@@ -72,8 +73,8 @@ export const TimePicker = ({
 
               <VerticalSpacer size="xxxl" />
               <View style={{ marginHorizontal: 30 }}>
-                {/* <DateTimePicker
-                  display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                <DateTimePicker
+                  display="spinner"
                   mode="time"
                   value={timeChange}
                   textColor={colors.black}
@@ -83,7 +84,7 @@ export const TimePicker = ({
                       setTimeChange(selected);
                     }
                   }}
-                /> */}
+                />
               </View>
 
               <VerticalSpacer size="xxl" />
@@ -93,7 +94,7 @@ export const TimePicker = ({
                   theme="square-rounded-bold"
                   onPress={() => {
                     setSelectedTime(timeChange);
-                    setActiveModal(false);
+                    setActiveModalIOS(false);
                     closeBlur();
                   }}
                 />
@@ -107,7 +108,7 @@ export const TimePicker = ({
 
   return (
     <>
-      {/* <View style={TimePickerStyle.chooseTimeContainer}>
+      <View style={TimePickerStyle.chooseTimeContainer}>
         <View style={TimePickerStyle.chooseTimeLabel}>
           <FAIcon iconName="faClock" size={20} color={colors.secondary} />
           <HorizontalSpacer size="m"></HorizontalSpacer>
@@ -116,8 +117,12 @@ export const TimePicker = ({
         <TouchableOpacity
           style={TimePickerStyle.chooseTimeButton}
           onPress={() => {
-            setActiveModal(true);
-            openBlur();
+            if (Platform.OS === 'ios') {
+              setActiveModalIOS(true);
+              openBlur();
+            } else {
+              setActivePickTimeAndroid(true);
+            }
           }}
         >
           <Paragraph theme="baseBold">
@@ -129,8 +134,29 @@ export const TimePicker = ({
           </Paragraph>
         </TouchableOpacity>
 
-        {modalTimePicker()}
-      </View> */}
+        {activePickTimeAndroid ? (
+          <DateTimePicker
+            display="spinner"
+            mode="time"
+            value={selectedTime}
+            is24Hour={true}
+            textColor={colors.black}
+            minuteInterval={5}
+            onChange={(event, selected) => {
+              if (selected) {
+                setSelectedTime(selected);
+              }
+              setActivePickTimeAndroid(false);
+            }}
+            positiveButtonLabel="XÁC NHẬN"
+            negativeButtonLabel="HỦY"
+          />
+        ) : (
+          <></>
+        )}
+
+        {modalTimePickerIOS()}
+      </View>
     </>
   );
 };
