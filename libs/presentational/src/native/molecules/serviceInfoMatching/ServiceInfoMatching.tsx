@@ -1,5 +1,5 @@
 import { windowWidth } from '@constants/dimension';
-import { Paragraph, CustomButton } from '@present-native/atoms';
+import { OnlyBorderButton, Paragraph } from '@present-native/atoms';
 import { CircleImage } from '@present-native/atoms/image';
 import { matchingInfoSectionStyle } from '@present-native/styles/matching';
 import { View, Text } from 'react-native';
@@ -37,10 +37,9 @@ export default function ServiceInfoMatching({
         </Paragraph>
       </View>
       <View style={matchingInfoSectionStyle.cancel_button}>
-        <CustomButton
+        <OnlyBorderButton
           title="Hủy đơn"
           size="small"
-          theme="secondary"
           onPress={() => console.log('hello')}
         />
       </View>

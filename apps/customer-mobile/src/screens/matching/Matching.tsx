@@ -8,7 +8,7 @@ import {
   matchingScreenStyle,
   serviceInfoSectionStyle,
 } from './style';
-import { CustomButton, Title } from '@present-native/atoms';
+import { PrimaryButton_new, Title } from '@present-native/atoms';
 import TextLoading from '@present-native/molecules/textLoading/TextLoading';
 import { IMatchedFreelancer } from '@business-layer/services/entities';
 import { FreelancerMatchingThumbnail } from '@present-native/molecules';
@@ -55,11 +55,11 @@ export default function Matching() {
               Chọn để xem chi tiết
             </Title>
             <View style={matchingResultStyle.button_filter}>
-              <CustomButton
+              <PrimaryButton_new
                 title="Sắp xếp"
                 size="small"
-                theme="primary"
                 iconName="faArrowUpWideShort"
+                iconPosition="left"
                 onPress={() => console.log('Lọc')}
               />
             </View>

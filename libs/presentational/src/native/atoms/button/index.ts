@@ -2,5 +2,4 @@ export * from './BellIconButton';
 export * from './CommonButton';
 export * from './MethodLoginButton';
 export * from './CountryCodeButton';
-export * from './CustomButton';
 export * from './BackIconButton';
