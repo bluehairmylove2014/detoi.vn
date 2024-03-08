@@ -1,6 +1,12 @@
 import { AuthProvider, AuthProviderType } from '../lib/auth/process/provider';
-import { categoryProviderType } from '../lib/category/process/provider';
-import { CategoryContextProvider } from '../lib/category/process/provider/ContextProvider';
+import {
+  CategoryProvider,
+  categoryProviderType,
+} from '../lib/category/process/provider';
+import {
+  GeocodeProvider,
+  geocodeProviderType,
+} from '../lib/geocode/process/provider';
 import {
   PaginationProvider,
   paginationProviderType,
@@ -25,12 +31,18 @@ export const mutationConfig = {
  * If you add 1 more module to providerConfig, you must
  * add to moduleKeyList and providerList as well
  */
-export type moduleKeyList = 'auth' | 'category' | 'pagination' | 'realtime';
+export type moduleKeyList =
+  | 'auth'
+  | 'category'
+  | 'geocode'
+  | 'pagination'
+  | 'realtime';
 export type providerList = React.FC<
   | AuthProviderType
   | categoryProviderType
   | paginationProviderType
   | realtimeProviderType
+  | geocodeProviderType
 >;
 export const providerConfig: {
   key: moduleKeyList;
@@ -45,8 +57,12 @@ export const providerConfig: {
     provider: PaginationProvider,
   },
   {
+    key: 'geocode',
+    provider: GeocodeProvider,
+  },
+  {
     key: 'category',
-    provider: CategoryContextProvider,
+    provider: CategoryProvider,
   },
   {
     key: 'auth',

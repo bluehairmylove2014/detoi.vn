@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors, screenHorizontalPadding } from '@present-native/styles';
+import { colors, screenHorizontalPadding, screenVerticalPadding } from '@present-native/styles';
 
 export const introSCreenStyle = StyleSheet.create({
   container: {
@@ -7,6 +7,7 @@ export const introSCreenStyle = StyleSheet.create({
     minHeight: '100%',
     height: 'auto',
     backgroundColor: colors.secondary,
+    paddingVertical: screenVerticalPadding,
     paddingHorizontal: screenHorizontalPadding,
   },
   welcomeSection: {

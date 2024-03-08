@@ -1,5 +1,13 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState } from 'react';
-import { View, SafeAreaView, TextInput, StatusBar } from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  TextInput,
+  StatusBar,
+  Modal,
+  Pressable,
+} from 'react-native';
 
 import { LoginProps } from '../../config';
 import { loginScreenStyle } from './styles';
@@ -10,10 +18,14 @@ import {
   Title,
   BorderButton,
   PrimaryButton,
+  BlurTheme,
+  VerticalSpacer,
 } from '@present-native/atoms';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { Controller, useForm } from 'react-hook-form';
 import { useLogin } from '@business-layer/business-logic/lib/auth';
+import { useBlurTheme } from '@business-layer/business-logic/lib/blurTheme';
+
 import {
   useYupValidationResolver,
   loginByPhoneNumberSchema,
@@ -37,9 +49,13 @@ type phoneInputFormType = {
   phone: string;
 };
 const Login: React.FC<LoginProps> = ({ route, navigation }) => {
+  const { isOpen, openBlurTheme, closeBlurTheme } = useBlurTheme();
   const formResolver = useYupValidationResolver(loginByPhoneNumberSchema);
   const [countryCode, setCountryCode] =
     useState<ICountryCode>(DEFAULT_COUNTRY_CODE);
+
+  const [activeErrorBox, setActiveErrorBox] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>();
   const { handleSubmit, setValue, control } = useForm<phoneInputFormType>({
     defaultValues: {
       phone: '',
@@ -61,14 +77,40 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
       });
   };
 
+  const MessageBox = () => {
+    return (
+      <Modal animationType="slide" transparent={true} visible={activeErrorBox}>
+        <Pressable style={loginScreenStyle.centeredView}>
+          <View style={loginScreenStyle.modalView}>
+            <Paragraph color="black" theme="largeMedium">
+              {errorMessage}. Xin vui lòng nhập lại.
+            </Paragraph>
+            <VerticalSpacer size="xxl" />
+            <PrimaryButton
+              theme="square-rounded-bold"
+              title="ĐÓNG"
+              onPress={() => {
+                setActiveErrorBox(false);
+                closeBlurTheme();
+              }}
+            />
+          </View>
+        </Pressable>
+      </Modal>
+    );
+  };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onErrorSubmit = (error: Record<string, any>) => {
-    console.log(error);
-    // HANDLE INVALID PHONE NUMBER HERE
+    const errorMessage = error.phone.message || 'Xảy ra lỗi';
+    setErrorMessage(errorMessage);
+    openBlurTheme();
+    setActiveErrorBox(true);
   };
 
   return (
     <SafeAreaView>
+      <BlurTheme isOpen={isOpen} />
+
       <StatusBar hidden />
       <View style={loginScreenStyle.container}>
         <View>
@@ -88,7 +130,11 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
 
         <View style={loginScreenStyle.inputContainer}>
           <CountryCodeSelect
-            onSelect={(value) => setCountryCode(value)}
+            openBlurTheme={openBlurTheme}
+            closeBlurTheme={closeBlurTheme}
+            onSelect={(value) => {
+              setCountryCode(value);
+            }}
             defaultValue={DEFAULT_COUNTRY_CODE}
           />
           <Controller
@@ -143,6 +189,7 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
           </View>
         </View>
       </View>
+      {MessageBox()}
     </SafeAreaView>
   );
 };

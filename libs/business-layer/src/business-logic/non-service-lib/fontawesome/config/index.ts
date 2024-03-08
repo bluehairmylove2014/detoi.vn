@@ -19,6 +19,15 @@ import {
   faComputer,
   faBroom,
   faArrowUpWideShort,
+  faPersonShelter,
+  faClock,
+  faLocationCrosshairs,
+  faBookBookmark,
+  faArrowRight,
+  faArrowLeftLong,
+  faClockRotateLeft,
+  faLocationDot,
+  faCircleDollarToSlot,
 } from '@fortawesome/free-solid-svg-icons';
 import { fa500px } from '@fortawesome/free-brands-svg-icons';
 import { faAddressCard } from '@fortawesome/free-regular-svg-icons';
@@ -43,7 +52,16 @@ export const NATIVE_ICONS = {
   faDog,
   faComputer,
   faBroom,
-  faArrowUpWideShort
+  faArrowUpWideShort,
+  faPersonShelter,
+  faClock,
+  faLocationCrosshairs,
+  faBookBookmark,
+  faArrowRight,
+  faArrowLeftLong,
+  faClockRotateLeft,
+  faLocationDot,
+  faCircleDollarToSlot,
 };
 
 export type nativeIconNameType = keyof typeof NATIVE_ICONS;

@@ -21,6 +21,7 @@ export interface IUIServiceRequirement {
   label: string;
   labelIcon: nativeIconNameType | null;
   placeholder: string;
+  key: string;
 }
 
 export interface IUIAdditionServiceRequirement {
@@ -28,4 +29,5 @@ export interface IUIAdditionServiceRequirement {
   icon: string;
   label: string;
   autoSelect: boolean;
+  key: string;
 }

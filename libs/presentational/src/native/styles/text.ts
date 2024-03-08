@@ -47,7 +47,7 @@ const paragraphFontStyles = StyleSheet.create({
     fontSize: 16,
   },
   largeBold: {
-    fontFamily: 'Montserrat_600SemiBold',
+    fontFamily: 'Montserrat_700Bold',
     fontSize: 16,
   },
 });
@@ -86,6 +86,9 @@ const textColorStyles = StyleSheet.create({
   white: {
     color: colors.white,
   },
+  gray: {
+    color: colors.gray,
+  },
 });
 const textAlignStyles = StyleSheet.create({
   left: {
@@ -116,6 +119,16 @@ const textCommonStyles = StyleSheet.create({
   behavior: {
     pointerEvents: 'none',
     userSelect: 'none',
+    flexShrink: 1,
+  },
+});
+
+const staticServiceRequirementDetailStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
   },
 });
 
@@ -126,4 +139,5 @@ export {
   textAlignStyles,
   textCommonStyles,
   textDecorationStyles,
+  staticServiceRequirementDetailStyles,
 };

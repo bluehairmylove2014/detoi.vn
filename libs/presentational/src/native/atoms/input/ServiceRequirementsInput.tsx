@@ -10,7 +10,7 @@ import { nativeIconNameType } from '@business-layer/business-logic/non-service-l
 import { ServiceRequirementsInputStyle, colors } from '@present-native/styles';
 import { Paragraph } from '../text';
 
-const ServiceRequirementsInput = ({
+export const ServiceRequirementsInput = ({
   type,
   label,
   labelIcon,
@@ -71,4 +71,3 @@ const ServiceRequirementsInput = ({
     </View>
   );
 };
-export { ServiceRequirementsInput };

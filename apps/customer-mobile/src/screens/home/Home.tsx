@@ -19,17 +19,21 @@ import {
   PrimaryScrollView,
   Thumbnail,
 } from '@present-native/atoms';
-import { IEvent } from '@business-layer/services/entities';
+import { ICategory, IEvent } from '@business-layer/services/entities';
 import { colors } from '@present-native/styles';
 import { CategoryAndServiceSearchBox } from '@present-native/molecules';
 import { CategoryThumbnail } from '@present-native/molecules/category/CategoryThumbnail';
-import { useGetAllCategories } from '@business-layer/business-logic/lib/category';
+import {
+  useCurrentOrderCategory,
+  useGetAllCategories,
+} from '@business-layer/business-logic/lib/category';
 import EndowItem from '@present-native/molecules/endow/EndowItem';
 import ServiceCard from '@present-native/molecules/card/ServiceCard';
 import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
 
 const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   const { data: categories } = useGetAllCategories();
+  const { setCurrentOrderCategory } = useCurrentOrderCategory();
 
   // Event must be get from API
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -81,6 +85,11 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   const [notifications, setNotification] = useState<number[] | null>([
     1, 2, 3, 4, 5,
   ]);
+
+  function handlePressCategory(category: ICategory) {
+    setCurrentOrderCategory({ category });
+    navigation.navigate('ChooseLocation');
+  }
 
   return (
     <CustomerTemplate>
@@ -135,11 +144,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
                   <CategoryThumbnail
                     category={c}
                     key={`category@${c.id}`}
-                    onPress={() => {
-                      navigation.navigate('ChooseService', {
-                        categoryId: c.id,
-                      });
-                    }}
+                    onPress={() => handlePressCategory(c)}
                   />
                 ))}
                 <TouchableOpacity

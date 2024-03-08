@@ -2,22 +2,34 @@ import { View } from 'react-native';
 import React from 'react';
 import { ChooseServiceProps } from '../../config';
 import { provideDetailStyle } from './styles';
-import { useGetCategoryDetail } from '@business-layer/business-logic/lib/category';
+import {
+  useCurrentOrderCategory,
+  useCurrentOrderService,
+  useGetCategoryDetail,
+} from '@business-layer/business-logic/lib/category';
 import { CommonLink, Title, VerticalSpacer } from '@present-native/atoms';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
-import { ServicesList } from '@present-native/molecules';
+import { BannerTopSection, ServicesList } from '@present-native/molecules';
+import { IService } from '@business-layer/services/entities/service';
 
 const ChooseService: React.FC<ChooseServiceProps> = ({ route, navigation }) => {
-  const { categoryId } = route.params;
-  const { data: categoryDetail } = useGetCategoryDetail(categoryId);
+  const { currentOrderCategory: category } = useCurrentOrderCategory();
+  const { setCurrentOrderService } = useCurrentOrderService();
+  const { data: categoryDetail } = useGetCategoryDetail(category?.id ?? '0');
 
-  const handleSelectService = (serviceId: string) => {
-    navigation.navigate('ProvideDetail', { serviceId });
+  const handleSelectService = (service: IService) => {
+    setCurrentOrderService({ service });
+    navigation.navigate('ProvideDetail');
   };
 
   return (
     <CustomerTemplate>
-      <View style={{ width: '100%', height: 150 }} />
+      <BannerTopSection
+        url={category?.image ?? '#'}
+        title={`DỊCH VỤ ${category?.name.toUpperCase()}`}
+        subtitle={category?.description ?? ''}
+      />
+      <VerticalSpacer size="xxl" />
       <View style={provideDetailStyle.container}>
         <View>
           <Title theme="baseBold" color="primary">

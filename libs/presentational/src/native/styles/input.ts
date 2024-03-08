@@ -21,5 +21,37 @@ const ServiceRequirementsInputStyle = StyleSheet.create({
     borderBottomWidth: 1,
   },
 });
+const paymentMethodStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    height: 60,
+    borderRadius: 5,
+    borderColor: colors.gray,
+    borderWidth: 1,
+  },
+  logo: {
+    objectFit: 'cover',
+    height: '100%',
+    aspectRatio: 1,
+  },
+  dot: {
+    height: 30,
+    aspectRatio: 1,
+    borderRadius: 999,
+    borderColor: colors.gray,
+    borderWidth: 1,
+  },
+});
 
-export { ServiceRequirementsInputStyle };
+const textAreaStyles = StyleSheet.create({
+  input: {
+    height: 150,
+    textAlignVertical: 'top',
+  },
+});
+
+export { ServiceRequirementsInputStyle, paymentMethodStyles, textAreaStyles };

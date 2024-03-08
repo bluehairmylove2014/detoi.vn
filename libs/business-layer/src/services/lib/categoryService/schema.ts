@@ -53,6 +53,7 @@ const serviceRequirementSchema = z.object({
   label: z.string(),
   labelIcon: z.string().nullable(),
   placeholder: z.string(),
+  key: z.string(),
 });
 
 const additionServiceRequirementSchema = z.object({
@@ -60,6 +61,7 @@ const additionServiceRequirementSchema = z.object({
   icon: z.string(),
   label: z.string(),
   autoSelect: z.boolean(),
+  key: z.string(),
 });
 
 const serviceSchema = z.object({

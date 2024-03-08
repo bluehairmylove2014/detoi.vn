@@ -1,11 +1,7 @@
 // Import necessary modules and functions
 import { useServiceBookingMutation } from '../../fetching/mutation';
-import {
-  serviceBookingPropsType,
-  serviceBookingResponseType,
-} from '@business-layer/services';
+import { serviceBookingResponseType } from '@business-layer/services';
 import { getToken } from '@business-layer/business-logic/lib/auth/process/hooks/useAccessToken';
-import { IOrderElement } from '@business-layer/services/entities';
 
 function convertValueWithTypeToString(value: any): {
   valueString: string;

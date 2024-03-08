@@ -7,7 +7,7 @@ export const ServicesList = ({
   onSelectService,
 }: {
   services: IService[];
-  onSelectService: (serviceId: string) => void;
+  onSelectService: (service: IService) => void;
 }) => {
   return (
     <View style={styles.container}>

@@ -38,7 +38,7 @@ const IntroPage: React.FC<IntroProps> = ({ route, navigation }) => {
   ];
   return (
     <View style={introSCreenStyle.container}>
-      <Header typeDisplay={[ETypeDisplayHeader.languageButton]} />
+      <Header typeDisplay={[ETypeDisplayHeader.LANGUAGE_BUTTON]} />
       <View style={introSCreenStyle.welcomeSection}>
         <Logo width={150} height={150} />
         <Title theme="largeBold" color="black">
