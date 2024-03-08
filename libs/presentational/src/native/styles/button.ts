@@ -81,7 +81,7 @@ const commonButtonStyles = StyleSheet.create({
 });
 const asyncButtonStyles = StyleSheet.create({});
 
-const customButtonThemeStyle = StyleSheet.create({
+const baseButtonThemeStyle = StyleSheet.create({
     primary: {
         width: '100%',
         backgroundColor: colors.secondary,
@@ -90,34 +90,33 @@ const customButtonThemeStyle = StyleSheet.create({
 
     secondary: {
         width: '100%',
-        backgroundColor: colors.primary,
+        backgroundColor: colors.lightBlue,
         alignItems: 'center',
     },
 
-    outlined_black: {
+    only_border: {
         width: '100%',
         borderWidth: 1,
-        alignItems: 'center',
-    },
-
-    outlined_primary: {
-        width: '100%',
-        borderColor: colors.secondary,
-        borderWidth: 1,
-        alignItems: 'center',
-    },
-
-    outlined_secondary: {
-        width: '100%',
+        backgroundColor: colors.transparent,
         borderColor: colors.primary,
-        borderWidth: 1,
         alignItems: 'center',
-    }
-
-
+    },
 })
 
-const customButtonSizeStyle = StyleSheet.create({
+// const baseButtonBorderColor = StyleSheet.create({
+//     primary: {
+//         borderColor: colors.secondary
+//     },
+
+//     secondary: {
+//         borderColor: colors.lightBlue
+//     }
+
+
+
+// })
+
+const baseButtonSizeStyle = StyleSheet.create({
     small: {
         paddingHorizontal: 15,
         paddingVertical: 6,
@@ -128,8 +127,7 @@ const customButtonSizeStyle = StyleSheet.create({
     }
 })
 
-const customButtonRadius = StyleSheet.create({
-    none: {},
+const baseButtonRadius = StyleSheet.create({
 
     square: {
         borderRadius: 5
@@ -140,15 +138,21 @@ const customButtonRadius = StyleSheet.create({
     }
 })
 
-const customIconTextButton = StyleSheet.create({
+const baseIconTextButton = StyleSheet.create({
     container: {
         display: 'flex',
-        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-
         gap: 6
-    }
+    },
+
+    left: {
+        flexDirection: 'row',
+    },
+
+    right: {
+        flexDirection: 'row-reverse',
+    },
 })
 
-export { commonButtonStyles, asyncButtonStyles, customButtonThemeStyle, customButtonSizeStyle, customButtonRadius, customIconTextButton };
+export { commonButtonStyles, asyncButtonStyles, baseButtonThemeStyle, baseButtonSizeStyle, baseButtonRadius, baseIconTextButton };
