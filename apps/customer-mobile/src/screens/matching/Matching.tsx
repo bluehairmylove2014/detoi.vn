@@ -12,6 +12,7 @@ import { PrimaryButton_new, Title } from '@present-native/atoms';
 import TextLoading from '@present-native/molecules/textLoading/TextLoading';
 import { IMatchedFreelancer } from '@business-layer/services/entities';
 import { FreelancerMatchingThumbnail } from '@present-native/molecules';
+import { freelancerMatchingThumbnailStyle } from '@present-native/styles/matching';
 
 export default function Matching() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -27,6 +28,17 @@ export default function Matching() {
   const [matchingResult, setMatchingResult] = useState<IMatchedFreelancer[]>([
     {
       id: '1',
+      avatar: 'https://detoivn.sirv.com/freelancer/avatars/f1.png',
+      teamMemberCount: 1,
+      isTeam: false,
+      loveCount: 99,
+      orderCount: 1000,
+      positiveReviewCount: 100,
+      previewPrice: 800.0,
+      rating: 5,
+    },
+    {
+      id: '2',
       avatar: 'https://detoivn.sirv.com/freelancer/avatars/f1.png',
       teamMemberCount: 1,
       isTeam: false,
@@ -64,20 +76,22 @@ export default function Matching() {
               />
             </View>
           </View>
-          {matchingResult.length > 0 ? (
-            matchingResult.map((item, index) => {
-              return (
-                <FreelancerMatchingThumbnail
-                  freelancerMatched={item}
-                  onPress={() => console.log('Press Freelancer thumbnail')}
-                />
-              );
-            })
-          ) : (
-            <View style={matchingLoading.container}>
-              <TextLoading title="Đang ghép cặp" />
-            </View>
-          )}
+          <View style={freelancerMatchingThumbnailStyle.container}>
+            {matchingResult.length > 0 ? (
+              matchingResult.map((item, index) => {
+                return (
+                  <FreelancerMatchingThumbnail
+                    freelancerMatched={item}
+                    onPress={() => console.log('Press Freelancer thumbnail')}
+                  />
+                );
+              })
+            ) : (
+              <View style={matchingLoading.container}>
+                <TextLoading title="Đang ghép cặp" />
+              </View>
+            )}
+          </View>
         </View>
       </SafeAreaView>
     </CustomerTemplate>

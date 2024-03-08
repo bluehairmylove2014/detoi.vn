@@ -12,6 +12,7 @@ export const colors = {
   zinc: '#e4e4e7', // light gray
   softBg: '#FFEFF4',
   lightBlue: '#e4e4e7',
+  lightGray: '#D9D9D9',
   
 
   // Accent Color

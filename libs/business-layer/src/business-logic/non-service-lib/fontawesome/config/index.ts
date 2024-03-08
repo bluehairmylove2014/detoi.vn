@@ -28,6 +28,8 @@ import {
   faClockRotateLeft,
   faLocationDot,
   faCircleDollarToSlot,
+  faPerson,
+  faPeopleGroup,
 } from '@fortawesome/free-solid-svg-icons';
 import { fa500px } from '@fortawesome/free-brands-svg-icons';
 import { faAddressCard } from '@fortawesome/free-regular-svg-icons';
@@ -62,6 +64,8 @@ export const NATIVE_ICONS = {
   faClockRotateLeft,
   faLocationDot,
   faCircleDollarToSlot,
+  faPerson,
+  faPeopleGroup
 };
 
 export type nativeIconNameType = keyof typeof NATIVE_ICONS;
