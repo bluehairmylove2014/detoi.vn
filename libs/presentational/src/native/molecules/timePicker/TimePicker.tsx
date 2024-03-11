@@ -11,11 +11,13 @@ import {
   HorizontalSpacer,
   Paragraph,
   PrimaryButton,
+  TouchTheme,
   VerticalSpacer,
 } from '@present-native/atoms';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { colors } from '@present-native/styles';
 import { TimePickerStyle } from '@present-native/styles/timePicker';
+import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
 
 const constantTime = () => {
   const defaultTime = new Date();
@@ -25,18 +27,15 @@ const constantTime = () => {
 };
 
 export const TimePicker = ({
-  openBlur,
-  closeBlur,
   setTime,
 }: {
-  openBlur: () => void;
-  closeBlur: () => void;
   setTime: (timeSelected: Date) => void;
 }) => {
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
   const [timeChange, setTimeChange] = useState<Date>(constantTime);
   const [activeModalIOS, setActiveModalIOS] = useState(false);
   const [activePickTimeAndroid, setActivePickTimeAndroid] = useState(false);
+  const { setOpenBlurTheme } = useBlurTheme();
 
   useEffect(() => {
     setTime(selectedTime);
@@ -51,57 +50,62 @@ export const TimePicker = ({
         visible={activeModalIOS}
         style={{ height: 50 }}
       >
-        <TouchableWithoutFeedback>
-          <View style={TimePickerStyle.modalContainer}>
-            <View style={TimePickerStyle.backgroundModal}>
-              <View style={TimePickerStyle.topModalContainer}>
-                <Paragraph theme="baseBold">Chọn thời gian</Paragraph>
+        <TouchTheme
+          onPress={() => {
+            setOpenBlurTheme(false);
+            setActiveModalIOS(false);
+            setActivePickTimeAndroid(false);
+          }}
+        />
+        <View style={TimePickerStyle.modalContainer}>
+          <View style={TimePickerStyle.backgroundModal}>
+            <View style={TimePickerStyle.topModalContainer}>
+              <Paragraph theme="baseBold">Chọn thời gian</Paragraph>
 
-                {/* Close Button */}
-                <TouchableOpacity
-                  style={{
-                    alignSelf: 'flex-start',
-                  }}
-                  onPress={() => {
-                    setActiveModalIOS(false);
-                    closeBlur();
-                  }}
-                >
-                  <FAIcon iconName="faTimes" color={colors.black} size={25} />
-                </TouchableOpacity>
-              </View>
+              {/* Close Button */}
+              <TouchableOpacity
+                style={{
+                  alignSelf: 'flex-start',
+                }}
+                onPress={() => {
+                  setActiveModalIOS(false);
+                  setOpenBlurTheme(false);
+                }}
+              >
+                <FAIcon iconName="faTimes" color={colors.black} size={25} />
+              </TouchableOpacity>
+            </View>
 
-              <VerticalSpacer size="xxxl" />
-              <View style={{ marginHorizontal: 30 }}>
-                <DateTimePicker
-                  display="spinner"
-                  mode="time"
-                  value={timeChange}
-                  textColor={colors.black}
-                  minuteInterval={5}
-                  onChange={(event, selected) => {
-                    if (selected) {
-                      setTimeChange(selected);
-                    }
-                  }}
-                />
-              </View>
+            <VerticalSpacer size="xxxl" />
+            <View style={{ marginHorizontal: 30 }}>
+              <DateTimePicker
+                display="spinner"
+                mode="time"
+                value={timeChange}
+                textColor={colors.black}
+                minuteInterval={5}
+                onChange={(event, selected) => {
+                  if (selected) {
+                    setTimeChange(selected);
+                  }
+                }}
+              />
+            </View>
 
-              <VerticalSpacer size="xxl" />
-              <View style={{ marginHorizontal: 30 }}>
-                <PrimaryButton
-                  title="XÁC NHẬN"
-                  theme="square-rounded-bold"
-                  onPress={() => {
-                    setSelectedTime(timeChange);
-                    setActiveModalIOS(false);
-                    closeBlur();
-                  }}
-                />
-              </View>
+            <VerticalSpacer size="xxl" />
+            <View style={{ marginHorizontal: 30 }}>
+              <PrimaryButton
+                title="XÁC NHẬN"
+                theme="square-rounded-bold"
+                onPress={() => {
+                  setSelectedTime(timeChange);
+                  setActiveModalIOS(false);
+                  setOpenBlurTheme(false);
+                }}
+              />
             </View>
           </View>
-        </TouchableWithoutFeedback>
+        </View>
       </Modal>
     );
   };
@@ -119,9 +123,10 @@ export const TimePicker = ({
           onPress={() => {
             if (Platform.OS === 'ios') {
               setActiveModalIOS(true);
-              openBlur();
+              setOpenBlurTheme(true);
             } else {
               setActivePickTimeAndroid(true);
+              setOpenBlurTheme(true);
             }
           }}
         >
@@ -147,9 +152,10 @@ export const TimePicker = ({
                 setSelectedTime(selected);
               }
               setActivePickTimeAndroid(false);
+              setOpenBlurTheme(false);
             }}
-            positiveButtonLabel="XÁC NHẬN"
-            negativeButtonLabel="HỦY"
+            positiveButton={{ label: 'XÁC NHẬN' }}
+            negativeButton={{ label: 'HỦY' }}
           />
         ) : (
           <></>

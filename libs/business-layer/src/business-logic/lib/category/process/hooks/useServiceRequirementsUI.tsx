@@ -17,13 +17,9 @@ type useServiceRequirementsUIType = {
   onGenerateUI: ({
     requirements,
     additionalRequirements,
-    openBlurTheme,
-    closeBlurTheme,
   }: {
     requirements: IUIServiceRequirement[];
     additionalRequirements?: IUIAdditionServiceRequirement[];
-    openBlurTheme: () => void;
-    closeBlurTheme: () => void;
   }) => JSX.Element;
   getForm: () => {
     handleSubmit: UseFormHandleSubmit<FieldValues, FieldValues>;
@@ -35,13 +31,9 @@ export const useServiceRequirementsUI = (): useServiceRequirementsUIType => {
   const onGenerateUI = ({
     requirements,
     additionalRequirements,
-    openBlurTheme,
-    closeBlurTheme,
   }: {
     requirements: IUIServiceRequirement[];
     additionalRequirements?: IUIAdditionServiceRequirement[];
-    openBlurTheme: () => void;
-    closeBlurTheme: () => void;
   }): JSX.Element => {
     return (
       <>
@@ -68,8 +60,6 @@ export const useServiceRequirementsUI = (): useServiceRequirementsUIType => {
                 control={control}
                 setValue={setValue}
                 selectName={`requirement@${r.id}`}
-                openBlurTheme={openBlurTheme}
-                closeBlurTheme={closeBlurTheme}
               />
             ) : (
               <></>

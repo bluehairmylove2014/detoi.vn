@@ -1,4 +1,4 @@
-import { SafeAreaView, View, TextInput, ActivityIndicator } from 'react-native';
+import { View, TextInput, ActivityIndicator } from 'react-native';
 import { OTPVertificationProps } from '../../config';
 import { otpVertificationScreenStyle } from './styles';
 import { colors } from '@present-native/styles';
@@ -9,7 +9,12 @@ import {
   useResendOtp,
   useVerifyOtp,
 } from '@business-layer/business-logic/lib/auth';
-import { Paragraph, SmallPrimaryButton } from '@present-native/atoms';
+import {
+  Paragraph,
+  SmallPrimaryButton,
+  VerticalSpacer,
+} from '@present-native/atoms';
+import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 
 const MAX_TRY = 3;
 const OTP_LENGTH = 4;
@@ -38,6 +43,7 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
       otp: '',
     },
   });
+
   const otpWatcher = watch('otp');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { onVerifyOtp, isLoading } = useVerifyOtp();
@@ -106,18 +112,23 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [otpWatcher]);
   return (
-    <SafeAreaView>
+    <CustomerTemplate>
       <View style={otpVertificationScreenStyle.container}>
-        <View style={{ marginTop: 5 }}>
-          <Paragraph theme="baseMedium">
-            Mã OTP gồm 4 chữ số được gửi tới số
-            <Paragraph theme="baseBold"> {phoneNumber} </Paragraph>
-            thông qua tin nhắn
-            <Paragraph theme="baseBold"> SMS</Paragraph>
+        <Paragraph theme="baseMedium">
+          Mã OTP gồm 4 chữ số được gửi tới số
+          <Paragraph theme="baseBold"> {phoneNumber} </Paragraph>
+          thông qua tin nhắn
+          <Paragraph theme="baseBold"> SMS</Paragraph>
+        </Paragraph>
+
+        <VerticalSpacer size="xxl" />
+        <Paragraph theme="largeMedium">
+          Nhập mã OTP
+          <Paragraph theme="largeMedium" color="rose">
+            {' '}
+            *
           </Paragraph>
-        </View>
-        <View style={{ marginTop: 30 }}></View>
-        <Paragraph theme="largeMedium">Nhập mã OTP</Paragraph>
+        </Paragraph>
 
         <View style={otpVertificationScreenStyle.inputContainer}>
           <Controller
@@ -169,15 +180,16 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
         </View>
 
         {activeWarning && (
-          <View style={{ marginTop: 15 }}>
+          <>
+            <VerticalSpacer size="s" />
             <Paragraph theme="baseMedium" color="rose">
               Mã OTP bạn vừa nhập không hợp lệ. Bạn có thể thử thêm {countWrong}{' '}
               lần nữa
             </Paragraph>
-          </View>
+          </>
         )}
       </View>
-    </SafeAreaView>
+    </CustomerTemplate>
   );
 };
 export default OTPVertification;

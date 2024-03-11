@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import { ProvideDateProps } from '../../config';
 import {
-  BlurTheme,
   PrimaryButton,
   VerticalSpacer,
   Paragraph,
@@ -17,7 +16,6 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { BannerTopSection, TimePicker } from '@present-native/molecules';
 import { useCurrentOrderService } from '@business-layer/business-logic/lib/category';
-import { useBlurTheme } from '@business-layer/business-logic/lib/blurTheme';
 
 const NUMBER_OF_DAYS = 14;
 
@@ -37,7 +35,6 @@ const constantTime = () => {
 };
 
 const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
-  const { isOpen, openBlurTheme, closeBlurTheme } = useBlurTheme();
   const { currentOrderService: service } = useCurrentOrderService();
   const [selectedDate, setSelectedDate] = useState<Date>(calcFollowingDay);
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
@@ -106,8 +103,6 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
 
   return (
     <CustomerTemplate>
-      <BlurTheme isOpen={isOpen} />
-
       <BannerTopSection
         url={service?.image ?? '#'}
         title={`DỊCH VỤ ${service?.name.toUpperCase()}`}
@@ -139,11 +134,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
           </View>
 
           <VerticalSpacer size="xl" />
-          <TimePicker
-            openBlur={openBlurTheme}
-            closeBlur={closeBlurTheme}
-            setTime={(time) => setSelectedTime(time)}
-          />
+          <TimePicker setTime={(time) => setSelectedTime(time)} />
 
           <VerticalSpacer size="xxxl" />
           <View>

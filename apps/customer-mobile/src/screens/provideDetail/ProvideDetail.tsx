@@ -7,18 +7,11 @@ import {
   useServiceRequirementsUI,
 } from '@business-layer/business-logic/lib/category';
 import { BannerTopSection } from '@present-native/molecules';
-import {
-  BlurTheme,
-  PrimaryButton,
-  Title,
-  VerticalSpacer,
-} from '@present-native/atoms';
+import { PrimaryButton, Title, VerticalSpacer } from '@present-native/atoms';
 import { screenHorizontalPadding } from '@present-native/styles';
-import { useBlurTheme } from '@business-layer/business-logic/lib/blurTheme';
+import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 
 const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
-  const { isOpen, openBlurTheme, closeBlurTheme } = useBlurTheme();
-
   const { currentOrderService: service } = useCurrentOrderService();
   const { data: serviceDetail } = useGetServiceDetail(service?.id ?? '0');
   const { onGenerateUI } = useServiceRequirementsUI();
@@ -28,9 +21,7 @@ const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
   };
 
   return (
-    <View>
-      <BlurTheme isOpen={isOpen} />
-
+    <CustomerTemplate>
       <BannerTopSection
         url={service?.image ?? '#'}
         title={`DỊCH VỤ ${service?.name.toUpperCase()}`}
@@ -45,8 +36,6 @@ const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
           ? onGenerateUI({
               requirements: serviceDetail.requirements,
               additionalRequirements: serviceDetail.additionalRequirements,
-              openBlurTheme,
-              closeBlurTheme,
             })
           : null}
         <VerticalSpacer size="xxxl" />
@@ -56,7 +45,7 @@ const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
           onPress={handlePressNext}
         />
       </View>
-    </View>
+    </CustomerTemplate>
   );
 };
 

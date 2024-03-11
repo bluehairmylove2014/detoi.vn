@@ -21,14 +21,13 @@ export const countryCodeSelectStyle = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 50,
+    marginTop: 100,
   },
 
   backgroundModal: {
     backgroundColor: colors.white,
     width: '100%',
     height: 'auto',
-    marginTop: 100,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
   },
@@ -100,7 +99,6 @@ export const serviceRequirementsSelectStyle = StyleSheet.create({
     width: '100%',
     backgroundColor: colors.white,
     bottom: 0,
-    zIndex: 50,
   },
 
   backgroundModal: {
