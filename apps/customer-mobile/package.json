@@ -47,7 +47,8 @@
     "uuid": "*",
     "yup": "*",
     "react-native-progress": "*",
-    "@react-native-community/datetimepicker": "*"
+    "@react-native-community/datetimepicker": "*",
+    "react-native-ratings": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && node tools/scripts/eas-build-pre-install.mjs . apps/customer-mobile && cp package-lock.json apps/customer-mobile",

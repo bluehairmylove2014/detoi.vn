@@ -1,5 +1,5 @@
 import { SafeAreaView, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import ServiceInfoMatching from '@present-native/molecules/serviceInfoMatching/ServiceInfoMatching';
 import {
@@ -50,6 +50,23 @@ export default function Matching() {
     },
   ]);
 
+  const [currentResults, setCurrentResults] = useState<IMatchedFreelancer[]>(
+    []
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (matchingResult.length > currentResults.length) {
+        setCurrentResults((prevResults) => [
+          ...prevResults,
+          matchingResult[prevResults.length],
+        ]);
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [currentResults, matchingResult]);
+
   return (
     <CustomerTemplate>
       <SafeAreaView style={matchingScreenStyle.container}>
@@ -76,22 +93,23 @@ export default function Matching() {
               />
             </View>
           </View>
-          <View style={freelancerMatchingThumbnailStyle.container}>
-            {matchingResult.length > 0 ? (
-              matchingResult.map((item, index) => {
+          {currentResults.length > 0 ? (
+            <View style={freelancerMatchingThumbnailStyle.container}>
+              {currentResults.map((item, index) => {
                 return (
                   <FreelancerMatchingThumbnail
+                    key={index}
                     freelancerMatched={item}
                     onPress={() => console.log('Press Freelancer thumbnail')}
                   />
                 );
-              })
-            ) : (
-              <View style={matchingLoading.container}>
-                <TextLoading title="Đang ghép cặp" />
-              </View>
-            )}
-          </View>
+              })}
+            </View>
+          ) : (
+            <View style={matchingLoading.container}>
+              <TextLoading title="Đang ghép cặp" />
+            </View>
+          )}
         </View>
       </SafeAreaView>
     </CustomerTemplate>

@@ -36,12 +36,17 @@ export const FreelancerMatchingThumbnail = ({
             alignItems: 'flex-start',
           }}
         >
-          <AirbnbRating
-            count={5}
-            defaultRating={3}
-            size={12}
-            showRating={false}
-          />
+          <View style={{ display: 'flex', flexDirection: 'row' }}>
+            <AirbnbRating
+              count={5}
+              defaultRating={3}
+              size={12}
+              showRating={false}
+            />
+            <Paragraph theme="smallSemibold" color="secondary">
+              99+
+            </Paragraph>
+          </View>
           <Title theme="baseMedium" color="white">
             {/* {freelancerMatched.previewPrice.toLocaleString('vi-VN', {
                 style: 'currency',
