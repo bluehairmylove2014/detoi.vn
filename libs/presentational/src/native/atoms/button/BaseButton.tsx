@@ -15,8 +15,8 @@ const textSize: Record<
   keyof typeof baseButtonSizeStyle,
   keyof typeof paragraphFontStyles
 > = {
-  small: 'baseSemibold',
-  base: 'largeBold',
+  small: 'smallBold',
+  base: 'baseBold',
 };
 
 const textColor: Record<
@@ -25,7 +25,7 @@ const textColor: Record<
 > = {
   primary: 'black',
   secondary: 'black',
-  only_border: 'primary',
+  only_border: 'black',
 };
 
 const iconSize: Record<keyof typeof baseButtonSizeStyle, number> = {

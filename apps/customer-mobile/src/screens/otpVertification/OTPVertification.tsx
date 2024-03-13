@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import { View, TextInput, ActivityIndicator } from 'react-native';
 import { OTPVertificationProps } from '../../config';
 import { otpVertificationScreenStyle } from './styles';
@@ -11,7 +12,7 @@ import {
 } from '@business-layer/business-logic/lib/auth';
 import {
   Paragraph,
-  SmallPrimaryButton,
+  PrimaryButton,
   VerticalSpacer,
 } from '@present-native/atoms';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
@@ -168,11 +169,14 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
                 </View>
               ) : (
                 <View>
-                  <SmallPrimaryButton
-                    onPress={handleResendOtp}
-                    theme="full-rounded-bold"
-                    title="Gửi lại"
-                  />
+                  <View style={{ width: 70 }}>
+                    <PrimaryButton
+                      onPress={handleResendOtp}
+                      size="small"
+                      title="Gửi lại"
+                      radius="full"
+                    />
+                  </View>
                 </View>
               )}
             </View>

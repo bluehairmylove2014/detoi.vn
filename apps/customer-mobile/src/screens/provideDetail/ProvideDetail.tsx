@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import { View } from 'react-native';
 import React from 'react';
 import { ProvideDetailProps } from '../../config';
@@ -39,11 +40,7 @@ const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
             })
           : null}
         <VerticalSpacer size="xxxl" />
-        <PrimaryButton
-          title="Tiếp theo"
-          theme="square-rounded-bold"
-          onPress={handlePressNext}
-        />
+        <PrimaryButton title="Tiếp theo" onPress={handlePressNext} />
       </View>
     </CustomerTemplate>
   );

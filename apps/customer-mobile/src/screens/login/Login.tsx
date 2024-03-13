@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState } from 'react';
 import { View, TextInput } from 'react-native';
@@ -9,9 +10,9 @@ import { CountryCodeSelect } from '@present-native/atoms/select/CountryCodeSelec
 import {
   Paragraph,
   Title,
-  BorderButton,
-  PrimaryButton,
   VerticalSpacer,
+  PrimaryButton,
+  OnlyBorderButton,
 } from '@present-native/atoms';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { Controller, useForm } from 'react-hook-form';
@@ -129,9 +130,9 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
 
         <VerticalSpacer size="xl" />
         <PrimaryButton
-          onPress={handleSubmit(onSuccessSubmitPhoneNumber, onErrorSubmit)}
-          theme="full-rounded-bold"
+          radius="full"
           title="Tiếp tục"
+          onPress={handleSubmit(onSuccessSubmitPhoneNumber, onErrorSubmit)}
         />
 
         <VerticalSpacer size="xl" />
@@ -151,11 +152,14 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
 
         <VerticalSpacer size="xl" />
 
-        <BorderButton
-          onPress={() => {}}
-          title="Có vấn đề với số điện thoại?"
-          theme="full-rounded-bold"
-        />
+        <View style={{ width: 230 }}>
+          <OnlyBorderButton
+            onPress={() => {}}
+            title="Có vấn đề với số điện thoại?"
+            radius="full"
+            size="small"
+          />
+        </View>
       </View>
 
       <MessageBox
