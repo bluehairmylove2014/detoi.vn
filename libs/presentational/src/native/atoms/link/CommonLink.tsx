@@ -7,7 +7,7 @@ import { Link } from '@react-navigation/native';
 
 type commonLinkProps = {
   theme?: 'underline' | 'italic' | 'normal';
-  size?: 'small' | 'base' | 'large';
+  size?: 'small' | 'base' | 'large' | 'extraSmallBold';
   align?: 'left' | 'center' | 'right';
   title: string;
   toScreen: string;

@@ -20,6 +20,10 @@ export const commonLinkThemes = StyleSheet.create({
   normal: {},
 });
 export const commonLinkFontSize = StyleSheet.create({
+  extraSmallBold: {
+    fontSize: 12,
+    fontFamily: 'Montserrat_700Bold',
+  },
   small: {
     fontSize: 14,
     fontFamily: 'Montserrat_500Medium',

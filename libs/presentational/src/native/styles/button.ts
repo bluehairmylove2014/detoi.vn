@@ -120,7 +120,7 @@ const baseButtonSizeStyle = StyleSheet.create({
   },
 
   base: {
-    paddingVertical: 15,
+    paddingVertical: 12,
   },
 });
 
