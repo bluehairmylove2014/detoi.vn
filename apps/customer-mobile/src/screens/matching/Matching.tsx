@@ -123,7 +123,7 @@ export default function Matching() {
       <View style={styles.container}>
         <Button title="Show Options" />
         <Modal
-          visible={true}
+          visible={false}
           transparent={true}
           animationType="slide"
           // onRequestClose={toggleModal}
