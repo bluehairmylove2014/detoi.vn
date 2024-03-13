@@ -9,9 +9,14 @@ export const onServiceScreenStyle = StyleSheet.create({
     padding: 20,
   },
 
-  noteContainer: {
+  titleContainer: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
+  },
+
+  contentContainer: {
+    flexDirection: 'row',
+    marginLeft: 14,
   },
 
   billContainer: {
@@ -47,5 +52,9 @@ export const onServiceScreenStyle = StyleSheet.create({
 
   mapStyle: {
     flex: 1,
+  },
+
+  buttonsContainer: {
+    flexDirection: 'row',
   },
 });

@@ -1,12 +1,13 @@
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { OnServiceProps } from '../../config';
-import { Image, Platform, View } from 'react-native';
+import { Image, View } from 'react-native';
 import { onServiceScreenStyle } from './styles';
 import {
   CommonLink,
   FAIcon,
   HorizontalSpacer,
   Paragraph,
+  PrimaryButton,
   VerticalSpacer,
 } from '@present-native/atoms';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
@@ -55,7 +56,7 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
   };
 
   const state_2 = {
-    name: 'Đang di chuyển, hãy kiên nhẫn',
+    name: 'Đang di chuyển, hãy kiên nhẫn ',
     postionDestination: {
       lat: 10.762853671759258,
       long: 106.68248487328377,
@@ -95,21 +96,24 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
           <Paragraph color="primary" theme="baseBold">
             Các lưu ý chung cho dịch vụ
           </Paragraph>
-          {/* {state_1.name === statuses[0].name ? (
+          {state_1.name === statuses[0].name ? (
             <>
               {state_1.notes.map((note, index) => {
                 return (
                   <View key={index}>
                     <VerticalSpacer size="m" />
-                    <View style={onServiceScreenStyle.noteContainer}>
-                      <FAIcon
-                        iconName={note.iconNote as nativeIconNameType}
-                        color={colors.black}
-                        size={14}
-                      />
-                      <HorizontalSpacer size="m" />
-                      <View>
+                    <View>
+                      <View style={onServiceScreenStyle.titleContainer}>
+                        <FAIcon
+                          iconName={note.iconNote as nativeIconNameType}
+                          color={colors.black}
+                          size={14}
+                        />
+                        <HorizontalSpacer size="m" />
                         <Paragraph theme="smallBold">{note.title}</Paragraph>
+                      </View>
+                      <View style={onServiceScreenStyle.contentContainer}>
+                        <HorizontalSpacer size="m" />
                         <Paragraph theme="smallRegular">
                           {note.description}
                         </Paragraph>
@@ -131,7 +135,7 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
           ) : (
             // eslint-disable-next-line react/jsx-no-useless-fragment
             <></>
-          )} */}
+          )}
 
           {state_2.name === statuses[1].name ? (
             <View style={{ height: 300 }}>
@@ -242,7 +246,16 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
             })}
           </View>
 
-          <View></View>
+          <VerticalSpacer size="xxxl" />
+          <View style={onServiceScreenStyle.buttonsContainer}>
+            <View style={{ flex: 1 }}>
+              <PrimaryButton title="Tin nhắn" onPress={() => {}} />
+            </View>
+            <HorizontalSpacer size="l" />
+            <View style={{ flex: 1 }}>
+              <PrimaryButton title="Hỗ trợ" onPress={() => {}} />
+            </View>
+          </View>
         </View>
       </View>
     </CustomerTemplate>

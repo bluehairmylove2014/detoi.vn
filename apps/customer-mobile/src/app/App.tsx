@@ -8,7 +8,7 @@ const App = () => {
   const isLogged = false;
   const initRoute: keyof customerRootStackParamList = isLogged
     ? 'Home'
-    : 'OTPVertification';
+    : 'Login';
   const { isLoading } = useGoogleFonts();
 
   if (isLoading) {

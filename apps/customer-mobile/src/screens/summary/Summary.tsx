@@ -103,7 +103,12 @@ const Summary: React.FC<SummaryProps> = ({ route, navigation }) => {
           <ChoosePaymentMethods onSelect={() => {}} />
         </View>
         <VerticalSpacer size="xxxl" />
-        <PrimaryButton title="Đặt đơn ngay" onPress={() => {}} />
+        <PrimaryButton
+          title="Đặt đơn ngay"
+          onPress={() => {
+            navigation.navigate('OnService');
+          }}
+        />
       </View>
     </CustomerTemplate>
   );
