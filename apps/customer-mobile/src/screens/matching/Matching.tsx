@@ -1,4 +1,11 @@
-import { SafeAreaView, View } from 'react-native';
+import {
+  Button,
+  Modal,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import ServiceInfoMatching from '@present-native/molecules/serviceInfoMatching/ServiceInfoMatching';
@@ -13,6 +20,7 @@ import TextLoading from '@present-native/molecules/textLoading/TextLoading';
 import { IMatchedFreelancer } from '@business-layer/services/entities';
 import { FreelancerMatchingThumbnail } from '@present-native/molecules';
 import { freelancerMatchingThumbnailStyle } from '@present-native/styles/matching';
+import { windowWidth } from '@constants/dimension';
 
 export default function Matching() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -112,6 +120,22 @@ export default function Matching() {
           )}
         </View>
       </SafeAreaView>
+      <View style={styles.container}>
+        <Button title="Show Options" />
+        <Modal
+          visible={true}
+          transparent={true}
+          animationType="slide"
+          // onRequestClose={toggleModal}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <Text>This is your modal content</Text>
+              <Button title="Close" />
+            </View>
+          </View>
+        </Modal>
+      </View>
     </CustomerTemplate>
     // <CustomerTemplate>
     //   <View style={matchingScreenStyle.container}>
@@ -134,3 +158,23 @@ export default function Matching() {
     // </CustomerTemplate>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    width: windowWidth,
+    backgroundColor: 'white',
+    padding: 20,
+    alignItems: 'center',
+  },
+});
