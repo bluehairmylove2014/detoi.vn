@@ -39,12 +39,12 @@ export const FreelancerMatchingThumbnail = ({
           <View style={{ display: 'flex', flexDirection: 'row' }}>
             <AirbnbRating
               count={5}
-              defaultRating={3}
+              defaultRating={freelancerMatched.rating}
               size={12}
               showRating={false}
             />
             <Paragraph theme="smallSemibold" color="secondary">
-              99+
+              {freelancerMatched.loveCount}+
             </Paragraph>
           </View>
           <Title theme="baseMedium" color="white">
@@ -62,9 +62,14 @@ export const FreelancerMatchingThumbnail = ({
             justifyContent: 'center',
             alignItems: 'center',
             marginBottom: 3,
+            gap: 2,
           }}
         >
-          <FAIcon iconName="faPerson" size={13} color="white" />
+          {freelancerMatched.isTeam ? (
+            <FAIcon iconName="faPeopleGroup" size={13} color="white" />
+          ) : (
+            <FAIcon iconName="faPerson" size={13} color="white" />
+          )}
           <Paragraph theme="smallSemibold" color="white">
             {freelancerMatched.teamMemberCount}
           </Paragraph>

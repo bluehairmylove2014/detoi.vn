@@ -47,13 +47,13 @@ export default function Matching() {
     },
     {
       id: '2',
-      avatar: 'https://detoivn.sirv.com/freelancer/avatars/f1.png',
-      teamMemberCount: 1,
-      isTeam: false,
-      loveCount: 99,
+      avatar: 'https://detoivn.sirv.com/freelancer/avatars/f2.png',
+      teamMemberCount: 6,
+      isTeam: true,
+      loveCount: 999,
       orderCount: 1000,
       positiveReviewCount: 100,
-      previewPrice: 800.0,
+      previewPrice: 1200.0,
       rating: 5,
     },
   ]);
