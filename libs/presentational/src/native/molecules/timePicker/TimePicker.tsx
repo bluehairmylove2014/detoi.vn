@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  View,
-  Platform,
-  TouchableOpacity,
-  Modal,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import { View, Platform, TouchableOpacity, Modal } from 'react-native';
 import {
   FAIcon,
   HorizontalSpacer,
@@ -76,7 +70,7 @@ export const TimePicker = ({
               </TouchableOpacity>
             </View>
 
-            <VerticalSpacer size="xxxl" />
+            <VerticalSpacer size="xxl" />
             <View style={{ marginHorizontal: 30 }}>
               <DateTimePicker
                 display="spinner"
@@ -96,7 +90,6 @@ export const TimePicker = ({
             <View style={{ marginHorizontal: 30 }}>
               <PrimaryButton
                 title="XÁC NHẬN"
-                theme="square-rounded-bold"
                 onPress={() => {
                   setSelectedTime(timeChange);
                   setActiveModalIOS(false);

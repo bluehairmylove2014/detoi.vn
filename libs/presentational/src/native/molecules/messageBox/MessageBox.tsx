@@ -37,9 +37,8 @@ export const MessageBox = ({
             {message}
           </Paragraph>
 
-          <VerticalSpacer size="xxl" />
+          <VerticalSpacer size="xl" />
           <PrimaryButton
-            theme="square-rounded-bold"
             title="ĐÓNG"
             onPress={() => {
               onClose();

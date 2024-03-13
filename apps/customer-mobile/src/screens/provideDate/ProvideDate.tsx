@@ -1,10 +1,11 @@
+/* eslint-disable react/jsx-pascal-case */
 /* eslint-disable react/jsx-no-useless-fragment */
 import { ProvideDateProps } from '../../config';
 import {
-  PrimaryButton,
   VerticalSpacer,
   Paragraph,
   RoseTextarea,
+  PrimaryButton,
 } from '@present-native/atoms';
 import { FlatList, TouchableOpacity, View } from 'react-native';
 
@@ -160,7 +161,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
           <View style={provideDateStyle.buttonContainer}>
             <PrimaryButton
               title="Ghép cặp ngay"
-              theme="square-rounded-bold"
+              size="base"
               onPress={handleSubmit(onSuccessSubmitDate)}
             />
           </View>
