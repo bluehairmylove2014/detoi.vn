@@ -120,7 +120,7 @@ export default function Matching() {
           )}
         </View>
       </SafeAreaView>
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <Button title="Show Options" />
         <Modal
           visible={false}
@@ -135,7 +135,7 @@ export default function Matching() {
             </View>
           </View>
         </Modal>
-      </View>
+      </View> */}
     </CustomerTemplate>
     // <CustomerTemplate>
     //   <View style={matchingScreenStyle.container}>
