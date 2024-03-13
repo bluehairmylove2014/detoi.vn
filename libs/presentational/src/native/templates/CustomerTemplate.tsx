@@ -1,20 +1,38 @@
-import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  Keyboard,
+  SafeAreaView,
+  StatusBar,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import React from 'react';
 import { globalStyles } from '../styles';
 import { FAProvider } from '@business-layer/business-logic/non-service-lib/fontawesome';
-import { PrimaryScrollView, TransparentView } from '@present-native/atoms';
+import {
+  BlurTheme,
+  PrimaryScrollView,
+  TransparentView,
+} from '@present-native/atoms';
+import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
 
 const CustomerTemplate = ({ children }: { children: React.ReactNode }) => {
+  const { state } = useBlurTheme();
+
   return (
     <FAProvider>
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={globalStyles.container}>
-          <PrimaryScrollView direction="vertical">
-            {children}
-            <TransparentView theme="vertical" />
-          </PrimaryScrollView>
-        </View>
-      </TouchableWithoutFeedback>
+      <SafeAreaView>
+        <StatusBar hidden />
+        <BlurTheme isOpen={state['isOpened']} />
+
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <View style={globalStyles.container}>
+            <PrimaryScrollView direction="vertical">
+              {children}
+              <TransparentView theme="vertical" />
+            </PrimaryScrollView>
+          </View>
+        </TouchableWithoutFeedback>
+      </SafeAreaView>
     </FAProvider>
   );
 };

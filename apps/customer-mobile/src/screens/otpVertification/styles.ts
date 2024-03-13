@@ -10,7 +10,6 @@ export const otpVertificationScreenStyle = StyleSheet.create({
   },
 
   inputContainer: {
-    marginTop: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderBottomColor: colors.gray,

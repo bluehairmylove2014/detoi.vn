@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import { View } from 'react-native';
 import React from 'react';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
@@ -102,11 +103,7 @@ const Summary: React.FC<SummaryProps> = ({ route, navigation }) => {
           <ChoosePaymentMethods onSelect={() => {}} />
         </View>
         <VerticalSpacer size="xxxl" />
-        <PrimaryButton
-          title="Đặt đơn ngay"
-          theme="square-rounded-bold"
-          onPress={() => {}}
-        />
+        <PrimaryButton title="Đặt đơn ngay" onPress={() => {}} />
       </View>
     </CustomerTemplate>
   );

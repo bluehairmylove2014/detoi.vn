@@ -1,10 +1,4 @@
-import { TouchableOpacity } from 'react-native';
-import {
-  baseButtonRadius,
-  baseButtonSizeStyle,
-  commonButtonStyles,
-} from '@present-native/styles';
-import { Paragraph } from '../text';
+import { baseButtonRadius, baseButtonSizeStyle } from '@present-native/styles';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { BaseButton } from './BaseButton';
 
@@ -18,60 +12,6 @@ type commonButtonPros = {
   onPress: () => void;
 };
 
-const PrimaryButton = ({
-  title,
-  theme = 'square-rounded-bold',
-  onPress,
-}: commonButtonPros) => {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={{
-        ...commonButtonStyles.primaryButton,
-        ...themeList[theme],
-      }}
-    >
-      <Paragraph theme="baseBold">{title}</Paragraph>
-    </TouchableOpacity>
-  );
-};
-
-const SmallPrimaryButton = ({
-  title,
-  theme = 'square-rounded-bold',
-  onPress,
-}: commonButtonPros) => {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={{
-        ...commonButtonStyles.smallPrimaryButton,
-        ...themeList[theme],
-      }}
-    >
-      <Paragraph theme="smallBold">{title}</Paragraph>
-    </TouchableOpacity>
-  );
-};
-
-const BorderButton = ({
-  title,
-  theme = 'square-rounded-bold',
-  onPress,
-}: commonButtonPros) => {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={{
-        ...commonButtonStyles.borderButton,
-        ...themeList[theme],
-      }}
-    >
-      <Paragraph theme="smallBold">{title}</Paragraph>
-    </TouchableOpacity>
-  );
-};
-
 type commonButtonProps = {
   title: string;
   radius?: keyof typeof baseButtonRadius;
@@ -79,9 +19,10 @@ type commonButtonProps = {
   iconName?: nativeIconNameType;
   iconPosition?: 'left' | 'right';
   onPress: () => void;
+  color?: 'black';
 };
 
-const PrimaryButton_new = ({
+const PrimaryButton = ({
   title,
   radius = 'square',
   size = 'base',
@@ -129,6 +70,7 @@ const OnlyBorderButton = ({
   size = 'base',
   iconName,
   iconPosition,
+  color,
   onPress,
 }: commonButtonProps) => {
   return (
@@ -144,11 +86,4 @@ const OnlyBorderButton = ({
   );
 };
 
-export {
-  PrimaryButton,
-  SmallPrimaryButton,
-  BorderButton,
-  PrimaryButton_new,
-  SecondaryButton,
-  OnlyBorderButton,
-};
+export { PrimaryButton, SecondaryButton, OnlyBorderButton };

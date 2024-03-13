@@ -12,3 +12,4 @@ export * from './overlay';
 export * from './banner';
 export * from './divider';
 export * from './image';
+export * from './messageBox';

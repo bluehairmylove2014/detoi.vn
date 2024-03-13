@@ -12,6 +12,7 @@ import ChooseServiceScreen from '../screens/chooseService/ChooseService';
 import ProvideDetailScreen from '../screens/provideDetail/ProvideDetail';
 import ProvideDateScreen from '../screens/provideDate/ProvideDate';
 import SummaryScreen from '../screens/summary/Summary';
+import OnServiceScreen from '../screens/onService/OnService';
 
 export const RStack = createNativeStackNavigator<customerRootStackParamList>();
 export const RootNavigationContainer = ({
@@ -66,6 +67,11 @@ export const RootNavigationContainer = ({
         <RStack.Screen
           component={SummaryScreen}
           name="Summary"
+          options={{ headerShown: false }}
+        />
+        <RStack.Screen
+          component={OnServiceScreen}
+          name="OnService"
           options={{ headerShown: false }}
         />
       </RStack.Navigator>
