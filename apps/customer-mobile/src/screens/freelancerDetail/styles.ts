@@ -11,6 +11,7 @@ const freelancerDetailScreenStyle = StyleSheet.create({
     // paddingHorizontal: screenHorizontalPadding,
     // display: 'flex',
     // flexDirection: 'column',
+    backgroundColor: colors.lightStone,
     // justifyContent: 'flex-start'
   },
   insightSection: {
@@ -20,7 +21,7 @@ const freelancerDetailScreenStyle = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: windowWidth,
-    paddingVertical: screenVerticalPadding, 
+    paddingVertical: screenVerticalPadding,
     gap: 20
   },
   proofOfWorkSection: {

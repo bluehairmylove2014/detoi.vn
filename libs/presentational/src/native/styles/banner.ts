@@ -1,6 +1,7 @@
 import { windowHeight, windowWidth } from '@constants/dimension';
 import { StyleSheet } from 'react-native';
 import { screenHorizontalPadding, screenVerticalPadding } from './spacingConvention';
+import { colors } from './color';
 
 const bannerTopSectionStyle = StyleSheet.create({
   container: {
@@ -52,17 +53,20 @@ const bannerFreelancerDetailStyle = StyleSheet.create({
     position: 'relative',
     width: windowWidth,
     height: 300,
+    backgroundColor: colors.lightStone,
   },
   containerImage: {
     resizeMode: 'cover',
     height: windowHeight / 2,
     top: undefined,
     paddingHorizontal: screenHorizontalPadding,
+    backgroundColor: colors.lightStone,
   },
   image: {
     width: windowWidth,
     height: '100%',
     objectFit: 'cover',
+    backgroundColor: colors.lightStone,
   },
   contentContainer: {
     position: 'absolute',
@@ -76,7 +80,8 @@ const bannerFreelancerDetailStyle = StyleSheet.create({
     gap: 3,
     paddingHorizontal: screenHorizontalPadding,
     paddingVertical: screenVerticalPadding,
-    height:"100%"
+    height: "100%",
+    backgroundColor: colors.lightStone,
   },
 
 });
