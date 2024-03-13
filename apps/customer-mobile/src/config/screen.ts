@@ -1,3 +1,4 @@
+import { IFreelancerAccountDetail } from '@business-layer/services/entities';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 // 1. Params config
@@ -11,6 +12,7 @@ type customerRootStackParamList = {
   ProvideDetail: undefined;
   ProvideDate: undefined;
   Summary: undefined;
+  FreelancerDetail: { freelancerAccountDetail: IFreelancerAccountDetail };
 };
 
 type customerTabParamList = {
@@ -52,6 +54,11 @@ type SummaryProps = NativeStackScreenProps<
   'Summary'
 >;
 
+type FreelancerDetailProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'FreelancerDetail'
+>;
+
 // 3. Export props
 export {
   customerRootStackParamList,
@@ -65,4 +72,5 @@ export {
   customerTabParamList,
   IntroProps,
   ChooseServiceProps,
+  FreelancerDetailProps
 };

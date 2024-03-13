@@ -81,4 +81,12 @@ const commonButtonStyles = StyleSheet.create({
 });
 const asyncButtonStyles = StyleSheet.create({});
 
-export { commonButtonStyles, asyncButtonStyles };
+const backButtonStyles = StyleSheet.create({
+    background:{
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      padding: 8,
+      borderRadius: 99
+    }
+})
+
+export { commonButtonStyles, asyncButtonStyles, backButtonStyles };

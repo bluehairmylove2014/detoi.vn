@@ -86,6 +86,9 @@ const textColorStyles = StyleSheet.create({
   gray: {
     color: colors.gray,
   },
+  yellow:{
+    color: colors.yellow
+  }
 });
 const textAlignStyles = StyleSheet.create({
   left: {

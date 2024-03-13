@@ -6,7 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 const themeList = {
   'black-gradient': {
     backgroundColor:
-      'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 100%)',
+      'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 100%)',
   },
   'black-opacity': {
     backgroundColor: 'rgba(0,0,0,0.5)',
