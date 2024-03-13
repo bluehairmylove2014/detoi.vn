@@ -1,11 +1,11 @@
+/* eslint-disable react/jsx-pascal-case */
 /* eslint-disable react/jsx-no-useless-fragment */
 import { ProvideDateProps } from '../../config';
 import {
-  BlurTheme,
-  PrimaryButton,
   VerticalSpacer,
   Paragraph,
   RoseTextarea,
+  PrimaryButton,
 } from '@present-native/atoms';
 import { FlatList, TouchableOpacity, View } from 'react-native';
 
@@ -37,7 +37,6 @@ const constantTime = () => {
 
 const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
   const { currentOrderService: service } = useCurrentOrderService();
-  const [actveBlur, setActiveBlur] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date>(calcFollowingDay);
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
   const { handleSubmit, setValue, control } = useForm();
@@ -111,8 +110,6 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
         subtitle={service?.description ?? ''}
       />
       <View>
-        {actveBlur ? <BlurTheme /> : <></>}
-
         <View style={provideDateStyle.container}>
           <VerticalSpacer size="l" />
           <View style={provideDateStyle.labelTime}>
@@ -138,10 +135,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
           </View>
 
           <VerticalSpacer size="xl" />
-          <TimePicker
-            activeBlur={(isActive) => setActiveBlur(isActive)}
-            setTime={(time) => setSelectedTime(time)}
-          />
+          <TimePicker setTime={(time) => setSelectedTime(time)} />
 
           <VerticalSpacer size="xxxl" />
           <View>
@@ -164,11 +158,10 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
           </View>
 
           <VerticalSpacer size="xxxl" />
-          <VerticalSpacer size="xl" />
           <View style={provideDateStyle.buttonContainer}>
             <PrimaryButton
               title="Ghép cặp ngay"
-              theme="square-rounded-bold"
+              size="base"
               onPress={handleSubmit(onSuccessSubmitDate)}
             />
           </View>

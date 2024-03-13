@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import { View } from 'react-native';
 import React from 'react';
 import { ProvideDetailProps } from '../../config';
@@ -9,6 +10,7 @@ import {
 import { BannerTopSection } from '@present-native/molecules';
 import { PrimaryButton, Title, VerticalSpacer } from '@present-native/atoms';
 import { screenHorizontalPadding } from '@present-native/styles';
+import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 
 const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
   const { currentOrderService: service } = useCurrentOrderService();
@@ -20,7 +22,7 @@ const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
   };
 
   return (
-    <View>
+    <CustomerTemplate>
       <BannerTopSection
         url={service?.image ?? '#'}
         title={`DỊCH VỤ ${service?.name.toUpperCase()}`}
@@ -38,13 +40,9 @@ const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
             })
           : null}
         <VerticalSpacer size="xxxl" />
-        <PrimaryButton
-          title="Tiếp theo"
-          theme="square-rounded-bold"
-          onPress={handlePressNext}
-        />
+        <PrimaryButton title="Tiếp theo" onPress={handlePressNext} />
       </View>
-    </View>
+    </CustomerTemplate>
   );
 };
 

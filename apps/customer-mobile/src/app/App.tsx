@@ -9,6 +9,7 @@ const App = () => {
   const initRoute: keyof customerRootStackParamList = isLogged
     ? 'Home'
     : 'FreelancerDetail';
+    : 'OTPVertification';
   const { isLoading } = useGoogleFonts();
 
   if (isLoading) {

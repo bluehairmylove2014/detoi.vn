@@ -77,16 +77,85 @@ const commonButtonStyles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 8,
     backgroundColor: colors.white,
-  }
+  },
 });
 const asyncButtonStyles = StyleSheet.create({});
 
-const backButtonStyles = StyleSheet.create({
-    background:{
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
-      padding: 8,
-      borderRadius: 99
-    }
-})
+const baseButtonThemeStyle = StyleSheet.create({
+  primary: {
+    width: '100%',
+    backgroundColor: colors.secondary,
+    alignItems: 'center',
+  },
 
-export { commonButtonStyles, asyncButtonStyles, backButtonStyles };
+  secondary: {
+    width: '100%',
+    backgroundColor: colors.lightBlue,
+    alignItems: 'center',
+  },
+
+  only_border: {
+    width: '100%',
+    borderWidth: 1,
+    backgroundColor: colors.transparent,
+    borderColor: colors.black,
+    alignItems: 'center',
+  },
+});
+
+// const baseButtonBorderColor = StyleSheet.create({
+//     primary: {
+//         borderColor: colors.secondary
+//     },
+
+//     secondary: {
+//         borderColor: colors.lightBlue
+//     }
+
+// })
+
+const baseButtonSizeStyle = StyleSheet.create({
+  small: {
+    paddingVertical: 10,
+  },
+
+  base: {
+    paddingVertical: 15,
+  },
+});
+
+const baseButtonRadius = StyleSheet.create({
+  square: {
+    borderRadius: 5,
+  },
+
+  full: {
+    borderRadius: 999,
+  },
+});
+
+const baseIconTextButton = StyleSheet.create({
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 6,
+  },
+
+  left: {
+    flexDirection: 'row',
+  },
+
+  right: {
+    flexDirection: 'row-reverse',
+  },
+});
+
+export {
+  commonButtonStyles,
+  asyncButtonStyles,
+  baseButtonThemeStyle,
+  baseButtonSizeStyle,
+  baseButtonRadius,
+  baseIconTextButton,
+};

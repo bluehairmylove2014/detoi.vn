@@ -13,6 +13,7 @@ type customerRootStackParamList = {
   ProvideDate: undefined;
   Summary: undefined;
   FreelancerDetail: { freelancerAccountDetail: IFreelancerAccountDetail };
+  OnService: undefined;
 };
 
 type customerTabParamList = {
@@ -57,6 +58,10 @@ type SummaryProps = NativeStackScreenProps<
 type FreelancerDetailProps = NativeStackScreenProps<
   customerRootStackParamList,
   'FreelancerDetail'
+  >
+type OnServiceProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'OnService'
 >;
 
 // 3. Export props
@@ -72,5 +77,6 @@ export {
   customerTabParamList,
   IntroProps,
   ChooseServiceProps,
-  FreelancerDetailProps
+  FreelancerDetailProps,
+  OnServiceProps,
 };

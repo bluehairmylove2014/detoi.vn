@@ -7,7 +7,6 @@ const provideDateStyle = StyleSheet.create({
     width: windowWidth,
     minHeight: windowHeight,
     height: 'auto',
-    backgroundColor: colors.white,
     padding: 20,
   },
   labelTime: {

@@ -1,6 +1,6 @@
-import { TouchableOpacity } from 'react-native';
-import { commonButtonStyles } from '@present-native/styles';
-import { Paragraph } from '../text';
+import { baseButtonRadius, baseButtonSizeStyle } from '@present-native/styles';
+import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
+import { BaseButton } from './BaseButton';
 
 const themeList = {
   'square-rounded-bold': { borderRadius: 5 },
@@ -12,58 +12,78 @@ type commonButtonPros = {
   onPress: () => void;
 };
 
+type commonButtonProps = {
+  title: string;
+  radius?: keyof typeof baseButtonRadius;
+  size?: keyof typeof baseButtonSizeStyle;
+  iconName?: nativeIconNameType;
+  iconPosition?: 'left' | 'right';
+  onPress: () => void;
+  color?: 'black';
+};
+
 const PrimaryButton = ({
   title,
-  theme = 'square-rounded-bold',
+  radius = 'square',
+  size = 'base',
+  iconName,
+  iconPosition,
   onPress,
-}: commonButtonPros) => {
+}: commonButtonProps) => {
   return (
-    <TouchableOpacity
+    <BaseButton
+      title={title}
+      theme="primary"
+      radius={radius}
+      size={size}
+      iconName={iconName}
+      iconPosition={iconPosition}
       onPress={onPress}
-      style={{
-        ...commonButtonStyles.primaryButton,
-        ...themeList[theme],
-      }}
-    >
-      <Paragraph theme="baseBold">{title}</Paragraph>
-    </TouchableOpacity>
+    />
   );
 };
 
-const SmallPrimaryButton = ({
+const SecondaryButton = ({
   title,
-  theme = 'square-rounded-bold',
+  radius = 'square',
+  size = 'base',
+  iconName,
+  iconPosition,
   onPress,
-}: commonButtonPros) => {
+}: commonButtonProps) => {
   return (
-    <TouchableOpacity
+    <BaseButton
+      title={title}
+      theme="primary"
+      radius={radius}
+      size={size}
+      iconName={iconName}
+      iconPosition={iconPosition}
       onPress={onPress}
-      style={{
-        ...commonButtonStyles.smallPrimaryButton,
-        ...themeList[theme],
-      }}
-    >
-      <Paragraph theme="smallBold">{title}</Paragraph>
-    </TouchableOpacity>
+    />
   );
 };
 
-const BorderButton = ({
+const OnlyBorderButton = ({
   title,
-  theme = 'square-rounded-bold',
+  radius = 'square',
+  size = 'base',
+  iconName,
+  iconPosition,
+  color,
   onPress,
-}: commonButtonPros) => {
+}: commonButtonProps) => {
   return (
-    <TouchableOpacity
+    <BaseButton
+      title={title}
+      theme="only_border"
+      radius={radius}
+      size={size}
+      iconName={iconName}
+      iconPosition={iconPosition}
       onPress={onPress}
-      style={{
-        ...commonButtonStyles.borderButton,
-        ...themeList[theme],
-      }}
-    >
-      <Paragraph theme="smallBold">{title}</Paragraph>
-    </TouchableOpacity>
+    />
   );
 };
 
-export { PrimaryButton, SmallPrimaryButton, BorderButton };
+export { PrimaryButton, SecondaryButton, OnlyBorderButton };

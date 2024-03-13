@@ -13,20 +13,21 @@ import { FAIcon } from '../icon';
 import { Paragraph } from '../text';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { CountryCodeButton } from '../button';
+import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
+import { TouchTheme } from '../theme';
 
 const CountryCodeSelect = ({
   onSelect,
   defaultValue,
-  isActiveBlur,
 }: {
   onSelect: (value: ICountryCode) => void;
-  isActiveBlur: (isActive: boolean) => void;
   defaultValue: ICountryCode;
 }) => {
   const [listCountry, setListCountry] = useState<ICountryCode[]>([]);
   const [selectedCountry, setSelectedCountry] =
     useState<ICountryCode>(defaultValue);
   const [activeModal, setActiveModal] = useState(false);
+  const { setOpenBlurTheme } = useBlurTheme();
 
   // Fetch Country API
   useEffect(() => {
@@ -56,6 +57,7 @@ const CountryCodeSelect = ({
           onPress={() => {
             setSelectedCountry(item);
             setActiveModal(false);
+            setOpenBlurTheme(false);
             onSelect(item);
           }}
         >
@@ -71,37 +73,42 @@ const CountryCodeSelect = ({
 
     return (
       <Modal animationType="slide" transparent={true} visible={activeModal}>
-        <TouchableWithoutFeedback onPress={() => {}}>
-          <View style={countryCodeSelectStyle.modalContainer}>
-            <View style={countryCodeSelectStyle.backgroundModal}>
-              <View style={countryCodeSelectStyle.topModalContainer}>
-                <Paragraph theme="largeBold">Chọn quốc gia, khu vực</Paragraph>
+        <TouchTheme
+          onPress={() => {
+            setActiveModal(false);
+            setOpenBlurTheme(false);
+          }}
+        />
 
-                {/* Close Button */}
-                <TouchableOpacity
-                  style={{
-                    alignSelf: 'flex-start',
-                  }}
-                  onPress={() => {
-                    setActiveModal(false);
-                    isActiveBlur(false);
-                  }}
-                >
-                  <FAIcon iconName="faTimes" color={colors.black} size={25} />
-                </TouchableOpacity>
-              </View>
+        <View style={countryCodeSelectStyle.modalContainer}>
+          <View style={countryCodeSelectStyle.backgroundModal}>
+            <View style={countryCodeSelectStyle.topModalContainer}>
+              <Paragraph theme="largeBold">Chọn quốc gia, khu vực</Paragraph>
 
-              {/* List Country */}
-              <FlatList
-                data={listCountry}
-                renderItem={renderItem}
-                horizontal={false}
-                keyExtractor={(item) => item?.alpha2Code ?? ''}
-                style={{ marginBottom: 30 }}
-              />
+              {/* Close Button */}
+              <TouchableOpacity
+                style={{
+                  alignSelf: 'flex-start',
+                }}
+                onPress={() => {
+                  setActiveModal(false);
+                  setOpenBlurTheme(false);
+                }}
+              >
+                <FAIcon iconName="faTimes" color={colors.black} size={25} />
+              </TouchableOpacity>
             </View>
+
+            {/* List Country */}
+            <FlatList
+              data={listCountry}
+              renderItem={renderItem}
+              horizontal={false}
+              keyExtractor={(item) => item?.alpha2Code ?? ''}
+              style={{ marginBottom: 30 }}
+            />
           </View>
-        </TouchableWithoutFeedback>
+        </View>
       </Modal>
     );
   };
@@ -111,7 +118,7 @@ const CountryCodeSelect = ({
       <CountryCodeButton
         onPress={() => {
           setActiveModal(true);
-          isActiveBlur(true);
+          setOpenBlurTheme(true);
         }}
         title={selectedCountry?.callingCodes.toString()}
         theme="full-rounded-bold"

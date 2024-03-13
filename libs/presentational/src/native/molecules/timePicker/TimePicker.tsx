@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import {
-  View,
-  Platform,
-  TouchableOpacity,
-  Modal,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import { View, Platform, TouchableOpacity, Modal } from 'react-native';
 import {
   FAIcon,
   HorizontalSpacer,
   Paragraph,
   PrimaryButton,
+  TouchTheme,
   VerticalSpacer,
 } from '@present-native/atoms';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { colors } from '@present-native/styles';
 import { TimePickerStyle } from '@present-native/styles/timePicker';
+import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
 
 const constantTime = () => {
   const defaultTime = new Date();
@@ -25,80 +21,84 @@ const constantTime = () => {
 };
 
 export const TimePicker = ({
-  activeBlur,
   setTime,
 }: {
-  activeBlur: (isActive: boolean) => void;
   setTime: (timeSelected: Date) => void;
 }) => {
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
   const [timeChange, setTimeChange] = useState<Date>(constantTime);
-  const [activeModal, setActiveModal] = useState(false);
+  const [activeModalIOS, setActiveModalIOS] = useState(false);
+  const [activePickTimeAndroid, setActivePickTimeAndroid] = useState(false);
+  const { setOpenBlurTheme } = useBlurTheme();
 
   useEffect(() => {
     setTime(selectedTime);
   }, [selectedTime]);
 
-  // Design Modal List To Choose Time
-  const modalTimePicker = () => {
+  // Design Modal Picker Time IOS To Choose Time
+  const modalTimePickerIOS = () => {
     return (
       <Modal
         animationType="slide"
         transparent={true}
-        visible={activeModal}
+        visible={activeModalIOS}
         style={{ height: 50 }}
       >
-        <TouchableWithoutFeedback>
-          <View style={TimePickerStyle.modalContainer}>
-            <View style={TimePickerStyle.backgroundModal}>
-              <View style={TimePickerStyle.topModalContainer}>
-                <Paragraph theme="baseBold">Chọn thời gian</Paragraph>
+        <TouchTheme
+          onPress={() => {
+            setOpenBlurTheme(false);
+            setActiveModalIOS(false);
+            setActivePickTimeAndroid(false);
+          }}
+        />
+        <View style={TimePickerStyle.modalContainer}>
+          <View style={TimePickerStyle.backgroundModal}>
+            <View style={TimePickerStyle.topModalContainer}>
+              <Paragraph theme="baseBold">Chọn thời gian</Paragraph>
 
-                {/* Close Button */}
-                <TouchableOpacity
-                  style={{
-                    alignSelf: 'flex-start',
-                  }}
-                  onPress={() => {
-                    setActiveModal(false);
-                    activeBlur(false);
-                  }}
-                >
-                  <FAIcon iconName="faTimes" color={colors.black} size={25} />
-                </TouchableOpacity>
-              </View>
+              {/* Close Button */}
+              <TouchableOpacity
+                style={{
+                  alignSelf: 'flex-start',
+                }}
+                onPress={() => {
+                  setActiveModalIOS(false);
+                  setOpenBlurTheme(false);
+                }}
+              >
+                <FAIcon iconName="faTimes" color={colors.black} size={25} />
+              </TouchableOpacity>
+            </View>
 
-              <VerticalSpacer size="xxxl" />
-              <View style={{ marginHorizontal: 30 }}>
-                <DateTimePicker
-                  display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-                  mode="time"
-                  value={timeChange}
-                  textColor={colors.black}
-                  minuteInterval={5}
-                  onChange={(event, selected) => {
-                    if (selected) {
-                      setTimeChange(selected);
-                    }
-                  }}
-                />
-              </View>
+            <VerticalSpacer size="xxl" />
+            <View style={{ marginHorizontal: 30 }}>
+              <DateTimePicker
+                display="spinner"
+                mode="time"
+                value={timeChange}
+                textColor={colors.black}
+                minuteInterval={5}
+                onChange={(event, selected) => {
+                  if (selected) {
+                    setTimeChange(selected);
+                  }
+                }}
+              />
+            </View>
 
-              <VerticalSpacer size="xxl" />
-              <View style={{ marginHorizontal: 30 }}>
-                <PrimaryButton
-                  title="XÁC NHẬN"
-                  theme="square-rounded-bold"
-                  onPress={() => {
-                    setSelectedTime(timeChange);
-                    setActiveModal(false);
-                    activeBlur(false);
-                  }}
-                />
-              </View>
+            <VerticalSpacer size="xxl" />
+            <View style={{ marginHorizontal: 30 }}>
+              <PrimaryButton
+                title="XÁC NHẬN"
+                onPress={() => {
+                  setSelectedTime(timeChange);
+                  setActiveModalIOS(false);
+                  setOpenBlurTheme(false);
+                }}
+              />
             </View>
           </View>
-        </TouchableWithoutFeedback>
+        </View>
       </Modal>
     );
   };
@@ -114,8 +114,13 @@ export const TimePicker = ({
         <TouchableOpacity
           style={TimePickerStyle.chooseTimeButton}
           onPress={() => {
-            setActiveModal(true);
-            activeBlur(true);
+            if (Platform.OS === 'ios') {
+              setActiveModalIOS(true);
+              setOpenBlurTheme(true);
+            } else {
+              setActivePickTimeAndroid(true);
+              setOpenBlurTheme(true);
+            }
           }}
         >
           <Paragraph theme="baseBold">
@@ -127,7 +132,29 @@ export const TimePicker = ({
           </Paragraph>
         </TouchableOpacity>
 
-        {modalTimePicker()}
+        {activePickTimeAndroid ? (
+          <DateTimePicker
+            display="spinner"
+            mode="time"
+            value={selectedTime}
+            is24Hour={true}
+            textColor={colors.black}
+            minuteInterval={5}
+            onChange={(event, selected) => {
+              if (selected) {
+                setSelectedTime(selected);
+              }
+              setActivePickTimeAndroid(false);
+              setOpenBlurTheme(false);
+            }}
+            positiveButton={{ label: 'XÁC NHẬN' }}
+            negativeButton={{ label: 'HỦY' }}
+          />
+        ) : (
+          <></>
+        )}
+
+        {modalTimePickerIOS()}
       </View>
     </>
   );

@@ -1,6 +1,7 @@
+/* eslint-disable react/jsx-pascal-case */
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState } from 'react';
-import { View, SafeAreaView, TextInput, StatusBar } from 'react-native';
+import { View, TextInput } from 'react-native';
 
 import { LoginProps } from '../../config';
 import { loginScreenStyle } from './styles';
@@ -9,17 +10,20 @@ import { CountryCodeSelect } from '@present-native/atoms/select/CountryCodeSelec
 import {
   Paragraph,
   Title,
-  BorderButton,
+  VerticalSpacer,
   PrimaryButton,
-  BlurTheme,
+  OnlyBorderButton,
 } from '@present-native/atoms';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { Controller, useForm } from 'react-hook-form';
 import { useLogin } from '@business-layer/business-logic/lib/auth';
+
 import {
   useYupValidationResolver,
   loginByPhoneNumberSchema,
 } from '@utils/validators/yup';
+import CustomerTemplate from '@present-native/templates/CustomerTemplate';
+import { MessageBox } from '@present-native/molecules';
 
 const DEFAULT_COUNTRY_CODE = {
   alpha2Code: 'VN',
@@ -42,7 +46,9 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
   const formResolver = useYupValidationResolver(loginByPhoneNumberSchema);
   const [countryCode, setCountryCode] =
     useState<ICountryCode>(DEFAULT_COUNTRY_CODE);
-  const [activeBlur, setActiveBlur] = useState(false);
+
+  const [activeErrorBox, setActiveErrorBox] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>();
   const { handleSubmit, setValue, control } = useForm<phoneInputFormType>({
     defaultValues: {
       phone: '',
@@ -66,37 +72,39 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onErrorSubmit = (error: Record<string, any>) => {
-    console.log(error);
-    // HANDLE INVALID PHONE NUMBER HERE
+    const errorMessage = error.phone.message || 'Xảy ra lỗi';
+    setErrorMessage(errorMessage);
+    setActiveErrorBox(true);
   };
 
   return (
-    <SafeAreaView>
-      {activeBlur ? <BlurTheme /> : <></>}
-
-      <StatusBar hidden />
+    <CustomerTemplate>
       <View style={loginScreenStyle.container}>
         <View>
           <Title theme="largeBold" color="black">
             Chỉ một bước nữa thôi!
           </Title>
 
-          <View style={{ marginTop: 5 }}>
-            <Paragraph theme="baseMedium">
-              Nhập số điện thoại để đăng nhập
+          <VerticalSpacer size="s" />
+          <Paragraph theme="baseMedium">
+            Nhập số điện thoại để đăng nhập
+          </Paragraph>
+
+          <VerticalSpacer size="xxl" />
+          <Paragraph theme="baseMedium">
+            Số điện thoại
+            <Paragraph theme="baseMedium" color="rose">
+              {' '}
+              *
             </Paragraph>
-          </View>
-          <View style={{ marginTop: 30, flexDirection: 'row' }}>
-            <Paragraph theme="baseMedium">Số điện thoại</Paragraph>
-          </View>
+          </Paragraph>
         </View>
 
+        <VerticalSpacer size="m" />
         <View style={loginScreenStyle.inputContainer}>
           <CountryCodeSelect
-            isActiveBlur={(isActive) => setActiveBlur(isActive)}
             onSelect={(value) => {
               setCountryCode(value);
-              setActiveBlur(false);
             }}
             defaultValue={DEFAULT_COUNTRY_CODE}
           />
@@ -120,39 +128,46 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
           />
         </View>
 
-        <View style={{ marginTop: 30 }}>
-          <PrimaryButton
-            onPress={handleSubmit(onSuccessSubmitPhoneNumber, onErrorSubmit)}
-            theme="full-rounded-bold"
-            title="Tiếp tục"
+        <VerticalSpacer size="xl" />
+        <PrimaryButton
+          radius="full"
+          title="Tiếp tục"
+          onPress={handleSubmit(onSuccessSubmitPhoneNumber, onErrorSubmit)}
+        />
+
+        <VerticalSpacer size="xl" />
+        <Paragraph theme="baseMedium">
+          Tôi đồng ý với các
+          <Paragraph theme="baseBold" color="primary">
+            {' '}
+            Điều khoản dịch vụ
+          </Paragraph>{' '}
+          và
+          <Paragraph theme="baseBold" color="primary">
+            {' '}
+            Chính sách bảo mật
+          </Paragraph>{' '}
+          của Detoi
+        </Paragraph>
+
+        <VerticalSpacer size="xl" />
+
+        <View style={{ width: 230 }}>
+          <OnlyBorderButton
+            onPress={() => {}}
+            title="Có vấn đề với số điện thoại?"
+            radius="full"
+            size="small"
           />
         </View>
-
-        <View style={{ marginTop: 20 }}>
-          <Paragraph theme="baseMedium">
-            Tôi đồng ý với các
-            <Paragraph theme="baseBold" color="primary">
-              {' '}
-              Điều khoản dịch vụ
-            </Paragraph>{' '}
-            và
-            <Paragraph theme="baseBold" color="primary">
-              {' '}
-              Chính sách bảo mật
-            </Paragraph>{' '}
-            của Detoi
-          </Paragraph>
-
-          <View style={{ marginTop: 30 }}>
-            <BorderButton
-              onPress={() => {}}
-              title="Có vấn đề với số điện thoại?"
-              theme="full-rounded-bold"
-            />
-          </View>
-        </View>
       </View>
-    </SafeAreaView>
+
+      <MessageBox
+        message={errorMessage}
+        isActive={activeErrorBox}
+        onClose={() => setActiveErrorBox(false)}
+      />
+    </CustomerTemplate>
   );
 };
 

@@ -11,8 +11,10 @@ import { colors, serviceRequirementsSelectStyle } from '@present-native/styles';
 import { IOption } from '@business-layer/services/entities';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { useEffect, useState } from 'react';
-import { BlurTheme } from '../theme';
+
 import { Control, FieldValues, UseFormSetValue } from 'react-hook-form';
+import { TouchTheme } from '../theme';
+import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
 
 const ServiceRequirementsSelect = ({
   label,
@@ -33,6 +35,7 @@ const ServiceRequirementsSelect = ({
 }) => {
   const [activeModal, setActiveModal] = useState(false);
   const [optionSelected, setOptionSelected] = useState<string>('');
+  const { setOpenBlurTheme } = useBlurTheme();
 
   const renderItem = ({ item }: { item: IOption }) => {
     return (
@@ -53,38 +56,42 @@ const ServiceRequirementsSelect = ({
 
   const modalListDropdown = () => {
     return (
-      <Modal animationType="none" transparent={true} visible={activeModal}>
-        <BlurTheme />
-        <TouchableWithoutFeedback onPress={() => {}}>
-          <View style={serviceRequirementsSelectStyle.modalContainer}>
-            <View style={serviceRequirementsSelectStyle.backgroundModal}>
-              <View style={serviceRequirementsSelectStyle.topModalContainer}>
-                <Paragraph theme="largeBold">Tuỳ chọn</Paragraph>
+      <Modal animationType="slide" transparent={true} visible={activeModal}>
+        <TouchTheme
+          onPress={() => {
+            setActiveModal(false);
+            setOpenBlurTheme(false);
+          }}
+        />
+        <View style={serviceRequirementsSelectStyle.modalContainer}>
+          <View style={serviceRequirementsSelectStyle.backgroundModal}>
+            <View style={serviceRequirementsSelectStyle.topModalContainer}>
+              <Paragraph theme="largeBold">Tuỳ chọn</Paragraph>
 
-                {/* Close Button */}
-                <TouchableOpacity
-                  style={{
-                    alignSelf: 'flex-start',
-                  }}
-                  onPress={() => {
-                    setActiveModal(false);
-                  }}
-                >
-                  <FAIcon iconName="faTimes" color={colors.black} size={25} />
-                </TouchableOpacity>
-              </View>
-
-              {/* List Option */}
-              <FlatList
-                data={options}
-                renderItem={renderItem}
-                horizontal={false}
-                keyExtractor={(item) => item.id}
-                style={{ marginBottom: 30 }}
-              />
+              {/* Close Button */}
+              <TouchableOpacity
+                style={{
+                  alignSelf: 'flex-start',
+                }}
+                onPress={() => {
+                  setActiveModal(false);
+                  setOpenBlurTheme(false);
+                }}
+              >
+                <FAIcon iconName="faTimes" color={colors.black} size={25} />
+              </TouchableOpacity>
             </View>
+
+            {/* List Option */}
+            <FlatList
+              data={options}
+              renderItem={renderItem}
+              horizontal={false}
+              keyExtractor={(item) => item.id}
+              style={{ marginBottom: 30 }}
+            />
           </View>
-        </TouchableWithoutFeedback>
+        </View>
       </Modal>
     );
   };
@@ -114,7 +121,12 @@ const ServiceRequirementsSelect = ({
           </Paragraph>
         </View>
       </View>
-      <TouchableWithoutFeedback onPress={() => setActiveModal(true)}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          setActiveModal(true);
+          setOpenBlurTheme(true);
+        }}
+      >
         <View style={serviceRequirementsSelectStyle.dropdownContainer}>
           <View style={{ marginRight: 15 }}>
             <Paragraph theme="smallMedium">{optionSelected}</Paragraph>

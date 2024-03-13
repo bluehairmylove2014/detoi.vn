@@ -10,7 +10,6 @@ export const loginScreenStyle = StyleSheet.create({
   },
 
   inputContainer: {
-    marginTop: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

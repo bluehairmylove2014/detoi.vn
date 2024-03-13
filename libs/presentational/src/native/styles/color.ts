@@ -12,6 +12,8 @@ export const colors = {
   zinc: '#e4e4e7', // light gray
   softBg: '#FFEFF4',
   charcoal: "#1E1E1E",
+  lightBlue: '#e4e4e7',
+  
 
   // Accent Color
   rose: '#e11d48', // soft red
