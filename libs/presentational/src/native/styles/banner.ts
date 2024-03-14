@@ -1,6 +1,9 @@
 import { windowHeight, windowWidth } from '@constants/dimension';
 import { StyleSheet } from 'react-native';
-import { screenHorizontalPadding, screenVerticalPadding } from './spacingConvention';
+import {
+  screenHorizontalPadding,
+  screenVerticalPadding,
+} from './spacingConvention';
 import { colors } from './color';
 
 const bannerTopSectionStyle = StyleSheet.create({
@@ -47,26 +50,43 @@ const bannerTopSectionStyle = StyleSheet.create({
   },
 });
 
-
 const bannerFreelancerDetailStyle = StyleSheet.create({
   container: {
     position: 'relative',
     width: windowWidth,
     height: 300,
-
   },
   containerImage: {
     resizeMode: 'cover',
     height: windowHeight / 2,
     top: undefined,
     paddingHorizontal: screenHorizontalPadding,
-  
   },
   image: {
     width: windowWidth,
     height: '100%',
     objectFit: 'cover',
-  
+  },
+  body: { width: '100%', gap: 2 },
+  wrapperTypeFreelancer: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'center',
+  },
+  rating: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 2,
+  },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    maxWidth: windowWidth,
+    gap: 10,
+  },
+  buttonWrapper: {
+    width: (windowWidth - screenHorizontalPadding * 2) / 2,
   },
   contentContainer: {
     position: 'absolute',
@@ -80,10 +100,8 @@ const bannerFreelancerDetailStyle = StyleSheet.create({
     gap: 3,
     paddingHorizontal: screenHorizontalPadding,
     paddingVertical: screenVerticalPadding,
-    height: "100%",
-  
+    height: '100%',
   },
-
 });
 
 export { bannerTopSectionStyle, bannerFreelancerDetailStyle };

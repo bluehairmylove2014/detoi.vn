@@ -176,7 +176,7 @@ const FreelancerDetail = React.memo(
             <VerticalSpacer size="xl" />
             <TitleSectionFreelancerDetail title="Minh chứng công việc" />
             <VerticalSpacer size="m" />
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
+            <View style={proofOfWorkSectionStyle.listImage}>
               {serviceProven.map((item, index) => (
                 <TouchableHighlight
                   key={index}

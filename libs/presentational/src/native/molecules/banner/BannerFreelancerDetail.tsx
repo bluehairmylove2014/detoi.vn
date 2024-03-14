@@ -2,7 +2,6 @@ import { bannerFreelancerDetailStyle } from '@present-native/styles/banner';
 import React from 'react';
 import { Image, View } from 'react-native';
 import {
-  BackButton,
   FAIcon,
   OnlyBorderButton,
   OverlayColor,
@@ -11,11 +10,11 @@ import {
   Title,
   VerticalSpacer,
 } from '@present-native/atoms';
-import { LocationSearchBox } from '../searchBox';
 import { colors, screenHorizontalPadding } from '@present-native/styles';
 import { onConvertNumberToCurrency } from '@utils/helpers/MoneyConverter';
 import { ETypeDisplayHeader, Header } from '@present-native/organisms';
 import { windowWidth } from '@constants/dimension';
+import { useNavigation } from '@react-navigation/native';
 
 type BannerChooseLocationProps = {
   url: string;
@@ -27,6 +26,7 @@ type BannerChooseLocationProps = {
 
 export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
   React.memo(({ url, ratingNumber, fullName, isTeam, balance }) => {
+    const navigation = useNavigation();
     return (
       <View style={bannerFreelancerDetailStyle.container}>
         <Image
@@ -37,19 +37,12 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
 
         <View style={[bannerFreelancerDetailStyle.contentContainer]}>
           <Header typeDisplay={[ETypeDisplayHeader.BACK_BUTTON_BACKGROUND]} />
-          <View style={{ width: '100%', gap: 2 }}>
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                gap: 10,
-                alignItems: 'center',
-              }}
-            >
+          <View style={bannerFreelancerDetailStyle.body}>
+            <View style={bannerFreelancerDetailStyle.wrapperTypeFreelancer}>
               <Paragraph theme="largeMedium" color="white">
                 {isTeam ? 'Đội ngũ' : 'Cá nhân'}
               </Paragraph>
-              <View style={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
+              <View style={bannerFreelancerDetailStyle.rating}>
                 {Array.from({
                   length: ratingNumber,
                 }).map(() => (
@@ -57,7 +50,6 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
                 ))}
               </View>
               <Paragraph theme="smallRegular" color="yellow">
-                {' '}
                 99+
               </Paragraph>
             </View>
@@ -67,32 +59,19 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
             <Title theme="baseBold" color="white">
               {onConvertNumberToCurrency(balance, true)}
             </Title>
-            <VerticalSpacer size='l' />
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                maxWidth: windowWidth,
-                gap: 10,
-              }}
-            >
-              <View
-                style={{
-                  width: (windowWidth - screenHorizontalPadding * 2) / 2,
-                }}
-              > 
+            <VerticalSpacer size="l" />
+            <View style={bannerFreelancerDetailStyle.buttonContainer}>
+              <View style={bannerFreelancerDetailStyle.buttonWrapper}>
                 <PrimaryButton
                   title="Chọn người này"
                   size="small"
                   radius="full"
-                  onPress={() => {}}
+                  onPress={() => {
+                    navigation.navigate('Summary');
+                  }}
                 />
               </View>
-              <View
-                style={{
-                  width: (windowWidth - screenHorizontalPadding * 2) / 2,
-                }}
-              >
+              <View style={bannerFreelancerDetailStyle.buttonWrapper}>
                 <OnlyBorderButton
                   title="Yêu thích"
                   size="small"

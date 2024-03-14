@@ -30,7 +30,7 @@ export const BannerTopSection: React.FC<BannerChooseLocationProps> = React.memo(
       <View style={bannerTopSectionStyle.container}>
         <Image source={{ uri: url }} style={bannerTopSectionStyle.image} />
         <OverlayColor theme="black-gradient"></OverlayColor>
-        {/* <View
+        <View
           style={[
             bannerTopSectionStyle.contentContainer,
             { bottom: enableSearchBox ? -25 : 30 },
@@ -60,7 +60,7 @@ export const BannerTopSection: React.FC<BannerChooseLocationProps> = React.memo(
           ) : (
             <></>
           )}
-        </View> */}
+        </View>
       </View>
     );
   }

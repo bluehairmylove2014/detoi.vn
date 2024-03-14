@@ -7,8 +7,8 @@ import { useGoogleFonts } from '@business-layer/business-logic/non-service-lib/g
 const App = () => {
   const isLogged = false;
   const initRoute: keyof customerRootStackParamList = isLogged
-    ? 'FreelancerDetail'
-    : 'FreelancerDetail';
+    ? 'Home'
+    : 'OTPVertification';
   const { isLoading } = useGoogleFonts();
 
   if (isLoading) {
