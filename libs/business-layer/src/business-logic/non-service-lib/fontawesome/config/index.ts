@@ -28,6 +28,12 @@ import {
   faLocationDot,
   faCircleDollarToSlot,
   faStar, 
+  faThumbsDown,
+  faMoneyBills,
+  faTruckFast,
+  faHouseCircleCheck,
+  faStreetView,
+  faPeopleCarryBox,
 } from '@fortawesome/free-solid-svg-icons';
 import { fa500px } from '@fortawesome/free-brands-svg-icons';
 import { faAddressCard, faHeart } from '@fortawesome/free-regular-svg-icons';
@@ -62,7 +68,13 @@ export const NATIVE_ICONS = {
   faLocationDot,
   faCircleDollarToSlot,
   faStar,
-  faHeart
+  faHeart,
+  faThumbsDown,
+  faMoneyBills,
+  faTruckFast,
+  faHouseCircleCheck,
+  faStreetView,
+  faPeopleCarryBox,
 };
 
 export type nativeIconNameType = keyof typeof NATIVE_ICONS;

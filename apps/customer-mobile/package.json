@@ -46,7 +46,8 @@
     "react-native-element-dropdown": "*",
     "uuid": "*",
     "yup": "*",
-    "@react-native-community/datetimepicker": "*"
+    "@react-native-community/datetimepicker": "*",
+    "react-native-maps": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && node tools/scripts/eas-build-pre-install.mjs . apps/customer-mobile && cp package-lock.json apps/customer-mobile",
