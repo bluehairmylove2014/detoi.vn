@@ -7,11 +7,11 @@ import {
   FAIcon,
   HorizontalSpacer,
   Paragraph,
-  PrimaryButton,
+  PrimaryBtn,
   VerticalSpacer,
 } from '@present-native/atoms';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
-import { colors } from '@present-native/styles';
+import { COLOR_PALETTE } from '@present-native/styles';
 import { CircleImage } from '@present-native/atoms/image';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
@@ -106,7 +106,7 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
                       <View style={onServiceScreenStyle.titleContainer}>
                         <FAIcon
                           iconName={note.iconNote as nativeIconNameType}
-                          color={colors.black}
+                          color={COLOR_PALETTE.black}
                           size={14}
                         />
                         <HorizontalSpacer size="m" />
@@ -215,12 +215,12 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
               if (status.name === state_1.name) {
                 colorText = 'primary';
                 opacityText = 1;
-                colorIcon = colors.primary;
+                colorIcon = COLOR_PALETTE.primary;
                 fontWeight = 'baseBold';
               } else {
                 colorText = 'rose';
                 opacityText = 0.5;
-                colorIcon = colors.black;
+                colorIcon = COLOR_PALETTE.black;
                 fontWeight = 'baseSemibold';
               }
 
@@ -249,11 +249,11 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
           <VerticalSpacer size="xxxl" />
           <View style={onServiceScreenStyle.buttonsContainer}>
             <View style={{ flex: 1 }}>
-              <PrimaryButton title="Tin nhắn" onPress={() => {}} />
+              <PrimaryBtn title="Tin nhắn" onPress={() => {}} />
             </View>
             <HorizontalSpacer size="l" />
             <View style={{ flex: 1 }}>
-              <PrimaryButton title="Hỗ trợ" onPress={() => {}} />
+              <PrimaryBtn title="Hỗ trợ" onPress={() => {}} />
             </View>
           </View>
         </View>

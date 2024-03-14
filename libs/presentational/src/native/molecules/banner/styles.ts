@@ -3,8 +3,7 @@ import { StyleSheet } from 'react-native';
 import {
   screenHorizontalPadding,
   screenVerticalPadding,
-} from './spacingConvention';
-import { colors } from './color';
+} from '@styles/spacingConvention';
 
 const bannerTopSectionStyle = StyleSheet.create({
   container: {

@@ -1,4 +1,4 @@
-import { colors } from '@presentational/native/styles';
+import { COLOR_PALETTE } from '@presentational/native/styles';
 import { StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '@constants/dimension';
 
@@ -17,7 +17,7 @@ const provideDateStyle = StyleSheet.create({
   dateContainer: {
     width: 50,
     paddingVertical: 14,
-    borderColor: colors.rose,
+    borderColor: COLOR_PALETTE.rose,
     borderWidth: 0.5,
     borderRadius: 5,
     alignItems: 'center',
@@ -25,7 +25,7 @@ const provideDateStyle = StyleSheet.create({
   },
 
   inputContainer: {
-    borderColor: colors.rose,
+    borderColor: COLOR_PALETTE.rose,
     borderWidth: 0.5,
     borderRadius: 5,
     paddingHorizontal: 10,

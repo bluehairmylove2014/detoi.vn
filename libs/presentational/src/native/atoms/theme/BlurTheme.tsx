@@ -1,4 +1,4 @@
-import { colors } from '@present-native/styles';
+import { COLOR_PALETTE } from '@present-native/styles';
 import { Dimensions, TouchableWithoutFeedback, View } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
@@ -11,7 +11,7 @@ const BlurTheme = ({ isOpen }: { isOpen: boolean }) => {
       style={{
         width: width,
         height: height,
-        backgroundColor: colors.black,
+        backgroundColor: COLOR_PALETTE.black,
         position: 'absolute',
         top: 0,
         left: 0,

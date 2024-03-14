@@ -20,7 +20,7 @@ import {
   Thumbnail,
 } from '@present-native/atoms';
 import { ICategory, IEvent } from '@business-layer/services/entities';
-import { colors } from '@present-native/styles';
+import { COLOR_PALETTE } from '@present-native/styles';
 import { CategoryAndServiceSearchBox } from '@present-native/molecules';
 import { CategoryThumbnail } from '@present-native/molecules/category/CategoryThumbnail';
 import {
@@ -109,7 +109,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
                   <HorizontalSpacer size="m" />
                   <FAIcon
                     iconName="faCircleArrowRight"
-                    color={colors.primary}
+                    color={COLOR_PALETTE.primary}
                     size={14}
                   />
                 </SubtitleLink>
@@ -152,7 +152,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
                 >
                   <FAIcon
                     iconName="faArrowRightLong"
-                    color={colors.primary}
+                    color={COLOR_PALETTE.primary}
                     size={20}
                   />
                   <VerticalSpacer size="s" />

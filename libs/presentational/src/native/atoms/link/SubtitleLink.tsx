@@ -1,11 +1,11 @@
-import { linkStyle } from '@presentational/native/styles';
+import { linkStyle } from './styles';
 import { Link } from '@react-navigation/native';
 
 export const SubtitleLink = ({
   screenName,
   children,
   algin = 'left',
-  decoration = 'none'
+  decoration = 'none',
 }: {
   screenName: string;
   children: React.ReactNode;
@@ -15,7 +15,10 @@ export const SubtitleLink = ({
   return (
     <Link
       to={{ screen: screenName }}
-      style={[linkStyle.subtitleLink, { textAlign: algin, textDecorationLine: decoration }]}
+      style={[
+        linkStyle.subtitleLink,
+        { textAlign: algin, textDecorationLine: decoration },
+      ]}
     >
       {children}
     </Link>

@@ -1,4 +1,4 @@
-import { colors, textAreaStyles } from '@present-native/styles';
+import { COLOR_PALETTE } from '@styles/color';
 import {
   Control,
   Controller,
@@ -6,6 +6,7 @@ import {
   UseFormSetValue,
 } from 'react-hook-form';
 import { TextInput } from 'react-native';
+import { textAreaStyles } from './styles';
 
 export const RoseTextarea = ({
   placeholder,
@@ -26,8 +27,8 @@ export const RoseTextarea = ({
         <TextInput
           style={textAreaStyles.input}
           placeholder={placeholder}
-          placeholderTextColor={colors.gray}
-          selectionColor={colors.black}
+          placeholderTextColor={COLOR_PALETTE.gray}
+          selectionColor={COLOR_PALETTE.black}
           numberOfLines={4}
           multiline={true}
           {...field}

@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { Paragraph } from '../text';
 import { FAIcon } from '../icon';
-import { colors, serviceRequirementsSelectStyle } from '@present-native/styles';
+import { COLOR_PALETTE } from '@styles/color';
 import { IOption } from '@business-layer/services/entities';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { useEffect, useState } from 'react';
@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react';
 import { Control, FieldValues, UseFormSetValue } from 'react-hook-form';
 import { TouchTheme } from '../theme';
 import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
+import { serviceRequirementsSelectStyle } from './styles';
 
 const ServiceRequirementsSelect = ({
   label,
@@ -78,7 +79,11 @@ const ServiceRequirementsSelect = ({
                   setOpenBlurTheme(false);
                 }}
               >
-                <FAIcon iconName="faTimes" color={colors.black} size={25} />
+                <FAIcon
+                  iconName="faTimes"
+                  color={COLOR_PALETTE.black}
+                  size={25}
+                />
               </TouchableOpacity>
             </View>
 
@@ -106,7 +111,7 @@ const ServiceRequirementsSelect = ({
           <View style={{ marginRight: 5 }}>
             <FAIcon
               iconName={labelIcon as nativeIconNameType}
-              color={colors.black}
+              color={COLOR_PALETTE.black}
               size={15}
             />
           </View>
@@ -132,7 +137,11 @@ const ServiceRequirementsSelect = ({
             <Paragraph theme="smallMedium">{optionSelected}</Paragraph>
           </View>
 
-          <FAIcon iconName="faCaretDown" color={colors.black} size={18} />
+          <FAIcon
+            iconName="faCaretDown"
+            color={COLOR_PALETTE.black}
+            size={18}
+          />
         </View>
       </TouchableWithoutFeedback>
       {modalListDropdown()}

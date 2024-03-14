@@ -6,7 +6,7 @@ import {
   textDecorationStyles,
   textCommonStyles,
   titleFontStyles,
-} from '@presentational/native/styles';
+} from './styles';
 
 const Title = ({
   children,

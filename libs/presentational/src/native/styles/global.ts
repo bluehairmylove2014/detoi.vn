@@ -1,6 +1,6 @@
 import { windowHeight, windowWidth } from '@constants/dimension';
 import { StyleSheet } from 'react-native';
-import { colors } from './color';
+import { COLOR_PALETTE } from './color';
 
 const globalStyles = StyleSheet.create({
   container: {
@@ -10,7 +10,7 @@ const globalStyles = StyleSheet.create({
   emptySpace: {
     width: windowWidth,
     height: 500,
-    backgroundColor: colors.transparent,
+    backgroundColor: COLOR_PALETTE.transparent,
   },
 });
 

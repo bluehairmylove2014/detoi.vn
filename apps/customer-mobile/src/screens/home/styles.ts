@@ -1,4 +1,7 @@
-import { colors, screenHorizontalPadding } from '@presentational/native/styles';
+import {
+  COLOR_PALETTE,
+  screenHorizontalPadding,
+} from '@presentational/native/styles';
 import { StyleSheet } from 'react-native';
 import { windowWidth } from '@constants/dimension';
 
@@ -6,7 +9,7 @@ const homeScreenStyle = StyleSheet.create({
   container: {
     flex: 1,
     height: 'auto',
-    backgroundColor: colors.softBg,
+    backgroundColor: COLOR_PALETTE.softBg,
   },
 });
 
@@ -21,7 +24,7 @@ const topLabelStyle = StyleSheet.create({
     justifyContent: 'space-between',
     width: windowWidth,
     height: '75%',
-    backgroundColor: colors.soft,
+    backgroundColor: COLOR_PALETTE.soft,
     paddingHorizontal: screenHorizontalPadding,
   },
   event_safeView: {
@@ -49,11 +52,11 @@ const topLabelStyle = StyleSheet.create({
     width: '100%',
     height: '25%',
     position: 'relative',
-    backgroundColor: colors.rose,
+    backgroundColor: COLOR_PALETTE.rose,
   },
   interaction_background_top: {
     position: 'absolute',
-    backgroundColor: colors.soft,
+    backgroundColor: COLOR_PALETTE.soft,
     width: '100%',
     height: '50%',
     top: 0,
@@ -61,7 +64,7 @@ const topLabelStyle = StyleSheet.create({
   },
   interaction_background_bottom: {
     position: 'absolute',
-    backgroundColor: colors.softBg,
+    backgroundColor: COLOR_PALETTE.softBg,
     width: '100%',
     height: '50%',
     bottom: 0,
@@ -74,7 +77,7 @@ const topLabelStyle = StyleSheet.create({
     alignContent: 'center',
     paddingHorizontal: screenHorizontalPadding,
     position: 'absolute',
-    backgroundColor: colors.transparent,
+    backgroundColor: COLOR_PALETTE.transparent,
     width: '100%',
     height: '100%',
     top: 0,

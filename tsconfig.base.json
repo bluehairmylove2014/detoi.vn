@@ -18,11 +18,10 @@
       "@assets/*": ["libs/presentational/src/assets/*"],
       "@business-layer/*": ["libs/business-layer/src/*"],
       "@constants/*": ["libs/constants/*"],
-      "@present-native/*": ["libs/presentational/src/native/*"],
-      "@present-next/*": ["libs/presentational/src/next/*"],
-      "@presentational/*": ["libs/presentational/src/*"],
       "@utils/*": ["libs/utils/src/*"],
-      "@env": ["node_modules/react-native-dotenv"]
+      "@present-native/*": ["libs/presentational/src/native/*"],
+      "@presentational/*": ["libs/presentational/src/*"],
+      "@styles/*": ["libs/presentational/src/native/styles/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

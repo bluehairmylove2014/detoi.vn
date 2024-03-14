@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native';
-import { colors } from './color';
+import { COLOR_PALETTE } from '@styles/color';
 
 export const categoryAndServiceSearchBoxStyle = StyleSheet.create({
   container: {
@@ -8,8 +8,8 @@ export const categoryAndServiceSearchBoxStyle = StyleSheet.create({
     paddingHorizontal: 20,
     height: '100%',
     borderRadius: 8,
-    backgroundColor: colors.white,
-    shadowColor: colors.zinc,
+    backgroundColor: COLOR_PALETTE.white,
+    shadowColor: COLOR_PALETTE.zinc,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -27,7 +27,7 @@ export const categoryAndServiceSearchBoxStyle = StyleSheet.create({
     flexWrap: 'nowrap',
   },
   placeholder: {
-    color: colors.primary,
+    color: COLOR_PALETTE.primary,
   },
 });
 
@@ -35,9 +35,9 @@ export const locationSearchBox = StyleSheet.create({
   searchBox: {
     height: 55,
     width: '100%',
-    backgroundColor: colors.white,
+    backgroundColor: COLOR_PALETTE.white,
     borderRadius: 5,
-    shadowColor: colors.black,
+    shadowColor: COLOR_PALETTE.black,
     shadowOffset: {
       width: 0,
       height: 2,

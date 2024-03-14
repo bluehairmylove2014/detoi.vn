@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
-import { colors } from './color';
+import { COLOR_PALETTE } from '@styles/color';
 
 export const TimePickerStyle = StyleSheet.create({
   chooseTimeContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderColor: colors.rose,
+    borderColor: COLOR_PALETTE.rose,
     borderWidth: 0.5,
     borderRadius: 5,
     padding: 8,
@@ -19,7 +19,7 @@ export const TimePickerStyle = StyleSheet.create({
 
   chooseTimeButton: {
     width: 150,
-    backgroundColor: colors.zinc,
+    backgroundColor: COLOR_PALETTE.zinc,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -32,7 +32,7 @@ export const TimePickerStyle = StyleSheet.create({
     position: 'absolute',
     height: '45%',
     width: '100%',
-    backgroundColor: colors.white,
+    backgroundColor: COLOR_PALETTE.white,
     bottom: 0,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
@@ -49,7 +49,7 @@ export const TimePickerStyle = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: colors.secondary,
+    backgroundColor: COLOR_PALETTE.secondary,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     paddingVertical: 10,

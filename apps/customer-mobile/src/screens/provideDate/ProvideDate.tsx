@@ -5,14 +5,14 @@ import {
   VerticalSpacer,
   Paragraph,
   RoseTextarea,
-  PrimaryButton,
+  PrimaryBtn,
 } from '@present-native/atoms';
 import { FlatList, TouchableOpacity, View } from 'react-native';
 
 import { provideDateStyle } from './styles';
 
 import { useMemo, useState } from 'react';
-import { colors } from '@present-native/styles';
+import { COLOR_PALETTE } from '@present-native/styles';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { BannerTopSection, TimePicker } from '@present-native/molecules';
@@ -68,7 +68,10 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
   const renderDateList = ({ item }: { item: Date }) => {
     const itemSelectedContainerStyle =
       selectedDate.getDate() === item.getDate()
-        ? { backgroundColor: colors.secondary, borderColor: colors.transparent }
+        ? {
+            backgroundColor: COLOR_PALETTE.secondary,
+            borderColor: COLOR_PALETTE.transparent,
+          }
         : {};
 
     const itemDate = (0 + item.getDate().toString().toString()).slice(-2);
@@ -159,9 +162,8 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
 
           <VerticalSpacer size="xxxl" />
           <View style={provideDateStyle.buttonContainer}>
-            <PrimaryButton
+            <PrimaryBtn
               title="Ghép cặp ngay"
-              size="base"
               onPress={handleSubmit(onSuccessSubmitDate)}
             />
           </View>

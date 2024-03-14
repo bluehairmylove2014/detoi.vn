@@ -1,7 +1,7 @@
 import { View, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { categoryThumbnailStyle } from '@present-native/styles/category';
-import { colors } from '@present-native/styles';
+import { categoryThumbnailStyle } from './styles';
+import { COLOR_PALETTE } from '@present-native/styles';
 import { Paragraph, Title } from '@present-native/atoms';
 import { ICategory } from '@business-layer/services/entities';
 
@@ -19,7 +19,7 @@ export const CategoryThumbnail = ({
         style={categoryThumbnailStyle.categoryImage}
       />
       <LinearGradient
-        colors={[colors.transparent, colors.black]}
+        colors={[COLOR_PALETTE.transparent, COLOR_PALETTE.black]}
         style={categoryThumbnailStyle.categoryOverlay}
       />
       <View style={categoryThumbnailStyle.categoryName}>

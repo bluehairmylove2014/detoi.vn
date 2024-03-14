@@ -1,7 +1,10 @@
 import { View, Text, TouchableOpacity } from 'react-native';
-import { colors, commonButtonStyles } from '@presentational/native/styles';
+import {
+  COLOR_PALETTE,
+  commonButtonStyles,
+} from '@presentational/native/styles';
 import React from 'react';
-import { Paragraph } from '../text';
+import { Paragraph } from '../../text';
 
 const themeList = {
   'square-rounded-bold': { borderRadius: 5 },

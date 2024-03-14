@@ -1,7 +1,8 @@
 import { IPaymentMethod } from '@business-layer/services/entities';
 import { Image, Text, Pressable, View } from 'react-native';
 import { Paragraph } from '../text';
-import { colors, paymentMethodStyles } from '@present-native/styles';
+import { COLOR_PALETTE } from '@styles/color';
+import { paymentMethodStyles } from './styles';
 
 export const PaymentMethod = ({
   method,
@@ -22,7 +23,11 @@ export const PaymentMethod = ({
       <View
         style={[
           paymentMethodStyles.dot,
-          { backgroundColor: isActive ? colors.secondary : colors.transparent },
+          {
+            backgroundColor: isActive
+              ? COLOR_PALETTE.secondary
+              : COLOR_PALETTE.transparent,
+          },
         ]}
       />
     </Pressable>

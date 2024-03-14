@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '@presentational/native/styles';
+import { COLOR_PALETTE } from '@presentational/native/styles';
 
 export const loginScreenStyle = StyleSheet.create({
   container: {
@@ -21,7 +21,7 @@ export const loginScreenStyle = StyleSheet.create({
     fontFamily: 'Montserrat_500Medium',
     marginLeft: 15,
     alignSelf: 'stretch',
-    borderBottomColor: colors.gray,
+    borderBottomColor: COLOR_PALETTE.gray,
     borderBottomWidth: 1.5,
     paddingVertical: 5,
   },

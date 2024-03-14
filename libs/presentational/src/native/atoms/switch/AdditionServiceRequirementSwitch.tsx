@@ -1,4 +1,4 @@
-import { colors, serviceRequirementsSwitchStyle } from '@present-native/styles';
+import { COLOR_PALETTE } from '@styles/color';
 import { Control, FieldValues, UseFormSetValue } from 'react-hook-form';
 import { Animated, Pressable, View } from 'react-native';
 import { FAIcon } from '../icon';
@@ -6,6 +6,7 @@ import { nativeIconNameType } from '@business-layer/business-logic/non-service-l
 import { Paragraph } from '../text';
 import { HorizontalSpacer } from '../spacer';
 import { useState } from 'react';
+import { serviceRequirementsSwitchStyle } from './styles';
 
 const AdditionServiceRequirement = ({
   icon,
@@ -40,7 +41,7 @@ const AdditionServiceRequirement = ({
         {icon ? (
           <FAIcon
             iconName={icon as nativeIconNameType}
-            color={colors.secondary}
+            color={COLOR_PALETTE.secondary}
             size={25}
           />
         ) : (

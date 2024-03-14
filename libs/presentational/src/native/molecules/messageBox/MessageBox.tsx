@@ -1,11 +1,11 @@
 import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
 import {
   Paragraph,
-  PrimaryButton,
+  PrimaryBtn,
   TouchTheme,
   VerticalSpacer,
 } from '@present-native/atoms';
-import { messageBoxStyle } from '@present-native/styles';
+import { messageBoxStyle } from './styles';
 import { useEffect, useState } from 'react';
 import { Modal, Pressable, View } from 'react-native';
 
@@ -38,7 +38,7 @@ export const MessageBox = ({
           </Paragraph>
 
           <VerticalSpacer size="xl" />
-          <PrimaryButton
+          <PrimaryBtn
             title="ĐÓNG"
             onPress={() => {
               onClose();

@@ -8,7 +8,7 @@ import {
   useServiceRequirementsUI,
 } from '@business-layer/business-logic/lib/category';
 import { BannerTopSection } from '@present-native/molecules';
-import { PrimaryButton, Title, VerticalSpacer } from '@present-native/atoms';
+import { PrimaryBtn, Title, VerticalSpacer } from '@present-native/atoms';
 import { screenHorizontalPadding } from '@present-native/styles';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 
@@ -40,7 +40,7 @@ const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
             })
           : null}
         <VerticalSpacer size="xxxl" />
-        <PrimaryButton title="Tiếp theo" onPress={handlePressNext} />
+        <PrimaryBtn title="Tiếp theo" onPress={handlePressNext} />
       </View>
     </CustomerTemplate>
   );

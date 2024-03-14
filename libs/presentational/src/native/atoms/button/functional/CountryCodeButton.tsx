@@ -1,6 +1,6 @@
 import { TouchableOpacity, View, Image } from 'react-native';
-import { Paragraph } from '../text';
-import { commonButtonStyles } from '@present-native/styles';
+import { Paragraph } from '../../text';
+import { commonButtonStyles } from './styles';
 import React from 'react';
 
 const themeList = {

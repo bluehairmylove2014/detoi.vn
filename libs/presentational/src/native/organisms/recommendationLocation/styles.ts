@@ -1,4 +1,4 @@
-import { colors } from '@present-native/styles';
+import { COLOR_PALETTE } from '@present-native/styles';
 import { StyleSheet } from 'react-native';
 
 const recommendationLocationStyle = StyleSheet.create({
@@ -14,7 +14,7 @@ const recommendationLocationStyle = StyleSheet.create({
     gap: 10,
   },
   wrapperIcon: {
-    backgroundColor: colors.secondary,
+    backgroundColor: COLOR_PALETTE.secondary,
     padding: 5,
     borderRadius: 99,
   },

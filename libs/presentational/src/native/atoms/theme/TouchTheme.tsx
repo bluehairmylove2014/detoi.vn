@@ -1,4 +1,4 @@
-import { colors } from '@present-native/styles';
+import { COLOR_PALETTE } from '@present-native/styles';
 import { Dimensions, Pressable, View } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
@@ -10,7 +10,7 @@ const TouchTheme = ({ onPress }: { onPress: () => void }) => {
       style={{
         width: width,
         height: height,
-        backgroundColor: colors.transparent,
+        backgroundColor: COLOR_PALETTE.transparent,
         position: 'absolute',
         top: 0,
         left: 0,

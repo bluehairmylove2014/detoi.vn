@@ -1,4 +1,4 @@
-import { colors } from '@present-native/styles';
+import { COLOR_PALETTE } from '@present-native/styles';
 import { StyleSheet } from 'react-native';
 
 export const otpVertificationScreenStyle = StyleSheet.create({
@@ -12,7 +12,7 @@ export const otpVertificationScreenStyle = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomColor: colors.gray,
+    borderBottomColor: COLOR_PALETTE.gray,
     borderBottomWidth: 1.5,
     paddingBottom: 5,
   },

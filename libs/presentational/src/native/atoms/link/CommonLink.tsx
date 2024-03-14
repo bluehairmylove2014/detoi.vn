@@ -2,7 +2,7 @@ import {
   commonLinkAlign,
   commonLinkFontSize,
   commonLinkThemes,
-} from '@present-native/styles';
+} from './styles';
 import { Link } from '@react-navigation/native';
 
 type commonLinkProps = {

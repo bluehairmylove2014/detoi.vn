@@ -6,7 +6,7 @@ import {
   textDecorationStyles,
   textCommonStyles,
   paragraphFontStyles,
-} from '@presentational/native/styles';
+} from './styles';
 
 const Paragraph = ({
   children,

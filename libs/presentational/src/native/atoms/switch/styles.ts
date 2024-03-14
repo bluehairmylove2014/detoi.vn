@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from './color';
+import { COLOR_PALETTE } from '@styles/color';
 
 export const serviceRequirementsSwitchStyle = StyleSheet.create({
   container: {
@@ -21,21 +21,21 @@ export const serviceRequirementsSwitchStyle = StyleSheet.create({
     width: 58,
     height: 26,
     borderRadius: 16,
-    backgroundColor: colors.zinc,
+    backgroundColor: COLOR_PALETTE.zinc,
     padding: 4,
     justifyContent: 'center',
   },
 
   switchButtonActive: {
-    backgroundColor: colors.secondary,
+    backgroundColor: COLOR_PALETTE.secondary,
   },
 
   circle: {
     width: 20,
     height: 20,
     borderRadius: 999,
-    backgroundColor: colors.white,
-    shadowColor: colors.gray,
+    backgroundColor: COLOR_PALETTE.white,
+    shadowColor: COLOR_PALETTE.gray,
     shadowOffset: {
       width: 0,
       height: 0,
@@ -45,7 +45,7 @@ export const serviceRequirementsSwitchStyle = StyleSheet.create({
 
   circleActive: {
     transform: [{ translateX: 30 }],
-    shadowColor: colors.yellow,
+    shadowColor: COLOR_PALETTE.yellow,
     shadowOffset: {
       width: 0,
       height: 0,

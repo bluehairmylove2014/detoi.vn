@@ -1,9 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import {
-  commonDividerStyles,
-  colorDivider,
-} from '@present-native/styles/divider';
+import { commonDividerStyles, colorDivider } from './styles';
 
 const directionList = {
   horizontal: commonDividerStyles.horizontalDivider,

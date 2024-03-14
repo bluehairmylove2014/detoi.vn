@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { verticalSpacerStyles } from '@present-native/styles/spacer';
+import { verticalSpacerStyles } from './styles';
 
 export const VerticalSpacer = ({
   size,

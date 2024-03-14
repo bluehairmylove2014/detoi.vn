@@ -1,6 +1,6 @@
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { FAIcon } from '@present-native/atoms';
-import { BarIconSectionStyle } from '@present-native/styles/tabBarIcon';
+import { BarIconSectionStyle } from './styles';
 import { View, Text } from 'react-native';
 
 const TabBarIcon = ({

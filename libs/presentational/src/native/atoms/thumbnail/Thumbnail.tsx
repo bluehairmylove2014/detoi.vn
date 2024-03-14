@@ -1,4 +1,4 @@
-import { ThumbnailSectionStyle } from '@present-native/styles/thumbnail';
+import { ThumbnailSectionStyle } from './styles';
 import { Image, TouchableOpacity } from 'react-native';
 
 const Thumbnail = ({

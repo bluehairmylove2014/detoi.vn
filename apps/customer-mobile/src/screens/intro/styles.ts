@@ -1,12 +1,16 @@
-import { StyleSheet } from "react-native";
-import { colors, screenHorizontalPadding, screenVerticalPadding } from '@present-native/styles';
+import { StyleSheet } from 'react-native';
+import {
+  COLOR_PALETTE,
+  screenHorizontalPadding,
+  screenVerticalPadding,
+} from '@present-native/styles';
 
 export const introSCreenStyle = StyleSheet.create({
   container: {
     width: '100%',
     minHeight: '100%',
     height: 'auto',
-    backgroundColor: colors.secondary,
+    backgroundColor: COLOR_PALETTE.secondary,
     paddingVertical: screenVerticalPadding,
     paddingHorizontal: screenHorizontalPadding,
   },
@@ -29,6 +33,6 @@ export const introSCreenStyle = StyleSheet.create({
     marginVertical: 35,
     display: 'flex',
     flexDirection: 'row',
-    flexWrap:'wrap'
+    flexWrap: 'wrap',
   },
 });

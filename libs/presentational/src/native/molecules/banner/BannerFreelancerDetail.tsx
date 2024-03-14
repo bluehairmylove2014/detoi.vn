@@ -1,16 +1,16 @@
-import { bannerFreelancerDetailStyle } from '@present-native/styles/banner';
+import { bannerFreelancerDetailStyle } from './styles';
 import React from 'react';
 import { Image, View } from 'react-native';
 import {
   FAIcon,
-  OnlyBorderButton,
+  OutlineBtn,
   OverlayColor,
   Paragraph,
-  PrimaryButton,
+  PrimaryBtn,
   Title,
   VerticalSpacer,
 } from '@present-native/atoms';
-import { colors, screenHorizontalPadding } from '@present-native/styles';
+import { COLOR_PALETTE, screenHorizontalPadding } from '@present-native/styles';
 import { onConvertNumberToCurrency } from '@utils/helpers/MoneyConverter';
 import { ETypeDisplayHeader, Header } from '@present-native/organisms';
 import { windowWidth } from '@constants/dimension';
@@ -46,7 +46,11 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
                 {Array.from({
                   length: ratingNumber,
                 }).map(() => (
-                  <FAIcon iconName="faStar" color={colors.yellow} size={15} />
+                  <FAIcon
+                    iconName="faStar"
+                    color={COLOR_PALETTE.yellow}
+                    size={15}
+                  />
                 ))}
               </View>
               <Paragraph theme="smallRegular" color="yellow">
@@ -62,9 +66,9 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
             <VerticalSpacer size="l" />
             <View style={bannerFreelancerDetailStyle.buttonContainer}>
               <View style={bannerFreelancerDetailStyle.buttonWrapper}>
-                <PrimaryButton
+                <PrimaryBtn
                   title="Chọn người này"
-                  size="small"
+                  fontSize="small"
                   radius="full"
                   onPress={() => {
                     navigation.navigate('Summary');
@@ -72,12 +76,11 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
                 />
               </View>
               <View style={bannerFreelancerDetailStyle.buttonWrapper}>
-                <OnlyBorderButton
+                <OutlineBtn
                   title="Yêu thích"
-                  size="small"
+                  fontSize="small"
                   radius="full"
                   onPress={() => {}}
-                  color="white"
                   iconName="faHeart"
                 />
               </View>

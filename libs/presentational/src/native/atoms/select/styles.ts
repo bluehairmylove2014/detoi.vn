@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from './color';
+import { COLOR_PALETTE } from '@styles/color';
 
 export const countryCodeSelectStyle = StyleSheet.create({
   optionContainer: {
@@ -8,7 +8,7 @@ export const countryCodeSelectStyle = StyleSheet.create({
     paddingVertical: 12,
     marginHorizontal: 20,
     borderBottomWidth: 1,
-    borderColor: colors.zinc,
+    borderColor: COLOR_PALETTE.zinc,
   },
 
   optionImg: {
@@ -25,7 +25,7 @@ export const countryCodeSelectStyle = StyleSheet.create({
   },
 
   backgroundModal: {
-    backgroundColor: colors.white,
+    backgroundColor: COLOR_PALETTE.white,
     width: '100%',
     height: 'auto',
     borderTopLeftRadius: 15,
@@ -36,7 +36,7 @@ export const countryCodeSelectStyle = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: colors.secondary,
+    backgroundColor: COLOR_PALETTE.secondary,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     paddingVertical: 14,
@@ -52,7 +52,7 @@ export const countryCodeSelectStyle = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.zinc,
+    backgroundColor: COLOR_PALETTE.zinc,
     borderRadius: 100,
     paddingHorizontal: 12,
     paddingVertical: 8,
@@ -66,7 +66,7 @@ export const serviceRquirementSelectStyle = StyleSheet.create({
     paddingVertical: 12,
     marginHorizontal: 20,
     borderBottomWidth: 1,
-    borderColor: colors.zinc,
+    borderColor: COLOR_PALETTE.zinc,
   },
 });
 
@@ -85,7 +85,7 @@ export const serviceRequirementsSelectStyle = StyleSheet.create({
 
   dropdownContainer: {
     width: '100%',
-    borderColor: colors.black,
+    borderColor: COLOR_PALETTE.black,
     justifyContent: 'space-between',
     borderBottomWidth: 1,
     flexDirection: 'row',
@@ -97,12 +97,12 @@ export const serviceRequirementsSelectStyle = StyleSheet.create({
     position: 'absolute',
     height: '50%',
     width: '100%',
-    backgroundColor: colors.white,
+    backgroundColor: COLOR_PALETTE.white,
     bottom: 0,
   },
 
   backgroundModal: {
-    backgroundColor: colors.white,
+    backgroundColor: COLOR_PALETTE.white,
     width: '100%',
     height: 'auto',
   },
@@ -113,7 +113,7 @@ export const serviceRequirementsSelectStyle = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: colors.secondary,
+    backgroundColor: COLOR_PALETTE.secondary,
     paddingVertical: 14,
     paddingHorizontal: 20,
   },
@@ -121,7 +121,7 @@ export const serviceRequirementsSelectStyle = StyleSheet.create({
   optionContainer: {
     paddingHorizontal: 20,
     paddingVertical: 20,
-    borderBottomColor: colors.zinc,
+    borderBottomColor: COLOR_PALETTE.zinc,
     borderBottomWidth: 1,
   },
 });

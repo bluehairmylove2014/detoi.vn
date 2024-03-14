@@ -2,7 +2,7 @@
 import { View, TextInput, ActivityIndicator } from 'react-native';
 import { OTPVertificationProps } from '../../config';
 import { otpVertificationScreenStyle } from './styles';
-import { colors } from '@present-native/styles';
+import { COLOR_PALETTE } from '@present-native/styles';
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
@@ -10,11 +10,7 @@ import {
   useResendOtp,
   useVerifyOtp,
 } from '@business-layer/business-logic/lib/auth';
-import {
-  Paragraph,
-  PrimaryButton,
-  VerticalSpacer,
-} from '@present-native/atoms';
+import { Paragraph, PrimaryBtn, VerticalSpacer } from '@present-native/atoms';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 
 const MAX_TRY = 3;
@@ -139,8 +135,8 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
               <TextInput
                 style={otpVertificationScreenStyle.input}
                 placeholder="● ● ● ●"
-                placeholderTextColor={colors.gray}
-                selectionColor={colors.black}
+                placeholderTextColor={COLOR_PALETTE.gray}
+                selectionColor={COLOR_PALETTE.black}
                 keyboardType="numeric"
                 maxLength={4}
                 {...field}
@@ -153,14 +149,14 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
           />
 
           {loadingOTP ? (
-            <ActivityIndicator size="small" color={colors.secondary} />
+            <ActivityIndicator size="small" color={COLOR_PALETTE.secondary} />
           ) : (
             <View>
               {activeTimeCount ? (
                 <View style={otpVertificationScreenStyle.countTime}>
                   <ActivityIndicator
                     size="small"
-                    color={colors.secondary}
+                    color={COLOR_PALETTE.secondary}
                     style={{ marginRight: 5 }}
                   />
                   <Paragraph theme="baseBold">
@@ -170,9 +166,9 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
               ) : (
                 <View>
                   <View style={{ width: 70 }}>
-                    <PrimaryButton
+                    <PrimaryBtn
                       onPress={handleResendOtp}
-                      size="small"
+                      fontSize="small"
                       title="Gửi lại"
                       radius="full"
                     />

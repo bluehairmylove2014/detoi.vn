@@ -4,7 +4,7 @@ import {
   FAIcon,
   VerticalSpacer,
 } from '@present-native/atoms';
-import { colors } from '@present-native/styles';
+import { COLOR_PALETTE } from '@present-native/styles';
 import React from 'react';
 import { recommendationGeoType } from '@business-layer/services';
 import { TouchableOpacity, View } from 'react-native';
@@ -40,7 +40,7 @@ export const RecommendationLocation = React.memo(
                 </View>
                 <FAIcon
                   iconName="faArrowRight"
-                  color={colors.black}
+                  color={COLOR_PALETTE.black}
                   size={18}
                 />
               </View>

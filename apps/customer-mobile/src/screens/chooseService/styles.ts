@@ -1,4 +1,7 @@
-import { colors, screenHorizontalPadding } from '@presentational/native/styles';
+import {
+  COLOR_PALETTE,
+  screenHorizontalPadding,
+} from '@presentational/native/styles';
 import { StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '@constants/dimension';
 
@@ -7,7 +10,7 @@ const provideDetailStyle = StyleSheet.create({
     width: windowWidth,
     minHeight: windowHeight,
     height: 'auto',
-    backgroundColor: colors.softBg,
+    backgroundColor: COLOR_PALETTE.softBg,
     paddingHorizontal: screenHorizontalPadding,
   },
   serviceList: {

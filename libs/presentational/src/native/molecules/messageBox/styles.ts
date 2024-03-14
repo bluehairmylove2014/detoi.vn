@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from './color';
+import { COLOR_PALETTE } from '@styles/color';
 
 export const messageBoxStyle = StyleSheet.create({
   centeredView: {
@@ -10,7 +10,7 @@ export const messageBoxStyle = StyleSheet.create({
 
   modalView: {
     width: '80%',
-    backgroundColor: colors.white,
+    backgroundColor: COLOR_PALETTE.white,
     paddingHorizontal: 30,
     paddingVertical: 20,
     borderRadius: 5,

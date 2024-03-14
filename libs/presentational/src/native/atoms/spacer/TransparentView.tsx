@@ -1,4 +1,4 @@
-import { colors } from '@present-native/styles';
+import { COLOR_PALETTE } from '@present-native/styles';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native';
 
@@ -14,11 +14,11 @@ const transparentViewThemeMapper = StyleSheet.create({
   horizontal: {
     height: '100%',
     width: 50,
-    backgroundColor: colors.transparent,
+    backgroundColor: COLOR_PALETTE.transparent,
   },
   vertical: {
     width: '100%',
     height: 50,
-    backgroundColor: colors.transparent,
+    backgroundColor: COLOR_PALETTE.transparent,
   },
 });

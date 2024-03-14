@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 import React from 'react';
-import { overlayStyle } from '@present-native/styles/overlay';
+import { overlayStyle } from './styles';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const themeList = {

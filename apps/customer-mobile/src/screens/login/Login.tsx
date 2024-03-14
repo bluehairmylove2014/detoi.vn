@@ -5,16 +5,16 @@ import { View, TextInput } from 'react-native';
 
 import { LoginProps } from '../../config';
 import { loginScreenStyle } from './styles';
-import { colors } from '@presentational/native/styles';
-import { CountryCodeSelect } from '@present-native/atoms/select/CountryCodeSelect';
+import { COLOR_PALETTE } from '@presentational/native/styles';
 import {
   Paragraph,
   Title,
   VerticalSpacer,
-  PrimaryButton,
-  OnlyBorderButton,
+  PrimaryBtn,
+  OutlineBtn,
+  CountryCodeSelect,
 } from '@present-native/atoms';
-import { ICountryCode } from '@business-layer/services/entities/countryCode';
+import { ICountryCode } from '@business-layer/services/entities';
 import { Controller, useForm } from 'react-hook-form';
 import { useLogin } from '@business-layer/business-logic/lib/auth';
 
@@ -115,8 +115,8 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
               <TextInput
                 style={loginScreenStyle.input}
                 placeholder="Nhập số điện thoại của bạn"
-                placeholderTextColor={colors.gray}
-                selectionColor={colors.black}
+                placeholderTextColor={COLOR_PALETTE.gray}
+                selectionColor={COLOR_PALETTE.black}
                 keyboardType="numeric"
                 {...field}
                 onChangeText={(value) => {
@@ -129,7 +129,7 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
         </View>
 
         <VerticalSpacer size="xl" />
-        <PrimaryButton
+        <PrimaryBtn
           radius="full"
           title="Tiếp tục"
           onPress={handleSubmit(onSuccessSubmitPhoneNumber, onErrorSubmit)}
@@ -153,11 +153,11 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
         <VerticalSpacer size="xl" />
 
         <View style={{ width: 230 }}>
-          <OnlyBorderButton
+          <OutlineBtn
             onPress={() => {}}
             title="Có vấn đề với số điện thoại?"
             radius="full"
-            size="small"
+            fontSize="small"
           />
         </View>
       </View>

@@ -7,8 +7,9 @@ import {
 import { TextInput, View } from 'react-native';
 import { FAIcon } from '../icon';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
-import { ServiceRequirementsInputStyle, colors } from '@present-native/styles';
+import { COLOR_PALETTE } from '@styles/color';
 import { Paragraph } from '../text';
+import { ServiceRequirementsInputStyle } from './styles';
 
 export const ServiceRequirementsInput = ({
   type,
@@ -34,7 +35,7 @@ export const ServiceRequirementsInput = ({
           <View style={{ marginRight: 5 }}>
             <FAIcon
               iconName={labelIcon as nativeIconNameType}
-              color={colors.black}
+              color={COLOR_PALETTE.black}
               size={15}
             />
           </View>
@@ -56,8 +57,8 @@ export const ServiceRequirementsInput = ({
           <TextInput
             style={ServiceRequirementsInputStyle.input}
             placeholder={placeholder}
-            placeholderTextColor={colors.gray}
-            selectionColor={colors.black}
+            placeholderTextColor={COLOR_PALETTE.gray}
+            selectionColor={COLOR_PALETTE.black}
             keyboardType={type === 'number' ? 'numeric' : 'default'}
             maxLength={type === 'number' ? 4 : 255}
             {...field}

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from './color';
+import { COLOR_PALETTE } from '@styles/color';
 
 const ServiceRequirementsInputStyle = StyleSheet.create({
   container: {
@@ -17,7 +17,7 @@ const ServiceRequirementsInputStyle = StyleSheet.create({
   input: {
     width: '100%',
     paddingVertical: 10,
-    borderColor: colors.black,
+    borderColor: COLOR_PALETTE.black,
     borderBottomWidth: 1,
   },
 });
@@ -30,7 +30,7 @@ const paymentMethodStyles = StyleSheet.create({
     padding: 10,
     height: 60,
     borderRadius: 5,
-    borderColor: colors.gray,
+    borderColor: COLOR_PALETTE.gray,
     borderWidth: 1,
   },
   logo: {
@@ -42,7 +42,7 @@ const paymentMethodStyles = StyleSheet.create({
     height: 30,
     aspectRatio: 1,
     borderRadius: 999,
-    borderColor: colors.gray,
+    borderColor: COLOR_PALETTE.gray,
     borderWidth: 1,
   },
 });

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import {
-  colors,
+  COLOR_PALETTE,
   screenHorizontalPadding,
   screenVerticalPadding,
 } from '@present-native/styles';
@@ -17,7 +17,6 @@ const headerStyle = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   backButtonContainer: {
-
     alignSelf: 'flex-start',
   },
 });
@@ -27,7 +26,7 @@ const languageSelectorStyle = StyleSheet.create({
     margin: 16,
     height: 30,
     width: 90,
-    backgroundColor: colors.white,
+    backgroundColor: COLOR_PALETTE.white,
     borderRadius: 22,
     paddingHorizontal: 8,
   },

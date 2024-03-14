@@ -8,13 +8,14 @@ import {
   FlatList,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { colors, countryCodeSelectStyle } from '@present-native/styles';
+import { COLOR_PALETTE } from '@styles/color';
 import { FAIcon } from '../icon';
 import { Paragraph } from '../text';
 import { ICountryCode } from '@business-layer/services/entities/countryCode';
 import { CountryCodeButton } from '../button';
 import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
 import { TouchTheme } from '../theme';
+import { countryCodeSelectStyle } from './styles';
 
 const CountryCodeSelect = ({
   onSelect,
@@ -95,7 +96,11 @@ const CountryCodeSelect = ({
                   setOpenBlurTheme(false);
                 }}
               >
-                <FAIcon iconName="faTimes" color={colors.black} size={25} />
+                <FAIcon
+                  iconName="faTimes"
+                  color={COLOR_PALETTE.black}
+                  size={25}
+                />
               </TouchableOpacity>
             </View>
 

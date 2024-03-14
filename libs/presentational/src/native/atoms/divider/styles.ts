@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from './color';
+import { COLOR_PALETTE } from '@styles/color';
 
 const commonDividerStyles = StyleSheet.create({
   horizontalDivider: {
@@ -7,19 +7,19 @@ const commonDividerStyles = StyleSheet.create({
   },
   verticalDivider: {
     flex: 1,
-    width: 0.7, 
+    width: 0.7,
   },
 });
 
 const colorDivider = StyleSheet.create({
   primary: {
-    backgroundColor: colors.primary,
+    backgroundColor: COLOR_PALETTE.primary,
   },
   gray: {
-    backgroundColor: colors.gray,
+    backgroundColor: COLOR_PALETTE.gray,
   },
   black: {
-    backgroundColor: colors.black,
+    backgroundColor: COLOR_PALETTE.black,
   },
 });
 

@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { horizontalSpacerStyles } from '@present-native/styles/spacer';
+import { horizontalSpacerStyles } from './styles';
 
 export const HorizontalSpacer = ({
   size,

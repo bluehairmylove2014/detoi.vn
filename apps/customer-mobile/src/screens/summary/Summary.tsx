@@ -6,7 +6,7 @@ import { summaryStyles } from './styles';
 import {
   FAIcon,
   Paragraph,
-  PrimaryButton,
+  PrimaryBtn,
   StaticServiceRequirementDetail,
   Title,
   VerticalSpacer,
@@ -103,7 +103,7 @@ const Summary: React.FC<SummaryProps> = ({ route, navigation }) => {
           <ChoosePaymentMethods onSelect={() => {}} />
         </View>
         <VerticalSpacer size="xxxl" />
-        <PrimaryButton
+        <PrimaryBtn
           title="Đặt đơn ngay"
           onPress={() => {
             navigation.navigate('OnService');

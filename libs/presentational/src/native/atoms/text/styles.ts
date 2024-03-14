@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from './color';
+import { COLOR_PALETTE } from '@styles/color';
 
 const paragraphFontStyles = StyleSheet.create({
   smallRegular: {
@@ -72,23 +72,23 @@ const titleFontStyles = StyleSheet.create({
 
 const textColorStyles = StyleSheet.create({
   primary: {
-    color: colors.primary,
+    color: COLOR_PALETTE.primary,
   },
   black: {
-    color: colors.black,
+    color: COLOR_PALETTE.black,
   },
   rose: {
-    color: colors.rose,
+    color: COLOR_PALETTE.rose,
   },
   white: {
-    color: colors.white,
+    color: COLOR_PALETTE.white,
   },
   gray: {
-    color: colors.gray,
+    color: COLOR_PALETTE.gray,
   },
-  yellow:{
-    color: colors.yellow
-  }
+  yellow: {
+    color: COLOR_PALETTE.yellow,
+  },
 });
 const textAlignStyles = StyleSheet.create({
   left: {

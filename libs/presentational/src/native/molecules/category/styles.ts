@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { screenHorizontalPadding } from './spacingConvention';
+import { screenHorizontalPadding } from '@styles/spacingConvention';
 import { windowWidth } from '@constants/dimension';
 
 export const categoryThumbnailStyle = StyleSheet.create({

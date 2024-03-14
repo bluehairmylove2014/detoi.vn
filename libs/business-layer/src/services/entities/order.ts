@@ -11,6 +11,5 @@ export interface IOrder {
   startTime: string;
   startDate: string;
   serviceId: string;
-  requirements: IOrderElement[];
   note: string;
 }

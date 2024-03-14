@@ -1,4 +1,4 @@
-import { colors } from '@present-native/styles';
+import { COLOR_PALETTE } from '@present-native/styles';
 import { StyleSheet } from 'react-native';
 
 export const onServiceScreenStyle = StyleSheet.create({
@@ -26,14 +26,14 @@ export const onServiceScreenStyle = StyleSheet.create({
     shadowRadius: 2,
     elevation: 4,
     padding: 20,
-    backgroundColor: colors.white,
+    backgroundColor: COLOR_PALETTE.white,
   },
 
   infoBillContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingBottom: 15,
-    borderBottomColor: colors.zinc,
+    borderBottomColor: COLOR_PALETTE.zinc,
     borderBottomWidth: 1,
   },
 

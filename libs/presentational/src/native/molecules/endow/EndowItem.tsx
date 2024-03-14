@@ -1,5 +1,5 @@
 import { Paragraph } from '@present-native/atoms';
-import { endowSectionStyle } from '@present-native/styles/endow';
+import { endowSectionStyle } from './styles';
 import { View, TouchableOpacity, Image } from 'react-native';
 
 const EndowItem = ({

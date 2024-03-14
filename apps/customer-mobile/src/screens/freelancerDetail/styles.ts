@@ -1,6 +1,6 @@
 import { windowHeight, windowWidth } from '@constants/dimension';
 import {
-  colors,
+  COLOR_PALETTE,
   screenHorizontalPadding,
   screenVerticalPadding,
 } from '@present-native/styles';
@@ -14,10 +14,10 @@ const freelancerDetailScreenStyle = StyleSheet.create({
     minHeight: windowHeight,
   },
   introSection: {
-    backgroundColor: colors.lightStone,
+    backgroundColor: COLOR_PALETTE.lightStone,
   },
   insightSection: {
-    backgroundColor: colors.charcoal,
+    backgroundColor: COLOR_PALETTE.charcoal,
     paddingHorizontal: screenHorizontalPadding,
     display: 'flex',
     flexDirection: 'row',
@@ -27,7 +27,7 @@ const freelancerDetailScreenStyle = StyleSheet.create({
     gap: 20,
   },
   proofOfWorkSection: {
-    backgroundColor: colors.lightStone,
+    backgroundColor: COLOR_PALETTE.lightStone,
     flex: 1,
     paddingHorizontal: screenHorizontalPadding,
     paddingVertical: screenVerticalPadding,
@@ -36,7 +36,7 @@ const freelancerDetailScreenStyle = StyleSheet.create({
 
 const titleStyle = StyleSheet.create({
   underlineTitleStyle: {
-    backgroundColor: colors.white,
+    backgroundColor: COLOR_PALETTE.white,
     height: 1.5,
     marginVertical: 5,
   },

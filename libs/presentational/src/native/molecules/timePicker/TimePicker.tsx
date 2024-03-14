@@ -4,13 +4,13 @@ import {
   FAIcon,
   HorizontalSpacer,
   Paragraph,
-  PrimaryButton,
+  PrimaryBtn,
   TouchTheme,
   VerticalSpacer,
 } from '@present-native/atoms';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { colors } from '@present-native/styles';
-import { TimePickerStyle } from '@present-native/styles/timePicker';
+import { COLOR_PALETTE } from '@present-native/styles';
+import { TimePickerStyle } from './styles';
 import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
 
 const constantTime = () => {
@@ -66,7 +66,11 @@ export const TimePicker = ({
                   setOpenBlurTheme(false);
                 }}
               >
-                <FAIcon iconName="faTimes" color={colors.black} size={25} />
+                <FAIcon
+                  iconName="faTimes"
+                  color={COLOR_PALETTE.black}
+                  size={25}
+                />
               </TouchableOpacity>
             </View>
 
@@ -76,7 +80,7 @@ export const TimePicker = ({
                 display="spinner"
                 mode="time"
                 value={timeChange}
-                textColor={colors.black}
+                textColor={COLOR_PALETTE.black}
                 minuteInterval={5}
                 onChange={(event, selected) => {
                   if (selected) {
@@ -88,7 +92,7 @@ export const TimePicker = ({
 
             <VerticalSpacer size="xxl" />
             <View style={{ marginHorizontal: 30 }}>
-              <PrimaryButton
+              <PrimaryBtn
                 title="XÁC NHẬN"
                 onPress={() => {
                   setSelectedTime(timeChange);
@@ -107,7 +111,11 @@ export const TimePicker = ({
     <>
       <View style={TimePickerStyle.chooseTimeContainer}>
         <View style={TimePickerStyle.chooseTimeLabel}>
-          <FAIcon iconName="faClock" size={20} color={colors.secondary} />
+          <FAIcon
+            iconName="faClock"
+            size={20}
+            color={COLOR_PALETTE.secondary}
+          />
           <HorizontalSpacer size="m"></HorizontalSpacer>
           <Paragraph theme="baseBold">Chọn giờ làm</Paragraph>
         </View>
@@ -138,7 +146,7 @@ export const TimePicker = ({
             mode="time"
             value={selectedTime}
             is24Hour={true}
-            textColor={colors.black}
+            textColor={COLOR_PALETTE.black}
             minuteInterval={5}
             onChange={(event, selected) => {
               if (selected) {

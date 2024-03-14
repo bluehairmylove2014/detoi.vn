@@ -1,5 +1,5 @@
 import { Paragraph } from '@present-native/atoms';
-import { ServiceCardSectionStyle } from '@present-native/styles/card';
+import { ServiceCardSectionStyle } from './styles';
 import { View, TouchableOpacity, Image } from 'react-native';
 import ContainerIcon from '@assets/feedback.png';
 import ShoppingBagIcon from '@assets/point.png';

@@ -1,6 +1,6 @@
 const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
 const { join } = require('path');
-const { colors } = require('./src/native/styles');
+const { COLOR_PALETTE } = require('./src/native/styles');
 
 module.exports = {
   content: [
@@ -12,7 +12,7 @@ module.exports = {
     '',
   ],
   theme: {
-    colors,
+    COLOR_PALETTE,
   },
   plugins: [],
 };
