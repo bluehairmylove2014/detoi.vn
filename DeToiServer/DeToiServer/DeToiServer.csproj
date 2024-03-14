@@ -30,4 +30,8 @@
     <ProjectReference Include="..\DeToiServerData\DeToiServerData.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\CleaningServiceDtos\" />
+  </ItemGroup>
+
 </Project>

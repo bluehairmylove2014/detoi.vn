@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using DeToiServer.Dtos.AccountDtos;
 using DeToiServer.Dtos.AddressDtos;
-using DeToiServer.Dtos.CleaningServiceDtos;
 using DeToiServer.Dtos.FreelanceDtos;
 using DeToiServer.Dtos.LocationDtos;
 using DeToiServer.Dtos.OrderDtos;
@@ -113,15 +112,16 @@ namespace DeToiServer.AutoMapper
             CreateMap<Order, GetOrderDto>()
                 .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => TimeOnly.FromDateTime(src.StartTime)))
                 .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => DateOnly.FromDateTime(src.StartTime)))
-                .ForMember(dest => dest.FinishTime, opt => opt.MapFrom(src => TimeOnly.FromDateTime(src.FinishTime)))
-                .ForMember(dest => dest.FinishDate, opt => opt.MapFrom(src => DateOnly.FromDateTime(src.FinishTime)))
+                .ForMember(dest => dest.FinishTime, opt => opt.MapFrom(src => TimeOnly.FromDateTime(src.FinishTime ?? DateTime.MinValue)))
+                .ForMember(dest => dest.FinishDate, opt => opt.MapFrom(src => DateOnly.FromDateTime(src.FinishTime ?? DateTime.MinValue)))
+                .ForMember(dest => dest.AddressLine, opt => opt.MapFrom(src => src.Address != null ? src.Address.AddressLine : string.Empty))
                 .ForMember(dest => dest.Freelance, opt => opt.MapFrom(src => src.Freelance != null ? src.Freelance.Account : null))
                 .ForMember(dest => dest.ServiceStatus, opt => opt.MapFrom(src => src.ServiceStatus != null ? src.ServiceStatus.Name : "Chờ xử lí"));
             CreateMap<OrderServiceType, GetOrderServiceTypeDto>();
 
-            CreateMap<PostServiceRequirementDto, CleaningService>();
-            CreateMap<PostServiceRequirementDto, RepairingService>();
-            CreateMap<PostServiceRequirementDto, ShoppingService>();
+            CreateMap<PostCleaningServiceDto, CleaningService>();
+            CreateMap<PostRepairingServiceDto, RepairingService>();
+            CreateMap<PostShoppingServiceDto, ShoppingService>();
 
             CreateMap<PostServiceProvenDto, ServiceProven>().ReverseMap();
             CreateMap<ServiceProven, GetServiceProvenDto>()
@@ -138,6 +138,14 @@ namespace DeToiServer.AutoMapper
                 .ForMember(dest => dest.Province, opt => opt.MapFrom<ProvinceResolver>());
 
             CreateMap<GeoCodeResponseDto, GeoCodeResultDto>();
+            CreateMap<GeoCodeResponseDto, RevGeoCodeResultDto>()
+                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => Helper.GetLocationUnit(src.Display_name, 0)))
+                .ForMember(dest => dest.Province, opt => opt.MapFrom(src => Helper.GetLocationUnit(src.Display_name, 1)))
+                .ForMember(dest => dest.District, opt => opt.MapFrom(src => Helper.GetLocationUnit(src.Display_name, 2)))
+                .ForMember(dest => dest.Ward, opt => opt.MapFrom(src => Helper.GetLocationUnit(src.Display_name, 3)))
+                .ForMember(dest => dest.Road, opt => opt.MapFrom(src => Helper.GetLocationUnit(src.Display_name, 4)))
+                .ForMember(dest => dest.House_number, opt => opt.MapFrom(src => Helper.GetLocationUnit(src.Display_name, 5)))
+                .ForMember(dest => dest.Amenity, opt => opt.MapFrom(src => Helper.GetLocationUnit(src.Display_name, 6)));
 
             #endregion
 

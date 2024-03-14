@@ -8,6 +8,7 @@ namespace DeToiServerCore.Models.Services
         public double BasePrice { get; set; }
         public string? Description { get; set; }
         public string? Image { get; set; }
+        public string? Keys { get; set; }
         public Guid? ServiceCategoryId { get; set; }
         public ServiceCategory? ServiceCategory { get; set; }
         public ICollection<OrderServiceType>? OrderServiceTypes { get; set; }

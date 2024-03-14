@@ -67,33 +67,13 @@ namespace DeToiServer.Services.OrderManagementService
 
             await _uow.OrderRepo.CreateAsync(rawOrder);
 
-            var serviceName = await _uow.ServiceTypeRepo.GetServiceCategoryNameByTypeId(postOrderDto.Requirements!.ServiceTypeId);
-            if (string.IsNullOrEmpty(serviceName))
-                Console.WriteLine("Looix");
-            Console.WriteLine(serviceName);
-
-            switch (serviceName)
-            {
-                case "CleaningService":
-                    var cleaningService = AddService<CleaningService>(postOrderDto.Requirements, rawOrder.Id, rawOrder);
-                    await _uow.CleaningRepo.CreateAsync(cleaningService);
-                    break;
-
-                case "RepairingService":
-                    var repairingService = AddService<RepairingService>(postOrderDto.Requirements, rawOrder.Id, rawOrder);
-                    await _uow.RepairingRepo.CreateAsync(repairingService);
-                    break;
-
-                case "ShoppingService":
-                    var shoppingService = AddService<ShoppingService>(postOrderDto.Requirements, rawOrder.Id, rawOrder);
-                    await _uow.ShoppingRepo.CreateAsync(shoppingService);
-                    break;
-
-                default:
-                    Console.WriteLine("Dịch vụ chưa hỗ trợ.");
-
-                    break;
-            }
+            var cleaningService = AddService<CleaningService>(postOrderDto.CleaningService, rawOrder.Id, rawOrder);
+            var repairingService = AddService<RepairingService>(postOrderDto.RepairingService, rawOrder.Id, rawOrder);
+            var shoppingService = AddService<ShoppingService>(postOrderDto.ShoppingService, rawOrder.Id, rawOrder);
+            
+            await _uow.CleaningRepo.CreateAsync(cleaningService);
+            await _uow.RepairingRepo.CreateAsync(repairingService);
+            await _uow.ShoppingRepo.CreateAsync(shoppingService);
 
             // Save changes within the transaction scope
             if (!await _uow.SaveChangesAsync()) return null;

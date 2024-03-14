@@ -9,7 +9,7 @@ namespace DeToiServerCore.Models
         public Address? Address { get; set; }
         public double EstimatedPrice { get; set; }
         public DateTime StartTime { get; set; }
-        public DateTime FinishTime { get; set; }
+        public DateTime? FinishTime { get; set; }
         public DateTime CreatedTime { get; set; } = DateTime.Now;
         public Guid? FreelancerId { get; set; }
         public FreelanceAccount? Freelance { get; set; }

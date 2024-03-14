@@ -1,6 +1,7 @@
 ﻿using DeToiServer.Models;
 using DeToiServerCore.Models;
 using DeToiServerCore.Models.Accounts;
+using DeToiServerCore.Models.Payment;
 using DeToiServerCore.Models.Services;
 using DeToiServerCore.Models.SevicesUIElement;
 using DeToiServerData.Configurations;
@@ -30,6 +31,7 @@ namespace DeToiServerData
             modelBuilder.ApplyConfiguration(new AddressConfiguration());
 
             modelBuilder.ApplyConfiguration(new FavoriteConfiguration());
+            modelBuilder.ApplyConfiguration(new PaymentConfiguration());
 
             // Service
             modelBuilder.ApplyConfiguration(new ServiceConfiguration());
@@ -74,6 +76,7 @@ namespace DeToiServerData
         public DbSet<CustomerAccount> Customers { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<PaymentHistory> PaymentHistories { get; set; }
 
         // Service related models
         public DbSet<Order> Orders { get; set; }

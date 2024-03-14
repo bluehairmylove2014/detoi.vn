@@ -1,4 +1,4 @@
-﻿namespace DeToiServer.Dtos.CleaningServiceDtos
+﻿namespace DeToiServer.Dtos.ServiceRequirementDtos
 {
     public class PostCleaningServiceDto : PostServiceDto
     {

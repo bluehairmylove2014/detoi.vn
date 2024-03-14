@@ -93,7 +93,7 @@ namespace DeToiServer.Controllers
         )
         {
             List<GeoCodeResponseDto>? rawResult = null;
-            List<GeoCodeResultDto>? result = [];
+            List<RevGeoCodeResultDto>? result = [];
 
             var handler = new HttpClientHandler();
             handler.ServerCertificateCustomValidationCallback +=
@@ -125,7 +125,7 @@ namespace DeToiServer.Controllers
                     rawResult = JsonConvert.DeserializeObject<List<GeoCodeResponseDto>>(apiResponse);
                     foreach (var item in rawResult!)
                     {
-                        result.Add(_mapper.Map<GeoCodeResultDto>(item));
+                        result.Add(_mapper.Map<RevGeoCodeResultDto>(item));
                     }
                 }
             }

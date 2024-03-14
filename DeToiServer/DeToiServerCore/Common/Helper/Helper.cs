@@ -51,9 +51,10 @@ namespace DeToiServerCore.Common.Helper
             return value;
         }
 
-        public static string? DynamicToString(dynamic? value)
+        public static string? GetLocationUnit(string address, int pos = 0)
         {
-            return value?.ToString();
+            var element = address.Split(',').Reverse().ElementAtOrDefault(pos);
+            return element?.Trim();
         }
 
         public static class GeoCalculator
