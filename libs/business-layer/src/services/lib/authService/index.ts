@@ -39,7 +39,6 @@ export class AuthService extends Services {
       });
       return response;
     } catch (error) {
-      console.log(error);
       throw this.handleError(error);
     }
   };

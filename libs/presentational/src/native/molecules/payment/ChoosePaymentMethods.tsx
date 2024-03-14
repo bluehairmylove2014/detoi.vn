@@ -9,18 +9,18 @@ export const ChoosePaymentMethods = ({
   onSelect: () => void;
 }) => {
   const methods: IPaymentMethod[] = [
-    {
-      id: 'm1',
-      name: 'vnpay',
-      logo: 'https://detoivn.sirv.com/payment/vnpay-logo.png',
-      title: 'Trực tuyến qua VNPay',
-    },
-    {
-      id: 'm2',
-      name: 'momo',
-      logo: 'https://detoivn.sirv.com/payment/momo-logo.png',
-      title: 'Trực tuyến qua Momo',
-    },
+    // {
+    //   id: 'm1',
+    //   name: 'vnpay',
+    //   logo: 'https://detoivn.sirv.com/payment/vnpay-logo.png',
+    //   title: 'Trực tuyến qua VNPay',
+    // },
+    // {
+    //   id: 'm2',
+    //   name: 'momo',
+    //   logo: 'https://detoivn.sirv.com/payment/momo-logo.png',
+    //   title: 'Trực tuyến qua Momo',
+    // },
     {
       id: 'm3',
       name: 'cod',
@@ -28,7 +28,7 @@ export const ChoosePaymentMethods = ({
       title: 'Trả tiền mặt sau dịch vụ',
     },
   ];
-  const [selectedMethodId, setSelectedMethodId] = useState<string | null>(null);
+  const [selectedMethodId, setSelectedMethodId] = useState<string | null>('m3');
 
   const handleSelectMethod = (id: string) => {
     setSelectedMethodId(id);

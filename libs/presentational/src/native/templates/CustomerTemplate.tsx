@@ -26,19 +26,21 @@ const CustomerTemplate = ({
 
   return (
     <FAProvider>
-      <SafeAreaView>
-        <StatusBar hidden />
-        <BlurTheme isOpen={state['isOpened']} />
+      <StatusBar hidden />
+      <BlurTheme isOpen={state['isOpened']} />
 
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <View style={globalStyles.container}>
-            <PrimaryScrollView direction="vertical">
-              {children}
-              {isHideTransparentView ? <TransparentView theme="vertical" /> : <></>}
-            </PrimaryScrollView>
-          </View>
-        </TouchableWithoutFeedback>
-      </SafeAreaView>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={globalStyles.container}>
+          <PrimaryScrollView direction="vertical">
+            {children}
+            {isHideTransparentView ? (
+              <TransparentView theme="vertical" />
+            ) : (
+              <></>
+            )}
+          </PrimaryScrollView>
+        </View>
+      </TouchableWithoutFeedback>
     </FAProvider>
   );
 };
