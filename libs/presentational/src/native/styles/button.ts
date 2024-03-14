@@ -137,8 +137,10 @@ const baseButtonRadius = StyleSheet.create({
 const baseIconTextButton = StyleSheet.create({
   container: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    width:'100%',
+    paddingHorizontal: 15,
     gap: 6,
   },
 

@@ -4,10 +4,10 @@ import { Image, View } from 'react-native';
 import {
   BackButton,
   FAIcon,
+  OnlyBorderButton,
   OverlayColor,
   Paragraph,
   PrimaryButton,
-  SmallPrimaryButton,
   Title,
   VerticalSpacer,
 } from '@present-native/atoms';
@@ -33,11 +33,11 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
           source={{ uri: url }}
           style={bannerFreelancerDetailStyle.image}
         />
-        <OverlayColor theme="black-gradient"></OverlayColor>
+        <OverlayColor theme="black-gradient" />
 
         <View style={[bannerFreelancerDetailStyle.contentContainer]}>
           <Header typeDisplay={[ETypeDisplayHeader.BACK_BUTTON_BACKGROUND]} />
-          <View style={{ width: '100%' }}>
+          <View style={{ width: '100%', gap: 2 }}>
             <View
               style={{
                 display: 'flex',
@@ -67,23 +67,39 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
             <Title theme="baseBold" color="white">
               {onConvertNumberToCurrency(balance, true)}
             </Title>
-            <View style={{display: 'flex', flexDirection:'row', maxWidth: windowWidth}}>
+            <VerticalSpacer size='l' />
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                maxWidth: windowWidth,
+                gap: 10,
+              }}
+            >
               <View
-                style={{ width: windowWidth - screenHorizontalPadding * 2 }}
-              >
-                <SmallPrimaryButton
-                  onPress={() => {}}
-                  theme="full-rounded-bold"
+                style={{
+                  width: (windowWidth - screenHorizontalPadding * 2) / 2,
+                }}
+              > 
+                <PrimaryButton
                   title="Chọn người này"
+                  size="small"
+                  radius="full"
+                  onPress={() => {}}
                 />
               </View>
               <View
-                style={{ width: windowWidth - screenHorizontalPadding * 2 }}
+                style={{
+                  width: (windowWidth - screenHorizontalPadding * 2) / 2,
+                }}
               >
-                <SmallPrimaryButton
+                <OnlyBorderButton
+                  title="Yêu thích"
+                  size="small"
+                  radius="full"
                   onPress={() => {}}
-                  theme="full-rounded-bold"
-                  title="Chọn người này"
+                  color="white"
+                  iconName="faHeart"
                 />
               </View>
             </View>

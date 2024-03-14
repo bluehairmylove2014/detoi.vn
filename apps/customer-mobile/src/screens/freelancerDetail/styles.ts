@@ -2,17 +2,15 @@ import { windowHeight, windowWidth } from '@constants/dimension';
 import { colors, screenHorizontalPadding, screenVerticalPadding } from '@present-native/styles';
 import { StyleSheet } from 'react-native';
 
+const imageWidth = windowWidth / 2 - screenHorizontalPadding - 5;
+
 const freelancerDetailScreenStyle = StyleSheet.create({
   container: {
     flex: 1,
     minHeight: windowHeight
   },
   introSection: {
-    // paddingHorizontal: screenHorizontalPadding,
-    // display: 'flex',
-    // flexDirection: 'column',
     backgroundColor: colors.lightStone,
-    // justifyContent: 'flex-start'
   },
   insightSection: {
     backgroundColor: colors.charcoal,
@@ -32,6 +30,14 @@ const freelancerDetailScreenStyle = StyleSheet.create({
   }
 });
 
+const titleStyle = StyleSheet.create({
+  underlineTitleStyle: {
+    backgroundColor: colors.white,
+    height: 1.5,
+    marginVertical: 5,
+  }
+})
+
 const insightSectionStyle = StyleSheet.create({
   wrapperInsight: {
     display: 'flex',
@@ -39,7 +45,17 @@ const insightSectionStyle = StyleSheet.create({
     justifyContent: 'flex-start',
   }
 })
+
+const proofOfWorkSectionStyle = {
+  image: {
+    width: imageWidth,
+    height: imageWidth,
+    marginVertical: 5,
+  }
+}
 export {
   freelancerDetailScreenStyle,
-  insightSectionStyle
+  insightSectionStyle,
+  titleStyle,
+  proofOfWorkSectionStyle
 };

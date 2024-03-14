@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState } from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, Text } from 'react-native';
 
 import { LoginProps } from '../../config';
 import { loginScreenStyle } from './styles';
@@ -78,96 +78,97 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
   };
 
   return (
-    <CustomerTemplate>
-      <View style={loginScreenStyle.container}>
-        <View>
-          <Title theme="largeBold" color="black">
-            Chỉ một bước nữa thôi!
-          </Title>
+    // <CustomerTemplate>
+    //   <View style={loginScreenStyle.container}>
+    //     <View>
+    //       <Title theme="largeBold" color="black">
+    //         Chỉ một bước nữa thôi!
+    //       </Title>
 
-          <VerticalSpacer size="s" />
-          <Paragraph theme="baseMedium">
-            Nhập số điện thoại để đăng nhập
-          </Paragraph>
+    //       <VerticalSpacer size="s" />
+    //       <Paragraph theme="baseMedium">
+    //         Nhập số điện thoại để đăng nhập
+    //       </Paragraph>
 
-          <VerticalSpacer size="xxl" />
-          <Paragraph theme="baseMedium">
-            Số điện thoại
-            <Paragraph theme="baseMedium" color="rose">
-              {' '}
-              *
-            </Paragraph>
-          </Paragraph>
-        </View>
+    //       <VerticalSpacer size="xxl" />
+    //       <Paragraph theme="baseMedium">
+    //         Số điện thoại
+    //         <Paragraph theme="baseMedium" color="rose">
+    //           {' '}
+    //           *
+    //         </Paragraph>
+    //       </Paragraph>
+    //     </View>
 
-        <VerticalSpacer size="m" />
-        <View style={loginScreenStyle.inputContainer}>
-          <CountryCodeSelect
-            onSelect={(value) => {
-              setCountryCode(value);
-            }}
-            defaultValue={DEFAULT_COUNTRY_CODE}
-          />
-          <Controller
-            name="phone"
-            control={control}
-            render={({ field }) => (
-              <TextInput
-                style={loginScreenStyle.input}
-                placeholder="Nhập số điện thoại của bạn"
-                placeholderTextColor={colors.gray}
-                selectionColor={colors.black}
-                keyboardType="numeric"
-                {...field}
-                onChangeText={(value) => {
-                  field.onChange(value);
-                  setValue('phone', value);
-                }}
-              />
-            )}
-          />
-        </View>
+    //     <VerticalSpacer size="m" />
+    //     <View style={loginScreenStyle.inputContainer}>
+    //       <CountryCodeSelect
+    //         onSelect={(value) => {
+    //           setCountryCode(value);
+    //         }}
+    //         defaultValue={DEFAULT_COUNTRY_CODE}
+    //       />
+    //       <Controller
+    //         name="phone"
+    //         control={control}
+    //         render={({ field }) => (
+    //           <TextInput
+    //             style={loginScreenStyle.input}
+    //             placeholder="Nhập số điện thoại của bạn"
+    //             placeholderTextColor={colors.gray}
+    //             selectionColor={colors.black}
+    //             keyboardType="numeric"
+    //             {...field}
+    //             onChangeText={(value) => {
+    //               field.onChange(value);
+    //               setValue('phone', value);
+    //             }}
+    //           />
+    //         )}
+    //       />
+    //     </View>
 
-        <VerticalSpacer size="xl" />
-        <PrimaryButton
-          radius="full"
-          title="Tiếp tục"
-          onPress={handleSubmit(onSuccessSubmitPhoneNumber, onErrorSubmit)}
-        />
+    //     <VerticalSpacer size="xl" />
+    //     <PrimaryButton
+    //       radius="full"
+    //       title="Tiếp tục"
+    //       onPress={handleSubmit(onSuccessSubmitPhoneNumber, onErrorSubmit)}
+    //     />
 
-        <VerticalSpacer size="xl" />
-        <Paragraph theme="baseMedium">
-          Tôi đồng ý với các
-          <Paragraph theme="baseBold" color="primary">
-            {' '}
-            Điều khoản dịch vụ
-          </Paragraph>{' '}
-          và
-          <Paragraph theme="baseBold" color="primary">
-            {' '}
-            Chính sách bảo mật
-          </Paragraph>{' '}
-          của Detoi
-        </Paragraph>
+    //     <VerticalSpacer size="xl" />
+    //     <Paragraph theme="baseMedium">
+    //       Tôi đồng ý với các
+    //       <Paragraph theme="baseBold" color="primary">
+    //         {' '}
+    //         Điều khoản dịch vụ
+    //       </Paragraph>{' '}
+    //       và
+    //       <Paragraph theme="baseBold" color="primary">
+    //         {' '}
+    //         Chính sách bảo mật
+    //       </Paragraph>{' '}
+    //       của Detoi
+    //     </Paragraph>
 
-        <VerticalSpacer size="xl" />
+    //     <VerticalSpacer size="xl" />
 
-        <View style={{ width: 230 }}>
-          <OnlyBorderButton
-            onPress={() => {}}
-            title="Có vấn đề với số điện thoại?"
-            radius="full"
-            size="small"
-          />
-        </View>
-      </View>
+    //     <View style={{ width: 230 }}>
+    //       <OnlyBorderButton
+    //         onPress={() => {}}
+    //         title="Có vấn đề với số điện thoại?"
+    //         radius="full"
+    //         size="small"
+    //       />
+    //     </View>
+    //   </View>
 
-      <MessageBox
-        message={errorMessage}
-        isActive={activeErrorBox}
-        onClose={() => setActiveErrorBox(false)}
-      />
-    </CustomerTemplate>
+    //   <MessageBox
+    //     message={errorMessage}
+    //     isActive={activeErrorBox}
+    //     onClose={() => setActiveErrorBox(false)}
+    //   />
+    // </CustomerTemplate>
+    <View><Text>asdasdas</Text></View>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { SelectCountry } from 'react-native-element-dropdown';
 import { headerStyle, languageSelectorStyle } from './styles';
 import { BackButton } from '@present-native/atoms';

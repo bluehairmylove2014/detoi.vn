@@ -1,17 +1,14 @@
 import { TouchableHighlight, View, Text, TouchableOpacity } from 'react-native';
 import { FAIcon } from '../icon';
-import { colors, backButtonStyles } from '@presentational/native/styles';
+import { colors } from '@presentational/native/styles';
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 type iconBackButtonProps = {
   iconSize?: number;
-  theme?: 'none' | 'background'
+  theme?: 'none' | 'background';
 };
-const listThemes = {
-  none: {},
-  background: backButtonStyles.background
-}
+
 const DEFAULT_ICON_SIZE = 16;
 
 export const BackButton = React.memo(
@@ -20,6 +17,18 @@ export const BackButton = React.memo(
     const handleBackClick = () => {
       navigation.goBack();
     };
+
+    const listThemes = useMemo(() => ({
+      none: {},
+      background: {
+        backgroundColor: 'rgba(0,0,0,0.8)',
+        borderRadius: 99,
+        width: iconSize + 14,
+        padding: 7
+      },
+    }), []); 
+    
+
     return (
       <TouchableOpacity onPress={handleBackClick} style={listThemes[theme]}>
         <FAIcon

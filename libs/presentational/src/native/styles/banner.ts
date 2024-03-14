@@ -53,20 +53,20 @@ const bannerFreelancerDetailStyle = StyleSheet.create({
     position: 'relative',
     width: windowWidth,
     height: 300,
-    backgroundColor: colors.lightStone,
+
   },
   containerImage: {
     resizeMode: 'cover',
     height: windowHeight / 2,
     top: undefined,
     paddingHorizontal: screenHorizontalPadding,
-    backgroundColor: colors.lightStone,
+  
   },
   image: {
     width: windowWidth,
     height: '100%',
     objectFit: 'cover',
-    backgroundColor: colors.lightStone,
+  
   },
   contentContainer: {
     position: 'absolute',
@@ -81,7 +81,7 @@ const bannerFreelancerDetailStyle = StyleSheet.create({
     paddingHorizontal: screenHorizontalPadding,
     paddingVertical: screenVerticalPadding,
     height: "100%",
-    backgroundColor: colors.lightStone,
+  
   },
 
 });
