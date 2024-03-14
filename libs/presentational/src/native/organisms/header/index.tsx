@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { SelectCountry } from 'react-native-element-dropdown';
 import { headerStyle, languageSelectorStyle } from './styles';
 import { BackButton } from '@present-native/atoms';
 
 export enum ETypeDisplayHeader {
   BACK_BUTTON,
+  BACK_BUTTON_BACKGROUND,
   LANGUAGE_BUTTON,
 }
 type TDisplayType =
   | ETypeDisplayHeader.BACK_BUTTON
+  | ETypeDisplayHeader.BACK_BUTTON_BACKGROUND
   | ETypeDisplayHeader.LANGUAGE_BUTTON;
 
 type HeaderProps = {
@@ -41,7 +43,13 @@ export const Header: React.FC<HeaderProps> = ({ typeDisplay }) => {
         <View style={headerStyle.backButtonContainer}>
           <BackButton />
         </View>
-      ) : <View style={{flex:1}}/>}
+      ) : typeDisplay.includes(ETypeDisplayHeader.BACK_BUTTON_BACKGROUND) ? (
+        <View style={headerStyle.backButtonContainer}>
+          <BackButton theme='background'/>
+        </View>
+      ) : (
+        <View style={{ flex: 1 }} />
+      )}
 
       {typeDisplay.includes(ETypeDisplayHeader.LANGUAGE_BUTTON) ? (
         <View style={headerStyle.languageButtonContainer}>
@@ -62,7 +70,9 @@ export const Header: React.FC<HeaderProps> = ({ typeDisplay }) => {
             }}
           />
         </View>
-      ) : <View style={{flex:1}}/>}
+      ) : (
+        <View style={{ flex: 1 }} />
+      )}
     </View>
   );
 };

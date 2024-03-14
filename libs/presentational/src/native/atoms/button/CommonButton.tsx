@@ -12,6 +12,7 @@ type commonButtonPros = {
   onPress: () => void;
 };
 
+
 type commonButtonProps = {
   title: string;
   radius?: keyof typeof baseButtonRadius;
@@ -19,7 +20,7 @@ type commonButtonProps = {
   iconName?: nativeIconNameType;
   iconPosition?: 'left' | 'right';
   onPress: () => void;
-  color?: 'black';
+  color?: 'black' | 'white';
 };
 
 const PrimaryButton = ({
@@ -82,6 +83,7 @@ const OnlyBorderButton = ({
       iconName={iconName}
       iconPosition={iconPosition}
       onPress={onPress}
+      color={color}
     />
   );
 };

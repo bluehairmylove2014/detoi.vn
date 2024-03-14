@@ -33,6 +33,14 @@ const iconSize: Record<keyof typeof baseButtonSizeStyle, number> = {
   base: 20,
 };
 
+const colorList ={
+  'black':{},
+  'white':{
+    borderColor:'white',
+    color:'white'
+  }
+}
+
 type baseButtonProps = {
   title: string;
   radius?: keyof typeof baseButtonRadius;
@@ -41,6 +49,7 @@ type baseButtonProps = {
   iconName?: nativeIconNameType;
   iconPosition?: 'left' | 'right';
   onPress: () => void;
+  color?: 'black' | 'white';
 };
 
 export const BaseButton = ({
@@ -51,6 +60,7 @@ export const BaseButton = ({
   iconName,
   iconPosition = 'left',
   onPress,
+  color
 }: baseButtonProps) => {
   return (
     <TouchableOpacity
@@ -59,6 +69,7 @@ export const BaseButton = ({
         ...baseButtonThemeStyle[theme],
         ...baseButtonSizeStyle[size],
         ...baseButtonRadius[radius],
+        borderColor: color
       }}
     >
       {iconName ? (
@@ -66,12 +77,14 @@ export const BaseButton = ({
           style={{
             ...baseIconTextButton.container,
             ...baseIconTextButton[iconPosition],
+    
           }}
         >
-          <FAIcon iconName={iconName} size={iconSize[size]} />
-          <Paragraph theme={textSize[size]} color={textColor[theme]}>
+          <FAIcon iconName={iconName} size={iconSize[size]} color={color ?? ''} />
+          <Paragraph theme={textSize[size]} color={color ?? textColor[theme]}>
             {title}
           </Paragraph>
+          <View/>
         </View>
       ) : (
         <Paragraph theme={textSize[size]} color={textColor[theme]}>

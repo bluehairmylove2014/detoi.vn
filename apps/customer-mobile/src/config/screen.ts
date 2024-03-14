@@ -1,3 +1,4 @@
+import { IFreelancerAccountDetail } from '@business-layer/services/entities';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 // 1. Params config
@@ -11,6 +12,8 @@ type customerRootStackParamList = {
   ProvideDetail: undefined;
   ProvideDate: undefined;
   Summary: undefined;
+  FreelancerDetail: { freelancerAccountDetail: IFreelancerAccountDetail };
+  ImageDetail: { imageUrl: string},
   OnService: undefined;
 };
 
@@ -53,6 +56,15 @@ type SummaryProps = NativeStackScreenProps<
   'Summary'
 >;
 
+type ImageDetailProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'ImageDetail'
+>
+
+type FreelancerDetailProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'FreelancerDetail'
+>
 type OnServiceProps = NativeStackScreenProps<
   customerRootStackParamList,
   'OnService'
@@ -71,5 +83,7 @@ export {
   customerTabParamList,
   IntroProps,
   ChooseServiceProps,
+  FreelancerDetailProps,
   OnServiceProps,
+  ImageDetailProps
 };

@@ -15,7 +15,13 @@ import {
 } from '@present-native/atoms';
 import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
 
-const CustomerTemplate = ({ children }: { children: React.ReactNode }) => {
+const CustomerTemplate = ({
+  children,
+  isHideTransparentView = true,
+}: {
+  children: React.ReactNode;
+  isHideTransparentView?: boolean;
+}) => {
   const { state } = useBlurTheme();
 
   return (
@@ -28,7 +34,7 @@ const CustomerTemplate = ({ children }: { children: React.ReactNode }) => {
           <View style={globalStyles.container}>
             <PrimaryScrollView direction="vertical">
               {children}
-              <TransparentView theme="vertical" />
+              {isHideTransparentView ? <TransparentView theme="vertical" /> : <></>}
             </PrimaryScrollView>
           </View>
         </TouchableWithoutFeedback>
