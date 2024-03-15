@@ -2,28 +2,77 @@ import { nativeIconNameType } from '@business-layer/business-logic/non-service-l
 import { FAIcon } from '@present-native/atoms';
 import { BarIconSectionStyle } from './styles';
 import { View, Text } from 'react-native';
+import { COLOR_PALETTE } from '@present-native/styles';
+
+type tabNameType = 'endow' | 'messages' | 'home' | 'orders' | 'account';
+const tabConfig: {
+  [key in tabNameType]: {
+    label: string;
+    iconName: { inactive: nativeIconNameType; active: nativeIconNameType };
+  };
+} = {
+  endow: {
+    label: 'Ưu đãi',
+    iconName: {
+      inactive: 'faSunRegular',
+      active: 'faSunSolid',
+    },
+  },
+  messages: {
+    label: 'Tin nhắn',
+    iconName: {
+      inactive: 'faCommentsRegular',
+      active: 'faCommentsSolid',
+    },
+  },
+  home: {
+    label: 'Trang chủ',
+    iconName: {
+      inactive: 'faCompassRegular',
+      active: 'faCompassSolid',
+    },
+  },
+  orders: {
+    label: 'Đơn đặt',
+    iconName: {
+      inactive: 'faRectangleListRegular',
+      active: 'faRectangleListSolid',
+    },
+  },
+  account: {
+    label: 'Tài khoản',
+    iconName: {
+      inactive: 'faUserRegular',
+      active: 'faUserSolid',
+    },
+  },
+};
 
 const TabBarIcon = ({
   focused,
-  iconName,
-  tabBarLabel,
+  tabName,
   notification,
 }: {
   focused: boolean;
-  iconName: nativeIconNameType;
-  tabBarLabel: string;
+  tabName: tabNameType;
   notification?: boolean;
-}) =>
-  focused ? (
-    <View style={BarIconSectionStyle.active_icon_container}>
-      <FAIcon iconName={iconName} color={'#595753'} size={22} />
-    </View>
-  ) : (
-    <View style={BarIconSectionStyle.inactive_icon_container}>
-      <FAIcon iconName={iconName} color={'#595753'} size={20} />
-      {notification && <View style={BarIconSectionStyle.new_notif}></View>}
-      <Text style={BarIconSectionStyle.label}>{tabBarLabel}</Text>
-    </View>
-  );
+}) => (
+  <View style={BarIconSectionStyle.icon_container}>
+    <FAIcon
+      iconName={tabConfig[tabName].iconName[focused ? 'active' : 'inactive']}
+      color={COLOR_PALETTE[focused ? 'primary' : 'lightStone']}
+      size={20}
+    />
+    {/* {notification && <View style={BarIconSectionStyle.new_notif}></View>} */}
+    <Text
+      style={[
+        BarIconSectionStyle.iconLabel,
+        { color: COLOR_PALETTE[focused ? 'primary' : 'lightStone'] },
+      ]}
+    >
+      {tabConfig[tabName].label}
+    </Text>
+  </View>
+);
 
 export default TabBarIcon;

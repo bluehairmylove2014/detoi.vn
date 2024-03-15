@@ -1,7 +1,16 @@
 import { IFreelancerAccountDetail } from '@business-layer/services/entities';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+type customerTabParamList = {
+  HomeStack: undefined;
+  EndowStack: undefined;
+  MessagesStack: undefined;
+  OrdersStack: undefined;
+  AccountStack: undefined;
+};
+
 // 1. Params config
+// HOME STACK
 type customerRootStackParamList = {
   Intro: undefined;
   Login: undefined;
@@ -13,17 +22,24 @@ type customerRootStackParamList = {
   ProvideDate: undefined;
   Summary: undefined;
   FreelancerDetail: { freelancerAccountDetail: IFreelancerAccountDetail };
-  ImageDetail: { imageUrl: string},
+  ImageDetail: { imageUrl: string };
   OnService: undefined;
 };
-
-type customerTabParamList = {
-  Home: undefined;
+// ENDOW STACK
+type endowStackParamList = {
   Endow: undefined;
+};
+// MESSAGES STACK
+type messagesStackParamList = {
   Message: undefined;
-  SingleService: undefined;
+};
+// ORDERS STACK
+type ordersStackParamList = {
+  OrdersList: undefined;
+};
+// ACCOUNT STACK
+type accountStackParamList = {
   Account: undefined;
-  Login: undefined;
 };
 
 // 2. Props
@@ -59,12 +75,12 @@ type SummaryProps = NativeStackScreenProps<
 type ImageDetailProps = NativeStackScreenProps<
   customerRootStackParamList,
   'ImageDetail'
->
+>;
 
 type FreelancerDetailProps = NativeStackScreenProps<
   customerRootStackParamList,
   'FreelancerDetail'
->
+>;
 type OnServiceProps = NativeStackScreenProps<
   customerRootStackParamList,
   'OnService'
@@ -72,7 +88,6 @@ type OnServiceProps = NativeStackScreenProps<
 
 // 3. Export props
 export {
-  customerRootStackParamList,
   HomeProps,
   ChooseLocationProps,
   LoginProps,
@@ -80,10 +95,17 @@ export {
   SummaryProps,
   ProvideDetailProps,
   ProvideDateProps,
-  customerTabParamList,
   IntroProps,
   ChooseServiceProps,
   FreelancerDetailProps,
   OnServiceProps,
-  ImageDetailProps
+  ImageDetailProps,
+};
+export {
+  customerRootStackParamList,
+  endowStackParamList,
+  messagesStackParamList,
+  ordersStackParamList,
+  accountStackParamList,
+  customerTabParamList,
 };

@@ -5,7 +5,13 @@ import { useHandleRefreshToken } from './useHandleRefreshToken';
 import { useAuthContext } from '../context';
 
 type useVerifyPasswordOtpType = {
-  onVerifyOtp: ({ otp }: { otp: string }) => Promise<string>;
+  onVerifyOtp: ({
+    otp,
+    phoneNumber,
+  }: {
+    otp: string;
+    phoneNumber?: string;
+  }) => Promise<string>;
   isLoading: boolean;
 };
 export const useVerifyOtp = (): useVerifyPasswordOtpType => {
@@ -14,9 +20,16 @@ export const useVerifyOtp = (): useVerifyPasswordOtpType => {
   const { setRefreshToken } = useHandleRefreshToken();
   const { state, dispatch } = useAuthContext();
 
-  const onVerifyOtp = ({ otp }: { otp: string }): Promise<string> => {
+  const onVerifyOtp = ({
+    otp,
+    phoneNumber,
+  }: {
+    otp: string;
+    phoneNumber?: string;
+  }): Promise<string> => {
     return new Promise((resolve, reject) => {
-      const phone = state.onOtpPhoneNumber;
+      const phone = phoneNumber ?? state.onOtpPhoneNumber;
+      console.log({ phone, otp });
       if (phone) {
         verifyOtpMutation
           .mutateAsync({ phone, otp })

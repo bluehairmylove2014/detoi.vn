@@ -2,25 +2,17 @@ import { StyleSheet } from 'react-native';
 import { COLOR_PALETTE } from '@styles/color';
 
 export const BarIconSectionStyle = StyleSheet.create({
-  active_icon_container: {
-    borderWidth: 1.5,
-    borderRadius: 999,
-    // Not in color.ts
-    borderColor: '#C89300',
-    padding: 18,
-    backgroundColor: COLOR_PALETTE.white,
-    marginBottom: 25,
-  },
-
-  inactive_icon_container: {
+  icon_container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
     gap: 3,
   },
 
-  label: {
-    // Not in color.ts
-    color: '#595753',
-    fontSize: 11,
+  iconLabel: {
+    fontFamily: 'Montserrat_400Regular',
+    fontSize: 8,
   },
 
   new_notif: {
