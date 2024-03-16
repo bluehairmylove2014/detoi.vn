@@ -81,7 +81,7 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
   return (
     <AuthTemplate>
       <View style={loginScreenStyle.container}>
-        <AuthHeader childs={['BACK_BUTTON']} />
+        <AuthHeader childs={['BLACK_BACK_BUTTON']} />
         <VerticalSpacer size="xl" />
 
         <View>

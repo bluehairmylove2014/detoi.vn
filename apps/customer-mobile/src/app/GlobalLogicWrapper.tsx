@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DEV_ENVIRONMENT_CONFIG } from '../config';
 import {
+  useIsLogged,
   useLogin,
   useLogout,
   useVerifyOtp,
@@ -12,7 +13,7 @@ import { useGoogleFonts } from '@business-layer/business-logic/non-service-lib/g
 const GlobalLogicWrapper = () => {
   const [isAppReady, setIsAppReady] = useState(false);
   const { isLoading: isFontFetched } = useGoogleFonts();
-  const [isLogged, setIsLogged] = useState<boolean | undefined>(undefined);
+  const isLogged = useIsLogged();
 
   const { onLogout } = useLogout();
   const { onLogin } = useLogin();
@@ -21,7 +22,6 @@ const GlobalLogicWrapper = () => {
   useEffect(() => {
     if (!DEV_ENVIRONMENT_CONFIG.SKIP_AUTHENTICATION) {
       onLogout();
-      setIsLogged(false);
       setIsAppReady(true);
       return;
     } else {
@@ -37,11 +37,10 @@ const GlobalLogicWrapper = () => {
           })
         )
         .then((res) => {
-          setIsLogged(true);
+          // TODO
         })
         .catch((error) => {
           console.error('ERROR SKIP AUTHENTICATION: ', error);
-          setIsLogged(false);
         })
         .finally(() => {
           setIsAppReady(true);

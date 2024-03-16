@@ -112,7 +112,7 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
   return (
     <AuthTemplate>
       <View style={otpVertificationScreenStyle.container}>
-        <AuthHeader childs={['BACK_BUTTON']} />
+        <AuthHeader childs={['BLACK_BACK_BUTTON']} />
         <VerticalSpacer size="xl" />
         <Paragraph theme="baseMedium">
           Mã OTP gồm 4 chữ số được gửi tới số

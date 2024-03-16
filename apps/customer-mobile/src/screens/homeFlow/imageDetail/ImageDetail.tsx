@@ -8,7 +8,7 @@ import { iamgeDetailScreenStyle } from './styles';
 const ImageDetail: React.FC<ImageDetailProps> = ({ route, navigation }) => {
   const { imageUrl } = route.params;
   return (
-    <CustomerTemplate isHideTransparentView={false}>
+    <CustomerTemplate>
       <ImageBackground
         style={iamgeDetailScreenStyle.imageSection}
         source={{ uri: imageUrl } as ImageSourcePropType}

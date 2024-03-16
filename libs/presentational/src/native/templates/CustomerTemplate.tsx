@@ -17,13 +17,7 @@ import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blu
 import { useIsLogged } from '@business-layer/business-logic/lib/auth';
 import NeedLoginBottomTab from '@present-native/molecules/bottomTab/NeedLoginBottomTab';
 
-const CustomerTemplate = ({
-  children,
-  isHideTransparentView = true,
-}: {
-  children: React.ReactNode;
-  isHideTransparentView?: boolean;
-}) => {
+const CustomerTemplate = ({ children }: { children: React.ReactNode }) => {
   const { state } = useBlurTheme();
   const isLogged = useIsLogged();
 
@@ -36,11 +30,7 @@ const CustomerTemplate = ({
         <View style={globalStyles.container}>
           <PrimaryScrollView direction="vertical">
             {children}
-            {isHideTransparentView ? (
-              <TransparentView theme="vertical" />
-            ) : (
-              <></>
-            )}
+            <TransparentView theme="vertical" />
           </PrimaryScrollView>
           {isLogged ? null : <NeedLoginBottomTab />}
         </View>

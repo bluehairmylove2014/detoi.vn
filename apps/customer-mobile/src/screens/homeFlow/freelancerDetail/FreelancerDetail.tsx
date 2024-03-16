@@ -134,7 +134,7 @@ const FreelancerDetail = React.memo(
     );
 
     return (
-      <CustomerTemplate isHideTransparentView={false}>
+      <CustomerTemplate>
         <View style={freelancerDetailScreenStyle.container}>
           <View style={freelancerDetailScreenStyle.introSection}>
             <BannerFreelancerDetail
