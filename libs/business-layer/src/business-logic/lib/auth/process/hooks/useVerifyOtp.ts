@@ -29,7 +29,6 @@ export const useVerifyOtp = (): useVerifyPasswordOtpType => {
   }): Promise<string> => {
     return new Promise((resolve, reject) => {
       const phone = phoneNumber ?? state.onOtpPhoneNumber;
-      console.log({ phone, otp });
       if (phone) {
         verifyOtpMutation
           .mutateAsync({ phone, otp })
