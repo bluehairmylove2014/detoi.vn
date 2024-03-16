@@ -5,7 +5,7 @@ import { messagesStackParamList } from '../../../config';
 import MessageScreen from '../../../screens/messagesFlow/Message/Message';
 
 const Stack = createNativeStackNavigator<messagesStackParamList>();
-export const MessagesStack = () => {
+export const MessagesStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
     <Stack.Navigator initialRouteName="Message">
       {/* Then, put stack.screen for your screen component here (in the end) */}

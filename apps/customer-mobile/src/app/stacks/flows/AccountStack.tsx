@@ -5,7 +5,7 @@ import { accountStackParamList } from '../../../config';
 import AccountScreen from '../../../screens/accountFlow/Account/Account';
 
 const Stack = createNativeStackNavigator<accountStackParamList>();
-export const AccountStack = () => {
+export const AccountStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
     <Stack.Navigator initialRouteName="Account">
       {/* Then, put stack.screen for your screen component here (in the end) */}

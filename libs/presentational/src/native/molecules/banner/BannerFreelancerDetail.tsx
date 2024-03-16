@@ -10,10 +10,8 @@ import {
   Title,
   VerticalSpacer,
 } from '@present-native/atoms';
-import { COLOR_PALETTE, screenHorizontalPadding } from '@present-native/styles';
+import { COLOR_PALETTE } from '@present-native/styles';
 import { onConvertNumberToCurrency } from '@utils/helpers/MoneyConverter';
-import { ETypeDisplayHeader, Header } from '@present-native/organisms';
-import { windowWidth } from '@constants/dimension';
 import { useNavigation } from '@react-navigation/native';
 
 type BannerChooseLocationProps = {
@@ -36,7 +34,7 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
         <OverlayColor theme="black-gradient" />
 
         <View style={[bannerFreelancerDetailStyle.contentContainer]}>
-          <Header typeDisplay={[ETypeDisplayHeader.BACK_BUTTON_BACKGROUND]} />
+          {/* <Header typeDisplay={[ETypeDisplayHeader.BACK_BUTTON_BACKGROUND]} /> */}
           <View style={bannerFreelancerDetailStyle.body}>
             <View style={bannerFreelancerDetailStyle.wrapperTypeFreelancer}>
               <Paragraph theme="largeMedium" color="white">
@@ -45,11 +43,12 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
               <View style={bannerFreelancerDetailStyle.rating}>
                 {Array.from({
                   length: ratingNumber,
-                }).map(() => (
+                }).map((_, i) => (
                   <FAIcon
                     iconName="faStar"
                     color={COLOR_PALETTE.yellow}
                     size={15}
+                    key={`star@${i}`}
                   />
                 ))}
               </View>
@@ -68,7 +67,7 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
               <View style={bannerFreelancerDetailStyle.buttonWrapper}>
                 <PrimaryBtn
                   title="Chọn người này"
-                  fontSize="small"
+                  fontSize="medium"
                   radius="full"
                   onPress={() => {
                     navigation.navigate('Summary');
@@ -78,10 +77,12 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
               <View style={bannerFreelancerDetailStyle.buttonWrapper}>
                 <OutlineBtn
                   title="Yêu thích"
-                  fontSize="small"
+                  color="white"
+                  fontSize="medium"
                   radius="full"
                   onPress={() => {}}
                   iconName="faHeart"
+                  borderColor="white"
                 />
               </View>
             </View>

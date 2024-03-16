@@ -6,6 +6,7 @@ const globalStyles = StyleSheet.create({
   container: {
     width: windowWidth,
     minHeight: windowHeight,
+    position: 'relative',
   },
   emptySpace: {
     width: windowWidth,

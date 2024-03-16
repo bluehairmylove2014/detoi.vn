@@ -46,10 +46,10 @@ export const locationSearchBox = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     paddingHorizontal: 45,
-    position: 'relative',
   },
   searchBoxWrapper: {
     width: '100%',
+    position: 'relative',
   },
   searchBoxIcon: {
     position: 'absolute',

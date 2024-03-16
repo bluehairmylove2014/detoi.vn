@@ -39,7 +39,7 @@ export const MessageBox = ({
 
           <VerticalSpacer size="xl" />
           <PrimaryBtn
-            title="ĐÓNG"
+            title="Tôi hiểu rồi"
             onPress={() => {
               onClose();
               setOpenBlurTheme(false);

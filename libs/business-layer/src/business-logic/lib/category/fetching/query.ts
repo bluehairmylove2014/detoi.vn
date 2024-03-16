@@ -8,10 +8,10 @@ import {
 
 const categoryService = new CategoryService();
 
-export const useGetAllCategoriesQuery = (token: string | null) => {
+export const useGetAllCategoriesQuery = () => {
   return useQuery({
     queryKey: [QUERY_N_MUTATION_KEYS.GET_ALL_CATEGORIES],
-    queryFn: () => categoryService.getAllCategory({ token }),
+    queryFn: () => categoryService.getAllCategory(),
   });
 };
 export const useGetCategoryDetailQuery = (

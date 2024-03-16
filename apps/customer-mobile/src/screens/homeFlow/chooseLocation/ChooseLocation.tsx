@@ -2,7 +2,7 @@ import { View } from 'react-native';
 import React, { useState } from 'react';
 import { ChooseLocationProps } from '../../../config';
 import { BannerTopSection } from '@present-native/molecules';
-import { Paragraph, SubtitleLink, VerticalSpacer } from '@present-native/atoms';
+import { BaseLink, Paragraph, VerticalSpacer } from '@present-native/atoms';
 import { RecommendationLocation } from '@present-native/organisms';
 import {
   useCurrentOrderAddress,
@@ -70,7 +70,7 @@ const ChooseLocation = React.memo(
                 onPress={handleSelectGeo}
               />
               <VerticalSpacer size="xxxl" />
-              <SubtitleLink screenName="Home">
+              <BaseLink screen="Home">
                 <Paragraph
                   theme="smallMedium"
                   decoration="underline"
@@ -78,7 +78,7 @@ const ChooseLocation = React.memo(
                 >
                   Chọn từ sổ địa chỉ?
                 </Paragraph>
-              </SubtitleLink>
+              </BaseLink>
             </View>
           </View>
         ) : null}

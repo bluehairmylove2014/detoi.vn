@@ -36,7 +36,9 @@ export const BackButton = React.memo(
         <FAIcon
           iconName="faArrowLeftLong"
           size={iconSize}
-          color={COLOR_PALETTE.white}
+          color={
+            theme === 'background' ? COLOR_PALETTE.white : COLOR_PALETTE.black
+          }
         />
       </TouchableOpacity>
     );

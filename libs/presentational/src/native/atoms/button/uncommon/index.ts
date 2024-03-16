@@ -1,1 +1,1 @@
-export * from './MethodLoginButton';
+

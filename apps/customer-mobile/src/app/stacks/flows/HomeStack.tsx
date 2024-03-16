@@ -6,7 +6,6 @@ import HomeScreen from '../../../screens/homeFlow/home/Home';
 import ChooseLocationScreen from '../../../screens/homeFlow/chooseLocation/ChooseLocation';
 import LoginScreen from '../../../screens/homeFlow/login/Login';
 import OTPVertificationScreen from '../../../screens/homeFlow/otpVertification/OTPVertification';
-import IntroScreen from '../../../screens/homeFlow/intro/Intro';
 import ChooseServiceScreen from '../../../screens/homeFlow/chooseService/ChooseService';
 import ProvideDetailScreen from '../../../screens/homeFlow/provideDetail/ProvideDetail';
 import ProvideDateScreen from '../../../screens/homeFlow/provideDate/ProvideDate';
@@ -14,22 +13,12 @@ import SummaryScreen from '../../../screens/homeFlow/summary/Summary';
 import FreelanceerDetailScreen from '../../../screens/homeFlow/freelancerDetail/FreelancerDetail';
 import OnServiceScreen from '../../../screens/homeFlow/onService/OnService';
 import DetailImageScreen from '../../../screens/homeFlow/imageDetail/ImageDetail';
-import { useIsLogged } from '@business-layer/business-logic/lib/auth';
 
 const Stack = createNativeStackNavigator<customerRootStackParamList>();
-export const HomeStack = () => {
-  const isLogged = useIsLogged();
-  const initRoute: keyof customerRootStackParamList = isLogged
-    ? 'Home'
-    : 'Login';
+export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
-    <Stack.Navigator initialRouteName={initRoute}>
+    <Stack.Navigator initialRouteName="Home">
       {/* Then, put stack.screen for your screen component here (in the end) */}
-      <Stack.Screen
-        component={IntroScreen}
-        name="Intro"
-        options={{ headerShown: false }}
-      />
       <Stack.Screen
         component={LoginScreen}
         name="Login"

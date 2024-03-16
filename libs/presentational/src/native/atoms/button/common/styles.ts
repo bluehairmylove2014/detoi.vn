@@ -13,10 +13,10 @@ export const baseBtnStyles = StyleSheet.create({
   text: {},
 });
 export const borderBtnStyles = StyleSheet.create({
-  primary: {
-    borderColor: COLOR_PALETTE.primary,
+  solid: {
     borderWidth: 1,
   },
+
   none: {},
 });
 export const radiusBtnStyles = StyleSheet.create({

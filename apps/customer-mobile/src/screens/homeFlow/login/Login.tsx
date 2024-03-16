@@ -22,8 +22,9 @@ import {
   useYupValidationResolver,
   loginByPhoneNumberSchema,
 } from '@utils/validators/yup';
-import CustomerTemplate from '@present-native/templates/CustomerTemplate';
+import AuthTemplate from '@present-native/templates/AuthTemplate';
 import { MessageBox } from '@present-native/molecules';
+import { AuthHeader } from '@present-native/organisms/header/AuthHeader';
 
 const DEFAULT_COUNTRY_CODE = {
   alpha2Code: 'VN',
@@ -78,8 +79,11 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
   };
 
   return (
-    <CustomerTemplate>
+    <AuthTemplate>
       <View style={loginScreenStyle.container}>
+        <AuthHeader childs={['BACK_BUTTON']} />
+        <VerticalSpacer size="xl" />
+
         <View>
           <Title theme="largeBold" color="black">
             Chỉ một bước nữa thôi!
@@ -158,6 +162,8 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
             title="Có vấn đề với số điện thoại?"
             radius="full"
             fontSize="small"
+            color="black"
+            borderColor="black"
           />
         </View>
       </View>
@@ -167,7 +173,7 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
         isActive={activeErrorBox}
         onClose={() => setActiveErrorBox(false)}
       />
-    </CustomerTemplate>
+    </AuthTemplate>
   );
 };
 

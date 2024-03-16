@@ -1,4 +1,4 @@
-import { paragraphFontStyles } from '@present-native/styles';
+import { paragraphFontStyles } from '@present-native/atoms/text/styles';
 
 type fontSizeKey = 'small' | 'medium' | 'large';
 
@@ -13,13 +13,13 @@ export const fontSizeBtnConfig: {
   small: {
     icon: 12,
     text: 'smallBold', // Error here, 'smallBold' is not of type paragraphFontStyles
-    paddingVertical: 6,
+    paddingVertical: 8,
     paddingHorizontal: 5,
   },
   medium: {
     icon: 14,
     text: 'baseBold', // Error here, 'baseBold' is not of type paragraphFontStyles
-    paddingVertical: 15,
+    paddingVertical: 12,
     paddingHorizontal: 5,
   },
   large: {

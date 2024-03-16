@@ -13,6 +13,7 @@ export type baseBtnProps = {
   backgroundColor: keyof typeof btnBackgroundColor;
   alignItems?: 'flex-start' | 'flex-end' | 'center';
   border?: keyof typeof borderBtnStyles;
+  borderColor?: keyof typeof btnChildColor;
   radius?: keyof typeof radiusBtnStyles;
   onPress: (...args: any[]) => void;
 };

@@ -33,4 +33,5 @@ export const btnBackgroundColor = {
 export const btnChildColor = {
   primary: COLOR_PALETTE.primary,
   black: COLOR_PALETTE.black,
+  white: COLOR_PALETTE.white,
 };

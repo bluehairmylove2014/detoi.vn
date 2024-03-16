@@ -1,7 +1,6 @@
 import React from 'react';
 import { ImageBackground, ImageSourcePropType, View } from 'react-native';
 import { ImageDetailProps } from '../../../config';
-import { Header, ETypeDisplayHeader } from '@present-native/organisms';
 import { OverlayColor } from '@present-native/atoms';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { iamgeDetailScreenStyle } from './styles';
@@ -17,7 +16,7 @@ const ImageDetail: React.FC<ImageDetailProps> = ({ route, navigation }) => {
       >
         <OverlayColor theme="black-gradient" />
         <View style={{ zIndex: 999 }}>
-          <Header typeDisplay={[ETypeDisplayHeader.BACK_BUTTON_BACKGROUND]} />
+          {/* <Header typeDisplay={[ETypeDisplayHeader.BACK_BUTTON_BACKGROUND]} /> */}
         </View>
       </ImageBackground>
       <View style={iamgeDetailScreenStyle.descriptionSection}></View>

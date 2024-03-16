@@ -3,7 +3,7 @@ import { OnServiceProps } from '../../../config';
 import { Image, View } from 'react-native';
 import { onServiceScreenStyle } from './styles';
 import {
-  CommonLink,
+  BaseLink,
   FAIcon,
   HorizontalSpacer,
   Paragraph,
@@ -124,13 +124,15 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
               })}
 
               <VerticalSpacer size="l" />
-              <CommonLink
-                theme="underline"
-                size="extraSmallBold"
-                align="center"
-                title="Xem thêm các chính sách"
-                toScreen=""
-              />
+              <BaseLink screen="Home">
+                <Paragraph
+                  theme="smallBold"
+                  align="center"
+                  decoration="underline"
+                >
+                  Xem thêm các chính sách
+                </Paragraph>
+              </BaseLink>
             </>
           ) : (
             // eslint-disable-next-line react/jsx-no-useless-fragment

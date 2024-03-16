@@ -5,7 +5,7 @@ import { ordersStackParamList } from '../../../config';
 import OrdersListScreen from '../../../screens/ordersFlow/OrdersList/OrdersList';
 
 const Stack = createNativeStackNavigator<ordersStackParamList>();
-export const OrdersStack = () => {
+export const OrdersStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
     <Stack.Navigator initialRouteName="OrdersList">
       {/* Then, put stack.screen for your screen component here (in the end) */}

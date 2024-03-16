@@ -11,7 +11,8 @@ import {
   useVerifyOtp,
 } from '@business-layer/business-logic/lib/auth';
 import { Paragraph, PrimaryBtn, VerticalSpacer } from '@present-native/atoms';
-import CustomerTemplate from '@present-native/templates/CustomerTemplate';
+import AuthTemplate from '@present-native/templates/AuthTemplate';
+import { AuthHeader } from '@present-native/organisms';
 
 const MAX_TRY = 3;
 const OTP_LENGTH = 4;
@@ -109,8 +110,10 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [otpWatcher]);
   return (
-    <CustomerTemplate>
+    <AuthTemplate>
       <View style={otpVertificationScreenStyle.container}>
+        <AuthHeader childs={['BACK_BUTTON']} />
+        <VerticalSpacer size="xl" />
         <Paragraph theme="baseMedium">
           Mã OTP gồm 4 chữ số được gửi tới số
           <Paragraph theme="baseBold"> {phoneNumber} </Paragraph>
@@ -189,7 +192,7 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
           </>
         )}
       </View>
-    </CustomerTemplate>
+    </AuthTemplate>
   );
 };
 export default OTPVertification;

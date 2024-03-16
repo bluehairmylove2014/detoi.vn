@@ -2,7 +2,6 @@
 
 import { IToken } from '@business-layer/services/entities';
 import { COOKIE_KEYS } from '../../../../configs/constants';
-import { TOKEN_EXPIRY_DAYS } from '../../constants';
 // Importing authentication context
 import { useAuthContext } from '../context';
 import {

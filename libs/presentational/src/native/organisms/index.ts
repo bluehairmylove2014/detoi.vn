@@ -1,2 +1,2 @@
-export * from './header';
 export * from './recommendationLocation';
+export * from './header';

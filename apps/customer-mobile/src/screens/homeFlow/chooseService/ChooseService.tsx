@@ -7,7 +7,12 @@ import {
   useCurrentOrderService,
   useGetCategoryDetail,
 } from '@business-layer/business-logic/lib/category';
-import { CommonLink, Title, VerticalSpacer } from '@present-native/atoms';
+import {
+  BaseLink,
+  Paragraph,
+  Title,
+  VerticalSpacer,
+} from '@present-native/atoms';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { BannerTopSection, ServicesList } from '@present-native/molecules';
 import { IService } from '@business-layer/services/entities/service';
@@ -46,13 +51,11 @@ const ChooseService: React.FC<ChooseServiceProps> = ({ route, navigation }) => {
           ) : null}
         </View>
         <VerticalSpacer size="xxxl" />
-        <CommonLink
-          theme="underline"
-          size="small"
-          title="Không tìm thấy loại hình bạn muốn?"
-          align="center"
-          toScreen=""
-        />
+        <BaseLink screen="Home">
+          <Paragraph theme="smallRegular" align="center" decoration="underline">
+            Không tìm thấy loại hình bạn muốn?
+          </Paragraph>
+        </BaseLink>
       </View>
     </CustomerTemplate>
   );

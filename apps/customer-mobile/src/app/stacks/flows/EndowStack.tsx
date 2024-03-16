@@ -5,7 +5,7 @@ import { endowStackParamList } from '../../../config';
 import EndowScreen from '../../../screens/endowFlow/Endow/Endow';
 
 const Stack = createNativeStackNavigator<endowStackParamList>();
-export const EndowStack = () => {
+export const EndowStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
     <Stack.Navigator initialRouteName="Endow">
       {/* Then, put stack.screen for your screen component here (in the end) */}

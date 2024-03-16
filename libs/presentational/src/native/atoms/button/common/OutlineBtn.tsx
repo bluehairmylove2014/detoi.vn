@@ -3,16 +3,15 @@ import BaseBtn from './BaseBtn';
 
 export const OutlineBtn = ({
   title,
+  color,
   fontSize,
   iconName,
   iconPosition,
   gap,
   radius,
+  borderColor,
   onPress,
-}: Omit<
-  baseBtnProps,
-  'color' | 'backgroundColor' | 'alignItems' | 'border'
->) => {
+}: Omit<baseBtnProps, 'backgroundColor' | 'alignItems' | 'border'>) => {
   return (
     <BaseBtn
       title={title}
@@ -22,9 +21,10 @@ export const OutlineBtn = ({
       gap={gap}
       radius={radius}
       onPress={onPress}
-      color="primary"
+      color={color}
       backgroundColor="transparent"
-      border="primary"
+      border="solid"
+      borderColor={borderColor}
       alignItems="center"
     />
   );

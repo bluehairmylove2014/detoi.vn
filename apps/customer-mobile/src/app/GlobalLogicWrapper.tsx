@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { DEV_ENVIRONMENT_CONFIG } from '../config';
 import {
   useLogin,
+  useLogout,
   useVerifyOtp,
 } from '@business-layer/business-logic/lib/auth';
 import { Intro } from '@present-native/atoms';
@@ -10,12 +11,17 @@ import { useGoogleFonts } from '@business-layer/business-logic/non-service-lib/g
 
 const GlobalLogicWrapper = () => {
   const [isAppReady, setIsAppReady] = useState(false);
+  const { isLoading: isFontFetched } = useGoogleFonts();
+  const [isLogged, setIsLogged] = useState<boolean | undefined>(undefined);
+
+  const { onLogout } = useLogout();
   const { onLogin } = useLogin();
   const { onVerifyOtp } = useVerifyOtp();
-  const { isLoading: isFontFetched } = useGoogleFonts();
 
   useEffect(() => {
     if (!DEV_ENVIRONMENT_CONFIG.SKIP_AUTHENTICATION) {
+      onLogout();
+      setIsLogged(false);
       setIsAppReady(true);
       return;
     } else {
@@ -31,10 +37,11 @@ const GlobalLogicWrapper = () => {
           })
         )
         .then((res) => {
-          // TODO
+          setIsLogged(true);
         })
         .catch((error) => {
           console.error('ERROR SKIP AUTHENTICATION: ', error);
+          setIsLogged(false);
         })
         .finally(() => {
           setIsAppReady(true);
@@ -43,7 +50,11 @@ const GlobalLogicWrapper = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return isAppReady && !isFontFetched ? <RootStack /> : <Intro />;
+  return isAppReady && !isFontFetched && isLogged !== undefined ? (
+    <RootStack isLogged={isLogged} />
+  ) : (
+    <Intro />
+  );
 };
 
 export default GlobalLogicWrapper;

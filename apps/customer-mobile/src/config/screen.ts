@@ -12,7 +12,6 @@ type customerTabParamList = {
 // 1. Params config
 // HOME STACK
 type customerRootStackParamList = {
-  Intro: undefined;
   Login: undefined;
   OTPVertification: undefined;
   Home: undefined;
@@ -48,7 +47,6 @@ type ChooseLocationProps = NativeStackScreenProps<
   customerRootStackParamList,
   'ChooseLocation'
 >;
-type IntroProps = NativeStackScreenProps<customerRootStackParamList, 'Intro'>;
 type LoginProps = NativeStackScreenProps<customerRootStackParamList, 'Login'>;
 type OTPVertificationProps = NativeStackScreenProps<
   customerRootStackParamList,
@@ -95,7 +93,6 @@ export {
   SummaryProps,
   ProvideDetailProps,
   ProvideDateProps,
-  IntroProps,
   ChooseServiceProps,
   FreelancerDetailProps,
   OnServiceProps,

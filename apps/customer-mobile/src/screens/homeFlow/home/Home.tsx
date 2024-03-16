@@ -15,9 +15,9 @@ import {
   Paragraph,
   VerticalSpacer,
   BellIconButton,
-  SubtitleLink,
   PrimaryScrollView,
   Thumbnail,
+  BaseLink,
 } from '@present-native/atoms';
 import { ICategory, IEvent } from '@business-layer/services/entities';
 import { COLOR_PALETTE } from '@present-native/styles';
@@ -30,10 +30,12 @@ import {
 import EndowItem from '@present-native/molecules/endow/EndowItem';
 import ServiceCard from '@present-native/molecules/card/ServiceCard';
 import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
+import { useIsLogged } from '@business-layer/business-logic/lib/auth';
 
 const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   const { data: categories } = useGetAllCategories();
   const { setCurrentOrderCategory } = useCurrentOrderCategory();
+  const isLogged = useIsLogged();
 
   // Event must be get from API
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -87,8 +89,12 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   ]);
 
   function handlePressCategory(category: ICategory) {
-    setCurrentOrderCategory({ category });
-    navigation.navigate('ChooseLocation');
+    if (isLogged) {
+      setCurrentOrderCategory({ category });
+      navigation.navigate('ChooseLocation');
+    } else {
+      navigation.navigate('Login');
+    }
   }
 
   return (
@@ -102,7 +108,11 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
                   {event.title}
                 </Title>
                 <VerticalSpacer size="m" />
-                <SubtitleLink screenName="ChooseLocation">
+                <BaseLink
+                  screen={isLogged ? 'ChooseLocation' : 'Login'}
+                  itemsOrientation="row"
+                  align="flex-start"
+                >
                   <Paragraph theme="smallMedium" color="primary">
                     {event.subtitle}
                   </Paragraph>
@@ -112,7 +122,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
                     color={COLOR_PALETTE.primary}
                     size={14}
                   />
-                </SubtitleLink>
+                </BaseLink>
               </View>
               <View style={topLabelStyle.event_spacer} />
               <Image
@@ -125,17 +135,26 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
             <View style={topLabelStyle.interaction_background_top} />
             <View style={topLabelStyle.interaction_background_bottom} />
             <View style={topLabelStyle.interaction_inner}>
-              <BellIconButton
-                notificationCount={notifications ? notifications.length : null}
-              />
-              <HorizontalSpacer size="l" />
+              {isLogged ? (
+                <>
+                  <BellIconButton
+                    notificationCount={
+                      notifications ? notifications.length : null
+                    }
+                  />
+                  <HorizontalSpacer size="l" />
+                </>
+              ) : null}
+
               <CategoryAndServiceSearchBox />
             </View>
           </View>
         </View>
         <VerticalSpacer size="xxl" />
         <View style={serviceSectionStyle.container}>
-          <Title theme="baseBold">Chúng tôi có thể giúp gì cho bạn?</Title>
+          <Title theme="baseBold" color="primary">
+            Chúng tôi có thể giúp gì cho bạn?
+          </Title>
           <VerticalSpacer size="xs" />
           <View style={serviceSectionStyle.categoriesContainer}>
             {Array.isArray(categories) && categories.length > 0 ? (
@@ -164,66 +183,72 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
             ) : null}
           </View>
 
-          {/* Other service */}
-          <VerticalSpacer size="xs" />
-          <View style={serviceSectionStyle.other_service}>
-            <ServiceCard
-              title="Thêm dịch vụ khác"
-              subtitle="Góp ý"
-              iconName="container"
-              onPress={() => {
-                console.log('Gop y');
-              }}
-            />
-            <ServiceCard
-              title={`${point} điểm`}
-              subtitle="Điểm tích lũy"
-              iconName="shoppingBag"
-              onPress={() => {
-                console.log('Điểm tích lũy');
-              }}
-            />
-          </View>
-
-          {/* Endow */}
-          <VerticalSpacer size="xs" />
-          <Title theme="baseBold" color="primary">
-            Ưu đãi dành riêng cho bạn
-          </Title>
-          <VerticalSpacer size="xs" />
-          <PrimaryScrollView direction="horizontal">
-            <View style={endowSectionStyle.container}>
-              {Array.isArray(endows) && endows.length > 0 ? (
-                <>
-                  {endows.map((item, index) => (
-                    <EndowItem
-                      key={index}
-                      image={item.image}
-                      description={item.description}
-                      label={item.label}
-                    />
-                  ))}
-                </>
-              ) : null}
-            </View>
-          </PrimaryScrollView>
-
-          {/* Member */}
-          {/* Use member state get from api */}
-          {Array.isArray(members) && members.length > 0 ? (
+          {!isLogged ? null : (
             <>
               <VerticalSpacer size="xs" />
+              <View style={serviceSectionStyle.other_service}>
+                <ServiceCard
+                  title="Thêm dịch vụ khác"
+                  subtitle="Góp ý"
+                  iconName="container"
+                  onPress={() => {
+                    console.log('Gop y');
+                  }}
+                />
+                <ServiceCard
+                  title={`${point} điểm`}
+                  subtitle="Điểm tích lũy"
+                  iconName="shoppingBag"
+                  onPress={() => {
+                    console.log('Điểm tích lũy');
+                  }}
+                />
+              </View>
+
+              <VerticalSpacer size="xs" />
               <Title theme="baseBold" color="primary">
-                Gói hội viên Detoi
+                Ưu đãi dành riêng cho bạn
               </Title>
               <VerticalSpacer size="xs" />
-              <View style={memberSectionStyle.container}>
-                {members.map((m) => (
-                  <Thumbnail theme="fullWidth" image={m.thumbnail} key={m.id} />
-                ))}
-              </View>
+              <PrimaryScrollView direction="horizontal">
+                <View style={endowSectionStyle.container}>
+                  {Array.isArray(endows) && endows.length > 0 ? (
+                    <>
+                      {endows.map((item, index) => (
+                        <EndowItem
+                          key={index}
+                          image={item.image}
+                          description={item.description}
+                          label={item.label}
+                        />
+                      ))}
+                    </>
+                  ) : null}
+                </View>
+              </PrimaryScrollView>
+
+              {/* Member */}
+              {/* Use member state get from api */}
+              {Array.isArray(members) && members.length > 0 ? (
+                <>
+                  <VerticalSpacer size="xs" />
+                  <Title theme="baseBold" color="primary">
+                    Gói hội viên Detoi
+                  </Title>
+                  <VerticalSpacer size="xs" />
+                  <View style={memberSectionStyle.container}>
+                    {members.map((m) => (
+                      <Thumbnail
+                        theme="fullWidth"
+                        image={m.thumbnail}
+                        key={m.id}
+                      />
+                    ))}
+                  </View>
+                </>
+              ) : null}
             </>
-          ) : null}
+          )}
         </View>
       </View>
     </CustomerTemplate>

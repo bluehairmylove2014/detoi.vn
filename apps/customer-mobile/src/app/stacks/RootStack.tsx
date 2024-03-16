@@ -17,17 +17,15 @@ import { windowWidth } from '@constants/dimension';
 
 export const Tab = createBottomTabNavigator<customerTabParamList>();
 
-export const RootStack = () => {
+export const RootStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="HomeStack"
         screenOptions={{
           tabBarStyle: {
-            display: 'flex',
+            display: isLogged ? 'flex' : 'none',
             flexDirection: 'row',
-            // alignItems: 'flex-start',
-            // justifyContent: 'space-between',
             width: windowWidth,
             paddingTop: 'auto',
             paddingBottom: 'auto',
@@ -38,34 +36,27 @@ export const RootStack = () => {
         }}
       >
         <Tab.Screen
-          component={HomeStack}
           name="HomeStack"
           options={{
             tabBarLabel: 'Trang chủ',
             tabBarIcon: ({ focused, color, size }) => (
-              <TabBarIcon
-                focused={focused}
-                // iconName="faHouseFire"
-                tabName="home"
-              />
+              <TabBarIcon focused={focused} tabName="home" />
             ),
           }}
-        />
+        >
+          {() => <HomeStack isLogged={isLogged} />}
+        </Tab.Screen>
         <Tab.Screen
-          component={EndowStack}
           name="EndowStack"
           options={{
             tabBarIcon: ({ focused, color, size }) => (
-              <TabBarIcon
-                focused={focused}
-                // iconName="faTags"
-                tabName="endow"
-              />
+              <TabBarIcon focused={focused} tabName="endow" />
             ),
           }}
-        />
+        >
+          {() => <EndowStack isLogged={isLogged} />}
+        </Tab.Screen>
         <Tab.Screen
-          component={MessagesStack}
           name="MessagesStack"
           options={{
             tabBarIcon: ({ focused, color, size }) => (
@@ -76,33 +67,29 @@ export const RootStack = () => {
               />
             ),
           }}
-        />
+        >
+          {() => <MessagesStack isLogged={isLogged} />}
+        </Tab.Screen>
         <Tab.Screen
-          component={OrdersStack}
           name="OrdersStack"
           options={{
             tabBarIcon: ({ focused, color, size }) => (
-              <TabBarIcon
-                focused={focused}
-                // iconName="faFileInvoiceDollar"
-                tabName="orders"
-              />
+              <TabBarIcon focused={focused} tabName="orders" />
             ),
           }}
-        />
+        >
+          {() => <OrdersStack isLogged={isLogged} />}
+        </Tab.Screen>
         <Tab.Screen
-          component={AccountStack}
           name="AccountStack"
           options={{
             tabBarIcon: ({ focused, color, size }) => (
-              <TabBarIcon
-                focused={focused}
-                // iconName="faUser"
-                tabName="account"
-              />
+              <TabBarIcon focused={focused} tabName="account" />
             ),
           }}
-        />
+        >
+          {() => <AccountStack isLogged={isLogged} />}
+        </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
   );

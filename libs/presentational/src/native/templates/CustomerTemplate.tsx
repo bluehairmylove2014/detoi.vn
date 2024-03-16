@@ -14,6 +14,8 @@ import {
   TransparentView,
 } from '@present-native/atoms';
 import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
+import { useIsLogged } from '@business-layer/business-logic/lib/auth';
+import NeedLoginBottomTab from '@present-native/molecules/bottomTab/NeedLoginBottomTab';
 
 const CustomerTemplate = ({
   children,
@@ -23,6 +25,7 @@ const CustomerTemplate = ({
   isHideTransparentView?: boolean;
 }) => {
   const { state } = useBlurTheme();
+  const isLogged = useIsLogged();
 
   return (
     <FAProvider>
@@ -39,6 +42,7 @@ const CustomerTemplate = ({
               <></>
             )}
           </PrimaryScrollView>
+          {isLogged ? null : <NeedLoginBottomTab />}
         </View>
       </TouchableWithoutFeedback>
     </FAProvider>
