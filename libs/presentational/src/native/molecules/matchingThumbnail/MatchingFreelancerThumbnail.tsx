@@ -15,10 +15,9 @@ type matchingFreelancerDetailProps = {
   freelancerData: IFreelancerAccountDetail;
   onPress: (freelancerData: IFreelancerAccountDetail) => void;
 };
-const MatchingFreelancerThumbnail: React.FC<matchingFreelancerDetailProps> = ({
-  freelancerData,
-  onPress,
-}) => {
+export const MatchingFreelancerThumbnail: React.FC<
+  matchingFreelancerDetailProps
+> = ({ freelancerData, onPress }) => {
   return (
     <Pressable
       style={{
@@ -81,5 +80,3 @@ const MatchingFreelancerThumbnail: React.FC<matchingFreelancerDetailProps> = ({
     </Pressable>
   );
 };
-
-export default MatchingFreelancerThumbnail;

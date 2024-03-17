@@ -10,7 +10,7 @@ type infiniteProgressBarType = {
   subLabel?: string;
   color: keyof typeof textColors;
 };
-const InfiniteProgressBar: React.FC<infiniteProgressBarType> = ({
+export const InfiniteProgressBar: React.FC<infiniteProgressBarType> = ({
   label,
   subLabel,
   color,
@@ -43,5 +43,3 @@ const InfiniteProgressBar: React.FC<infiniteProgressBarType> = ({
     </View>
   );
 };
-
-export default InfiniteProgressBar;

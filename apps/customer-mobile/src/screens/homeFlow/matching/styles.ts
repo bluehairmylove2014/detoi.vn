@@ -1,5 +1,5 @@
-import { windowHeight, windowWidth } from '@constants/dimension';
-import { COLOR_PALETTE, screenHorizontalPadding } from '@present-native/styles';
+import { windowWidth } from '@constants/dimension';
+import { screenHorizontalPadding } from '@present-native/styles';
 import { StyleSheet } from 'react-native';
 
 export const matchingStyles = StyleSheet.create({
@@ -41,18 +41,6 @@ export const matchingStyles = StyleSheet.create({
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     gap: 20,
-  },
-  filterContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  filterWrapper: {
-    width: windowWidth,
-    height: windowHeight / 2,
-    backgroundColor: COLOR_PALETTE.white,
-    padding: 20,
   },
   btnWrapper: {
     display: 'flex',

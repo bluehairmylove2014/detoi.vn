@@ -12,7 +12,9 @@ import {
 type headerWithOrderProps = {
   orderData: IOrderDetail;
 };
-const HeaderWithOrder: React.FC<headerWithOrderProps> = ({ orderData }) => {
+export const HeaderWithOrder: React.FC<headerWithOrderProps> = ({
+  orderData,
+}) => {
   return (
     <View style={headerWithOrderStyles.container}>
       <View style={headerWithOrderStyles.safeContainer}>
@@ -42,5 +44,3 @@ const HeaderWithOrder: React.FC<headerWithOrderProps> = ({ orderData }) => {
     </View>
   );
 };
-
-export default HeaderWithOrder;

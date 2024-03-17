@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MatchingProps } from '../../../config';
 import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
-import HeaderWithOrder from '@present-native/organisms/header/HeaderWithOrder';
+import { HeaderWithOrder } from '@present-native/organisms';
 import {
   IFreelancerAccountDetail,
   IOrderDetail,
@@ -12,15 +12,66 @@ import {
   PrimaryBtn,
   Title,
   VerticalSpacer,
+  InfiniteProgressBar,
 } from '@present-native/atoms';
-import { Animated, Modal, View } from 'react-native';
+import { View } from 'react-native';
 import { matchingStyles } from './styles';
-import InfiniteProgressBar from '@present-native/atoms/loading/InfiniteProgressBar';
 
-import MatchingFreelancerThumbnail from '@present-native/molecules/matchingThumbnail/MatchingFreelancerThumbnail';
+import { MatchingFreelancerThumbnail } from '@present-native/molecules';
 import { matchingFreelancerMockData } from './__mock__';
-import { windowHeight, windowWidth } from '@constants/dimension';
+import { windowHeight } from '@constants/dimension';
 import { HEADER_HEIGHT } from '@present-native/styles';
+import ModalWrapper from '@present-native/templates/ModalWrapper';
+
+const FILTER_CRITERIA = [
+  {
+    id: 'FILTER_CRITERIA@1',
+    name: 'Tất cả',
+    type: 'filter',
+  },
+  {
+    id: 'FILTER_CRITERIA@2',
+    name: 'Cá nhân',
+    type: 'filter',
+  },
+  {
+    id: 'FILTER_CRITERIA@3',
+    name: 'Đội ngũ',
+    type: 'filter',
+  },
+];
+const SORT_CRITERIA = [
+  {
+    id: 'FILTER_CRITERIA@4',
+    name: 'Mặc định',
+    type: 'sort',
+  },
+  {
+    id: 'FILTER_CRITERIA@5',
+    name: 'Mới nhất',
+    type: 'sort',
+  },
+  {
+    id: 'FILTER_CRITERIA@6',
+    name: 'Giá thấp nhất',
+    type: 'sort',
+  },
+  {
+    id: 'FILTER_CRITERIA@7',
+    name: 'Đánh giá tốt nhất',
+    type: 'sort',
+  },
+  {
+    id: 'FILTER_CRITERIA@8',
+    name: 'Nhiều người làm nhất',
+    type: 'sort',
+  },
+  {
+    id: 'FILTER_CRITERIA@9',
+    name: 'Nhiều lượt ghép đơn nhất',
+    type: 'sort',
+  },
+];
 
 const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
   const order: IOrderDetail = {};
@@ -28,6 +79,13 @@ const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
   const [freelancers, setFreelancers] = useState<IFreelancerAccountDetail[]>(
     []
   );
+  const [isFilterActive, setIsFilterActive] = useState<boolean>(false);
+  const [filterCriteria, setFilterCriteria] = useState<string[]>([
+    'FILTER_CRITERIA@1',
+  ]);
+  const [sortCriteria, setSortCriteria] = useState<string[]>([
+    'FILTER_CRITERIA@4',
+  ]);
 
   function handlePressFreelancerThumbnail(
     freelancerData: IFreelancerAccountDetail
@@ -36,15 +94,35 @@ const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
       freelancerAccountDetail: freelancerData,
     });
   }
+  function openFilterModal() {
+    if (freelancers.length > 0) {
+      setIsFilterActive(true);
+    }
+  }
+  function closeFilterModal() {
+    console.log('CLOSE');
+    setIsFilterActive(false);
+  }
+  function toggleCriteria(id: string, type: 'filter' | 'sort') {
+    const [getter, setter] =
+      type === 'filter'
+        ? [filterCriteria, setFilterCriteria]
+        : [sortCriteria, setSortCriteria];
+    if (getter.includes(id)) {
+      setter(getter.filter((gid) => gid !== id));
+    } else {
+      setter([...getter, id]);
+    }
+  }
 
   useEffect(() => {
     setTimeout(() => {
-      freelancers.length < 3 &&
+      freelancers.length < 6 &&
         setFreelancers([
           ...freelancers,
           matchingFreelancerMockData[freelancers.length],
         ]);
-    }, 4000);
+    }, 2000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [freelancers.length]);
 
@@ -88,7 +166,7 @@ const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
                   iconPosition="left"
                   gap={5}
                   radius="square"
-                  onPress={() => {}}
+                  onPress={openFilterModal}
                 />
               </View>
             </View>
@@ -109,115 +187,59 @@ const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
         )}
       </View>
 
-      <Modal animationType="slide" transparent={true}>
-        <View style={matchingStyles.filterContainer}>
-          <View style={matchingStyles.filterWrapper}>
-            <Title theme="baseBold">Bộ lọc</Title>
+      <ModalWrapper
+        isActive={isFilterActive}
+        onClose={closeFilterModal}
+        overlayColor="black"
+      >
+        <Title theme="baseBold">Bộ lọc</Title>
 
-            <VerticalSpacer size="xxl" />
-            <Paragraph theme="smallSemibold" color="primary">
-              Hình thức
-            </Paragraph>
-            <VerticalSpacer size="l" />
-            <View style={matchingStyles.btnWrapper}>
+        <VerticalSpacer size="xxl" />
+        <Paragraph theme="smallSemibold" color="primary">
+          Hình thức
+        </Paragraph>
+        <VerticalSpacer size="l" />
+        <View style={matchingStyles.btnWrapper}>
+          {FILTER_CRITERIA.map((fc) => {
+            const color = filterCriteria.includes(fc.id) ? 'primary' : 'black';
+            return (
               <OutlineBtn
-                title="Tất cả"
-                color="primary"
+                title={fc.name}
+                color={color}
                 fontSize="small"
                 radius="full"
-                borderColor="primary"
+                borderColor={color}
                 isFitContent={true}
-                onPress={() => {}}
+                onPress={() => toggleCriteria(fc.id, 'filter')}
+                key={fc.id}
               />
-              <OutlineBtn
-                title="Cá nhân"
-                color="primary"
-                fontSize="small"
-                radius="full"
-                borderColor="primary"
-                isFitContent={true}
-                onPress={() => {}}
-              />
-              <OutlineBtn
-                title="Đội ngũ"
-                color="primary"
-                fontSize="small"
-                radius="full"
-                borderColor="primary"
-                isFitContent={true}
-                onPress={() => {}}
-              />
-            </View>
-
-            <VerticalSpacer size="xxl" />
-            <Paragraph theme="smallSemibold" color="primary">
-              Sắp xếp
-            </Paragraph>
-            <VerticalSpacer size="l" />
-            <View style={matchingStyles.btnWrapper}>
-              <OutlineBtn
-                title="Mặc định"
-                color="primary"
-                fontSize="small"
-                radius="full"
-                borderColor="primary"
-                isFitContent={true}
-                onPress={() => {}}
-              />
-
-              <OutlineBtn
-                title="Mới nhất"
-                color="primary"
-                fontSize="small"
-                radius="full"
-                borderColor="primary"
-                isFitContent={true}
-                onPress={() => {}}
-              />
-
-              <OutlineBtn
-                title="Giá thấp nhất"
-                color="primary"
-                fontSize="small"
-                radius="full"
-                borderColor="primary"
-                isFitContent={true}
-                onPress={() => {}}
-              />
-
-              <OutlineBtn
-                title="Đánh giá tốt nhất"
-                color="primary"
-                fontSize="small"
-                radius="full"
-                borderColor="primary"
-                isFitContent={true}
-                onPress={() => {}}
-              />
-
-              <OutlineBtn
-                title="Nhiều người làm nhất"
-                color="primary"
-                fontSize="small"
-                radius="full"
-                borderColor="primary"
-                isFitContent={true}
-                onPress={() => {}}
-              />
-
-              <OutlineBtn
-                title="Nhiều lượt ghép đơn nhất"
-                color="primary"
-                fontSize="small"
-                radius="full"
-                borderColor="primary"
-                isFitContent={true}
-                onPress={() => {}}
-              />
-            </View>
-          </View>
+            );
+          })}
         </View>
-      </Modal>
+
+        <VerticalSpacer size="xxl" />
+        <Paragraph theme="smallSemibold" color="primary">
+          Sắp xếp
+        </Paragraph>
+        <VerticalSpacer size="l" />
+        <View style={matchingStyles.btnWrapper}>
+          {SORT_CRITERIA.map((fc) => {
+            const color = sortCriteria.includes(fc.id) ? 'primary' : 'black';
+            return (
+              <OutlineBtn
+                title={fc.name}
+                color={color}
+                fontSize="small"
+                radius="full"
+                borderColor={color}
+                isFitContent={true}
+                onPress={() => toggleCriteria(fc.id, 'sort')}
+                key={fc.id}
+              />
+            );
+          })}
+        </View>
+      </ModalWrapper>
     </CustomerTemplate>
   );
 };
