@@ -31,7 +31,7 @@ export const matchingFreelancerMockData: IFreelancerAccountDetail[] = [
     isTeam: false,
     teamMemberCount: 1,
     description: 'Experienced cleaner with attention to detail.',
-    previewPrice: 20,
+    previewPrice: 200000,
     skills: [
       {
         id: '7105a90b-21e7-45e4-1b4b-08dc41db2005',
@@ -71,7 +71,7 @@ export const matchingFreelancerMockData: IFreelancerAccountDetail[] = [
     isTeam: true,
     teamMemberCount: 5,
     description: 'Dedicated janitor with excellent organizational skills.',
-    previewPrice: 18,
+    previewPrice: 180000,
     skills: [
       {
         id: '8105a90b-21e7-45e4-1b4b-08dc41db2006',
@@ -111,7 +111,7 @@ export const matchingFreelancerMockData: IFreelancerAccountDetail[] = [
     isTeam: false,
     teamMemberCount: 1,
     description: 'Professional housekeeper with a friendly demeanor.',
-    previewPrice: 25,
+    previewPrice: 250000,
     skills: [
       {
         id: '9105a90b-21e7-45e4-1b4b-08dc41db2007',
@@ -151,7 +151,7 @@ export const matchingFreelancerMockData: IFreelancerAccountDetail[] = [
     isTeam: false,
     teamMemberCount: 1,
     description: 'Experienced cleaner with attention to detail.',
-    previewPrice: 20,
+    previewPrice: 40000,
     skills: [
       {
         id: '7105a90b-21e7-45e4-1b4b-08dc41db2005',
@@ -191,7 +191,7 @@ export const matchingFreelancerMockData: IFreelancerAccountDetail[] = [
     isTeam: true,
     teamMemberCount: 5,
     description: 'Dedicated janitor with excellent organizational skills.',
-    previewPrice: 18,
+    previewPrice: 300000,
     skills: [
       {
         id: '8105a90b-21e7-45e4-1b4b-08dc41db2006',
@@ -231,7 +231,7 @@ export const matchingFreelancerMockData: IFreelancerAccountDetail[] = [
     isTeam: false,
     teamMemberCount: 1,
     description: 'Professional housekeeper with a friendly demeanor.',
-    previewPrice: 25,
+    previewPrice: 254000,
     skills: [
       {
         id: '9105a90b-21e7-45e4-1b4b-08dc41db2007',
