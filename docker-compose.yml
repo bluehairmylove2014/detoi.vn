@@ -2,6 +2,7 @@ version: '3.4'
 
 networks:
   detoidockernetwork:
+    driver: bridge
 
 services:
   detoidb:
@@ -14,6 +15,11 @@ services:
       - MSSQL_SA_PASSWORD=Password@12345#
     networks:
       - detoidockernetwork
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PPassword@12345#", "-Q", "select 1"]
+      interval: 1s
+      retries: 20
+
   detoiserver:
     container_name: detoi-server-container
     image: cuong457/detoiserver:latest
@@ -21,10 +27,11 @@ services:
       - 8000:8080
       - 8001:8081
     depends_on:
-      - detoidb
+      detoidb:
+        condition: service_healthy
     env_file:
-      - path: docker.env
-        required: true
+      - path: ./docker.env
+        required: false
     environment:
       - DB_HOST=detoidb
       - DB_NAME=DeToiVN
