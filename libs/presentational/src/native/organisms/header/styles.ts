@@ -37,14 +37,10 @@ export const headerWithOrderStyles = StyleSheet.create({
     alignItems: 'flex-start',
     gap: 10,
     marginBottom: 30,
+    flexWrap: 'nowrap',
   },
-  orderDetailContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    gap: 14,
-    flexGrow: 1,
+  imageContainer: {
+    width: 70,
   },
   orderDetailTextContainer: {
     display: 'flex',
@@ -52,10 +48,8 @@ export const headerWithOrderStyles = StyleSheet.create({
     gap: 4,
     flexShrink: 1,
   },
-  imageContainer: {
-    width: 60,
-  },
   cancelOrderBtnContainer: {
     flexShrink: 1,
+    width: 30,
   },
 });

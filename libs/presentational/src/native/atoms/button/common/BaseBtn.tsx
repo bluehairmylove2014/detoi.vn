@@ -18,6 +18,7 @@ const BaseBtn = ({
   border = 'none',
   borderColor,
   radius = 'square',
+  isFitContent,
   onPress,
 }: baseBtnProps) => {
   const titleJsx = (
@@ -56,6 +57,12 @@ const BaseBtn = ({
             ? btnChildColors[borderColor]
             : 'transparent',
         },
+        isFitContent
+          ? {
+              width: 'auto',
+              paddingHorizontal: 20,
+            }
+          : {},
       ]}
       onPress={onPress}
     >

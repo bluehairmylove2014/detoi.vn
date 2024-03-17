@@ -10,6 +10,7 @@ export const OutlineBtn = ({
   gap,
   radius,
   borderColor,
+  isFitContent,
   onPress,
 }: Omit<baseBtnProps, 'backgroundColor' | 'alignItems' | 'border'>) => {
   return (
@@ -25,6 +26,7 @@ export const OutlineBtn = ({
       backgroundColor="transparent"
       border="solid"
       borderColor={borderColor}
+      isFitContent={isFitContent}
       alignItems="center"
     />
   );

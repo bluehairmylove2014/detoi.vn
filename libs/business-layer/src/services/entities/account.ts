@@ -28,6 +28,7 @@ export interface IFreelancerAccountDetail {
   account: IAccountDetail;
   address: IAddress;
   rating: number;
+  totalReviewCount: number;
   balance: number;
   orderCount: number;
   loveCount: number;
