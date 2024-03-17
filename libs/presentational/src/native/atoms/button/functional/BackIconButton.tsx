@@ -1,13 +1,13 @@
 import { TouchableOpacity } from 'react-native';
 import { FAIcon } from '../../icon';
-import { btnChildColor } from '@presentational/native/styles';
+import { btnChildColors } from '@presentational/native/styles';
 import { useNavigation } from '@react-navigation/native';
 import React, { useMemo } from 'react';
 
 type iconBackButtonProps = {
   iconSize?: number;
   theme?: 'none' | 'background';
-  color?: keyof typeof btnChildColor;
+  color?: keyof typeof btnChildColors;
 };
 
 const DEFAULT_ICON_SIZE = 16;
@@ -41,7 +41,7 @@ export const BackButton = React.memo(
         <FAIcon
           iconName="faArrowLeftLong"
           size={iconSize}
-          color={btnChildColor[color]}
+          color={btnChildColors[color]}
         />
       </TouchableOpacity>
     );

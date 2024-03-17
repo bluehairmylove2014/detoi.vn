@@ -15,3 +15,7 @@ export interface IServiceDetail extends IService {
   requirements: IUIServiceRequirement[];
   additionalRequirements: IUIAdditionServiceRequirement[];
 }
+export interface IServiceStatus {
+  id: string;
+  name: string;
+}

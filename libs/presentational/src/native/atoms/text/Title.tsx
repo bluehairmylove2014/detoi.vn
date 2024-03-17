@@ -7,6 +7,7 @@ import {
   textCommonStyles,
   titleFontStyles,
 } from './styles';
+import { titleColors } from '@styles/color';
 
 const Title = ({
   children,
@@ -19,7 +20,7 @@ const Title = ({
   children: React.ReactNode;
   theme: keyof typeof titleFontStyles;
   lineNumber?: number;
-  color?: 'primary' | 'black' | 'white';
+  color?: keyof typeof titleColors;
   align?: 'left' | 'right' | 'center' | 'justify';
   decoration?: 'underline' | 'normal' | 'lineThrough';
 }) => (

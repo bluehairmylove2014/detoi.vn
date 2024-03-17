@@ -37,6 +37,10 @@ import {
   faCompass as faCompassSolid,
   faRectangleList as faRectangleListSolid,
   faSun as faSunSolid,
+  faArrowUpZA,
+  faPeopleGroup,
+  faPerson,
+  faStarHalfStroke,
 } from '@fortawesome/free-solid-svg-icons';
 import { fa500px } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -46,6 +50,7 @@ import {
   faCompass as faCompassRegular,
   faRectangleList as faRectangleListRegular,
   faSun as faSunRegular,
+  faStar as faStarEmptyStroke,
 } from '@fortawesome/free-regular-svg-icons';
 
 export const NATIVE_ICONS = {
@@ -93,6 +98,11 @@ export const NATIVE_ICONS = {
   faHouseCircleCheck,
   faStreetView,
   faPeopleCarryBox,
+  faArrowUpZA,
+  faPeopleGroup,
+  faPerson,
+  faStarHalfStroke,
+  faStarEmptyStroke,
 };
 
 export type nativeIconNameType = keyof typeof NATIVE_ICONS;

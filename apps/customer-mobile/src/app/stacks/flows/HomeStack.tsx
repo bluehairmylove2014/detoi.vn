@@ -13,11 +13,12 @@ import SummaryScreen from '../../../screens/homeFlow/summary/Summary';
 import FreelanceerDetailScreen from '../../../screens/homeFlow/freelancerDetail/FreelancerDetail';
 import OnServiceScreen from '../../../screens/homeFlow/onService/OnService';
 import DetailImageScreen from '../../../screens/homeFlow/imageDetail/ImageDetail';
+import MatchingScreen from '../../../screens/homeFlow/matching/Matching';
 
 const Stack = createNativeStackNavigator<customerRootStackParamList>();
 export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="Matching">
       {/* Then, put stack.screen for your screen component here (in the end) */}
       <Stack.Screen
         component={LoginScreen}
@@ -57,6 +58,11 @@ export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
       <Stack.Screen
         component={SummaryScreen}
         name="Summary"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        component={MatchingScreen}
+        name="Matching"
         options={{ headerShown: false }}
       />
       <Stack.Screen

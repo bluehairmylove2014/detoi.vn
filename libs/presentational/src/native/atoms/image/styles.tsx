@@ -8,3 +8,12 @@ export const circleImageStyles = StyleSheet.create({
     objectFit: 'cover',
   },
 });
+
+export const squareRoundedImageStyles = StyleSheet.create({
+  image: {
+    borderRadius: 8,
+    width: '100%',
+    aspectRatio: 1,
+    objectFit: 'cover',
+  },
+});

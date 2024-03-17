@@ -1,4 +1,5 @@
 import { IAddress } from './address';
+import { IService, IServiceStatus } from './service';
 
 export interface IOrderElement {
   name: string;
@@ -12,4 +13,15 @@ export interface IOrder {
   startDate: string;
   serviceId: string;
   note: string;
+}
+
+export interface IOrderDetail {
+  address: IAddress;
+  estimatedPrice: number | null;
+  startTime: string;
+  startDate: string;
+  finishTime: string | null;
+  finishDate: string | null;
+  serviceStatus: IServiceStatus;
+  serviceTypes: IService[] | null;
 }

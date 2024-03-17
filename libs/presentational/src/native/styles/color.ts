@@ -25,12 +25,25 @@ export const COLOR_PALETTE = {
   inherit: 'inherit',
 };
 
-export const btnBackgroundColor = {
+export const btnBackgroundColors = {
   secondary: COLOR_PALETTE.secondary,
   zinc: COLOR_PALETTE.zinc,
   transparent: COLOR_PALETTE.transparent,
 };
-export const btnChildColor = {
+export const btnChildColors = {
+  primary: COLOR_PALETTE.primary,
+  black: COLOR_PALETTE.black,
+  white: COLOR_PALETTE.white,
+};
+export const textColors = {
+  primary: COLOR_PALETTE.primary,
+  black: COLOR_PALETTE.black,
+  rose: COLOR_PALETTE.rose,
+  white: COLOR_PALETTE.white,
+  gray: COLOR_PALETTE.gray,
+  yellow: COLOR_PALETTE.yellow,
+};
+export const titleColors = {
   primary: COLOR_PALETTE.primary,
   black: COLOR_PALETTE.black,
   white: COLOR_PALETTE.white,

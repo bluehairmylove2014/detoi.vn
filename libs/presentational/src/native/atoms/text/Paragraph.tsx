@@ -7,6 +7,7 @@ import {
   textCommonStyles,
   paragraphFontStyles,
 } from './styles';
+import { textColors } from '@present-native/styles';
 
 const Paragraph = ({
   children,
@@ -19,7 +20,7 @@ const Paragraph = ({
   children: React.ReactNode;
   theme: keyof typeof paragraphFontStyles;
   lineNumber?: number;
-  color?: 'primary' | 'black' | 'rose' | 'white' | 'gray' | 'yellow' | 'white';
+  color?: keyof typeof textColors;
   align?: 'left' | 'right' | 'center' | 'justify';
   decoration?: 'underline' | 'normal' | 'lineThrough';
 }) => (

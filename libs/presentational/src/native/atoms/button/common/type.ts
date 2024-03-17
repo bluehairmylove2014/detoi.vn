@@ -1,5 +1,5 @@
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
-import { btnBackgroundColor, btnChildColor } from '@styles/color';
+import { btnBackgroundColors, btnChildColors } from '@styles/color';
 import { borderBtnStyles, radiusBtnStyles } from './styles';
 import { fontSizeBtnConfig } from './config';
 
@@ -9,11 +9,11 @@ export type baseBtnProps = {
   iconName?: nativeIconNameType;
   iconPosition?: 'left' | 'right';
   gap?: number;
-  color: keyof typeof btnChildColor;
-  backgroundColor: keyof typeof btnBackgroundColor;
+  color: keyof typeof btnChildColors;
+  backgroundColor: keyof typeof btnBackgroundColors;
   alignItems?: 'flex-start' | 'flex-end' | 'center';
   border?: keyof typeof borderBtnStyles;
-  borderColor?: keyof typeof btnChildColor;
+  borderColor?: keyof typeof btnChildColors;
   radius?: keyof typeof radiusBtnStyles;
   onPress: (...args: any[]) => void;
 };

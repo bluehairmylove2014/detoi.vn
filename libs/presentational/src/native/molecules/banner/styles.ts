@@ -4,12 +4,13 @@ import {
   screenHorizontalPadding,
   screenVerticalPadding,
 } from '@styles/spacingConvention';
+import { HEADER_HEIGHT } from '@present-native/styles';
 
 const bannerTopSectionStyle = StyleSheet.create({
   container: {
     position: 'relative',
     width: '100%',
-    height: 200,
+    height: HEADER_HEIGHT,
   },
   containerImage: {
     resizeMode: 'cover',

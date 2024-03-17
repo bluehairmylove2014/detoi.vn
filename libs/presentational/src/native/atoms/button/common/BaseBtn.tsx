@@ -3,7 +3,7 @@ import { baseBtnProps } from './type';
 import { FAIcon } from '@present-native/atoms/icon';
 import { Paragraph } from '@present-native/atoms/text';
 import { baseBtnStyles, borderBtnStyles, radiusBtnStyles } from './styles';
-import { btnBackgroundColor, btnChildColor } from '@present-native/styles';
+import { btnBackgroundColors, btnChildColors } from '@present-native/styles';
 import { fontSizeBtnConfig } from './config';
 
 const BaseBtn = ({
@@ -32,7 +32,7 @@ const BaseBtn = ({
   const iconJsx = iconName ? (
     <FAIcon
       iconName={iconName}
-      color={btnChildColor[color]}
+      color={btnChildColors[color]}
       size={fontSizeBtnConfig[fontSize].icon}
     />
   ) : (
@@ -47,12 +47,14 @@ const BaseBtn = ({
         radiusBtnStyles[radius],
         borderBtnStyles[border],
         {
-          backgroundColor: btnBackgroundColor[backgroundColor],
+          backgroundColor: btnBackgroundColors[backgroundColor],
           justifyContent: alignItems,
           gap,
           paddingHorizontal: fontSizeBtnConfig[fontSize].paddingHorizontal,
           paddingVertical: fontSizeBtnConfig[fontSize].paddingVertical,
-          borderColor: borderColor ? btnChildColor[borderColor] : 'transparent',
+          borderColor: borderColor
+            ? btnChildColors[borderColor]
+            : 'transparent',
         },
       ]}
       onPress={onPress}

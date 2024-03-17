@@ -38,4 +38,5 @@ export interface IFreelancerAccountDetail {
   skills: ISkill[];
   description: string;
   serviceProven: IServiceProven[];
+  previewPrice: number;
 }

@@ -20,6 +20,7 @@ type customerRootStackParamList = {
   ProvideDetail: undefined;
   ProvideDate: undefined;
   Summary: undefined;
+  Matching: undefined;
   FreelancerDetail: { freelancerAccountDetail: IFreelancerAccountDetail };
   ImageDetail: { imageUrl: string };
   OnService: undefined;
@@ -70,6 +71,11 @@ type SummaryProps = NativeStackScreenProps<
   'Summary'
 >;
 
+type MatchingProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'Matching'
+>;
+
 type ImageDetailProps = NativeStackScreenProps<
   customerRootStackParamList,
   'ImageDetail'
@@ -97,6 +103,7 @@ export {
   FreelancerDetailProps,
   OnServiceProps,
   ImageDetailProps,
+  MatchingProps,
 };
 export {
   customerRootStackParamList,

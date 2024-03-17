@@ -13,6 +13,7 @@ import {
 import { COLOR_PALETTE } from '@present-native/styles';
 import { onConvertNumberToCurrency } from '@utils/helpers/MoneyConverter';
 import { useNavigation } from '@react-navigation/native';
+import { AuthHeader } from '@present-native/organisms';
 
 type BannerChooseLocationProps = {
   url: string;
@@ -34,7 +35,7 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
         <OverlayColor theme="black-gradient" />
 
         <View style={[bannerFreelancerDetailStyle.contentContainer]}>
-          {/* <Header typeDisplay={[ETypeDisplayHeader.BACK_BUTTON_BACKGROUND]} /> */}
+          <AuthHeader childs={['CIRCLE_BACK_BUTTON']} />
           <View style={bannerFreelancerDetailStyle.body}>
             <View style={bannerFreelancerDetailStyle.wrapperTypeFreelancer}>
               <Paragraph theme="largeMedium" color="white">
