@@ -2,11 +2,13 @@ import { bannerFreelancerDetailStyle } from './styles';
 import React from 'react';
 import { Image, View } from 'react-native';
 import {
+  BaseLink,
   FAIcon,
   OutlineBtn,
   OverlayColor,
   Paragraph,
   PrimaryBtn,
+  StarsAndReviewCount,
   Title,
   VerticalSpacer,
 } from '@present-native/atoms';
@@ -42,20 +44,11 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
                 {isTeam ? 'Đội ngũ' : 'Cá nhân'}
               </Paragraph>
               <View style={bannerFreelancerDetailStyle.rating}>
-                {Array.from({
-                  length: ratingNumber,
-                }).map((_, i) => (
-                  <FAIcon
-                    iconName="faStar"
-                    color={COLOR_PALETTE.yellow}
-                    size={15}
-                    key={`star@${i}`}
-                  />
-                ))}
+                <StarsAndReviewCount
+                  point={ratingNumber}
+                  reviewsCount={99}
+                />
               </View>
-              <Paragraph theme="smallRegular" color="yellow">
-                99+
-              </Paragraph>
             </View>
             <Title theme="largeBold" color="white">
               {fullName}
