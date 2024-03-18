@@ -198,6 +198,18 @@ namespace DeToiServerData
         }
         #endregion
 
+        #region Favorite Repo
+        private IFavoriteRepo _favoriteRepo;
+        public IFavoriteRepo FavoriteRepo
+        {
+            get
+            {
+                _favoriteRepo ??= new FavoriteRepo(_dataContext);
+                return _favoriteRepo;
+            }
+        }
+        #endregion
+
         private IServiceStatusRepo _serviceStatusRepo;
         public IServiceStatusRepo ServiceStatusRepo
         {

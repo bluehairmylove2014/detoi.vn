@@ -1,5 +1,6 @@
 ﻿using DeToiServer.Services.AccountService;
 using DeToiServer.Services.CustomerAccountService;
+using DeToiServer.Services.FavoriteService;
 using DeToiServer.Services.FreelanceAccountService;
 using DeToiServer.Services.MessageQueueService;
 using DeToiServer.Services.OrderManagementService;
@@ -85,10 +86,11 @@ namespace DeToiServerData
             services.AddScoped<IRepairingServiceRepo, RepairingServiceRepo>();
             services.AddScoped<IShoppingServiceRepo, ShoppingServiceRepo>();
             services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<IFavoriteRepo, FavoriteRepo>();
 
             services.AddScoped<IUIElementServiceRequirementRepo, UIElementServiceRequirementRepo>();
             services.AddScoped<IUIElementAdditionServiceRequirementRepo, UIElementAdditionServiceRequirementRepo>();
-            
+
             services.AddScoped<IAddressRepo, AddressRepo>();
 
 
@@ -108,6 +110,7 @@ namespace DeToiServerData
             services.AddScoped<IOrderManagementService, OrderManagementService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IMessageQueueService, MessageQueueService>();
+            services.AddScoped<IFavoriteService, FavoriteService>();
 
             services.AddScoped<IUIElementServiceRequirementService, UIElementServiceRequirementService>();
             return services;
