@@ -13,7 +13,7 @@ import {
   VerticalSpacer,
 } from '@present-native/atoms';
 import { COLOR_PALETTE } from '@present-native/styles';
-import { onConvertNumberToCurrency } from '@utils/helpers/MoneyConverter';
+import { formatCurrency } from '@utils/helpers/MoneyConverter';
 import { useNavigation } from '@react-navigation/native';
 import { AuthHeader } from '@present-native/organisms';
 
@@ -54,7 +54,7 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
               {fullName}
             </Title>
             <Title theme="baseBold" color="white">
-              {onConvertNumberToCurrency(balance, true)}
+              {formatCurrency(balance, 'vnd')}
             </Title>
             <VerticalSpacer size="l" />
             <View style={bannerFreelancerDetailStyle.buttonContainer}>
