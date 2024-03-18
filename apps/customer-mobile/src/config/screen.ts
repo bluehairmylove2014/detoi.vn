@@ -22,7 +22,7 @@ type customerRootStackParamList = {
   Summary: undefined;
   Matching: undefined;
   FreelancerDetail: { freelancerAccountDetail: IFreelancerAccountDetail };
-  ImageDetail: { imageUrl: string };
+  FreelancerServiceProven: { imageUrl: string };
   OnService: undefined;
 };
 // ENDOW STACK
@@ -76,9 +76,9 @@ type MatchingProps = NativeStackScreenProps<
   'Matching'
 >;
 
-type ImageDetailProps = NativeStackScreenProps<
+type FreelancerServiceProvenProps = NativeStackScreenProps<
   customerRootStackParamList,
-  'ImageDetail'
+  'FreelancerServiceProven'
 >;
 
 type FreelancerDetailProps = NativeStackScreenProps<
@@ -102,7 +102,7 @@ export {
   ChooseServiceProps,
   FreelancerDetailProps,
   OnServiceProps,
-  ImageDetailProps,
+  FreelancerServiceProvenProps,
   MatchingProps,
 };
 export {
