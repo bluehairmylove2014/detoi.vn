@@ -36,8 +36,6 @@ export const totalPriceSection = StyleSheet.create({
 export const buttonFootSection = StyleSheet.create({
     container:{
         paddingHorizontal: '20%',
- 
-  
     }
 })
 
