@@ -1,20 +1,20 @@
 import React from 'react';
 import { useContext } from 'react';
-import { CategoryContextType } from '.';
+import { OrderContextType } from '.';
 
-export const CategoryContext = React.createContext<CategoryContextType>({
+export const OrderContext = React.createContext<OrderContextType>({
   state: {
-    categories: null,
+    postOrderAddress: null,
+    postOrderStartDatetime: null,
+    postOrderServiceContent: null,
   },
   dispatch: () => undefined,
 });
 
-export const useCategoryContext = () => {
-  const context = useContext(CategoryContext);
+export const useOrderContext = () => {
+  const context = useContext(OrderContext);
   if (context === undefined) {
-    throw new Error(
-      'useCategoryContext must be used within a CategoryProvider'
-    );
+    throw new Error('useOrderContext must be used within a OrderProvider');
   }
   return context;
 };

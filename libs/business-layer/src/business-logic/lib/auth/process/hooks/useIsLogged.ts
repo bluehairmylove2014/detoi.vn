@@ -13,7 +13,7 @@ export const useIsLogged = () => {
   const [isLogged, setIsLogged] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
-    console.log('RUN');
+    // console.log('RUN');
     if (state.token) {
       setIsLogged(true);
     } else {

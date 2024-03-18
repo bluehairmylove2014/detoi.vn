@@ -1,22 +1,24 @@
 // Importing necessary libraries and modules
 import React, { useReducer } from 'react';
-import { CategoryContext } from '../context/context';
-import { categoryReducer } from '../context/reducer';
+import { OrderContext } from '../context/context';
+import { orderReducer } from '../context/reducer';
 
-type categoryProviderType = {
+type orderProviderType = {
   children: React.ReactNode;
 };
-export const CategoryContextProvider: React.FC<categoryProviderType> = ({
+export const OrderContextProvider: React.FC<orderProviderType> = ({
   children,
 }) => {
   const initialState = {
-    categories: null,
+    postOrderAddress: null,
+    postOrderStartDatetime: null,
+    postOrderServiceContent: null,
   };
-  const [state, dispatch] = useReducer(categoryReducer, initialState);
+  const [state, dispatch] = useReducer(orderReducer, initialState);
 
   return (
-    <CategoryContext.Provider value={{ state, dispatch }}>
+    <OrderContext.Provider value={{ state, dispatch }}>
       {children}
-    </CategoryContext.Provider>
+    </OrderContext.Provider>
   );
 };

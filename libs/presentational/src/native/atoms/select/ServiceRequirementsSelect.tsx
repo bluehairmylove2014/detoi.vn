@@ -8,43 +8,53 @@ import {
 import { Paragraph } from '../text';
 import { FAIcon } from '../icon';
 import { COLOR_PALETTE } from '@styles/color';
-import { IOption } from '@business-layer/services/entities';
+import {
+  IOption,
+  IUIServiceRequirement,
+} from '@business-layer/services/entities';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { useEffect, useState } from 'react';
 
-import { Control, FieldValues, UseFormSetValue } from 'react-hook-form';
+import {
+  Control,
+  Controller,
+  FieldValues,
+  UseFormSetValue,
+} from 'react-hook-form';
 import { TouchTheme } from '../theme';
 import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
 import { serviceRequirementsSelectStyle } from './styles';
 
-const ServiceRequirementsSelect = ({
+export const ServiceRequirementsSelect = ({
   label,
   labelIcon,
   placeholder,
   options,
   control,
-  setValue,
   selectName,
+  isError,
 }: {
   label: string;
   labelIcon: nativeIconNameType | null;
   placeholder: string;
   options?: IOption[];
   control: Control<FieldValues, any, FieldValues>;
-  setValue: UseFormSetValue<FieldValues>;
   selectName: string;
+  isError: boolean;
 }) => {
   const [activeModal, setActiveModal] = useState(false);
   const [optionSelected, setOptionSelected] = useState<string>('');
   const { setOpenBlurTheme } = useBlurTheme();
+  const themeColor = isError ? 'rose' : 'black';
 
-  const renderItem = ({ item }: { item: IOption }) => {
+  const renderItem = (item: IOption, onChange: (...event: any[]) => void) => {
     return (
       <TouchableOpacity
         style={serviceRequirementsSelectStyle.optionContainer}
         onPress={() => {
           setOptionSelected(item.name);
           setActiveModal(false);
+          onChange(item.name);
         }}
       >
         <Paragraph theme="largeBold">{item.name}</Paragraph>
@@ -87,13 +97,18 @@ const ServiceRequirementsSelect = ({
               </TouchableOpacity>
             </View>
 
-            {/* List Option */}
-            <FlatList
-              data={options}
-              renderItem={renderItem}
-              horizontal={false}
-              keyExtractor={(item) => item.id}
-              style={{ marginBottom: 30 }}
+            <Controller
+              name={selectName}
+              control={control}
+              render={({ field }) => (
+                <FlatList
+                  data={options}
+                  renderItem={({ item }) => renderItem(item, field.onChange)}
+                  horizontal={false}
+                  keyExtractor={(item) => item.id}
+                  style={{ marginBottom: 30 }}
+                />
+              )}
             />
           </View>
         </View>
@@ -104,6 +119,7 @@ const ServiceRequirementsSelect = ({
   useEffect(() => {
     setOptionSelected(placeholder);
   }, []);
+
   return (
     <View style={serviceRequirementsSelectStyle.container}>
       <View style={serviceRequirementsSelectStyle.labelContainer}>
@@ -111,7 +127,7 @@ const ServiceRequirementsSelect = ({
           <View style={{ marginRight: 5 }}>
             <FAIcon
               iconName={labelIcon as nativeIconNameType}
-              color={COLOR_PALETTE.black}
+              color={COLOR_PALETTE[themeColor]}
               size={15}
             />
           </View>
@@ -120,26 +136,32 @@ const ServiceRequirementsSelect = ({
         )}
 
         <View>
-          <Paragraph theme="baseBold">
-            {labelIcon ? ' | ' : ''} {label}
-            <Paragraph theme="largeMedium"> *</Paragraph>
+          <Paragraph theme="baseBold" color={themeColor}>
+            {labelIcon ? ' | ' : ''} {label} *
           </Paragraph>
         </View>
       </View>
       <TouchableWithoutFeedback
         onPress={() => {
           setActiveModal(true);
-          setOpenBlurTheme(true);
+          // setOpenBlurTheme(true);
         }}
       >
-        <View style={serviceRequirementsSelectStyle.dropdownContainer}>
+        <View
+          style={[
+            serviceRequirementsSelectStyle.dropdownContainer,
+            { borderColor: COLOR_PALETTE[themeColor] },
+          ]}
+        >
           <View style={{ marginRight: 15 }}>
-            <Paragraph theme="smallMedium">{optionSelected}</Paragraph>
+            <Paragraph theme="smallMedium" color={themeColor}>
+              {optionSelected}
+            </Paragraph>
           </View>
 
           <FAIcon
             iconName="faCaretDown"
-            color={COLOR_PALETTE.black}
+            color={COLOR_PALETTE[themeColor]}
             size={18}
           />
         </View>
@@ -148,4 +170,3 @@ const ServiceRequirementsSelect = ({
     </View>
   );
 };
-export { ServiceRequirementsSelect };

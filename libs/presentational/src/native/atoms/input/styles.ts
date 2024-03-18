@@ -17,7 +17,6 @@ const ServiceRequirementsInputStyle = StyleSheet.create({
   input: {
     width: '100%',
     paddingVertical: 10,
-    borderColor: COLOR_PALETTE.black,
     borderBottomWidth: 1,
   },
 });

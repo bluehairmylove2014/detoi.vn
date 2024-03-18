@@ -1,6 +1,6 @@
 // import { SocialService } from "@business-layer/services";
-import { useQuery } from '@tanstack/react-query';
-import { QUERY_KEYS } from '../constants';
+// import { useQuery } from '@tanstack/react-query';
+// import { QUERY_KEYS } from '../constants';
 
 // // Initialize
 // const socialService = new SocialService();

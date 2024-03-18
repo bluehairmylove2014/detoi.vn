@@ -85,7 +85,6 @@ export const serviceRequirementsSelectStyle = StyleSheet.create({
 
   dropdownContainer: {
     width: '100%',
-    borderColor: COLOR_PALETTE.black,
     justifyContent: 'space-between',
     borderBottomWidth: 1,
     flexDirection: 'row',

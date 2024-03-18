@@ -7,12 +7,13 @@ export interface IOrderElement {
   value: string;
 }
 
-export interface IOrder {
-  address: IAddress;
+export interface IPostOrderFixedContent {
+  address: Omit<IAddress, 'id'>;
   startTime: string;
   startDate: string;
-  serviceId: string;
-  note: string;
+}
+export interface IPostOrderServiceContent {
+  [key: string]: string | boolean | number;
 }
 
 export interface IOrderDetail {

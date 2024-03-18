@@ -1,1 +1,1 @@
-export * from './CategoryProvider';
+export * from './OrderProvider';

@@ -17,17 +17,18 @@ export const ServiceRequirementsInput = ({
   labelIcon,
   placeholder,
   control,
-  setValue,
   inputName,
+  isError,
 }: {
   type: 'text' | 'number';
   label: string;
   labelIcon: nativeIconNameType | null;
   placeholder: string;
   control: Control<FieldValues, any, FieldValues>;
-  setValue: UseFormSetValue<FieldValues>;
   inputName: string;
+  isError: boolean;
 }) => {
+  const themeColor = isError ? COLOR_PALETTE.rose : COLOR_PALETTE.black;
   return (
     <View style={ServiceRequirementsInputStyle.container}>
       <View style={ServiceRequirementsInputStyle.labelContainer}>
@@ -35,7 +36,7 @@ export const ServiceRequirementsInput = ({
           <View style={{ marginRight: 5 }}>
             <FAIcon
               iconName={labelIcon as nativeIconNameType}
-              color={COLOR_PALETTE.black}
+              color={themeColor}
               size={15}
             />
           </View>
@@ -44,9 +45,8 @@ export const ServiceRequirementsInput = ({
         )}
 
         <View>
-          <Paragraph theme="baseBold">
-            {labelIcon ? ' | ' : ''} {label}
-            <Paragraph theme="largeMedium"> *</Paragraph>
+          <Paragraph theme="baseBold" color={isError ? 'rose' : 'black'}>
+            {labelIcon ? ' | ' : ''} {label} *
           </Paragraph>
         </View>
       </View>
@@ -55,16 +55,20 @@ export const ServiceRequirementsInput = ({
         control={control}
         render={({ field }) => (
           <TextInput
-            style={ServiceRequirementsInputStyle.input}
+            style={[
+              ServiceRequirementsInputStyle.input,
+              { borderColor: themeColor },
+            ]}
             placeholder={placeholder}
-            placeholderTextColor={COLOR_PALETTE.gray}
-            selectionColor={COLOR_PALETTE.black}
+            placeholderTextColor={
+              isError ? COLOR_PALETTE.rose : COLOR_PALETTE.gray
+            }
+            selectionColor={themeColor}
             keyboardType={type === 'number' ? 'numeric' : 'default'}
             maxLength={type === 'number' ? 4 : 255}
             {...field}
             onChangeText={(value) => {
               field.onChange(value);
-              setValue(inputName, value);
             }}
           />
         )}

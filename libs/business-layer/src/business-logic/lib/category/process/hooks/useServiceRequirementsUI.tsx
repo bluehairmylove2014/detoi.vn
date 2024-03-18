@@ -12,29 +12,36 @@ import {
   ServiceRequirementsSelect,
   VerticalSpacer,
 } from '@present-native/atoms';
+import {
+  useGenerateSchema,
+  useYupValidationResolver,
+} from '@utils/validators/yup';
 
 type useServiceRequirementsUIType = {
-  onGenerateUI: ({
-    requirements,
-    additionalRequirements,
-  }: {
-    requirements: IUIServiceRequirement[];
-    additionalRequirements?: IUIAdditionServiceRequirement[];
-  }) => JSX.Element;
+  onGenerateUI: () => JSX.Element;
   getForm: () => {
     handleSubmit: UseFormHandleSubmit<FieldValues, FieldValues>;
   };
 };
-export const useServiceRequirementsUI = (): useServiceRequirementsUIType => {
-  const { control, handleSubmit, setValue } = useForm();
+export const useServiceRequirementsUI = ({
+  requirements,
+  additionalRequirements,
+}: {
+  requirements: IUIServiceRequirement[];
+  additionalRequirements?: IUIAdditionServiceRequirement[];
+}): useServiceRequirementsUIType => {
+  const schema = useGenerateSchema(requirements);
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    resolver: useYupValidationResolver(schema),
+  });
 
-  const onGenerateUI = ({
-    requirements,
-    additionalRequirements,
-  }: {
-    requirements: IUIServiceRequirement[];
-    additionalRequirements?: IUIAdditionServiceRequirement[];
-  }): JSX.Element => {
+  const onGenerateUI = (): JSX.Element => {
+    // console.log(requirements[2].inputMethod.validation);
     return (
       <>
         {requirements.map((r, i) => (
@@ -48,8 +55,8 @@ export const useServiceRequirementsUI = (): useServiceRequirementsUIType => {
                 labelIcon={r.labelIcon}
                 placeholder={r.placeholder}
                 control={control}
-                setValue={setValue}
                 inputName={r.id}
+                isError={!!errors[r.id]}
               />
             ) : r.inputMethod.method.name === 'select' ? (
               <ServiceRequirementsSelect
@@ -58,8 +65,8 @@ export const useServiceRequirementsUI = (): useServiceRequirementsUIType => {
                 placeholder={r.placeholder}
                 options={r.inputMethod.method.options}
                 control={control}
-                setValue={setValue}
-                selectName={`requirement@${r.id}`}
+                selectName={r.id}
+                isError={!!errors[r.id]}
               />
             ) : (
               <></>

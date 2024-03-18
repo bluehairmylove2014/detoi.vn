@@ -266,7 +266,7 @@ const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
 
           <View style={{ flexShrink: 1 }}>
             <PrimaryBtn
-              title="Xác nhận"
+              title="Xong"
               fontSize="medium"
               radius="square"
               onPress={() => {
