@@ -93,7 +93,7 @@ const ModalWrapper: React.FC<modalWrapperProps> = ({
           <Animated.View
             style={{
               width: windowWidth,
-              height: windowHeight / 2,
+              height: 'auto',
               backgroundColor: COLOR_PALETTE[backgroundColor],
               padding: 20,
               transform: [

@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import React, { useState } from 'react';
 import { ChooseLocationProps } from '../../../config';
 import { BannerTopSection } from '@present-native/molecules';
@@ -16,6 +16,8 @@ import {
 import { chooseLocationScreenStyle } from './styles';
 import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
 import { useCurrentOrderCategory } from '@business-layer/business-logic/lib/category';
+import { COLOR_PALETTE } from '@present-native/styles';
+import { useSetPostOrderAddress } from '@business-layer/business-logic/lib/order';
 
 const ChooseLocation = React.memo(
   ({ route, navigation }: ChooseLocationProps) => {
@@ -25,11 +27,13 @@ const ChooseLocation = React.memo(
     const [dataRecommendationGeo, setDataRecommendationGeo] = useState<
       recommendationGeoType[]
     >([]);
+    const { onSetPostOrderAddress } = useSetPostOrderAddress();
 
-    const { onForwardGeocoding } = useForwardGeocoding();
+    const { onForwardGeocoding, isLoading } = useForwardGeocoding();
 
     const handleSearchKeyChange = debounce((value: string) => {
       if (value.trim().length > 0) {
+        setDataRecommendationGeo([]);
         onForwardGeocoding({ key: value })
           .then((itemsGeoResultSearching) => {
             setDataRecommendationGeo(
@@ -49,6 +53,17 @@ const ChooseLocation = React.memo(
 
     const handleSelectGeo = (geo: recommendationGeoType) => {
       setCurrentOrderAddress({ addressGeo: geo });
+      onSetPostOrderAddress({
+        addressData: {
+          addressLine: geo.display_name,
+          country: geo.country,
+          district: geo.district,
+          lat: geo.lat,
+          lon: geo.lon,
+          province: geo.province,
+          ward: geo.ward,
+        },
+      });
       navigation.navigate('ChooseService');
     };
 
@@ -69,6 +84,12 @@ const ChooseLocation = React.memo(
                 dataRecommendationGeo={dataRecommendationGeo}
                 onPress={handleSelectGeo}
               />
+              {isLoading ? (
+                <ActivityIndicator
+                  color={COLOR_PALETTE.primary}
+                  size={'large'}
+                />
+              ) : null}
               <VerticalSpacer size="xxxl" />
               <BaseLink screen="Home">
                 <Paragraph

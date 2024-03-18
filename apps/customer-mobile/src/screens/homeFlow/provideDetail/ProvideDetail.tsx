@@ -11,15 +11,23 @@ import { BannerTopSection } from '@present-native/molecules';
 import { PrimaryBtn, Title, VerticalSpacer } from '@present-native/atoms';
 import { screenHorizontalPadding } from '@present-native/styles';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
+import { FieldValues } from 'react-hook-form';
+import { useSetPostOrderServiceContent } from '@business-layer/business-logic/lib/order';
 
 const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
   const { currentOrderService: service } = useCurrentOrderService();
   const { data: serviceDetail } = useGetServiceDetail(service?.id ?? '0');
-  const { onGenerateUI } = useServiceRequirementsUI();
+  const { onGenerateUI, getForm } = useServiceRequirementsUI({
+    requirements: serviceDetail?.requirements ?? [],
+    additionalRequirements: serviceDetail?.additionalRequirements ?? [],
+  });
+  const { handleSubmit } = getForm();
 
-  const handlePressNext = () => {
+  const handlePressNext = (data: FieldValues) => {
+    onSetPostOrderServiceContent({ serviceContent: data });
     navigation.navigate('ProvideDate');
   };
+  const { onSetPostOrderServiceContent } = useSetPostOrderServiceContent();
 
   return (
     <CustomerTemplate>
@@ -33,14 +41,9 @@ const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
         <Title theme="baseBold" color="primary">
           Nhập đầy đủ thông tin bên dưới
         </Title>
-        {serviceDetail
-          ? onGenerateUI({
-              requirements: serviceDetail.requirements,
-              additionalRequirements: serviceDetail.additionalRequirements,
-            })
-          : null}
+        {onGenerateUI()}
         <VerticalSpacer size="xxxl" />
-        <PrimaryBtn title="Tiếp theo" onPress={handlePressNext} />
+        <PrimaryBtn title="Tiếp theo" onPress={handleSubmit(handlePressNext)} />
       </View>
     </CustomerTemplate>
   );

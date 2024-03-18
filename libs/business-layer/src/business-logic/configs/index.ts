@@ -8,6 +8,10 @@ import {
   geocodeProviderType,
 } from '../lib/geocode/process/provider';
 import {
+  OrderProvider,
+  orderProviderType,
+} from '../lib/order/process/provider';
+import {
   BlurThemeProvider,
   blurThemeProviderType,
 } from '../non-service-lib/blurTheme/provider/BlurThemeProvider';
@@ -41,7 +45,8 @@ export type moduleKeyList =
   | 'geocode'
   | 'pagination'
   | 'realtime'
-  | 'blurTheme';
+  | 'blurTheme'
+  | 'order';
 export type providerList = React.FC<
   | AuthProviderType
   | categoryProviderType
@@ -49,11 +54,16 @@ export type providerList = React.FC<
   | realtimeProviderType
   | geocodeProviderType
   | blurThemeProviderType
+  | orderProviderType
 >;
 export const providerConfig: {
   key: moduleKeyList;
   provider: providerList;
 }[] = [
+  {
+    key: 'order',
+    provider: OrderProvider,
+  },
   {
     key: 'blurTheme',
     provider: BlurThemeProvider,

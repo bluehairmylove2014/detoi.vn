@@ -10,6 +10,7 @@ import {
 } from '@present-native/atoms';
 import { COLOR_PALETTE } from '@present-native/styles';
 import { IFreelancerAccountDetail } from '@business-layer/services/entities';
+import { formatCurrency } from '@utils/helpers/MoneyConverter';
 
 type matchingFreelancerDetailProps = {
   freelancerData: IFreelancerAccountDetail;
@@ -55,7 +56,7 @@ export const MatchingFreelancerThumbnail: React.FC<
           }}
         >
           <Paragraph theme="baseBold" color="white">
-            800.000đ
+            {formatCurrency(freelancerData.previewPrice, 'vnd')}
           </Paragraph>
           <View
             style={{

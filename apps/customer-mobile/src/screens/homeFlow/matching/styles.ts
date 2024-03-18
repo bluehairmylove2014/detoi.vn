@@ -42,6 +42,14 @@ export const matchingStyles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 20,
   },
+  filterCommitContainer: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'nowrap',
+    gap: 20,
+  },
   btnWrapper: {
     display: 'flex',
     flexDirection: 'row',

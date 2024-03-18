@@ -1,9 +1,14 @@
 export interface IForwardGeocode {
-  boundingbox: number[]; // Area
   lat: number;
   lon: number;
   display_name: string;
-  importance: number; // Precision of the result
+  amenity: string | null;
+  house_number: string | null;
+  road: string | null;
+  ward: string | null;
+  district: string | null;
+  province: string | null;
+  country: string | null;
 }
 export interface IReverseGeocode {
   lat: number;

@@ -17,8 +17,28 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { BannerTopSection, TimePicker } from '@present-native/molecules';
 import { useCurrentOrderService } from '@business-layer/business-logic/lib/category';
+import { useSetPostOrderStartDatetime } from '@business-layer/business-logic/lib/order';
 
 const NUMBER_OF_DAYS = 14;
+
+function parseDateTime(datetime: string) {
+  const dateObj = new Date(datetime);
+
+  // Extracting date components
+  const year = dateObj.getFullYear();
+  const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-indexed
+  const day = dateObj.getDate().toString().padStart(2, '0');
+
+  // Extracting time components
+  const hours = dateObj.getHours().toString().padStart(2, '0');
+  const minutes = dateObj.getMinutes().toString().padStart(2, '0');
+
+  // Constructing startDate and startTime
+  const startDate = `${year}-${month}-${day}`;
+  const startTime = `${hours}:${minutes}`;
+
+  return { startDate, startTime };
+}
 
 const calcFollowingDay = () => {
   const currentDate = new Date();
@@ -40,6 +60,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(calcFollowingDay);
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
   const { handleSubmit, setValue, control } = useForm();
+  const { onSetPostOrderStartDatetime } = useSetPostOrderStartDatetime();
 
   const dateList: Date[] = useMemo(() => {
     const followingDay = calcFollowingDay();
@@ -57,12 +78,14 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
 
   const onSuccessSubmitDate: SubmitHandler<FieldValues> = (data) => {
     const requireValue = data.require;
-    console.log(requireValue);
-    console.log(
-      'T' + (selectedDate.getDay() + 1) + ', ngay ' + selectedDate.getDate()
-    );
-    console.log(selectedTime.getHours() + ' : ' + selectedTime.getMinutes());
-    navigation.navigate('Summary');
+    // onSetPostOrderStartDatetime(parseDateTime(selectedDate));
+    console.log(selectedDate);
+    console.log(selectedTime);
+    // console.log(
+    //   'T' + (selectedDate.getDay() + 1) + ', ngay ' + selectedDate.getDate()
+    // );
+    // console.log(selectedTime.getHours() + ' : ' + selectedTime.getMinutes());
+    // navigation.navigate('Summary');
   };
 
   const renderDateList = ({ item }: { item: Date }) => {

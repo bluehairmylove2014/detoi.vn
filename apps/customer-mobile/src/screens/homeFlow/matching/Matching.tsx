@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { MatchingProps } from '../../../config';
 import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
@@ -22,70 +23,30 @@ import { matchingFreelancerMockData } from './__mock__';
 import { windowHeight } from '@constants/dimension';
 import { HEADER_HEIGHT } from '@present-native/styles';
 import ModalWrapper from '@present-native/templates/ModalWrapper';
+import {
+  MatchingFilterCriteriaID,
+  MATCHING_FILTER_CRITERIA,
+  MATCHING_SORT_CRITERIA,
+  MatchingSortCriteriaID,
+} from '@constants/matchingFilterNSort';
 
-const FILTER_CRITERIA = [
-  {
-    id: 'FILTER_CRITERIA@1',
-    name: 'Tất cả',
-    type: 'filter',
-  },
-  {
-    id: 'FILTER_CRITERIA@2',
-    name: 'Cá nhân',
-    type: 'filter',
-  },
-  {
-    id: 'FILTER_CRITERIA@3',
-    name: 'Đội ngũ',
-    type: 'filter',
-  },
-];
-const SORT_CRITERIA = [
-  {
-    id: 'FILTER_CRITERIA@4',
-    name: 'Mặc định',
-    type: 'sort',
-  },
-  {
-    id: 'FILTER_CRITERIA@5',
-    name: 'Mới nhất',
-    type: 'sort',
-  },
-  {
-    id: 'FILTER_CRITERIA@6',
-    name: 'Giá thấp nhất',
-    type: 'sort',
-  },
-  {
-    id: 'FILTER_CRITERIA@7',
-    name: 'Đánh giá tốt nhất',
-    type: 'sort',
-  },
-  {
-    id: 'FILTER_CRITERIA@8',
-    name: 'Nhiều người làm nhất',
-    type: 'sort',
-  },
-  {
-    id: 'FILTER_CRITERIA@9',
-    name: 'Nhiều lượt ghép đơn nhất',
-    type: 'sort',
-  },
-];
+const DEFAULT_FILTER_CRITERIA = MatchingFilterCriteriaID.All;
+const DEFAULT_SORT_CRITERIA = MatchingSortCriteriaID.Default;
 
 const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
   const order: IOrderDetail = {};
+  const [matchingFreelancersRealTime, setMatchingFreelancersRealTime] =
+    useState<IFreelancerAccountDetail[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [freelancers, setFreelancers] = useState<IFreelancerAccountDetail[]>(
     []
   );
   const [isFilterActive, setIsFilterActive] = useState<boolean>(false);
-  const [filterCriteria, setFilterCriteria] = useState<string[]>([
-    'FILTER_CRITERIA@1',
-  ]);
-  const [sortCriteria, setSortCriteria] = useState<string[]>([
-    'FILTER_CRITERIA@4',
-  ]);
+  const [filterCriteriaId, setFilterCriteriaId] =
+    useState<MatchingFilterCriteriaID>(DEFAULT_FILTER_CRITERIA);
+  const [sortCriteriaId, setSortCriteriaId] = useState<MatchingSortCriteriaID>(
+    DEFAULT_SORT_CRITERIA
+  );
 
   function handlePressFreelancerThumbnail(
     freelancerData: IFreelancerAccountDetail
@@ -103,28 +64,73 @@ const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
     console.log('CLOSE');
     setIsFilterActive(false);
   }
-  function toggleCriteria(id: string, type: 'filter' | 'sort') {
-    const [getter, setter] =
-      type === 'filter'
-        ? [filterCriteria, setFilterCriteria]
-        : [sortCriteria, setSortCriteria];
-    if (getter.includes(id)) {
-      setter(getter.filter((gid) => gid !== id));
-    } else {
-      setter([...getter, id]);
-    }
+  function selectFilterCriteria(id: MatchingFilterCriteriaID) {
+    setFilterCriteriaId(id);
+  }
+  function selectSortCriteria(id: MatchingSortCriteriaID) {
+    setSortCriteriaId(id);
+  }
+  function handleFilter(id: string, sorts: string) {}
+  function handleResetFilterAndSortCriteria() {
+    setFilterCriteriaId(DEFAULT_FILTER_CRITERIA);
+    setSortCriteriaId(DEFAULT_SORT_CRITERIA);
   }
 
   useEffect(() => {
     setTimeout(() => {
-      freelancers.length < 6 &&
-        setFreelancers([
-          ...freelancers,
-          matchingFreelancerMockData[freelancers.length],
+      matchingFreelancersRealTime.length < 6 &&
+        setMatchingFreelancersRealTime([
+          ...matchingFreelancersRealTime,
+          matchingFreelancerMockData[matchingFreelancersRealTime.length],
         ]);
     }, 2000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [freelancers.length]);
+  }, [matchingFreelancersRealTime.length]);
+
+  useEffect(() => {
+    if (matchingFreelancersRealTime.length > 0) {
+      let newFreelancers: IFreelancerAccountDetail[] = [];
+      switch (filterCriteriaId) {
+        case MatchingFilterCriteriaID.Individual: {
+          matchingFreelancersRealTime.forEach(
+            (f) => f.isTeam === false && newFreelancers.push(f)
+          );
+          break;
+        }
+        case MatchingFilterCriteriaID.Team: {
+          matchingFreelancersRealTime.forEach(
+            (f) => f.isTeam === true && newFreelancers.push(f)
+          );
+          break;
+        }
+        case MatchingFilterCriteriaID.All: {
+          newFreelancers = [...matchingFreelancersRealTime];
+          break;
+        }
+      }
+      switch (sortCriteriaId) {
+        case MatchingSortCriteriaID.Default: {
+          // SKIP
+          break;
+        }
+        case MatchingSortCriteriaID.BestRating:
+          newFreelancers.sort((a, b) => b.rating - a.rating);
+          break;
+        case MatchingSortCriteriaID.LowestPrice:
+          newFreelancers.sort((a, b) => a.previewPrice - b.previewPrice);
+          break;
+        case MatchingSortCriteriaID.MostEmployees:
+          newFreelancers.sort((a, b) => b.teamMemberCount - a.teamMemberCount);
+          break;
+        case MatchingSortCriteriaID.Nearest: {
+          // SKIP
+          break;
+        }
+      }
+
+      setFreelancers(newFreelancers);
+    }
+  }, [matchingFreelancersRealTime, filterCriteriaId, sortCriteriaId]);
 
   return (
     <CustomerTemplate>
@@ -192,52 +198,82 @@ const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
         onClose={closeFilterModal}
         overlayColor="black"
       >
-        <Title theme="baseBold">Bộ lọc</Title>
+        <View>
+          <Title theme="baseBold">Bộ lọc</Title>
 
-        <VerticalSpacer size="xxl" />
-        <Paragraph theme="smallSemibold" color="primary">
-          Hình thức
-        </Paragraph>
-        <VerticalSpacer size="l" />
-        <View style={matchingStyles.btnWrapper}>
-          {FILTER_CRITERIA.map((fc) => {
-            const color = filterCriteria.includes(fc.id) ? 'primary' : 'black';
-            return (
-              <OutlineBtn
-                title={fc.name}
-                color={color}
-                fontSize="small"
-                radius="full"
-                borderColor={color}
-                isFitContent={true}
-                onPress={() => toggleCriteria(fc.id, 'filter')}
-                key={fc.id}
-              />
-            );
-          })}
+          <VerticalSpacer size="xxl" />
+          <Paragraph theme="smallSemibold" color="primary">
+            Hình thức
+          </Paragraph>
+          <VerticalSpacer size="l" />
+          <View style={matchingStyles.btnWrapper}>
+            {MATCHING_FILTER_CRITERIA.map((fc) => {
+              const color = filterCriteriaId.includes(fc.id)
+                ? 'primary'
+                : 'black';
+              return (
+                <OutlineBtn
+                  title={fc.name}
+                  color={color}
+                  fontSize="small"
+                  radius="full"
+                  borderColor={color}
+                  isFitContent={true}
+                  onPress={() => selectFilterCriteria(fc.id)}
+                  key={fc.id}
+                />
+              );
+            })}
+          </View>
+
+          <VerticalSpacer size="xxl" />
+          <Paragraph theme="smallSemibold" color="primary">
+            Sắp xếp
+          </Paragraph>
+          <VerticalSpacer size="l" />
+          <View style={matchingStyles.btnWrapper}>
+            {MATCHING_SORT_CRITERIA.map((fc) => {
+              const color = sortCriteriaId.includes(fc.id)
+                ? 'primary'
+                : 'black';
+              return (
+                <OutlineBtn
+                  title={fc.name}
+                  color={color}
+                  fontSize="small"
+                  radius="full"
+                  borderColor={color}
+                  isFitContent={true}
+                  onPress={() => selectSortCriteria(fc.id)}
+                  key={fc.id}
+                />
+              );
+            })}
+          </View>
         </View>
+        <VerticalSpacer size="xxxl" />
+        <View style={matchingStyles.filterCommitContainer}>
+          <View style={{ flexShrink: 1 }}>
+            <OutlineBtn
+              title="Làm mới"
+              fontSize="medium"
+              radius="square"
+              onPress={handleResetFilterAndSortCriteria}
+              color="primary"
+              borderColor="primary"
+            />
+          </View>
 
-        <VerticalSpacer size="xxl" />
-        <Paragraph theme="smallSemibold" color="primary">
-          Sắp xếp
-        </Paragraph>
-        <VerticalSpacer size="l" />
-        <View style={matchingStyles.btnWrapper}>
-          {SORT_CRITERIA.map((fc) => {
-            const color = sortCriteria.includes(fc.id) ? 'primary' : 'black';
-            return (
-              <OutlineBtn
-                title={fc.name}
-                color={color}
-                fontSize="small"
-                radius="full"
-                borderColor={color}
-                isFitContent={true}
-                onPress={() => toggleCriteria(fc.id, 'sort')}
-                key={fc.id}
-              />
-            );
-          })}
+          <View style={{ flexShrink: 1 }}>
+            <PrimaryBtn
+              title="Xong"
+              fontSize="medium"
+              radius="square"
+              onPress={() => {
+                closeFilterModal();
+              }}
+            />
+          </View>
         </View>
       </ModalWrapper>
     </CustomerTemplate>

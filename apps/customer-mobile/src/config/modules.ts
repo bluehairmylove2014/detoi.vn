@@ -5,4 +5,5 @@ export const activeModules: moduleKeyList[] = [
   'category',
   'geocode',
   'blurTheme',
+  'order',
 ];
