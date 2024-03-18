@@ -1,6 +1,6 @@
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import React, { useCallback } from 'react';
-import { Image, TouchableHighlight, View } from 'react-native';
+import { Image, TouchableWithoutFeedback, View } from 'react-native';
 import {
   freelancerDetailScreenStyle,
   insightSectionStyle,
@@ -89,10 +89,11 @@ const FreelancerDetail = React.memo(
           description: 'string',
         },
       ],
-      description:
-        'Nhân viên vệ sinh chuyên nghiệp, tận tâm, luôn giữ gìn sạch sẽ cho môi trường. Có kỹ năng tổ chức, sắp xếp công việc hiệu quả. Luôn tạo ra một môi trường làm việc tốt nhất cho mọi người.',
+      description: 'Nhân viên vệ sinh chuyên nghiệp, tận tâm, luôn giữ gìn sạch sẽ cho môi trường. Có kỹ năng tổ chức, sắp xếp công việc hiệu quả. Luôn tạo ra một môi trường làm việc tốt nhất cho mọi người.',
       teamMemberCount: 0,
       serviceProven: [],
+      totalReviewCount: 0,
+      previewPrice: 0
     };
 
     const serviceProven: ImageData[] = [
@@ -126,7 +127,7 @@ const FreelancerDetail = React.memo(
 
     const actionMoveToImageDetailScreen = useCallback(
       (source: string) => {
-        navigation.navigate('ImageDetail', {
+        navigation.navigate('FreelancerServiceProven', {
           imageUrl: source,
         });
       },
@@ -178,7 +179,7 @@ const FreelancerDetail = React.memo(
             <VerticalSpacer size="m" />
             <View style={proofOfWorkSectionStyle.listImage}>
               {serviceProven.map((item, index) => (
-                <TouchableHighlight
+                <TouchableWithoutFeedback 
                   key={index}
                   onPress={() => actionMoveToImageDetailScreen(item.source)}
                 >
@@ -186,7 +187,7 @@ const FreelancerDetail = React.memo(
                     source={{ uri: item.source }}
                     style={proofOfWorkSectionStyle.image}
                   />
-                </TouchableHighlight>
+                </TouchableWithoutFeedback>
               ))}
             </View>
           </View>
