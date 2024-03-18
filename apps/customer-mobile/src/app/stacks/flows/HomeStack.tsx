@@ -10,9 +10,9 @@ import ChooseServiceScreen from '../../../screens/homeFlow/chooseService/ChooseS
 import ProvideDetailScreen from '../../../screens/homeFlow/provideDetail/ProvideDetail';
 import ProvideDateScreen from '../../../screens/homeFlow/provideDate/ProvideDate';
 import SummaryScreen from '../../../screens/homeFlow/summary/Summary';
-import FreelanceerDetailScreen from '../../../screens/homeFlow/freelancerDetail/FreelancerDetail';
+import FreelancerServiceProvenScreen from '../../../screens/homeFlow/freelancerDetail/FreelancerDetail';
 import OnServiceScreen from '../../../screens/homeFlow/onService/OnService';
-import DetailImageScreen from '../../../screens/homeFlow/imageDetail/ImageDetail';
+import DetailImageScreen from '../../../screens/homeFlow/freelancerServiceProven/FreelancerServiceProven';
 import MatchingScreen from '../../../screens/homeFlow/matching/Matching';
 
 const Stack = createNativeStackNavigator<customerRootStackParamList>();
@@ -66,7 +66,7 @@ export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        component={FreelanceerDetailScreen}
+        component={FreelancerServiceProvenScreen}
         name="FreelancerDetail"
         options={{ headerShown: false }}
       />
@@ -77,7 +77,7 @@ export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
       />
       <Stack.Screen
         component={DetailImageScreen}
-        name="ImageDetail"
+        name="FreelancerServiceProven"
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
