@@ -1,5 +1,6 @@
 import { COLOR_PALETTE } from '@styles/color';
 import { TextInput } from 'react-native';
+import { reviewTextareaStyles } from './styles';
 
 export const ReviewTextarea = ({
   placeholder,
@@ -19,15 +20,8 @@ export const ReviewTextarea = ({
       maxLength={40}
       onChangeText={setTextInput}
       value={textInput}
-
       placeholderTextColor={COLOR_PALETTE.black}
-      style={{ 
-        padding:15,
-        borderColor: COLOR_PALETTE.black,
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderRadius: 10,
-      }}
+      style={reviewTextareaStyles.input}
     />
   );
 };
