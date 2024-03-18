@@ -1,8 +1,9 @@
 import { COLOR_PALETTE } from '@styles/color';
 import { TextInput } from 'react-native';
 import { reviewTextareaStyles } from './styles';
+import React from 'react';
 
-export const ReviewTextarea = ({
+export const ReviewTextarea = React.memo(({
   placeholder,
   setTextInput,
   textInput,
@@ -24,4 +25,4 @@ export const ReviewTextarea = ({
       style={reviewTextareaStyles.input}
     />
   );
-};
+});
