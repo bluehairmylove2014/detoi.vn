@@ -38,3 +38,4 @@ services:
       - DB_SA_PASSWORD=Password@12345#
     networks:
       - detoidockernetwork
+
