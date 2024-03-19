@@ -12,6 +12,7 @@ export const summaryStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    gap: 40,
   },
   serviceDetailContainer: {
     flex: 1,

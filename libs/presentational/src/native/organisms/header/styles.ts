@@ -35,7 +35,7 @@ export const headerWithOrderStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    gap: 10,
+    gap: 20,
     marginBottom: 30,
     flexWrap: 'nowrap',
   },
@@ -46,7 +46,7 @@ export const headerWithOrderStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 4,
-    flexShrink: 1,
+    flexGrow: 1,
   },
   cancelOrderBtnContainer: {
     flexShrink: 1,

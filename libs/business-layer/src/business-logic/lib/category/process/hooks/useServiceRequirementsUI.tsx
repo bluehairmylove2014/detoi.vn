@@ -52,7 +52,6 @@ export const useServiceRequirementsUI = ({
   });
 
   const onGenerateUI = (): JSX.Element => {
-    // console.log(requirements[2].inputMethod.validation);
     return (
       <>
         {requirements.map((r, i) => (

@@ -10,3 +10,12 @@ export const useGetMatchingOrderDetailQuery = (token: string | null) => {
     queryFn: () => service.getMatchingOrderDetail(token),
   });
 };
+export const useGetOrderDetailQuery = (
+  orderId: string,
+  token: string | null
+) => {
+  return useQuery({
+    queryKey: [QUERY_N_MUTATION_KEYS.GET_ORDER_DETAIL, token, orderId],
+    queryFn: () => service.getOrderDetail({ orderId, token }),
+  });
+};

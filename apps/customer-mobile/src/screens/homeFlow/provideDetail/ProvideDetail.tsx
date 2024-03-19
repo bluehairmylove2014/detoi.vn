@@ -52,7 +52,7 @@ const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
         <PrimaryBtn
           title="Tiếp theo"
           onPress={handleSubmit(handlePressNext, (error) => {
-            console.log('ERROR: ', error);
+            console.error('ERROR: ', error);
           })}
         />
       </View>

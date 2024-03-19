@@ -32,6 +32,7 @@ export const PostOrderServiceContentSchema = z.record(
 );
 
 export interface IOrderDetail {
+  id: string;
   address: IAddress;
   estimatedPrice: number | null;
   startTime: string;
@@ -48,6 +49,7 @@ export interface IOrderDetail {
   serviceTypes: IService[];
 }
 export const OrderDetailSchema = z.object({
+  id: z.string(),
   address: AddressSchema,
   estimatedPrice: z.number().nullable(),
   startTime: z.string(),

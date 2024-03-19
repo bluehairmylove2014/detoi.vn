@@ -1,4 +1,4 @@
-import { View, SafeAreaView } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import { IOrderDetail } from '@business-layer/services/entities';
 import { headerWithOrderStyles } from './styles';
