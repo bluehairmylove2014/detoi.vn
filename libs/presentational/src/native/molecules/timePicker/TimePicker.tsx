@@ -20,6 +20,13 @@ const constantTime = () => {
   return defaultTime;
 };
 
+const currentTime = () => {
+  const defaultTime = new Date();
+  defaultTime.setHours(new Date().getHours() + 1);
+  defaultTime.setMinutes(Math.ceil(new Date().getMinutes() / 5) * 5); // Set minutes to 0
+  return defaultTime;
+};
+
 export const TimePicker = ({
   dateSelect,
   setTime,
@@ -29,23 +36,13 @@ export const TimePicker = ({
 }) => {
   const [selectedTime, setSelectedTime] = useState<Date>(
     dateSelect.getDate() === new Date().getDate()
-      ? new Date(
-          new Date().setHours(
-            new Date().getHours() + 1,
-            Math.ceil(new Date().getMinutes() / 5) * 5
-          )
-        ) // Add 1 hour to the current time
+      ? currentTime() // Add 1 hour to the current time
       : constantTime()
   );
 
   const [timeChange, setTimeChange] = useState<Date>(
     dateSelect.getDate() === new Date().getDate()
-      ? new Date(
-          new Date().setHours(
-            new Date().getHours() + 1,
-            Math.ceil(new Date().getMinutes() / 5) * 5
-          )
-        ) // Add 1 hour to the current time
+      ? currentTime() // Add 1 hour to the current time
       : constantTime()
   );
 
