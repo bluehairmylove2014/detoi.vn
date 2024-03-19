@@ -21,19 +21,45 @@ const constantTime = () => {
 };
 
 export const TimePicker = ({
+  dateSelect,
   setTime,
 }: {
+  dateSelect: Date;
   setTime: (timeSelected: Date) => void;
 }) => {
-  const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
-  const [timeChange, setTimeChange] = useState<Date>(constantTime);
+  const [selectedTime, setSelectedTime] = useState<Date>(
+    dateSelect.getDate() === new Date().getDate()
+      ? new Date(new Date().setHours(new Date().getHours() + 1)) // Add 1 hour to the current time
+      : constantTime()
+  );
+
+  const [timeChange, setTimeChange] = useState<Date>(
+    dateSelect.getDate() === new Date().getDate()
+      ? new Date(new Date().setHours(new Date().getHours() + 1)) // Add 1 hour to the current time
+      : constantTime()
+  );
+
   const [activeModalIOS, setActiveModalIOS] = useState(false);
   const [activePickTimeAndroid, setActivePickTimeAndroid] = useState(false);
   const { setOpenBlurTheme } = useBlurTheme();
 
+  const [miniHourTime, setMiniHourTime] = useState<number>(0);
+  const [miniMinuteTime, setMiniMinuteTime] = useState<number>(0);
+
   useEffect(() => {
     setTime(selectedTime);
   }, [selectedTime]);
+
+  useEffect(() => {
+    const currentDate = new Date();
+    if (dateSelect.getDate() === currentDate.getDate()) {
+      setMiniHourTime(currentDate.getHours());
+      setMiniMinuteTime(currentDate.getMinutes());
+    } else {
+      setMiniHourTime(0);
+      setMiniMinuteTime(0);
+    }
+  }, []);
 
   // Design Modal Picker Time IOS To Choose Time
   const modalTimePickerIOS = () => {
@@ -87,6 +113,18 @@ export const TimePicker = ({
                     setTimeChange(selected);
                   }
                 }}
+                minimumDate={
+                  dateSelect.getDate() === new Date().getDate()
+                    ? new Date(
+                        dateSelect.setHours(
+                          miniHourTime + 1,
+                          Math.ceil(miniMinuteTime / 5) * 5,
+                          0,
+                          0
+                        )
+                      )
+                    : new Date(dateSelect.setHours(0, 0, 0, 0))
+                }
               />
             </View>
 
@@ -155,6 +193,18 @@ export const TimePicker = ({
               setActivePickTimeAndroid(false);
               setOpenBlurTheme(false);
             }}
+            minimumDate={
+              dateSelect.getDate() === new Date().getDate()
+                ? new Date(
+                    dateSelect.setHours(
+                      miniHourTime + 1,
+                      Math.ceil(miniMinuteTime / 5) * 5,
+                      0,
+                      0
+                    )
+                  )
+                : new Date(dateSelect.setHours(0, 0, 0, 0))
+            }
             positiveButton={{ label: 'XÁC NHẬN' }}
             negativeButton={{ label: 'HỦY' }}
           />

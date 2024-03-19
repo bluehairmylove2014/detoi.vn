@@ -24,7 +24,7 @@ const NUMBER_OF_DAYS = 14;
 const calcFollowingDay = () => {
   const currentDate = new Date();
   const followingDay = new Date();
-  followingDay.setDate(currentDate.getDate() + 1);
+  followingDay.setDate(currentDate.getDate());
 
   return followingDay;
 };
@@ -155,7 +155,10 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
           </View>
 
           <VerticalSpacer size="xl" />
-          <TimePicker setTime={(time) => setSelectedTime(time)} />
+          <TimePicker
+            setTime={(time) => setSelectedTime(time)}
+            dateSelect={selectedDate}
+          />
 
           <VerticalSpacer size="xxxl" />
           <View>
