@@ -91,7 +91,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   function handlePressCategory(category: ICategory) {
     if (isLogged) {
       setCurrentOrderCategory({ category });
-      navigation.navigate('ChooseLocation');
+      navigation.navigate('ChooseService');
     } else {
       navigation.navigate('Login');
     }

@@ -24,8 +24,14 @@ const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
   const { handleSubmit } = getForm();
 
   const handlePressNext = (data: FieldValues) => {
-    onSetPostOrderServiceContent({ serviceContent: data });
-    navigation.navigate('ProvideDate');
+    if (!service) {
+      console.error('ERROR: Service is undefined ProvideDetail');
+    } else {
+      onSetPostOrderServiceContent({
+        serviceContent: { ...data, serviceTypeId: service.id },
+      });
+      navigation.navigate('ProvideDate');
+    }
   };
   const { onSetPostOrderServiceContent } = useSetPostOrderServiceContent();
 
@@ -43,7 +49,12 @@ const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
         </Title>
         {onGenerateUI()}
         <VerticalSpacer size="xxxl" />
-        <PrimaryBtn title="Tiếp theo" onPress={handleSubmit(handlePressNext)} />
+        <PrimaryBtn
+          title="Tiếp theo"
+          onPress={handleSubmit(handlePressNext, (error) => {
+            console.log('ERROR: ', error);
+          })}
+        />
       </View>
     </CustomerTemplate>
   );

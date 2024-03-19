@@ -24,7 +24,7 @@ const ChooseService: React.FC<ChooseServiceProps> = ({ route, navigation }) => {
 
   const handleSelectService = (service: IService) => {
     setCurrentOrderService({ service });
-    navigation.navigate('ProvideDetail');
+    navigation.navigate('ChooseLocation');
   };
 
   return (

@@ -92,31 +92,6 @@ export const serviceRequirementsSelectStyle = StyleSheet.create({
     alignItems: 'flex-start',
   },
 
-  modalContainer: {
-    position: 'absolute',
-    height: '50%',
-    width: '100%',
-    backgroundColor: COLOR_PALETTE.white,
-    bottom: 0,
-  },
-
-  backgroundModal: {
-    backgroundColor: COLOR_PALETTE.white,
-    width: '100%',
-    height: 'auto',
-  },
-
-  topModalContainer: {
-    width: '100%',
-    height: 'auto',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: COLOR_PALETTE.secondary,
-    paddingVertical: 14,
-    paddingHorizontal: 20,
-  },
-
   optionContainer: {
     paddingHorizontal: 20,
     paddingVertical: 20,

@@ -28,7 +28,7 @@ export const useServiceRequirementsUI = ({
   additionalRequirements,
 }: {
   requirements: IUIServiceRequirement[];
-  additionalRequirements?: IUIAdditionServiceRequirement[];
+  additionalRequirements: IUIAdditionServiceRequirement[];
 }): useServiceRequirementsUIType => {
   const schema = useGenerateSchema(requirements);
   const {
@@ -37,6 +37,17 @@ export const useServiceRequirementsUI = ({
     setValue,
     formState: { errors },
   } = useForm({
+    defaultValues: {
+      ...Object.fromEntries(
+        requirements.map((r) => [
+          r.key,
+          r.inputMethod.dataType === 'number' ? 0 : '',
+        ])
+      ),
+      ...Object.fromEntries(
+        additionalRequirements.map((ar) => [ar.key, ar.autoSelect])
+      ),
+    },
     resolver: useYupValidationResolver(schema),
   });
 
@@ -55,8 +66,8 @@ export const useServiceRequirementsUI = ({
                 labelIcon={r.labelIcon}
                 placeholder={r.placeholder}
                 control={control}
-                inputName={r.id}
-                isError={!!errors[r.id]}
+                inputName={r.key}
+                isError={!!errors[r.key]}
               />
             ) : r.inputMethod.method.name === 'select' ? (
               <ServiceRequirementsSelect
@@ -65,8 +76,8 @@ export const useServiceRequirementsUI = ({
                 placeholder={r.placeholder}
                 options={r.inputMethod.method.options}
                 control={control}
-                selectName={r.id}
-                isError={!!errors[r.id]}
+                selectName={r.key}
+                isError={!!errors[r.key]}
               />
             ) : (
               <></>
@@ -89,7 +100,7 @@ export const useServiceRequirementsUI = ({
                     autoSelect={ar.autoSelect}
                     control={control}
                     setValue={setValue}
-                    selectName={`additionalRequirement@${ar.id}`}
+                    selectName={ar.key}
                   />
                   <HorizontalSpacer size="m" />
                 </View>

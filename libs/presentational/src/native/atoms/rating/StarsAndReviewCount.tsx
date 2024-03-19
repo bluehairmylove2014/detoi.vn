@@ -53,20 +53,24 @@ function formatReviewCount(reviewCount: number) {
   }
 }
 
-type starAndReviewCountProps = {
+type ratingStarsProps = {
   point: number;
-  reviewsCount: number;
+  reviewsCount?: number;
 };
-export const StarsAndReviewCount: React.FC<starAndReviewCountProps> = ({
+export const RatingStars: React.FC<ratingStarsProps> = ({
   point,
   reviewsCount,
 }) => {
   return (
     <View style={starAndReviewCountStyles.container}>
       {renderJSXStars(point)}
-      <Paragraph theme="smallSemibold" color="yellow">
-        {formatReviewCount(reviewsCount)}
-      </Paragraph>
+      {reviewsCount ? (
+        <Paragraph theme="smallSemibold" color="yellow">
+          {formatReviewCount(reviewsCount)}
+        </Paragraph>
+      ) : (
+        <></>
+      )}
     </View>
   );
 };

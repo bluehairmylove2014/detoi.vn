@@ -26,15 +26,15 @@ const CustomerTemplate = ({ children }: { children: React.ReactNode }) => {
       <StatusBar hidden />
       <BlurTheme isOpen={state['isOpened']} />
 
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={globalStyles.container}>
-          <PrimaryScrollView direction="vertical">
-            {children}
-            <TransparentView theme="vertical" />
-          </PrimaryScrollView>
-          {isLogged ? null : <NeedLoginBottomTab />}
-        </View>
-      </TouchableWithoutFeedback>
+      {/* <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> */}
+      <View style={globalStyles.container}>
+        <PrimaryScrollView direction="vertical">
+          {children}
+          <TransparentView theme="vertical" />
+        </PrimaryScrollView>
+        {isLogged ? null : <NeedLoginBottomTab />}
+      </View>
+      {/* </TouchableWithoutFeedback> */}
     </FAProvider>
   );
 };

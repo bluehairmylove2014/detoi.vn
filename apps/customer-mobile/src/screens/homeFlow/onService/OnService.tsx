@@ -1,264 +1,298 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { OnServiceProps } from '../../../config';
-import { Image, View } from 'react-native';
+import { ActivityIndicator, Image, TouchableOpacity, View } from 'react-native';
 import { onServiceScreenStyle } from './styles';
 import {
   BaseLink,
   FAIcon,
   HorizontalSpacer,
+  OutlineBtn,
   Paragraph,
   PrimaryBtn,
+  RatingStars,
+  SecondaryBtn,
   VerticalSpacer,
 } from '@present-native/atoms';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
-import { COLOR_PALETTE } from '@present-native/styles';
+import { COLOR_PALETTE, commonShadow } from '@present-native/styles';
 import { CircleImage } from '@present-native/atoms/image';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { IOrderDetail } from '@business-layer/services/entities';
+import { formatCurrency, formatDate } from '@utils/helpers';
+import CanScrollUpModal from '@present-native/templates/CanScrollUpModal';
+import ProgressBar from 'react-native-animated-progress';
+import { useEffect, useState } from 'react';
+import React from 'react';
+import { windowHeight, windowWidth } from '@constants/dimension';
+
+const STAGES_LIST = {
+  stage1: { icon: 'faStreetView', name: 'Chưa đến giờ hoạt động' },
+  stage2: {
+    icon: 'faTruckFast',
+    name: 'Đang di chuyển, hãy kiên nhẫn',
+  },
+  stage3: { icon: 'faPeopleCarryBox', name: 'Đang làm việc' },
+  stage4: { icon: 'faHouseCircleCheck', name: 'Đã hoàn thành dịch vụ' },
+};
 
 const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
-  const statuses = [
-    { icon: 'faStreetView', name: 'Chưa đến giờ hoạt động' },
-    { icon: 'faTruckFast', name: 'Đang di chuyển, hãy kiên nhẫn' },
-    { icon: 'faPeopleCarryBox', name: 'Đang làm việc' },
-    { icon: 'faHouseCircleCheck', name: 'Đã hoàn thành dịch vụ' },
-  ];
-
-  const infoBill = {
-    avaEmplyee: '',
-    nameEmployee: 'Phan Dương Minh',
-    payment: 'Thanh toán COD',
-    totalMoney: '850.000',
-    distance: '10',
-  };
-
-  const state_1 = {
-    name: 'Chưa đến giờ hoạt động',
-    notes: [
+  const order: IOrderDetail = {
+    address: {
+      id: 'bfe62025-1c71-4bd3-8e60-08dc477097d1',
+      lat: 37.5124176,
+      lon: 127.1024889,
+      addressLine:
+        'Woori Bank, Jamsil-ro, Jamsil 6(yuk)-dong, Songpa-gu, Seoul, 05551, South Korea',
+      ward: 'Songpa-gu',
+      district: 'Seoul',
+      province: '05551',
+      country: 'South Korea',
+    },
+    estimatedPrice: 750000,
+    startTime: '14:00:00',
+    startDate: '2024-03-24',
+    finishTime: '00:00:00',
+    finishDate: '0001-01-01',
+    freelancer: {
+      id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+      fullName: 'Phan Dương Minh',
+      avatar:
+        'https://www.womenonbusiness.com/wp-content/uploads/2018/05/employee-management.png',
+      rating: 4.5,
+    },
+    serviceStatus: 'Chưa đến giờ hoạt động',
+    serviceTypes: [
       {
-        iconNote: 'faLocationDot',
-        title: 'Tôi có thể theo dõi vị trí nhân viên không?',
-        description:
-          'Có, khi gần đến giờ làm việc, nhân viên bắt đầu di chuyển, lúc đó bản đồ vị trí nhân viên sẽ được hiển thị.',
-      },
-      {
-        iconNote: 'faThumbsDown',
-        title: 'Chất lượng dịch vụ không tốt',
-        description:
-          'Nếu chất lượng dịch vụ không được đảm bảo, hãy báo cáo chất lượng dịch vụ để chúng tôi có thể hỗ trợ bạn.',
-      },
-      {
-        iconNote: 'faMoneyBills',
-        title: 'Nhân viên yêu cầu thêm phụ phí',
-        description:
-          'Nhân viên không được yêu cầu thêm bất kì phụ phí nào, nếu có xảy ra, hãy báo cáo để chúng tôi đảm bảo quyền lợi cho bạn.',
+        id: '3b8a2d6a-b0e7-46af-a688-397cea642603',
+        name: 'Phòng trọ',
+        basePrice: 30000,
+        description: 'Dọn dẹp Phòng trọ',
+        image: 'https://detoivn.sirv.com/services/dondep/phongtro.png',
       },
     ],
   };
+  const [currentStage, setCurrentStage] =
+    useState<keyof typeof STAGES_LIST>('stage1');
 
-  const state_2 = {
-    name: 'Đang di chuyển, hãy kiên nhẫn ',
-    postionDestination: {
-      lat: 10.762853671759258,
-      long: 106.68248487328377,
-    },
-    positionEmployee: {
-      lat: 10.791932495476537,
-      long: 106.63415636549603,
-    },
-  };
-
-  // Calculate mid-point
-  const midPointLatitude =
-    (state_2.postionDestination.lat + state_2.positionEmployee.lat) / 2;
-  const midPointLongitude =
-    (state_2.postionDestination.long + state_2.positionEmployee.long) / 2;
-
-  // Calculate difference
-  const latitudeDelta =
-    Math.abs(state_2.postionDestination.lat - state_2.positionEmployee.lat) *
-    1.5; // Adjust the factor as needed
-  const longitudeDelta =
-    Math.abs(state_2.postionDestination.long - state_2.positionEmployee.long) *
-    1.5; // Adjust the factor as needed
-
-  // Set initialRegion
-  const initialRegion = {
-    latitude: midPointLatitude,
-    longitude: midPointLongitude,
-    latitudeDelta,
-    longitudeDelta,
-  };
+  useEffect(() => {
+    if (order && order.serviceStatus) {
+      Object.values(STAGES_LIST).find((sv, i) => {
+        if (sv.name === order.serviceStatus) {
+          setCurrentStage(
+            Object.keys(STAGES_LIST)[i] as keyof typeof STAGES_LIST
+          );
+          return true;
+        }
+        return false;
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [order.serviceStatus]);
 
   return (
     <CustomerTemplate>
+      {/* <HeaderWithOrder orderData={order} /> */}
       <View style={onServiceScreenStyle.container}>
-        <View>
-          <Paragraph color="primary" theme="baseBold">
-            Các lưu ý chung cho dịch vụ
-          </Paragraph>
-          {state_1.name === statuses[0].name ? (
+        <MapView
+          provider={PROVIDER_GOOGLE}
+          style={onServiceScreenStyle.mapStyle}
+          zoomEnabled={true}
+          region={{
+            latitude: order.address.lat,
+            longitude: order.address.lon,
+            latitudeDelta: 0.04,
+            longitudeDelta: 0.05,
+          }}
+        >
+          <Marker
+            coordinate={{
+              latitude: order.address.lat,
+              longitude: order.address.lon,
+            }}
+            title="Địa điểm đến"
+            description="Địa điểm cần được dọn dẹp"
+          />
+        </MapView>
+        <TouchableOpacity
+          style={[
+            {
+              borderRadius: 999,
+              width: 40,
+              aspectRatio: 1,
+              overflow: 'hidden',
+              backgroundColor: COLOR_PALETTE.white,
+              position: 'absolute',
+              top: 40,
+              left: 10,
+              zIndex: 9,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            },
+            commonShadow.top,
+          ]}
+          onPress={() => {}}
+        >
+          <FAIcon iconName="faArrowLeftLong" size={15} />
+        </TouchableOpacity>
+
+        <CanScrollUpModal
+          isActive={true}
+          onClose={() => {}}
+          backgroundColor="white"
+          defaultShowChildren={
             <>
-              {state_1.notes.map((note, index) => {
-                return (
-                  <View key={index}>
-                    <VerticalSpacer size="m" />
-                    <View>
-                      <View style={onServiceScreenStyle.titleContainer}>
-                        <FAIcon
-                          iconName={note.iconNote as nativeIconNameType}
-                          color={COLOR_PALETTE.black}
-                          size={14}
-                        />
-                        <HorizontalSpacer size="m" />
-                        <Paragraph theme="smallBold">{note.title}</Paragraph>
-                      </View>
-                      <View style={onServiceScreenStyle.contentContainer}>
-                        <HorizontalSpacer size="m" />
-                        <Paragraph theme="smallRegular">
-                          {note.description}
-                        </Paragraph>
-                      </View>
-                    </View>
-                  </View>
-                );
-              })}
-
-              <VerticalSpacer size="l" />
-              <BaseLink screen="Home">
-                <Paragraph
-                  theme="smallBold"
-                  align="center"
-                  decoration="underline"
-                >
-                  Xem thêm các chính sách
-                </Paragraph>
-              </BaseLink>
-            </>
-          ) : (
-            // eslint-disable-next-line react/jsx-no-useless-fragment
-            <></>
-          )}
-
-          {state_2.name === statuses[1].name ? (
-            <View style={{ height: 300 }}>
-              <VerticalSpacer size="xl" />
-              <MapView
-                initialRegion={initialRegion}
-                provider={PROVIDER_GOOGLE}
-                style={onServiceScreenStyle.mapStyle}
-                zoomEnabled={true}
+              <View
+                style={[onServiceScreenStyle.billWrapper, commonShadow.top]}
               >
-                {/* Render marker for destination */}
-                <Marker
-                  coordinate={{
-                    latitude: state_2.postionDestination.lat,
-                    longitude: state_2.postionDestination.long,
-                  }}
-                  title="Địa điểm đến"
-                  description="Địa điểm cần được dọn dẹp"
-                />
-                {/* Render marker for employee */}
-                <Marker
-                  coordinate={{
-                    latitude: state_2.positionEmployee.lat,
-                    longitude: state_2.positionEmployee.long,
-                  }}
-                  title="Nhân Viên"
-                  description="Vị trí hiện tại của nhân viên"
-                >
-                  <Image
-                    source={require('./employeeDetoi.png')}
-                    style={{ height: 40, width: 50 }}
-                  />
-                </Marker>
-              </MapView>
-            </View>
-          ) : (
-            // eslint-disable-next-line react/jsx-no-useless-fragment
-            <></>
-          )}
-        </View>
+                <View style={onServiceScreenStyle.billContainer}>
+                  {order && order.freelancer ? (
+                    <>
+                      <View style={onServiceScreenStyle.infoBillContainer}>
+                        <View style={onServiceScreenStyle.infoEmployee}>
+                          <View style={{ overflow: 'hidden', width: '100%' }}>
+                            <Paragraph theme="baseBold">
+                              {order.serviceTypes[0].name}
+                            </Paragraph>
+                            <Paragraph theme="smallRegular" lineNumber={1}>
+                              {order.address.addressLine}
+                            </Paragraph>
+                            <Paragraph theme="smallRegular" lineNumber={1}>
+                              {order.startTime.substring(0, 5)} |{' '}
+                              {formatDate(order.startDate).days},{' '}
+                              {formatDate(order.startDate).dateMonthYear}
+                            </Paragraph>
+                          </View>
+                        </View>
 
-        <VerticalSpacer size="xl" />
-        <View style={onServiceScreenStyle.billContainer}>
-          <View style={onServiceScreenStyle.infoBillContainer}>
-            <View style={onServiceScreenStyle.infoEmployee}>
-              <View style={onServiceScreenStyle.avatarContainer}>
-                <CircleImage
-                  source={{
-                    uri: 'https://www.womenonbusiness.com/wp-content/uploads/2018/05/employee-management.png',
-                  }}
-                />
-              </View>
-              <HorizontalSpacer size="l" />
-              <View>
-                <Paragraph theme="baseBold">{infoBill.nameEmployee}</Paragraph>
-                <Paragraph theme="baseRegular">{infoBill.payment}</Paragraph>
-              </View>
-            </View>
+                        <View style={onServiceScreenStyle.infoPrice}>
+                          <Paragraph
+                            theme="baseBold"
+                            color="black"
+                            align="right"
+                            lineNumber={1}
+                          >
+                            {formatCurrency(order.estimatedPrice ?? 0, 'vnd')}
+                          </Paragraph>
+                        </View>
+                      </View>
 
-            <View>
-              <Paragraph theme="baseBold" color="primary" align="right">
-                {infoBill.totalMoney}đ
-              </Paragraph>
-              <Paragraph theme="baseSemibold" align="right">
-                {infoBill.distance}km
-              </Paragraph>
-            </View>
-          </View>
-
-          <VerticalSpacer size="m" />
-          <View>
-            {statuses.map((status, index) => {
-              let colorText: 'primary' | 'rose';
-              let fontWeight: 'baseBold' | 'baseSemibold';
-              let opacityText, colorIcon;
-
-              if (status.name === state_1.name) {
-                colorText = 'primary';
-                opacityText = 1;
-                colorIcon = COLOR_PALETTE.primary;
-                fontWeight = 'baseBold';
-              } else {
-                colorText = 'rose';
-                opacityText = 0.5;
-                colorIcon = COLOR_PALETTE.black;
-                fontWeight = 'baseSemibold';
-              }
-
-              return (
-                <View key={index}>
-                  <VerticalSpacer size="l" />
-                  <View style={onServiceScreenStyle.statusContainer}>
-                    <FAIcon
-                      iconName={status.icon as nativeIconNameType}
-                      color={colorIcon}
-                      size={20}
-                    />
-
-                    <HorizontalSpacer size="xl" />
-                    <View style={{ opacity: opacityText }}>
-                      <Paragraph theme={fontWeight} color={colorText}>
-                        {status.name}
-                      </Paragraph>
-                    </View>
-                  </View>
+                      <VerticalSpacer size="l" />
+                      <View style={onServiceScreenStyle.statusContainer}>
+                        {Object.values(STAGES_LIST).map((sv, i) => {
+                          const isCurrentStage =
+                            STAGES_LIST[currentStage].name === sv.name;
+                          return (
+                            <React.Fragment key={`stage-${i}`}>
+                              <FAIcon
+                                iconName={sv.icon as nativeIconNameType}
+                                color={
+                                  isCurrentStage
+                                    ? COLOR_PALETTE.primary
+                                    : COLOR_PALETTE.gray
+                                }
+                                size={20}
+                              />
+                              {i < Object.keys(STAGES_LIST).length - 1 ? (
+                                <View style={{ flexGrow: 1 }}>
+                                  <ProgressBar
+                                    height={5}
+                                    indeterminateDuration={4000}
+                                    indeterminate={isCurrentStage}
+                                    backgroundColor={
+                                      isCurrentStage
+                                        ? COLOR_PALETTE.primary
+                                        : COLOR_PALETTE.gray
+                                    }
+                                  />
+                                </View>
+                              ) : null}
+                            </React.Fragment>
+                          );
+                        })}
+                      </View>
+                    </>
+                  ) : (
+                    <ActivityIndicator size={'large'} />
+                  )}
                 </View>
-              );
-            })}
-          </View>
+              </View>
+              <VerticalSpacer size="m" />
+              <View
+                style={[onServiceScreenStyle.billWrapper, commonShadow.top]}
+              >
+                <View style={onServiceScreenStyle.billContainer}>
+                  {order && order.freelancer ? (
+                    <>
+                      <View style={onServiceScreenStyle.infoBillContainer}>
+                        <View style={onServiceScreenStyle.infoEmployee}>
+                          <View style={onServiceScreenStyle.avatarContainer}>
+                            <CircleImage
+                              source={{
+                                uri: order.freelancer.avatar,
+                              }}
+                            />
+                          </View>
+                          <HorizontalSpacer size="l" />
+                          <View style={{ overflow: 'hidden', width: '100%' }}>
+                            <Paragraph theme="baseBold">
+                              {order.freelancer.fullName}
+                            </Paragraph>
+                            <RatingStars point={order.freelancer.rating} />
+                          </View>
+                        </View>
+                      </View>
 
-          <VerticalSpacer size="xxxl" />
-          <View style={onServiceScreenStyle.buttonsContainer}>
-            <View style={{ flex: 1 }}>
-              <PrimaryBtn title="Tin nhắn" onPress={() => {}} />
-            </View>
-            <HorizontalSpacer size="l" />
-            <View style={{ flex: 1 }}>
-              <PrimaryBtn title="Hỗ trợ" onPress={() => {}} />
-            </View>
-          </View>
-        </View>
+                      <View style={onServiceScreenStyle.statusContainer}>
+                        <TouchableOpacity
+                          style={onServiceScreenStyle.chatBtn}
+                          activeOpacity={0.6}
+                        >
+                          <View style={{ opacity: 0.7 }}>
+                            <FAIcon iconName="faCommentsSolid" />
+                          </View>
+                          <Paragraph theme="baseRegular">
+                            Liên hệ với nhân viên...
+                          </Paragraph>
+                        </TouchableOpacity>
+
+                        <View style={{ opacity: 0.6 }}>
+                          <OutlineBtn
+                            title=""
+                            color="black"
+                            fontSize="medium"
+                            iconName="faPhone"
+                            iconPosition="left"
+                            radius="square"
+                            borderColor="black"
+                            isFitContent={true}
+                            onPress={() => {}}
+                          />
+                        </View>
+                      </View>
+                    </>
+                  ) : (
+                    <ActivityIndicator size={'large'} />
+                  )}
+                </View>
+              </View>
+            </>
+          }
+          // needScrollUpToShowChildren={
+          // <View style={onServiceScreenStyle.freelancerDetailWrapper}>
+          //   <View style={{ width: 80 }}>
+          //     <CircleImage source={{ uri: order.freelancer?.avatar }} />
+          //   </View>
+          //   <View>
+          //     <Paragraph theme="baseBold">
+          //       {order.freelancer?.fullName}
+          //     </Paragraph>
+          //     <Paragraph theme="smallRegular">Thanh toán COD</Paragraph>
+          //   </View>
+          // </View>
+          // }
+        />
       </View>
     </CustomerTemplate>
   );

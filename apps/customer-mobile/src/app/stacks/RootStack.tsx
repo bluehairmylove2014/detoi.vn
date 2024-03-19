@@ -24,7 +24,8 @@ export const RootStack = ({ isLogged }: { isLogged: boolean }) => {
         initialRouteName="HomeStack"
         screenOptions={{
           tabBarStyle: {
-            display: isLogged ? 'flex' : 'none',
+            // display: isLogged ? 'flex' : 'none',
+            display: 'none',
             flexDirection: 'row',
             width: windowWidth,
             paddingTop: 'auto',

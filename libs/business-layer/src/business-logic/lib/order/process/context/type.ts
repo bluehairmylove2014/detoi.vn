@@ -1,5 +1,4 @@
 import {
-  IAddress,
   IPostOrderFixedContent,
   IPostOrderServiceContent,
 } from '@business-layer/services/entities';

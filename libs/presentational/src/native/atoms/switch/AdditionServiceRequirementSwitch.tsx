@@ -5,7 +5,7 @@ import { FAIcon } from '../icon';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { Paragraph } from '../text';
 import { HorizontalSpacer } from '../spacer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { serviceRequirementsSwitchStyle } from './styles';
 
 const AdditionServiceRequirement = ({
@@ -19,21 +19,26 @@ const AdditionServiceRequirement = ({
   icon: string;
   label: string;
   autoSelect: boolean;
-  control?: Control<FieldValues, any, FieldValues>;
-  setValue?: UseFormSetValue<FieldValues>;
-  selectName?: string;
+  control: Control<FieldValues, any, FieldValues>;
+  setValue: UseFormSetValue<FieldValues>;
+  selectName: string;
 }) => {
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(autoSelect);
   const circlePosition = new Animated.Value(isEnabled ? 30 : 0);
 
   const toggleSwitch = () => {
-    setIsEnabled((previousState) => !previousState);
+    setIsEnabled(!isEnabled);
+
     Animated.timing(circlePosition, {
       toValue: isEnabled ? 0 : 30,
       duration: 500,
       useNativeDriver: true,
     }).start();
   };
+
+  useEffect(() => {
+    setValue(selectName, isEnabled);
+  }, [isEnabled]);
 
   return (
     <View style={serviceRequirementsSwitchStyle.container}>

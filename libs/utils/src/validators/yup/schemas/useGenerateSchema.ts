@@ -21,7 +21,7 @@ export const useGenerateSchema = (requirements: IUIServiceRequirement[]) => {
           ? base[v.name](v.message)
           : base[v.name](v.value, v.message);
     });
-    resultSchema[r.id] = base;
+    resultSchema[r.key] = base;
   });
 
   return y.object().shape(resultSchema);

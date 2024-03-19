@@ -29,12 +29,13 @@ import {
   MATCHING_SORT_CRITERIA,
   MatchingSortCriteriaID,
 } from '@constants/matchingFilterNSort';
+import { useGetMatchingOrderDetail } from '@business-layer/business-logic/lib/order';
 
 const DEFAULT_FILTER_CRITERIA = MatchingFilterCriteriaID.All;
 const DEFAULT_SORT_CRITERIA = MatchingSortCriteriaID.Default;
 
 const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
-  const order: IOrderDetail = {};
+  const { data: order } = useGetMatchingOrderDetail();
   const [matchingFreelancersRealTime, setMatchingFreelancersRealTime] =
     useState<IFreelancerAccountDetail[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

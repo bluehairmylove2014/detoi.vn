@@ -1,27 +1,66 @@
-import { serviceBookingEndpoint } from '../../config/apis';
+import {
+  createOrderEndpoint,
+  getMatchingOrderDetailEndpoint,
+} from '../../config/apis';
 import { Services } from '../../service';
-import { serviceBookingResponseTypeSchema } from './schema';
-import { serviceBookingPropsType, serviceBookingResponseType } from './type';
+import {
+  createOrderResponseTypeSchema,
+  getMatchingOrderDetailResponseSchema,
+} from './schema';
+import {
+  createOrderPropsType,
+  createOrderResponseType,
+  getMatchingOrderDetailResponseType,
+} from './type';
 
 export * from './type';
 export class OrderService extends Services {
-  serviceBooking = async ({
-    order,
+  createOrder = async ({
+    serviceContent,
+    serviceKey,
     token,
-  }: serviceBookingPropsType): Promise<serviceBookingResponseType> => {
+    ...rest
+  }: createOrderPropsType): Promise<createOrderResponseType> => {
     this.abortController = new AbortController();
     try {
       if (token) {
         return await this.fetchApi<
-          typeof serviceBookingResponseTypeSchema,
-          serviceBookingResponseType
+          typeof createOrderResponseTypeSchema,
+          createOrderResponseType
         >({
           method: 'POST',
-          url: serviceBookingEndpoint,
+          url: createOrderEndpoint,
           data: {
-            requirementList: order,
+            ...rest,
+            [serviceKey]: serviceContent,
           },
-          schema: serviceBookingResponseTypeSchema,
+          schema: createOrderResponseTypeSchema,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          signal: this.abortController.signal,
+          transformResponse: (res) => res,
+        });
+      } else {
+        throw new Error('Unauthorized');
+      }
+    } catch (error) {
+      throw this.handleError(error);
+    }
+  };
+  getMatchingOrderDetail = async (
+    token: string | null
+  ): Promise<getMatchingOrderDetailResponseType> => {
+    this.abortController = new AbortController();
+    try {
+      if (token) {
+        return await this.fetchApi<
+          typeof getMatchingOrderDetailResponseSchema,
+          getMatchingOrderDetailResponseType
+        >({
+          method: 'GET',
+          url: getMatchingOrderDetailEndpoint,
+          schema: getMatchingOrderDetailResponseSchema,
           headers: {
             Authorization: `Bearer ${token}`,
           },

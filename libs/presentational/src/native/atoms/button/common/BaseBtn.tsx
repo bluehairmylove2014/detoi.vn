@@ -21,15 +21,18 @@ const BaseBtn = ({
   isFitContent,
   onPress,
 }: baseBtnProps) => {
-  const titleJsx = (
-    <Paragraph
-      lineNumber={1}
-      theme={fontSizeBtnConfig[fontSize].text}
-      color={color}
-    >
-      {title}
-    </Paragraph>
-  );
+  const titleJsx =
+    title.length > 0 ? (
+      <Paragraph
+        lineNumber={1}
+        theme={fontSizeBtnConfig[fontSize].text}
+        color={color}
+      >
+        {title}
+      </Paragraph>
+    ) : (
+      <></>
+    );
   const iconJsx = iconName ? (
     <FAIcon
       iconName={iconName}

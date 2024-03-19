@@ -1,87 +1,23 @@
+import {
+  CategorySchema,
+  UIAdditionServiceRequirementSchema,
+  UIServiceRequirementSchema,
+  ServiceSchema,
+} from '@business-layer/services/entities';
 import z from 'zod';
 
-const categorySchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  image: z.string(),
-  description: z.string(),
-});
-const getAllCategoryResponseSchema = z.array(categorySchema);
+const getAllCategoryResponseSchema = z.array(CategorySchema);
 
-const selectOptionSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  description: z.string(),
-});
-const validationSchema = z.union([
+const getCategoryDetailResponseSchema = CategorySchema.and(
   z.object({
-    id: z.string(),
-    name: z.literal('required'),
-    value: z.null(),
-    message: z.string(),
-  }),
-  z.object({
-    id: z.string(),
-    name: z.literal('min'),
-    value: z.number(),
-    message: z.string(),
-  }),
-  z.object({
-    id: z.string(),
-    name: z.literal('max'),
-    value: z.number(),
-    message: z.string(),
-  }),
-]);
-const inputMethodType = z.union([
-  z.object({ name: z.literal('input') }),
-  z.object({
-    name: z.literal('select'),
-    options: z.array(selectOptionSchema).optional(),
-  }),
-]);
-
-const serviceRequirementsInputMethodType = z.object({
-  dataType: z.union([z.literal('number'), z.literal('text')]),
-  method: inputMethodType,
-  validation: z.array(validationSchema),
-});
-
-const serviceRequirementSchema = z.object({
-  id: z.string(),
-  inputMethod: serviceRequirementsInputMethodType,
-  label: z.string(),
-  labelIcon: z.string().nullable(),
-  placeholder: z.string(),
-  key: z.string(),
-});
-
-const additionServiceRequirementSchema = z.object({
-  id: z.string(),
-  icon: z.string(),
-  label: z.string(),
-  autoSelect: z.boolean(),
-  key: z.string(),
-});
-
-const serviceSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  basePrice: z.number(),
-  description: z.string(),
-  image: z.string(),
-});
-
-const getCategoryDetailResponseSchema = categorySchema.and(
-  z.object({
-    serviceTypes: z.array(serviceSchema),
+    serviceTypes: z.array(ServiceSchema),
   })
 );
 
-const getServiceDetailResponseSchema = serviceSchema.and(
+const getServiceDetailResponseSchema = ServiceSchema.and(
   z.object({
-    requirements: z.array(serviceRequirementSchema),
-    additionalRequirements: z.array(additionServiceRequirementSchema),
+    requirements: z.array(UIServiceRequirementSchema),
+    additionalRequirements: z.array(UIAdditionServiceRequirementSchema),
   })
 );
 export {

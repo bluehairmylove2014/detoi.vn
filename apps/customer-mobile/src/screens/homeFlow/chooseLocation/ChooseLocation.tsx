@@ -15,13 +15,17 @@ import {
 } from '@business-layer/services';
 import { chooseLocationScreenStyle } from './styles';
 import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
-import { useCurrentOrderCategory } from '@business-layer/business-logic/lib/category';
+import {
+  useCurrentOrderCategory,
+  useCurrentOrderService,
+} from '@business-layer/business-logic/lib/category';
 import { COLOR_PALETTE } from '@present-native/styles';
 import { useSetPostOrderAddress } from '@business-layer/business-logic/lib/order';
 
 const ChooseLocation = React.memo(
   ({ route, navigation }: ChooseLocationProps) => {
     const { currentOrderCategory: category } = useCurrentOrderCategory();
+    const { currentOrderService: service } = useCurrentOrderService();
     const { setCurrentOrderAddress } = useCurrentOrderAddress();
 
     const [dataRecommendationGeo, setDataRecommendationGeo] = useState<
@@ -64,7 +68,7 @@ const ChooseLocation = React.memo(
           ward: geo.ward,
         },
       });
-      navigation.navigate('ChooseService');
+      navigation.navigate('ProvideDetail');
     };
 
     return (
@@ -72,9 +76,9 @@ const ChooseLocation = React.memo(
         {category ? (
           <View style={chooseLocationScreenStyle.container}>
             <BannerTopSection
-              url={category?.image ?? '#'}
-              title={`DỊCH VỤ ${category?.name.toUpperCase()}`}
-              subtitle={category?.description}
+              url={service?.image ?? '#'}
+              title={`DỊCH VỤ ${service?.name.toUpperCase()}`}
+              subtitle={service?.description ?? ''}
               enableSearchBox={true}
               searchBoxOnChange={handleSearchKeyChange}
             />

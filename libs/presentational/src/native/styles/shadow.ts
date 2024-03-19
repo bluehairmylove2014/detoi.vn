@@ -3,7 +3,7 @@ import { COLOR_PALETTE } from './color';
 
 export const commonShadow = StyleSheet.create({
   top: {
-    shadowColor: COLOR_PALETTE.gray,
+    shadowColor: COLOR_PALETTE.black,
     shadowOffset: {
       width: 0,
       height: 4,

@@ -1,9 +1,14 @@
-import { IOrderElement } from '../../entities';
+import { IAddress, IOrderDetail } from '../../entities';
 
-export type serviceBookingPropsType = {
-  order: IOrderElement[];
+export type createOrderPropsType = {
+  address: Omit<IAddress, 'id'>;
+  startTime: string;
+  startDate: string;
+  serviceContent: any;
+  serviceKey: string;
   token: string | null;
 };
-export type serviceBookingResponseType = {
+export type createOrderResponseType = {
   message: string;
 };
+export type getMatchingOrderDetailResponseType = IOrderDetail;

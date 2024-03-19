@@ -24,6 +24,8 @@ import {
 import { TouchTheme } from '../theme';
 import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
 import { serviceRequirementsSelectStyle } from './styles';
+import ModalWrapper from '../../templates/ModalWrapper';
+import { VerticalSpacer } from '../spacer';
 
 export const ServiceRequirementsSelect = ({
   label,
@@ -57,62 +59,41 @@ export const ServiceRequirementsSelect = ({
           onChange(item.name);
         }}
       >
-        <Paragraph theme="largeBold">{item.name}</Paragraph>
-        <View style={{ marginTop: 5 }}>
-          <Paragraph theme="baseMedium">{item.description}</Paragraph>
-        </View>
+        <Paragraph theme="largeBold" lineNumber={1}>
+          {item.name}
+        </Paragraph>
+        <VerticalSpacer size="s" />
+        <Paragraph theme="baseMedium" lineNumber={2}>
+          {item.description}
+        </Paragraph>
       </TouchableOpacity>
     );
   };
 
   const modalListDropdown = () => {
     return (
-      <Modal animationType="slide" transparent={true} visible={activeModal}>
-        <TouchTheme
-          onPress={() => {
-            setActiveModal(false);
-            setOpenBlurTheme(false);
-          }}
-        />
-        <View style={serviceRequirementsSelectStyle.modalContainer}>
-          <View style={serviceRequirementsSelectStyle.backgroundModal}>
-            <View style={serviceRequirementsSelectStyle.topModalContainer}>
-              <Paragraph theme="largeBold">Tuỳ chọn</Paragraph>
-
-              {/* Close Button */}
-              <TouchableOpacity
-                style={{
-                  alignSelf: 'flex-start',
-                }}
-                onPress={() => {
-                  setActiveModal(false);
-                  setOpenBlurTheme(false);
-                }}
-              >
-                <FAIcon
-                  iconName="faTimes"
-                  color={COLOR_PALETTE.black}
-                  size={25}
-                />
-              </TouchableOpacity>
-            </View>
-
-            <Controller
-              name={selectName}
-              control={control}
-              render={({ field }) => (
-                <FlatList
-                  data={options}
-                  renderItem={({ item }) => renderItem(item, field.onChange)}
-                  horizontal={false}
-                  keyExtractor={(item) => item.id}
-                  style={{ marginBottom: 30 }}
-                />
-              )}
+      <ModalWrapper
+        isActive={activeModal}
+        onClose={() => setActiveModal(false)}
+        overlayColor="black"
+        overlayOpacity={0.7}
+        backgroundColor="white"
+        headerTitle="Tuỳ chọn"
+      >
+        <Controller
+          name={selectName}
+          control={control}
+          render={({ field }) => (
+            <FlatList
+              data={options}
+              renderItem={({ item }) => renderItem(item, field.onChange)}
+              horizontal={false}
+              keyExtractor={(item) => item.id}
+              style={{ marginBottom: 30 }}
             />
-          </View>
-        </View>
-      </Modal>
+          )}
+        />
+      </ModalWrapper>
     );
   };
 

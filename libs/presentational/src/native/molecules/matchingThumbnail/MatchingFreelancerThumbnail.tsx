@@ -5,7 +5,7 @@ import {
   OverlayColor,
   Paragraph,
   SquareImage,
-  StarsAndReviewCount,
+  RatingStars,
   VerticalSpacer,
 } from '@present-native/atoms';
 import { COLOR_PALETTE } from '@present-native/styles';
@@ -41,7 +41,7 @@ export const MatchingFreelancerThumbnail: React.FC<
           width: '100%',
         }}
       >
-        <StarsAndReviewCount
+        <RatingStars
           point={freelancerData.rating}
           reviewsCount={freelancerData.totalReviewCount}
         />
