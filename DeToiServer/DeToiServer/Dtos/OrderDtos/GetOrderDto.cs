@@ -7,6 +7,7 @@ namespace DeToiServer.Dtos.OrderDtos
 {
     public class GetOrderDto
     {
+        public Guid Id { get; set; }
         public AddressDto? Address { get; set; }
         public double EstimatedPrice { get; set; }
         public TimeOnly StartTime { get; set; }

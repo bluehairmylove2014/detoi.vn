@@ -45,8 +45,10 @@ namespace DeToiServer.Controllers
         [HttpPost, AuthorizeRoles(GlobalConstant.Customer)]
         public async Task<ActionResult<PostOrderResultDto>> PostOrder(PostOrderDto postOrder)
         {
-            Guid.TryParse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out Guid customerId);
-            postOrder.CustomerId = customerId;
+            Guid.TryParse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out Guid accountId);
+            var customer = await _customerAcc.GetByAccId(accountId);
+
+            postOrder.CustomerId = customer.Id;
             var order = await _orderService.Add(postOrder);
             
             if (order is null)
@@ -63,23 +65,24 @@ namespace DeToiServer.Controllers
             });
         }
 
-        //[HttpGet("all")]
-        //public async Task<ActionResult<Order>> GetAllOrders()
-        //{
-        //    //Guid.TryParse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out Guid customerId);
-        //    //postOrder.CustomerId = customerId;
-        //    var order = await _orderService.Ge(Guid.Empty);
+        [HttpGet("all")]
+        public async Task<ActionResult<Order>> GetAllOrders()
+        {
+            //Guid.TryParse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out Guid customerId);
+            //postOrder.CustomerId = customerId;
+            //var order = await _orderService.Ge(Guid.Empty);
+            var order = await _orderService.GetAllOrderTest();
 
-        //    if (order is null)
-        //    {
-        //        return BadRequest(new
-        //        {
-        //            Message = "Lấy đơn đặt hàng không thành công"
-        //        });
-        //    }
+            if (order is null)
+            {
+                return BadRequest(new
+                {
+                    Message = "Lấy đơn đặt hàng không thành công"
+                });
+            }
 
-        //    return Ok(order);
-        //}
+            return Ok(order);
+        }
 
         [HttpPut("order-price"), AuthorizeRoles(GlobalConstant.Customer)]
         public async Task<ActionResult<Order>> UpdateOrderActualPriceAndFreelancer(PutOrderPriceAndFreelancerDto putOrder)
@@ -237,6 +240,68 @@ namespace DeToiServer.Controllers
             var order = await _orderService.GetLatestCustomerOrders(customer.Id);
 
             return Ok(order);
+        }
+
+        [HttpPost("customer-review"), AuthorizeRoles(GlobalConstant.Customer)]
+        public async Task<ActionResult<string>> PostCustomerOrderReview(PostOrderCustomerReviewDto review)
+        {
+            Guid.TryParse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out Guid accountId);
+            var customer = await _customerAcc.GetByAccId(accountId);
+
+            if (customer is null)
+            {
+                return BadRequest(new
+                {
+                    Message = "Không thể đánh giá đơn hàng, hãy đăng nhập để thử lại."
+                });
+            }
+
+            var order = await _orderService.PostOrderReview(review, customer.Id);
+
+            if (order.Order == null)
+            {
+                return BadRequest(new
+                {
+                    order.Message
+                });
+            }
+
+            await _uow.SaveChangesAsync();
+            return Ok(new
+            {
+                order.Message
+            });
+        }
+
+        [HttpDelete("customer-order"), AuthorizeRoles(GlobalConstant.Customer)]
+        public async Task<ActionResult<string>> PostCustomerCancelOrder(Guid orderId)
+        {
+            Guid.TryParse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out Guid accountId);
+            var customer = await _customerAcc.GetByAccId(accountId);
+
+            if (customer is null)
+            {
+                return BadRequest(new
+                {
+                    Message = "Không thể hủy đơn hàng, hãy đăng nhập để thử lại."
+                });
+            }
+
+            var order = await _orderService.PostCancelOrderCustomer(orderId, customer.Id);
+
+            if (order.Order == null)
+            {
+                return BadRequest(new
+                {
+                    order.Message
+                });
+            }
+
+            await _uow.SaveChangesAsync();
+            return Ok(new
+            {
+                order.Message
+            });
         }
     }
 }

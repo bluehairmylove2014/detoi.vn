@@ -1,3 +1,4 @@
+using DeToiServerCore.Common.Constants;
 using DeToiServerCore.Models;
 using DeToiServerCore.Models.Accounts;
 using DeToiServerCore.Models.Services;
@@ -16,15 +17,17 @@ namespace DeToiServerData.Repositories.OrderRepo
             _context = context;
         }
 
-        public async Task<IEnumerable<Order>> GetAllOrderAsync()
+        public async Task<IEnumerable<Order>> GetAllOrderWithDetailAsync()
         {
-            var ordersQuery = _context.Orders.AsSplitQuery();
+            var ordersQuery = _context.Orders.AsSplitQuery().AsNoTracking();
 
             var result = await ordersQuery
-                .Include(o => o.Address)
-                .Include(o => o.ServiceStatus)
                 .Include(o => o.OrderServiceTypes)
-                .Include(o => o.OrderServices)
+                    .ThenInclude(ost => ost.ServiceType)
+                .Include(o => o.Freelance)
+                    .ThenInclude(f => f.Account)
+                .Include(o => o.ServiceStatus)
+                .Include(o => o.Address)
                 .ToListAsync();
 
             return result;
@@ -60,7 +63,7 @@ namespace DeToiServerData.Repositories.OrderRepo
         {
             var orderDetail = _context.Orders
                 .AsNoTracking()
-                .Where(o => o.Id == id)
+                .Where(o => o.Id == id) // && !o.ServiceStatusId.Equals(StatusConst.Canceled)
                 .Include(o => o.OrderServiceTypes)
                     .ThenInclude(ost => ost.ServiceType)
                 .Include(o => o.Freelance)
@@ -76,7 +79,7 @@ namespace DeToiServerData.Repositories.OrderRepo
 
             var result = await _context.Orders
                 .AsNoTracking()
-                .Where(o => o.CustomerId == customerId)
+                .Where(o => o.CustomerId == customerId) // && !o.ServiceStatusId.Equals(StatusConst.Canceled)
                 .Include(o => o.OrderServiceTypes)
                     .ThenInclude(ost => ost.ServiceType)
                 .Include(o => o.Freelance)
@@ -111,25 +114,14 @@ namespace DeToiServerData.Repositories.OrderRepo
                     .ThenInclude(ost => ost.ServiceType)
                         .ThenInclude(svt => svt.ServiceCategory)
                 .Include(o => o.Address)
-                .Where(order => order.OrderServiceTypes.All(type =>
-                    suitableSkillCategories.Contains(type.ServiceType.ServiceCategory.ServiceClassName))
+                .Where(order =>
+                    !order.ServiceStatusId.Equals(StatusConst.Canceled)
+                    && order.OrderServiceTypes.All(type => suitableSkillCategories
+                        .Contains(type.ServiceType.ServiceCategory.ServiceClassName))
                     && order.FreelancerId == null)
                 .ToListAsync();
 
             return result;
-        }
-
-        private bool FilterFreelancerSuitableOrders(Order order, FreelanceAccount freelancer)
-        {
-            var suitableSkills = freelancer.FreelanceSkills.Select(fl_sk => fl_sk.Skill.SkillCategory)
-            .Distinct().ToList();
-
-            var inCategory = order.OrderServiceTypes
-                .All(type => suitableSkills.Contains(type.ServiceType?.ServiceCategory?.ServiceClassName));
-
-            if (!inCategory) return false;
-
-            return order.FreelancerId == null;
         }
 
         public async Task<Order> GetLatestCustomerOrders(Guid customerId)
@@ -137,7 +129,9 @@ namespace DeToiServerData.Repositories.OrderRepo
             //&& !((DateTime.Now - o.CreatedTime) > TimeSpan.FromMinutes(5))
             var result = await _context.Orders
                 .AsNoTracking()
-                .Where(o => o.CustomerId == customerId && o.FreelancerId == null)
+                .Where(o => o.CustomerId == customerId
+                    && !o.ServiceStatusId.Equals(StatusConst.Canceled)
+                    && o.FreelancerId == null)
                 .Include(o => o.OrderServiceTypes)
                     .ThenInclude(ost => ost.ServiceType)
                 .Include(o => o.Freelance)

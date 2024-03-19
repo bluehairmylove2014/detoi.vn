@@ -33,4 +33,17 @@ namespace DeToiServer.Dtos.OrderDtos
     {
         public Guid OrderId { get; set; }
     }
+
+    public class PostOrderCustomerReviewDto
+    {
+        public Guid OrderId { get; set; }
+        public double Rating { get; set; }
+        public string? Comment { get; set; } = null;
+    }
+
+    public class UpdateOrderResultDto
+    {
+        public Order? Order { get; set; } = null;
+        public string Message { get; set; } = string.Empty;
+    }
 }

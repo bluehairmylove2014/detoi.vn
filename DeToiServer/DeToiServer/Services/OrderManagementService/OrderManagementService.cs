@@ -2,6 +2,8 @@
 using DeToiServer.Dtos;
 using DeToiServer.Dtos.OrderDtos;
 using DeToiServer.Dtos.ServiceTypeDtos;
+using DeToiServerCore.Common.Constants;
+using DeToiServerCore.Models;
 using DeToiServerCore.Models.Accounts;
 using DeToiServerCore.Models.Services;
 using System.Collections.Generic;
@@ -95,8 +97,9 @@ namespace DeToiServer.Services.OrderManagementService
         public async Task<GetOrderDto?> GetOrderDetailById(Guid id)
         {
             var rawOrder = await _uow.OrderRepo.GetOrderDetailByIdAsync(id);
-            var order = _mapper.Map<GetOrderDto>(rawOrder);
+            if (rawOrder == null) return null;
 
+            var order = _mapper.Map<GetOrderDto>(rawOrder);
             order.ServiceTypes = rawOrder.OrderServiceTypes?.Select(ost => _mapper.Map<GetServiceTypeDto>(ost.ServiceType)).ToList();
 
             return order;
@@ -130,6 +133,75 @@ namespace DeToiServer.Services.OrderManagementService
             order.ServiceTypes = rawOrder.OrderServiceTypes?.Select(ost => _mapper.Map<GetServiceTypeDto>(ost.ServiceType)).ToList();
             
             return order;
+        }
+
+        public async Task<IEnumerable<Order>> GetAllOrderTest()
+        {
+            var res = await _uow.OrderRepo.GetAllOrderWithDetailAsync();
+            return res;
+        }
+
+        public async Task<UpdateOrderResultDto> PostOrderReview(PostOrderCustomerReviewDto review, Guid customerId)
+        {
+            var order = await _uow.OrderRepo.GetByConditionsAsync(o => 
+                o.Id.Equals(review.OrderId) 
+                && o.CustomerId.Equals(customerId)
+                && !o.ServiceStatusId.Equals(StatusConst.Canceled));
+            
+            if (order == null) {
+                return new()
+                {
+                    Message = "Không tìm thấy đơn đặt hàng"
+                };
+            }
+            if (order.FreelancerId == null)
+            {
+                return new()
+                {
+                    Message = "Đơn đặt hàng của bạn chưa được nhận bởi Freelancer"
+                };
+            }
+
+            order.Rating = review.Rating;
+            order.Comment = review.Comment;
+            var orderNew = await _uow.OrderRepo.UpdateAsync(order);
+
+            return new()
+            {
+                Order = orderNew,
+                Message = "Đánh giá đơn hàng thành công",
+            };
+        }
+
+        public async Task<UpdateOrderResultDto> PostCancelOrderCustomer(Guid orderId, Guid customerId)
+        {
+            var validStatusList = new List<Guid>()
+            {
+                StatusConst.Waiting, StatusConst.Canceled
+            };
+
+            var order = await _uow.OrderRepo.GetByConditionsAsync(o =>
+                o.Id.Equals(orderId)
+                && o.CustomerId.Equals(customerId)
+                // && o.FreelancerId == null
+                && validStatusList.Any(item => o.ServiceStatusId.Equals(item)));
+
+            if (order == null)
+            {
+                return new()
+                {
+                    Message = "Không tìm thấy đơn đặt hàng cần hủy. Hãy kiểm tra lại trạng thái đơn"
+                };
+            }
+
+            order.ServiceStatusId = StatusConst.Canceled;
+            var orderNew = await _uow.OrderRepo.UpdateAsync(order);
+
+            return new()
+            {
+                Order = orderNew,
+                Message = "Hủy đơn hàng thành công"
+            };
         }
     }
 }
