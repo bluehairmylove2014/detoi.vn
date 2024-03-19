@@ -20,7 +20,7 @@ import ReviewScreen from '../../../screens/homeFlow/review/Review';
 const Stack = createNativeStackNavigator<customerRootStackParamList>();
 export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
-    <Stack.Navigator initialRouteName="ProvideDate">
+    <Stack.Navigator initialRouteName="Login">
       {/* Then, put stack.screen for your screen component here (in the end) */}
       <Stack.Screen
         component={LoginScreen}

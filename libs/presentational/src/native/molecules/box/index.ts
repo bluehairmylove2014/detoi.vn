@@ -1,1 +1,2 @@
 export * from './MessageBox';
+export * from './YesNoBox';
