@@ -24,6 +24,8 @@ type customerRootStackParamList = {
   FreelancerDetail: { freelancerAccountDetail: IFreelancerAccountDetail };
   ImageDetail: { imageUrl: string };
   OnService: undefined;
+  Rating: undefined;
+  Review: {ratingIndex: number};
 };
 // ENDOW STACK
 type endowStackParamList = {
@@ -89,6 +91,14 @@ type OnServiceProps = NativeStackScreenProps<
   customerRootStackParamList,
   'OnService'
 >;
+type RatingProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'Rating'
+>;
+type ReviewProps = NativeStackScreenProps<
+  customerRootStackParamList,
+  'Review'
+>;
 
 // 3. Export props
 export {
@@ -104,6 +114,8 @@ export {
   OnServiceProps,
   ImageDetailProps,
   MatchingProps,
+  RatingProps,
+  ReviewProps
 };
 export {
   customerRootStackParamList,

@@ -14,6 +14,9 @@ import FreelanceerDetailScreen from '../../../screens/homeFlow/freelancerDetail/
 import OnServiceScreen from '../../../screens/homeFlow/onService/OnService';
 import DetailImageScreen from '../../../screens/homeFlow/imageDetail/ImageDetail';
 import MatchingScreen from '../../../screens/homeFlow/matching/Matching';
+import RatingScreen from '../../../screens/homeFlow/rating/Rating';
+import ReviewScreen from '../../../screens/homeFlow/review/Review';
+
 
 const Stack = createNativeStackNavigator<customerRootStackParamList>();
 export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
@@ -78,6 +81,16 @@ export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
       <Stack.Screen
         component={DetailImageScreen}
         name="ImageDetail"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        component={RatingScreen}
+        name="Rating"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        component={ReviewScreen}
+        name="Review"
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

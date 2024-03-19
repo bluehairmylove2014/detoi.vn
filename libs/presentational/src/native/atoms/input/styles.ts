@@ -53,4 +53,14 @@ const textAreaStyles = StyleSheet.create({
   },
 });
 
-export { ServiceRequirementsInputStyle, paymentMethodStyles, textAreaStyles };
+const reviewTextareaStyles = StyleSheet.create({
+  input: {
+    padding: 15,
+    borderColor: COLOR_PALETTE.black,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRadius: 10,
+  }
+});
+
+export { ServiceRequirementsInputStyle, paymentMethodStyles, textAreaStyles, reviewTextareaStyles };
