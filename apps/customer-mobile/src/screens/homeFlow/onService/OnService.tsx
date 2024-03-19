@@ -20,6 +20,7 @@ import { formatCurrency, formatDate } from '@utils/helpers';
 import ProgressBar from 'react-native-animated-progress';
 import { useEffect, useState } from 'react';
 import React from 'react';
+import { useGetOrderDetail } from '@business-layer/business-logic/lib/order';
 
 const STAGES_LIST: { icon: nativeIconNameType; name: string }[] = [
   { icon: 'faStreetView', name: 'Chưa đến giờ hoạt động' },
@@ -32,41 +33,45 @@ const STAGES_LIST: { icon: nativeIconNameType; name: string }[] = [
 ];
 
 const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
-  const order: IOrderDetail = {
-    address: {
-      id: 'bfe62025-1c71-4bd3-8e60-08dc477097d1',
-      lat: 37.5124176,
-      lon: 127.1024889,
-      addressLine:
-        'Woori Bank, Jamsil-ro, Jamsil 6(yuk)-dong, Songpa-gu, Seoul, 05551, South Korea',
-      ward: 'Songpa-gu',
-      district: 'Seoul',
-      province: '05551',
-      country: 'South Korea',
-    },
-    estimatedPrice: 750000,
-    startTime: '14:00:00',
-    startDate: '2024-03-24',
-    finishTime: '00:00:00',
-    finishDate: '0001-01-01',
-    freelancer: {
-      id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-      fullName: 'Phan Dương Minh',
-      avatar:
-        'https://www.womenonbusiness.com/wp-content/uploads/2018/05/employee-management.png',
-      rating: 4.5,
-    },
-    serviceStatus: 'Chưa đến giờ hoạt động',
-    serviceTypes: [
-      {
-        id: '3b8a2d6a-b0e7-46af-a688-397cea642603',
-        name: 'Phòng trọ',
-        basePrice: 30000,
-        description: 'Dọn dẹp Phòng trọ',
-        image: 'https://detoivn.sirv.com/services/dondep/phongtro.png',
-      },
-    ],
-  };
+  // const order: IOrderDetail = {
+  //   id: 'ad',
+  //   address: {
+  //     id: 'bfe62025-1c71-4bd3-8e60-08dc477097d1',
+  //     lat: 37.5124176,
+  //     lon: 127.1024889,
+  //     addressLine:
+  //       'Woori Bank, Jamsil-ro, Jamsil 6(yuk)-dong, Songpa-gu, Seoul, 05551, South Korea',
+  //     ward: 'Songpa-gu',
+  //     district: 'Seoul',
+  //     province: '05551',
+  //     country: 'South Korea',
+  //   },
+  //   estimatedPrice: 750000,
+  //   startTime: '14:00:00',
+  //   startDate: '2024-03-24',
+  //   finishTime: '00:00:00',
+  //   finishDate: '0001-01-01',
+  //   freelancer: {
+  //     id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+  //     fullName: 'Phan Dương Minh',
+  //     avatar:
+  //       'https://www.womenonbusiness.com/wp-content/uploads/2018/05/employee-management.png',
+  //     rating: 4.5,
+  //   },
+  //   serviceStatus: 'Chưa đến giờ hoạt động',
+  //   serviceTypes: [
+  //     {
+  //       id: '3b8a2d6a-b0e7-46af-a688-397cea642603',
+  //       name: 'Phòng trọ',
+  //       basePrice: 30000,
+  //       description: 'Dọn dẹp Phòng trọ',
+  //       image: 'https://detoivn.sirv.com/services/dondep/phongtro.png',
+  //     },
+  //   ],
+  // };
+  const { orderId } = route.params;
+  const { data: order } = useGetOrderDetail(orderId);
+  console.log(order);
   const [currentStage, setCurrentStage] = useState<number>(0);
 
   useEffect(() => {
@@ -80,7 +85,7 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [order.serviceStatus]);
+  }, [order?.serviceStatus]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -89,9 +94,12 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
       }
     }, 4000);
 
-    if (currentStage === STAGES_LIST.length - 1) {
-      navigation.navigate('Rating');
-    }
+    // if (order && currentStage === STAGES_LIST.length - 1) {
+    //   navigation.navigate('Rating', {
+    //     orderId: order.id,
+    //     orderPrice: order.serviceTypes[0].basePrice,
+    //   });
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentStage]);
 
@@ -104,16 +112,16 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
           style={onServiceScreenStyle.mapStyle}
           zoomEnabled={true}
           region={{
-            latitude: order.address.lat,
-            longitude: order.address.lon,
+            latitude: order?.address.lat ?? 10.762622,
+            longitude: order?.address.lon ?? 106.660172,
             latitudeDelta: 0.04,
             longitudeDelta: 0.05,
           }}
         >
           <Marker
             coordinate={{
-              latitude: order.address.lat,
-              longitude: order.address.lon,
+              latitude: order?.address.lat ?? 10.762622,
+              longitude: order?.address.lon ?? 106.660172,
             }}
             title="Địa điểm đến"
             description="Địa điểm cần được dọn dẹp"
@@ -131,7 +139,7 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
             <View
               style={[onServiceScreenStyle.billContainer, commonShadow.top]}
             >
-              {order && order.freelancer ? (
+              {order ? (
                 <>
                   <View style={onServiceScreenStyle.infoBillContainer}>
                     <View style={onServiceScreenStyle.infoEmployee}>

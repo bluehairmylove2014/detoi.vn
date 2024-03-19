@@ -9,6 +9,7 @@ import {
   ReviewTextarea,
   VerticalSpacer,
 } from '@present-native/atoms';
+import { useRatingOrder } from '@business-layer/business-logic/lib/rating';
 
 const RATING_INSIGHT = [
   'Quá tệ',
@@ -19,8 +20,20 @@ const RATING_INSIGHT = [
 ];
 
 const ReviewScreen: React.FC<ReviewProps> = ({ route, navigation }) => {
-  const { ratingIndex } = route.params;
+  const { ratingIndex, orderId } = route.params;
   const [textReview, setTextReview] = useState<string>('');
+  const { onRatingOrder } = useRatingOrder();
+
+  function handleRating() {
+    onRatingOrder({ rating: ratingIndex + 1, comment: textReview, orderId })
+      .then((msg) => {
+        // TODO
+      })
+      .catch((error) => {
+        // TODO
+      });
+  }
+
   return (
     <View style={reviewScreenStyle.container}>
       <View style={reviewScreenStyle.head}>
@@ -50,7 +63,11 @@ const ReviewScreen: React.FC<ReviewProps> = ({ route, navigation }) => {
       </View>
       <View style={reviewScreenStyle.foot}>
         <View style={buttonFootSection.container}>
-          <PrimaryBtn onPress={() => {}} title="Gửi đánh giá" radius="square" />
+          <PrimaryBtn
+            onPress={handleRating}
+            title="Gửi đánh giá"
+            radius="square"
+          />
         </View>
       </View>
     </View>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { RatingProps } from '../../../config';
 import { View } from 'react-native';
 import {
@@ -19,23 +19,13 @@ import {
 import { formatCurrency } from '@utils/helpers/MoneyConverter';
 
 const RatingScreen: React.FC<RatingProps> = ({ route, navigation }) => {
-  const [ratingIndex, setRatingIndex] = useState<number>(0);
-
-  useEffect(() => {
-    if (ratingIndex) {
-      navigation.navigate('Review', { ratingIndex });
-    }
-  }, [ratingIndex]);
-
-  const infoBill = {
-    avaEmplyee: '',
-    nameEmployee: 'Phan Dương Minh',
-    payment: 'Thanh toán COD',
-    totalMoney: '850000',
-    distance: '10',
-  };
+  const { orderId, orderPrice } = route.params;
   const avatar =
     'https://www.womenonbusiness.com/wp-content/uploads/2018/05/employee-management.png';
+
+  function handleSelectStar(index: number) {
+    navigation.navigate('Review', { ratingIndex: index, orderId });
+  }
 
   return (
     <View style={ratingScreenStyle.container}>
@@ -64,10 +54,7 @@ const RatingScreen: React.FC<RatingProps> = ({ route, navigation }) => {
             Bạn thấy thế nào về chất lượng dịch vụ lần này?
           </Paragraph>
           <VerticalSpacer size="l" />
-          <RatingStarsIndex
-            ratingIndex={ratingIndex}
-            setRatingIndex={setRatingIndex}
-          />
+          <RatingStarsIndex ratingIndex={0} setRatingIndex={handleSelectStar} />
         </View>
         <VerticalSpacer size="xxxl" />
         <View style={totalPriceSection.container}>
@@ -78,7 +65,7 @@ const RatingScreen: React.FC<RatingProps> = ({ route, navigation }) => {
               Tổng đã trả
             </Paragraph>
             <Paragraph theme="smallMedium" align="right">
-              {formatCurrency(parseInt(infoBill.totalMoney), 'vnd')}
+              {formatCurrency(orderPrice, 'vnd')}
             </Paragraph>
           </View>
           <VerticalSpacer size="l" />

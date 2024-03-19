@@ -77,7 +77,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
         console.log(msg);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
     navigation.navigate('Matching');
   };
