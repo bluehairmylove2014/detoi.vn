@@ -83,27 +83,33 @@ const ChooseLocation = React.memo(
               searchBoxOnChange={handleSearchKeyChange}
             />
             <View style={chooseLocationScreenStyle.bodyContainer}>
-              <VerticalSpacer size="xxxl" />
-              <RecommendationLocation
-                dataRecommendationGeo={dataRecommendationGeo}
-                onPress={handleSelectGeo}
-              />
-              {isLoading ? (
-                <ActivityIndicator
-                  color={COLOR_PALETTE.primary}
-                  size={'large'}
+              <View
+                style={chooseLocationScreenStyle.resultSearchLocationSection}
+              >
+                <VerticalSpacer size="xxxl" />
+                <RecommendationLocation
+                  dataRecommendationGeo={dataRecommendationGeo}
+                  onPress={handleSelectGeo}
                 />
-              ) : null}
-              <VerticalSpacer size="xxxl" />
-              <BaseLink screen="Home">
-                <Paragraph
-                  theme="smallMedium"
-                  decoration="underline"
-                  align="center"
-                >
-                  Chọn từ sổ địa chỉ?
-                </Paragraph>
-              </BaseLink>
+                {isLoading ? (
+                  <ActivityIndicator
+                    color={COLOR_PALETTE.primary}
+                    size={'large'}
+                  />
+                ) : null}
+                <VerticalSpacer size="xxxl" />
+              </View>
+              <View style={chooseLocationScreenStyle.addressBookSection}>
+                <BaseLink screen="Home">
+                  <Paragraph
+                    theme="smallMedium"
+                    decoration="underline"
+                    align="center"
+                  >
+                    Chọn từ sổ địa chỉ?
+                  </Paragraph>
+                </BaseLink>
+              </View>
             </View>
           </View>
         ) : null}
