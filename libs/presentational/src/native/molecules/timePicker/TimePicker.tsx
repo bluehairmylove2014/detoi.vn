@@ -29,13 +29,23 @@ export const TimePicker = ({
 }) => {
   const [selectedTime, setSelectedTime] = useState<Date>(
     dateSelect.getDate() === new Date().getDate()
-      ? new Date(new Date().setHours(new Date().getHours() + 1)) // Add 1 hour to the current time
+      ? new Date(
+          new Date().setHours(
+            new Date().getHours() + 1,
+            Math.ceil(new Date().getMinutes() / 5) * 5
+          )
+        ) // Add 1 hour to the current time
       : constantTime()
   );
 
   const [timeChange, setTimeChange] = useState<Date>(
     dateSelect.getDate() === new Date().getDate()
-      ? new Date(new Date().setHours(new Date().getHours() + 1)) // Add 1 hour to the current time
+      ? new Date(
+          new Date().setHours(
+            new Date().getHours() + 1,
+            Math.ceil(new Date().getMinutes() / 5) * 5
+          )
+        ) // Add 1 hour to the current time
       : constantTime()
   );
 
