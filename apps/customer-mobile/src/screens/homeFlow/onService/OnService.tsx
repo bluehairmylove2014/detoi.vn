@@ -1,17 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { OnServiceProps } from '../../../config';
-import { ActivityIndicator, Image, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, TouchableOpacity, View } from 'react-native';
 import { onServiceScreenStyle } from './styles';
 import {
-  BaseLink,
   FAIcon,
   HorizontalSpacer,
   OutlineBtn,
   Paragraph,
-  PrimaryBtn,
   RatingStars,
-  SecondaryBtn,
   VerticalSpacer,
 } from '@present-native/atoms';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
@@ -20,21 +17,19 @@ import { CircleImage } from '@present-native/atoms/image';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { IOrderDetail } from '@business-layer/services/entities';
 import { formatCurrency, formatDate } from '@utils/helpers';
-import CanScrollUpModal from '@present-native/templates/CanScrollUpModal';
 import ProgressBar from 'react-native-animated-progress';
 import { useEffect, useState } from 'react';
 import React from 'react';
-import { windowHeight, windowWidth } from '@constants/dimension';
 
-const STAGES_LIST = {
-  stage1: { icon: 'faStreetView', name: 'Chưa đến giờ hoạt động' },
-  stage2: {
+const STAGES_LIST: { icon: nativeIconNameType; name: string }[] = [
+  { icon: 'faStreetView', name: 'Chưa đến giờ hoạt động' },
+  {
     icon: 'faTruckFast',
     name: 'Đang di chuyển, hãy kiên nhẫn',
   },
-  stage3: { icon: 'faPeopleCarryBox', name: 'Đang làm việc' },
-  stage4: { icon: 'faHouseCircleCheck', name: 'Đã hoàn thành dịch vụ' },
-};
+  { icon: 'faPeopleCarryBox', name: 'Đang làm việc' },
+  { icon: 'faHouseCircleCheck', name: 'Đã hoàn thành dịch vụ' },
+];
 
 const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
   const order: IOrderDetail = {
@@ -72,16 +67,13 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
       },
     ],
   };
-  const [currentStage, setCurrentStage] =
-    useState<keyof typeof STAGES_LIST>('stage1');
+  const [currentStage, setCurrentStage] = useState<number>(0);
 
   useEffect(() => {
     if (order && order.serviceStatus) {
       Object.values(STAGES_LIST).find((sv, i) => {
         if (sv.name === order.serviceStatus) {
-          setCurrentStage(
-            Object.keys(STAGES_LIST)[i] as keyof typeof STAGES_LIST
-          );
+          setCurrentStage(i);
           return true;
         }
         return false;
@@ -89,6 +81,19 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [order.serviceStatus]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (currentStage < STAGES_LIST.length - 1) {
+        setCurrentStage(currentStage + 1);
+      }
+    }, 4000);
+
+    if (currentStage === STAGES_LIST.length - 1) {
+      navigation.navigate('Rating');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentStage]);
 
   return (
     <CustomerTemplate>
@@ -115,184 +120,141 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
           />
         </MapView>
         <TouchableOpacity
-          style={[
-            {
-              borderRadius: 999,
-              width: 40,
-              aspectRatio: 1,
-              overflow: 'hidden',
-              backgroundColor: COLOR_PALETTE.white,
-              position: 'absolute',
-              top: 40,
-              left: 10,
-              zIndex: 9,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            },
-            commonShadow.top,
-          ]}
+          style={[onServiceScreenStyle.backButton, commonShadow.top]}
           onPress={() => {}}
         >
           <FAIcon iconName="faArrowLeftLong" size={15} />
         </TouchableOpacity>
 
-        <CanScrollUpModal
-          isActive={true}
-          onClose={() => {}}
-          backgroundColor="white"
-          defaultShowChildren={
-            <>
-              <View
-                style={[onServiceScreenStyle.billWrapper, commonShadow.top]}
-              >
-                <View style={onServiceScreenStyle.billContainer}>
-                  {order && order.freelancer ? (
-                    <>
-                      <View style={onServiceScreenStyle.infoBillContainer}>
-                        <View style={onServiceScreenStyle.infoEmployee}>
-                          <View style={{ overflow: 'hidden', width: '100%' }}>
-                            <Paragraph theme="baseBold">
-                              {order.serviceTypes[0].name}
-                            </Paragraph>
-                            <Paragraph theme="smallRegular" lineNumber={1}>
-                              {order.address.addressLine}
-                            </Paragraph>
-                            <Paragraph theme="smallRegular" lineNumber={1}>
-                              {order.startTime.substring(0, 5)} |{' '}
-                              {formatDate(order.startDate).days},{' '}
-                              {formatDate(order.startDate).dateMonthYear}
-                            </Paragraph>
-                          </View>
-                        </View>
-
-                        <View style={onServiceScreenStyle.infoPrice}>
-                          <Paragraph
-                            theme="baseBold"
-                            color="black"
-                            align="right"
-                            lineNumber={1}
-                          >
-                            {formatCurrency(order.estimatedPrice ?? 0, 'vnd')}
-                          </Paragraph>
-                        </View>
+        <View style={onServiceScreenStyle.popupWrapper}>
+          <View style={onServiceScreenStyle.billWrapper}>
+            <View
+              style={[onServiceScreenStyle.billContainer, commonShadow.top]}
+            >
+              {order && order.freelancer ? (
+                <>
+                  <View style={onServiceScreenStyle.infoBillContainer}>
+                    <View style={onServiceScreenStyle.infoEmployee}>
+                      <View style={{ overflow: 'hidden', width: '100%' }}>
+                        <Paragraph theme="baseBold">
+                          {order.serviceTypes[0].name}
+                        </Paragraph>
+                        <Paragraph theme="smallRegular" lineNumber={1}>
+                          {order.address.addressLine}
+                        </Paragraph>
+                        <Paragraph theme="smallRegular" lineNumber={1}>
+                          {order.startTime.substring(0, 5)} |{' '}
+                          {formatDate(order.startDate).days},{' '}
+                          {formatDate(order.startDate).dateMonthYear}
+                        </Paragraph>
                       </View>
+                    </View>
 
-                      <VerticalSpacer size="l" />
-                      <View style={onServiceScreenStyle.statusContainer}>
-                        {Object.values(STAGES_LIST).map((sv, i) => {
-                          const isCurrentStage =
-                            STAGES_LIST[currentStage].name === sv.name;
-                          return (
-                            <React.Fragment key={`stage-${i}`}>
-                              <FAIcon
-                                iconName={sv.icon as nativeIconNameType}
-                                color={
-                                  isCurrentStage
-                                    ? COLOR_PALETTE.primary
-                                    : COLOR_PALETTE.gray
-                                }
-                                size={20}
+                    <View style={onServiceScreenStyle.infoPrice}>
+                      <Paragraph
+                        theme="baseBold"
+                        color="black"
+                        align="right"
+                        lineNumber={1}
+                      >
+                        {formatCurrency(order.estimatedPrice ?? 0, 'vnd')}
+                      </Paragraph>
+                    </View>
+                  </View>
+
+                  <VerticalSpacer size="l" />
+                  <View style={onServiceScreenStyle.statusContainer}>
+                    {STAGES_LIST.map((sv, i) => {
+                      const isActive = i <= currentStage;
+                      const color = isActive
+                        ? COLOR_PALETTE.primary
+                        : COLOR_PALETTE.gray;
+                      return (
+                        <React.Fragment key={`stage-${i}`}>
+                          {i > 0 ? (
+                            <View style={{ flexGrow: 1 }}>
+                              <ProgressBar
+                                height={5}
+                                {...(isActive
+                                  ? { progress: 100 }
+                                  : {
+                                      indeterminate: i === currentStage + 1,
+                                      indeterminateDuration: 4000,
+                                    })}
+                                backgroundColor={color}
                               />
-                              {i < Object.keys(STAGES_LIST).length - 1 ? (
-                                <View style={{ flexGrow: 1 }}>
-                                  <ProgressBar
-                                    height={5}
-                                    indeterminateDuration={4000}
-                                    indeterminate={isCurrentStage}
-                                    backgroundColor={
-                                      isCurrentStage
-                                        ? COLOR_PALETTE.primary
-                                        : COLOR_PALETTE.gray
-                                    }
-                                  />
-                                </View>
-                              ) : null}
-                            </React.Fragment>
-                          );
-                        })}
+                            </View>
+                          ) : null}
+                          <FAIcon iconName={sv.icon} color={color} size={20} />
+                        </React.Fragment>
+                      );
+                    })}
+                  </View>
+                </>
+              ) : (
+                <ActivityIndicator size={'large'} />
+              )}
+            </View>
+          </View>
+          <View style={onServiceScreenStyle.billWrapper}>
+            <View
+              style={[onServiceScreenStyle.billContainer, commonShadow.top]}
+            >
+              {order && order.freelancer ? (
+                <>
+                  <View style={onServiceScreenStyle.infoBillContainer}>
+                    <View style={onServiceScreenStyle.infoEmployee}>
+                      <View style={onServiceScreenStyle.avatarContainer}>
+                        <CircleImage
+                          source={{
+                            uri: order.freelancer.avatar,
+                          }}
+                        />
                       </View>
-                    </>
-                  ) : (
-                    <ActivityIndicator size={'large'} />
-                  )}
-                </View>
-              </View>
-              <VerticalSpacer size="m" />
-              <View
-                style={[onServiceScreenStyle.billWrapper, commonShadow.top]}
-              >
-                <View style={onServiceScreenStyle.billContainer}>
-                  {order && order.freelancer ? (
-                    <>
-                      <View style={onServiceScreenStyle.infoBillContainer}>
-                        <View style={onServiceScreenStyle.infoEmployee}>
-                          <View style={onServiceScreenStyle.avatarContainer}>
-                            <CircleImage
-                              source={{
-                                uri: order.freelancer.avatar,
-                              }}
-                            />
-                          </View>
-                          <HorizontalSpacer size="l" />
-                          <View style={{ overflow: 'hidden', width: '100%' }}>
-                            <Paragraph theme="baseBold">
-                              {order.freelancer.fullName}
-                            </Paragraph>
-                            <RatingStars point={order.freelancer.rating} />
-                          </View>
-                        </View>
+                      <HorizontalSpacer size="l" />
+                      <View style={{ overflow: 'hidden', width: '100%' }}>
+                        <Paragraph theme="baseBold">
+                          {order.freelancer.fullName}
+                        </Paragraph>
+                        <RatingStars point={order.freelancer.rating} />
                       </View>
+                    </View>
+                  </View>
 
-                      <View style={onServiceScreenStyle.statusContainer}>
-                        <TouchableOpacity
-                          style={onServiceScreenStyle.chatBtn}
-                          activeOpacity={0.6}
-                        >
-                          <View style={{ opacity: 0.7 }}>
-                            <FAIcon iconName="faCommentsSolid" />
-                          </View>
-                          <Paragraph theme="baseRegular">
-                            Liên hệ với nhân viên...
-                          </Paragraph>
-                        </TouchableOpacity>
-
-                        <View style={{ opacity: 0.6 }}>
-                          <OutlineBtn
-                            title=""
-                            color="black"
-                            fontSize="medium"
-                            iconName="faPhone"
-                            iconPosition="left"
-                            radius="square"
-                            borderColor="black"
-                            isFitContent={true}
-                            onPress={() => {}}
-                          />
-                        </View>
+                  <View style={onServiceScreenStyle.statusContainer}>
+                    <TouchableOpacity
+                      style={onServiceScreenStyle.chatBtn}
+                      activeOpacity={0.6}
+                    >
+                      <View style={{ opacity: 0.7 }}>
+                        <FAIcon iconName="faCommentsSolid" />
                       </View>
-                    </>
-                  ) : (
-                    <ActivityIndicator size={'large'} />
-                  )}
-                </View>
-              </View>
-            </>
-          }
-          // needScrollUpToShowChildren={
-          // <View style={onServiceScreenStyle.freelancerDetailWrapper}>
-          //   <View style={{ width: 80 }}>
-          //     <CircleImage source={{ uri: order.freelancer?.avatar }} />
-          //   </View>
-          //   <View>
-          //     <Paragraph theme="baseBold">
-          //       {order.freelancer?.fullName}
-          //     </Paragraph>
-          //     <Paragraph theme="smallRegular">Thanh toán COD</Paragraph>
-          //   </View>
-          // </View>
-          // }
-        />
+                      <Paragraph theme="baseRegular">
+                        Liên hệ với nhân viên...
+                      </Paragraph>
+                    </TouchableOpacity>
+
+                    <View style={{ opacity: 0.6 }}>
+                      <OutlineBtn
+                        title=""
+                        color="black"
+                        fontSize="medium"
+                        iconName="faPhone"
+                        iconPosition="left"
+                        radius="square"
+                        borderColor="black"
+                        isFitContent={true}
+                        onPress={() => {}}
+                      />
+                    </View>
+                  </View>
+                </>
+              ) : (
+                <ActivityIndicator size={'large'} />
+              )}
+            </View>
+          </View>
+        </View>
       </View>
     </CustomerTemplate>
   );

@@ -19,7 +19,12 @@ export const RatingStarsIndex = React.memo(
     return (
       <View style={ratingStyle.startWrapper}>
         {Array.from({ length: ratingIndex }).map((item, index) => (
-          <FAIcon iconName="faStar" color={COLOR_PALETTE.primary} size={22} />
+          <FAIcon
+            iconName="faStar"
+            color={COLOR_PALETTE.primary}
+            size={30}
+            key={`star-rating@${index}`}
+          />
         ))}
         {Array.from({ length: 5 - ratingIndex }).map((_, index) => (
           <TouchableOpacity
@@ -32,7 +37,7 @@ export const RatingStarsIndex = React.memo(
             <FAIcon
               iconName="faStarEmptyStroke"
               color={COLOR_PALETTE.primary}
-              size={22}
+              size={30}
             />
           </TouchableOpacity>
         ))}

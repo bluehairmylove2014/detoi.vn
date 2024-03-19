@@ -17,11 +17,10 @@ import MatchingScreen from '../../../screens/homeFlow/matching/Matching';
 import RatingScreen from '../../../screens/homeFlow/rating/Rating';
 import ReviewScreen from '../../../screens/homeFlow/review/Review';
 
-
 const Stack = createNativeStackNavigator<customerRootStackParamList>();
 export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
-    <Stack.Navigator initialRouteName="OnService">
+    <Stack.Navigator initialRouteName="Home">
       {/* Then, put stack.screen for your screen component here (in the end) */}
       <Stack.Screen
         component={LoginScreen}

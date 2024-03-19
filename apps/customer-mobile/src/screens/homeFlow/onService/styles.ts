@@ -12,12 +12,12 @@ export const onServiceScreenStyle = StyleSheet.create({
 
   billWrapper: {
     width: '100%',
-    backgroundColor: COLOR_PALETTE.white,
-    borderRadius: 20,
-    overflow: 'hidden',
+    paddingHorizontal: 15,
   },
   billContainer: {
     padding: 20,
+    backgroundColor: COLOR_PALETTE.white,
+    borderRadius: 20,
   },
 
   infoBillContainer: {
@@ -47,7 +47,7 @@ export const onServiceScreenStyle = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: 20,
+    gap: 15,
   },
 
   mapStyle: {
@@ -55,18 +55,6 @@ export const onServiceScreenStyle = StyleSheet.create({
     height: '100%',
   },
 
-  freelancerDetailWrapper: {
-    width: windowWidth - 40,
-    borderRadius: 10,
-    backgroundColor: COLOR_PALETTE.soft,
-    padding: 20,
-    marginHorizontal: 20,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    gap: 10,
-  },
   chatBtn: {
     display: 'flex',
     flexDirection: 'row',
@@ -78,5 +66,31 @@ export const onServiceScreenStyle = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 20,
     height: '100%',
+  },
+
+  popupWrapper: {
+    position: 'absolute',
+    bottom: 70,
+    left: 0,
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    gap: 10,
+  },
+
+  backButton: {
+    borderRadius: 999,
+    width: 40,
+    aspectRatio: 1,
+    overflow: 'hidden',
+    backgroundColor: COLOR_PALETTE.white,
+    position: 'absolute',
+    top: 40,
+    left: 15,
+    zIndex: 9,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
