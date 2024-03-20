@@ -74,13 +74,13 @@ function formatDate(dateObj: Date | string) {
   const dateRaw = typeof dateObj === 'string' ? new Date(dateObj) : dateObj;
 
   let days: string[] = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
+    'Chủ Nhật',
+    'Thứ 2',
+    'Thứ 3',
+    'Thứ 4',
+    'Thứ 5',
+    'Thứ 6',
+    'Thứ 7',
   ];
 
   let dayOfWeek: string = days[dateRaw.getDay()];

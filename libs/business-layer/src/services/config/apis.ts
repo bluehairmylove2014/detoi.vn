@@ -17,8 +17,15 @@ export const getServiceDetailEndpoint = '/api/v1/service-type/detail';
 export const forwardGeocodingEndpoint = '/api/v1/geo-code/forward';
 export const reverseGeocodingEndpoint = '/api/v1/geo-code/reverse';
 
-// BOOKING
-export const serviceBookingEndpoint = '/api/v1/';
+// ORDER
+export const createOrderEndpoint = '/api/v1/order';
+export const getMatchingOrderDetailEndpoint = '/api/v1/order/customer-latest';
+export const cancelOrderEndpoint = '/api/v1/order/customer-order';
+export const selectFreelancerForOrderEndpoint = '/api/v1/order/order-price';
+export const getOrderDetailEndpoint = '/api/v1/order/detail';
+
+// RATING
+export const ratingOrderEndpoint = '/api/v1/order/customer-review';
 
 // SIRV
 export const sirvBaseUrlTemplate = 'https://api.sirv.com/v2';

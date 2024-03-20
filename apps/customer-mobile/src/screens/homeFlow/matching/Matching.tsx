@@ -3,10 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { MatchingProps } from '../../../config';
 import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
 import { HeaderWithOrder } from '@present-native/organisms';
-import {
-  IFreelancerAccountDetail,
-  IOrderDetail,
-} from '@business-layer/services/entities';
+import { IFreelancerAccountDetail } from '@business-layer/services/entities';
 import {
   OutlineBtn,
   Paragraph,
@@ -29,12 +26,13 @@ import {
   MATCHING_SORT_CRITERIA,
   MatchingSortCriteriaID,
 } from '@constants/matchingFilterNSort';
+import { useGetMatchingOrderDetail } from '@business-layer/business-logic/lib/order';
 
 const DEFAULT_FILTER_CRITERIA = MatchingFilterCriteriaID.All;
 const DEFAULT_SORT_CRITERIA = MatchingSortCriteriaID.Default;
 
 const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
-  const order: IOrderDetail = {};
+  const { data: order } = useGetMatchingOrderDetail();
   const [matchingFreelancersRealTime, setMatchingFreelancersRealTime] =
     useState<IFreelancerAccountDetail[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -51,8 +49,13 @@ const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
   function handlePressFreelancerThumbnail(
     freelancerData: IFreelancerAccountDetail
   ) {
+    if (!order) {
+      console.error('ERROR: Order is invalid');
+      return;
+    }
     navigation.navigate('FreelancerDetail', {
       freelancerAccountDetail: freelancerData,
+      orderId: order.id,
     });
   }
   function openFilterModal() {
@@ -61,7 +64,6 @@ const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
     }
   }
   function closeFilterModal() {
-    console.log('CLOSE');
     setIsFilterActive(false);
   }
   function selectFilterCriteria(id: MatchingFilterCriteriaID) {

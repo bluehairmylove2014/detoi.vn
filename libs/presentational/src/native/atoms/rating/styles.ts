@@ -9,3 +9,17 @@ export const starAndReviewCountStyles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+export const ratingStyle = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  startWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 5
+  }
+});

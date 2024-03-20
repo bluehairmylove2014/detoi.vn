@@ -10,10 +10,12 @@ import ChooseServiceScreen from '../../../screens/homeFlow/chooseService/ChooseS
 import ProvideDetailScreen from '../../../screens/homeFlow/provideDetail/ProvideDetail';
 import ProvideDateScreen from '../../../screens/homeFlow/provideDate/ProvideDate';
 import SummaryScreen from '../../../screens/homeFlow/summary/Summary';
-import FreelancerServiceProvenScreen from '../../../screens/homeFlow/freelancerDetail/FreelancerDetail';
+import FreelancerDetailScreen from '../../../screens/homeFlow/freelancerDetail/FreelancerDetail';
 import OnServiceScreen from '../../../screens/homeFlow/onService/OnService';
-import DetailImageScreen from '../../../screens/homeFlow/freelancerServiceProven/FreelancerServiceProven';
+import FreelancerServiceProvenScreen from '../../../screens/homeFlow/freelancerServiceProven/FreelancerServiceProven';
 import MatchingScreen from '../../../screens/homeFlow/matching/Matching';
+import RatingScreen from '../../../screens/homeFlow/rating/Rating';
+import ReviewScreen from '../../../screens/homeFlow/review/Review';
 
 const Stack = createNativeStackNavigator<customerRootStackParamList>();
 export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
@@ -66,7 +68,7 @@ export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        component={FreelancerServiceProvenScreen}
+        component={FreelancerDetailScreen}
         name="FreelancerDetail"
         options={{ headerShown: false }}
       />
@@ -76,8 +78,18 @@ export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        component={DetailImageScreen}
+        component={FreelancerServiceProvenScreen}
         name="FreelancerServiceProven"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        component={RatingScreen}
+        name="Rating"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        component={ReviewScreen}
+        name="Review"
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

@@ -10,7 +10,15 @@ const chooseLocationScreenStyle = StyleSheet.create({
   },
   bodyContainer: {
     paddingHorizontal: screenHorizontalPadding,
+    height: '55%'
   },
+  resultSearchLocationSection: {
+    flex: 3
+  },
+  addressBookSection: {
+    flex: 1,
+    justifyContent: "center"
+  }
 });
 
 export { chooseLocationScreenStyle };

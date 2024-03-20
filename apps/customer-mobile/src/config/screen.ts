@@ -19,11 +19,17 @@ type customerRootStackParamList = {
   ChooseService: undefined;
   ProvideDetail: undefined;
   ProvideDate: undefined;
-  Summary: undefined;
+  Summary: { orderId: string; freelancerId: string; pricing: number };
   Matching: undefined;
-  FreelancerDetail: { freelancerAccountDetail: IFreelancerAccountDetail };
   FreelancerServiceProven: { imageUrl: string };
-  OnService: undefined;
+  FreelancerDetail: {
+    orderId: string;
+    freelancerAccountDetail: IFreelancerAccountDetail;
+  };
+  ImageDetail: { imageUrl: string };
+  OnService: { orderId: string };
+  Rating: { orderId: string; orderPrice: number };
+  Review: { orderId: string; ratingIndex: number };
 };
 // ENDOW STACK
 type endowStackParamList = {
@@ -89,6 +95,8 @@ type OnServiceProps = NativeStackScreenProps<
   customerRootStackParamList,
   'OnService'
 >;
+type RatingProps = NativeStackScreenProps<customerRootStackParamList, 'Rating'>;
+type ReviewProps = NativeStackScreenProps<customerRootStackParamList, 'Review'>;
 
 // 3. Export props
 export {
@@ -104,6 +112,8 @@ export {
   OnServiceProps,
   FreelancerServiceProvenProps,
   MatchingProps,
+  RatingProps,
+  ReviewProps,
 };
 export {
   customerRootStackParamList,

@@ -91,7 +91,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   function handlePressCategory(category: ICategory) {
     if (isLogged) {
       setCurrentOrderCategory({ category });
-      navigation.navigate('ChooseLocation');
+      navigation.navigate('ChooseService');
     } else {
       navigation.navigate('Login');
     }
@@ -191,17 +191,13 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
                   title="Thêm dịch vụ khác"
                   subtitle="Góp ý"
                   iconName="container"
-                  onPress={() => {
-                    console.log('Gop y');
-                  }}
+                  onPress={() => {}}
                 />
                 <ServiceCard
                   title={`${point} điểm`}
                   subtitle="Điểm tích lũy"
                   iconName="shoppingBag"
-                  onPress={() => {
-                    console.log('Điểm tích lũy');
-                  }}
+                  onPress={() => {}}
                 />
               </View>
 

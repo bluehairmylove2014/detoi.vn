@@ -1,33 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_N_MUTATION_KEYS } from '@business-layer/business-logic/configs';
-import {
-  CategoryService,
-  getCategoryDetailPropsType,
-  getServiceDetailPropsType,
-} from '@business-layer/services';
+import { OrderService } from '@business-layer/services';
 
-const categoryService = new CategoryService();
+const service = new OrderService();
 
-export const useGetAllCategoriesQuery = (token: string | null) => {
+export const useGetMatchingOrderDetailQuery = (token: string | null) => {
   return useQuery({
-    queryKey: [QUERY_N_MUTATION_KEYS.GET_ALL_CATEGORIES],
-    queryFn: () => categoryService.getAllCategory({ token }),
+    queryKey: [QUERY_N_MUTATION_KEYS.GET_MATCHING_ORDER_DETAIL, token],
+    queryFn: () => service.getMatchingOrderDetail(token),
   });
 };
-export const useGetCategoryDetailQuery = (
-  props: getCategoryDetailPropsType
+export const useGetOrderDetailQuery = (
+  orderId: string,
+  token: string | null
 ) => {
   return useQuery({
-    queryKey: [
-      QUERY_N_MUTATION_KEYS.GET_ALL_SERVICES_OF_CATEGORY,
-      props.categoryId,
-    ],
-    queryFn: () => categoryService.getCategoryDetail(props),
-  });
-};
-export const useGetServiceDetailQuery = (props: getServiceDetailPropsType) => {
-  return useQuery({
-    queryKey: [QUERY_N_MUTATION_KEYS.GET_SERVICE_DETAIL, props.serviceId],
-    queryFn: () => categoryService.getServiceDetail(props),
+    queryKey: [QUERY_N_MUTATION_KEYS.GET_ORDER_DETAIL, token, orderId],
+    queryFn: () => service.getOrderDetail({ orderId, token }),
   });
 };

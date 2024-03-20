@@ -15,13 +15,17 @@ import {
 } from '@business-layer/services';
 import { chooseLocationScreenStyle } from './styles';
 import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
-import { useCurrentOrderCategory } from '@business-layer/business-logic/lib/category';
+import {
+  useCurrentOrderCategory,
+  useCurrentOrderService,
+} from '@business-layer/business-logic/lib/category';
 import { COLOR_PALETTE } from '@present-native/styles';
 import { useSetPostOrderAddress } from '@business-layer/business-logic/lib/order';
 
 const ChooseLocation = React.memo(
   ({ route, navigation }: ChooseLocationProps) => {
     const { currentOrderCategory: category } = useCurrentOrderCategory();
+    const { currentOrderService: service } = useCurrentOrderService();
     const { setCurrentOrderAddress } = useCurrentOrderAddress();
 
     const [dataRecommendationGeo, setDataRecommendationGeo] = useState<
@@ -64,7 +68,7 @@ const ChooseLocation = React.memo(
           ward: geo.ward,
         },
       });
-      navigation.navigate('ChooseService');
+      navigation.navigate('ProvideDetail');
     };
 
     return (
@@ -72,34 +76,40 @@ const ChooseLocation = React.memo(
         {category ? (
           <View style={chooseLocationScreenStyle.container}>
             <BannerTopSection
-              url={category?.image ?? '#'}
-              title={`DỊCH VỤ ${category?.name.toUpperCase()}`}
-              subtitle={category?.description}
+              url={service?.image ?? '#'}
+              title={`DỊCH VỤ ${service?.name.toUpperCase()}`}
+              subtitle={service?.description ?? ''}
               enableSearchBox={true}
               searchBoxOnChange={handleSearchKeyChange}
             />
             <View style={chooseLocationScreenStyle.bodyContainer}>
-              <VerticalSpacer size="xxxl" />
-              <RecommendationLocation
-                dataRecommendationGeo={dataRecommendationGeo}
-                onPress={handleSelectGeo}
-              />
-              {isLoading ? (
-                <ActivityIndicator
-                  color={COLOR_PALETTE.primary}
-                  size={'large'}
+              <View
+                style={chooseLocationScreenStyle.resultSearchLocationSection}
+              >
+                <VerticalSpacer size="xxxl" />
+                <RecommendationLocation
+                  dataRecommendationGeo={dataRecommendationGeo}
+                  onPress={handleSelectGeo}
                 />
-              ) : null}
-              <VerticalSpacer size="xxxl" />
-              <BaseLink screen="Home">
-                <Paragraph
-                  theme="smallMedium"
-                  decoration="underline"
-                  align="center"
-                >
-                  Chọn từ sổ địa chỉ?
-                </Paragraph>
-              </BaseLink>
+                {isLoading ? (
+                  <ActivityIndicator
+                    color={COLOR_PALETTE.primary}
+                    size={'large'}
+                  />
+                ) : null}
+                <VerticalSpacer size="xxxl" />
+              </View>
+              <View style={chooseLocationScreenStyle.addressBookSection}>
+                <BaseLink screen="Home">
+                  <Paragraph
+                    theme="smallMedium"
+                    decoration="underline"
+                    align="center"
+                  >
+                    Chọn từ sổ địa chỉ?
+                  </Paragraph>
+                </BaseLink>
+              </View>
             </View>
           </View>
         ) : null}

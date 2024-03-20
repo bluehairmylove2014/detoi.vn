@@ -41,6 +41,8 @@ import {
   faPeopleGroup,
   faPerson,
   faStarHalfStroke,
+  faGripLines,
+  faPhone,
 } from '@fortawesome/free-solid-svg-icons';
 import { fa500px } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -103,6 +105,8 @@ export const NATIVE_ICONS = {
   faPerson,
   faStarHalfStroke,
   faStarEmptyStroke,
+  faGripLines,
+  faPhone,
 };
 
 export type nativeIconNameType = keyof typeof NATIVE_ICONS;

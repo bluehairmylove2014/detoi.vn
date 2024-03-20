@@ -4,10 +4,13 @@ import {
   TouchableWithoutFeedback,
   Pressable,
   Animated,
+  TouchableOpacity,
 } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
-import { windowHeight, windowWidth } from '@constants/dimension';
+import { windowWidth } from '@constants/dimension';
 import { COLOR_PALETTE } from '@present-native/styles';
+import { FAIcon } from '@present-native/atoms/icon';
+import { Paragraph } from '@present-native/atoms/text';
 
 const TRANSITION_DURATION = 200;
 
@@ -19,6 +22,7 @@ type modalWrapperProps = {
   overlayColor?: keyof typeof COLOR_PALETTE;
   overlayOpacity?: number;
   backgroundColor?: keyof typeof COLOR_PALETTE;
+  headerTitle?: string;
 };
 const ModalWrapper: React.FC<modalWrapperProps> = ({
   isActive,
@@ -27,6 +31,7 @@ const ModalWrapper: React.FC<modalWrapperProps> = ({
   overlayColor = 'transparent',
   overlayOpacity = 0.7,
   backgroundColor = 'white',
+  headerTitle,
 }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -95,7 +100,6 @@ const ModalWrapper: React.FC<modalWrapperProps> = ({
               width: windowWidth,
               height: 'auto',
               backgroundColor: COLOR_PALETTE[backgroundColor],
-              padding: 20,
               transform: [
                 {
                   translateY: fadeAnim.interpolate({
@@ -107,7 +111,48 @@ const ModalWrapper: React.FC<modalWrapperProps> = ({
               opacity: fadeAnim,
             }}
           >
-            {children}
+            {headerTitle ? (
+              <View
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  paddingVertical: 14,
+                  paddingHorizontal: 20,
+                  backgroundColor: COLOR_PALETTE.secondary,
+                }}
+              >
+                <Paragraph theme="largeBold">Tuỳ chọn</Paragraph>
+
+                {/* Close Button */}
+                <TouchableOpacity
+                  style={{
+                    alignSelf: 'flex-start',
+                  }}
+                  onPress={handleClose}
+                >
+                  <FAIcon
+                    iconName="faTimes"
+                    color={COLOR_PALETTE.black}
+                    size={25}
+                  />
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <></>
+            )}
+
+            <View
+              style={{
+                paddingHorizontal: 20,
+                paddingVertical: 10,
+                width: '100%',
+              }}
+            >
+              {children}
+            </View>
           </Animated.View>
         </TouchableWithoutFeedback>
       </Pressable>
