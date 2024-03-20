@@ -7,7 +7,13 @@ import {
   RoseTextarea,
   PrimaryBtn,
 } from '@present-native/atoms';
-import { FlatList, TouchableOpacity, View } from 'react-native';
+import {
+  FlatList,
+  Keyboard,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 
 import { provideDateStyle } from './styles';
 
@@ -21,12 +27,11 @@ import { useCreateOrder } from '@business-layer/business-logic/lib/order';
 
 const NUMBER_OF_DAYS = 14;
 
-const calcFollowingDay = () => {
+const currentDate = () => {
   const currentDate = new Date();
-  const followingDay = new Date();
-  followingDay.setDate(currentDate.getDate());
+  currentDate.setHours(currentDate.getHours() + 1);
 
-  return followingDay;
+  return currentDate;
 };
 
 const constantTime = () => {
@@ -38,13 +43,13 @@ const constantTime = () => {
 
 const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
   const { currentOrderService: service } = useCurrentOrderService();
-  const [selectedDate, setSelectedDate] = useState<Date>(calcFollowingDay);
+  const [selectedDate, setSelectedDate] = useState<Date>(currentDate);
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
   const { handleSubmit, setValue, control } = useForm();
   const { onCreateOrder } = useCreateOrder();
 
   const dateList: Date[] = useMemo(() => {
-    const followingDay = calcFollowingDay();
+    const followingDay = currentDate();
     const list = [];
 
     // Generate dates for the next 14 days
@@ -129,7 +134,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
         title={`DỊCH VỤ ${service?.name.toUpperCase()}`}
         subtitle={service?.description ?? ''}
       />
-      <View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={provideDateStyle.container}>
           <VerticalSpacer size="l" />
           <View style={provideDateStyle.labelTime}>
@@ -179,7 +184,6 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
               />
             </View>
           </View>
-
           <VerticalSpacer size="xxxl" />
           <View style={provideDateStyle.buttonContainer}>
             <PrimaryBtn
@@ -187,7 +191,6 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
               onPress={handleSubmit(onSuccessSubmitDate)}
             />
           </View>
-
           <VerticalSpacer size="xl" />
           <View>
             <Paragraph theme="smallBold" align="center">
@@ -203,7 +206,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
             </Paragraph>
           </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </CustomerTemplate>
   );
 };

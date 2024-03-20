@@ -1,12 +1,14 @@
 import {
   Keyboard,
+  KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
   StatusBar,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import React from 'react';
-import { globalStyles } from '../styles';
+import { COLOR_PALETTE, globalStyles } from '../styles';
 import { FAProvider } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import {
   BlurTheme,

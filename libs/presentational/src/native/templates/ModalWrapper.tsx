@@ -11,6 +11,7 @@ import { windowWidth } from '@constants/dimension';
 import { COLOR_PALETTE } from '@present-native/styles';
 import { FAIcon } from '@present-native/atoms/icon';
 import { Paragraph } from '@present-native/atoms/text';
+import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
 
 const TRANSITION_DURATION = 200;
 
@@ -34,6 +35,7 @@ const ModalWrapper: React.FC<modalWrapperProps> = ({
   headerTitle,
 }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const { setOpenBlurTheme } = useBlurTheme();
 
   const fadeIn = () => {
     Animated.timing(fadeAnim, {
@@ -60,6 +62,9 @@ const ModalWrapper: React.FC<modalWrapperProps> = ({
   useEffect(() => {
     if (isActive) {
       fadeIn();
+      setOpenBlurTheme(true);
+    } else {
+      setOpenBlurTheme(false);
     }
   }, [isActive]);
 
@@ -92,7 +97,10 @@ const ModalWrapper: React.FC<modalWrapperProps> = ({
           alignItems: 'center',
           position: 'relative',
         }}
-        onPress={handleClose}
+        onPress={() => {
+          handleClose();
+          setOpenBlurTheme(false);
+        }}
       >
         <TouchableWithoutFeedback>
           <Animated.View
@@ -124,7 +132,7 @@ const ModalWrapper: React.FC<modalWrapperProps> = ({
                   backgroundColor: COLOR_PALETTE.secondary,
                 }}
               >
-                <Paragraph theme="largeBold">Tuỳ chọn</Paragraph>
+                <Paragraph theme="largeBold">{headerTitle}</Paragraph>
 
                 {/* Close Button */}
                 <TouchableOpacity

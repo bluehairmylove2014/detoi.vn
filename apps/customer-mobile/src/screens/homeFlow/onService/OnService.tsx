@@ -198,6 +198,10 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
                       );
                     })}
                   </View>
+                  <VerticalSpacer size="xl" />
+                  <Paragraph theme="baseBold" align="center" color="primary">
+                    {STAGES_LIST[currentStage].name}
+                  </Paragraph>
                 </>
               ) : (
                 <ActivityIndicator size={'large'} />

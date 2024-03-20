@@ -12,6 +12,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { COLOR_PALETTE } from '@present-native/styles';
 import { TimePickerStyle } from './styles';
 import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
+import ModalWrapper from '@present-native/templates/ModalWrapper';
 
 const constantTime = () => {
   const defaultTime = new Date();
@@ -48,7 +49,6 @@ export const TimePicker = ({
 
   const [activeModalIOS, setActiveModalIOS] = useState(false);
   const [activePickTimeAndroid, setActivePickTimeAndroid] = useState(false);
-  const { setOpenBlurTheme } = useBlurTheme();
 
   const [miniHourTime, setMiniHourTime] = useState<number>(0);
   const [miniMinuteTime, setMiniMinuteTime] = useState<number>(0);
@@ -60,95 +60,68 @@ export const TimePicker = ({
   useEffect(() => {
     const currentDate = new Date();
     if (dateSelect.getDate() === currentDate.getDate()) {
-      setMiniHourTime(currentDate.getHours());
-      setMiniMinuteTime(currentDate.getMinutes());
+      currentDate.setHours(currentDate.getHours() + 1);
+      currentDate.setMinutes(Math.ceil(currentDate.getMinutes() / 5) * 5);
+
+      const hourCurrent = currentDate.getHours();
+      const minuteCurrent = currentDate.getMinutes();
+
+      setMiniHourTime(hourCurrent);
+      setMiniMinuteTime(minuteCurrent);
+
+      if (selectedTime.getHours() < hourCurrent + 1)
+        setSelectedTime(currentDate);
     } else {
       setMiniHourTime(0);
       setMiniMinuteTime(0);
     }
-  }, []);
+  }, [dateSelect]);
 
   // Design Modal Picker Time IOS To Choose Time
   const modalTimePickerIOS = () => {
     return (
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={activeModalIOS}
-        style={{ height: 50 }}
+      <ModalWrapper
+        isActive={activeModalIOS}
+        onClose={() => setActiveModalIOS(false)}
+        headerTitle="Chọn thời gian"
       >
-        <TouchTheme
+        <VerticalSpacer size="xl" />
+        <DateTimePicker
+          display="spinner"
+          mode="time"
+          is24Hour={true}
+          textColor={COLOR_PALETTE.black}
+          minuteInterval={5}
+          onChange={(event, selected) => {
+            if (selected) {
+              setTimeChange(selected);
+            }
+          }}
+          minimumDate={
+            dateSelect.getDate() === new Date().getDate()
+              ? new Date(
+                  dateSelect.getFullYear(),
+                  dateSelect.getMonth(),
+                  dateSelect.getDate(),
+                  miniHourTime,
+                  miniMinuteTime,
+                  0,
+                  0
+                )
+              : undefined
+          }
+          value={selectedTime}
+        />
+
+        <VerticalSpacer size="xl" />
+        <PrimaryBtn
+          title="XÁC NHẬN"
           onPress={() => {
-            setOpenBlurTheme(false);
+            setSelectedTime(timeChange);
             setActiveModalIOS(false);
-            setActivePickTimeAndroid(false);
           }}
         />
-        <View style={TimePickerStyle.modalContainer}>
-          <View style={TimePickerStyle.backgroundModal}>
-            <View style={TimePickerStyle.topModalContainer}>
-              <Paragraph theme="baseBold">Chọn thời gian</Paragraph>
-
-              {/* Close Button */}
-              <TouchableOpacity
-                style={{
-                  alignSelf: 'flex-start',
-                }}
-                onPress={() => {
-                  setActiveModalIOS(false);
-                  setOpenBlurTheme(false);
-                }}
-              >
-                <FAIcon
-                  iconName="faTimes"
-                  color={COLOR_PALETTE.black}
-                  size={25}
-                />
-              </TouchableOpacity>
-            </View>
-
-            <VerticalSpacer size="xxl" />
-            <View style={{ marginHorizontal: 30 }}>
-              <DateTimePicker
-                display="spinner"
-                mode="time"
-                value={timeChange}
-                textColor={COLOR_PALETTE.black}
-                minuteInterval={5}
-                onChange={(event, selected) => {
-                  if (selected) {
-                    setTimeChange(selected);
-                  }
-                }}
-                minimumDate={
-                  dateSelect.getDate() === new Date().getDate()
-                    ? new Date(
-                        dateSelect.setHours(
-                          miniHourTime + 1,
-                          Math.ceil(miniMinuteTime / 5) * 5,
-                          0,
-                          0
-                        )
-                      )
-                    : new Date(dateSelect.setHours(0, 0, 0, 0))
-                }
-              />
-            </View>
-
-            <VerticalSpacer size="xxl" />
-            <View style={{ marginHorizontal: 30 }}>
-              <PrimaryBtn
-                title="XÁC NHẬN"
-                onPress={() => {
-                  setSelectedTime(timeChange);
-                  setActiveModalIOS(false);
-                  setOpenBlurTheme(false);
-                }}
-              />
-            </View>
-          </View>
-        </View>
-      </Modal>
+      </ModalWrapper>
     );
   };
 
@@ -169,10 +142,10 @@ export const TimePicker = ({
           onPress={() => {
             if (Platform.OS === 'ios') {
               setActiveModalIOS(true);
-              setOpenBlurTheme(true);
+              setActivePickTimeAndroid(false);
             } else {
               setActivePickTimeAndroid(true);
-              setOpenBlurTheme(true);
+              setActiveModalIOS(false);
             }
           }}
         >
@@ -198,19 +171,19 @@ export const TimePicker = ({
                 setSelectedTime(selected);
               }
               setActivePickTimeAndroid(false);
-              setOpenBlurTheme(false);
             }}
             minimumDate={
               dateSelect.getDate() === new Date().getDate()
                 ? new Date(
-                    dateSelect.setHours(
-                      miniHourTime + 1,
-                      Math.ceil(miniMinuteTime / 5) * 5,
-                      0,
-                      0
-                    )
+                    dateSelect.getFullYear(),
+                    dateSelect.getMonth(),
+                    dateSelect.getDate(),
+                    miniHourTime,
+                    miniMinuteTime,
+                    0,
+                    0
                   )
-                : new Date(dateSelect.setHours(0, 0, 0, 0))
+                : undefined
             }
             positiveButton={{ label: 'XÁC NHẬN' }}
             negativeButton={{ label: 'HỦY' }}
