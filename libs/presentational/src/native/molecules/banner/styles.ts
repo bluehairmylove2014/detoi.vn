@@ -4,7 +4,7 @@ import {
   screenHorizontalPadding,
   screenVerticalPadding,
 } from '@styles/spacingConvention';
-import { HEADER_HEIGHT } from '@present-native/styles';
+import { COLOR_PALETTE, HEADER_HEIGHT } from '@present-native/styles';
 
 const bannerTopSectionStyle = StyleSheet.create({
   container: {

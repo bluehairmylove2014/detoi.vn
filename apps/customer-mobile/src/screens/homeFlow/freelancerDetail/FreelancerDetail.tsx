@@ -1,6 +1,6 @@
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import React, { useCallback } from 'react';
-import { Image, TouchableHighlight, View } from 'react-native';
+import { Image, TouchableWithoutFeedback, View } from 'react-native';
 import {
   freelancerDetailScreenStyle,
   insightSectionStyle,
@@ -52,7 +52,7 @@ const FreelancerDetail = React.memo(
 
     const actionMoveToImageDetailScreen = useCallback(
       (source: string) => {
-        navigation.navigate('ImageDetail', {
+        navigation.navigate('FreelancerServiceProven', {
           imageUrl: source,
         });
       },
@@ -111,7 +111,7 @@ const FreelancerDetail = React.memo(
             <VerticalSpacer size="m" />
             <View style={proofOfWorkSectionStyle.listImage}>
               {freelancerAccountDetail.serviceProven.map((item, index) => (
-                <TouchableHighlight
+                <TouchableWithoutFeedback
                   key={index}
                   onPress={() => actionMoveToImageDetailScreen(item.after)}
                 >
@@ -119,7 +119,7 @@ const FreelancerDetail = React.memo(
                     source={{ uri: item.after }}
                     style={proofOfWorkSectionStyle.image}
                   />
-                </TouchableHighlight>
+                </TouchableWithoutFeedback>
               ))}
             </View>
           </View>
