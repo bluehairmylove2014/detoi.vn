@@ -2,6 +2,7 @@ import { bannerFreelancerDetailStyle } from './styles';
 import React from 'react';
 import { Image, View } from 'react-native';
 import {
+  BaseLink,
   FAIcon,
   OutlineBtn,
   OverlayColor,
@@ -10,6 +11,7 @@ import {
   Title,
   VerticalSpacer,
 } from '@present-native/atoms';
+import { COLOR_PALETTE } from '@present-native/styles';
 import { RatingStars } from '@present-native/atoms/rating';
 import { formatCurrency } from '@utils/helpers/MoneyConverter';
 import { useNavigation } from '@react-navigation/native';
