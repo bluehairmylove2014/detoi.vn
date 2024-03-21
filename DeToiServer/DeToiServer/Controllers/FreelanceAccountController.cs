@@ -97,5 +97,53 @@ namespace DeToiServer.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("existed-and-added-skills")]
+        public async Task<ActionResult<bool>> IsFreelancerExistedAndHaveSkills(
+            [FromQuery] string phoneNumber
+        )
+        {
+            var account = await _accService.GetByCondition(acc => acc.Phone.Equals(phoneNumber));
+
+            if (account == null)
+            {
+                return BadRequest(new
+                {
+                    Message = "Số điện thoại chưa được đăng ký trở thành Freelancer"
+                });
+            }
+
+            if (!account.Role.Equals(GlobalConstant.Freelancer))
+            {
+                return BadRequest(new
+                {
+                    Message = "Số điện thoại này đã được đăng ký dưới định danh khác không phải Freelancer"
+                });
+            }
+
+            var freelance = await _freelanceAccService.GetByAccId(account.Id);
+            if (freelance is null)
+            {
+                return BadRequest(new
+                {
+                    Message = "Freelancer không tồn tại!"
+                });
+            }
+            var result = _mapper.Map<GetFreelanceDto>(freelance);
+            if (result.Skills == null || result.Skills.Count == 0)
+            {
+                return BadRequest(new
+                {
+                    Message = "Freelancer chưa thêm Kỹ năng vào profile!"
+                });
+            }
+
+            // result.Address = _mapper.Map<AddressDto>(freelance.Address!.FirstOrDefault());
+
+            return Ok(new
+            {
+                Message = "Freelancer đã có ít nhất 1 Kỹ năng trong profile"
+            });
+        }
     }
 }
