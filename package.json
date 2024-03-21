@@ -34,6 +34,7 @@
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
+    "react-dom": "18.2.0",
     "react-hook-form": "^7.50.1",
     "react-native": "^0.72.10",
     "react-native-animated-progress": "^1.0.2",
