@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using DeToiServer.Dtos;
 using DeToiServer.Dtos.OrderDtos;
+using DeToiServer.Dtos.ServiceDtos;
 using DeToiServer.Dtos.ServiceTypeDtos;
 using DeToiServerCore.Common.Constants;
-using DeToiServerCore.Models;
 using DeToiServerCore.Models.Accounts;
 using DeToiServerCore.Models.Services;
-using System.Collections.Generic;
 
 namespace DeToiServer.Services.OrderManagementService
 {
@@ -22,11 +20,10 @@ namespace DeToiServer.Services.OrderManagementService
             _mapper = mapper;
         }
 
-        public T? AddService<T>(PostServiceDto? postService, Guid orderId, Order order) 
-            where T : Service
+        public Service? AddService(ServiceDto? postService, Guid orderId, Order order)
         {
             if (postService == null) return null;
-            var service = _mapper.Map<T>(postService);
+            var service = _mapper.Map<Service>(postService);
 
             // Add service relationship
             var orderServiceList = new List<OrderService>(1)
@@ -70,13 +67,9 @@ namespace DeToiServer.Services.OrderManagementService
 
             await _uow.OrderRepo.CreateAsync(rawOrder);
 
-            var cleaningService = AddService<CleaningService>(postOrderDto.CleaningService, rawOrder.Id, rawOrder);
-            var repairingService = AddService<RepairingService>(postOrderDto.RepairingService, rawOrder.Id, rawOrder);
-            var shoppingService = AddService<ShoppingService>(postOrderDto.ShoppingService, rawOrder.Id, rawOrder);
+            var addedService = AddService(_mapper.Map<ServiceDto>(postOrderDto.Services), rawOrder.Id, rawOrder);
 
-            if (cleaningService != null) await _uow.CleaningRepo.CreateAsync(cleaningService);
-            if (repairingService != null) await _uow.RepairingRepo.CreateAsync(repairingService);
-            if (shoppingService != null) await _uow.ShoppingRepo.CreateAsync(shoppingService);
+            if (addedService != null) await _uow.ServiceRepo.CreateAsync(addedService);
 
             // Save changes within the transaction scope
             if (!await _uow.SaveChangesAsync()) return null;

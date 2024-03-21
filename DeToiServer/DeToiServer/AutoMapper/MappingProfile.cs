@@ -5,8 +5,8 @@ using DeToiServer.Dtos.FreelanceDtos;
 using DeToiServer.Dtos.LocationDtos;
 using DeToiServer.Dtos.OrderDtos;
 using DeToiServer.Dtos.ServiceCategoryDtos;
+using DeToiServer.Dtos.ServiceDtos;
 using DeToiServer.Dtos.ServiceProvenDtos;
-using DeToiServer.Dtos.ServiceRequirementDtos;
 using DeToiServer.Dtos.ServiceStatusDtos;
 using DeToiServer.Dtos.ServiceTypeDtos;
 using DeToiServer.Dtos.SkillDtos;
@@ -17,6 +17,7 @@ using DeToiServerCore.Models;
 using DeToiServerCore.Models.Accounts;
 using DeToiServerCore.Models.Services;
 using DeToiServerCore.Models.SevicesUIElement;
+using Newtonsoft.Json;
 
 namespace DeToiServer.AutoMapper
 {
@@ -142,10 +143,6 @@ namespace DeToiServer.AutoMapper
                 .ForMember(dest => dest.ServiceStatus, opt => opt.MapFrom(src => src.ServiceStatus != null ? src.ServiceStatus.Name : "Chờ xử lí"));
             CreateMap<OrderServiceType, GetOrderServiceTypeDto>();
 
-            CreateMap<PostCleaningServiceDto, CleaningService>();
-            CreateMap<PostRepairingServiceDto, RepairingService>();
-            CreateMap<PostShoppingServiceDto, ShoppingService>();
-
             CreateMap<PostServiceProvenDto, ServiceProven>().ReverseMap();
             CreateMap<ServiceProven, GetServiceProvenDto>()
                 .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.Order != null ? src.Order.StartTime : default(DateTime)))
@@ -184,6 +181,19 @@ namespace DeToiServer.AutoMapper
             CreateMap<UIElementInputMethodType, UIElementInputMethodTypeDto>().ReverseMap();
             CreateMap<UIElementServiceRequirement, UIElementServiceRequirementDto>().ReverseMap();
             CreateMap<UIElementAdditionServiceRequirement, UIElementAdditionServiceRequirementDto>().ReverseMap();
+            #endregion
+
+            #region Service requirement and additional requirement
+            CreateMap<PostServiceDto, ServiceDto>().ReverseMap();
+
+            CreateMap<ServiceDto, Service>()
+                .ForMember(dest => dest.Requirement, opt => opt.MapFrom(src => JsonConvert.SerializeObject(src.Requirement)))
+                .ForMember(dest => dest.AdditionalRequirement, opt => opt.MapFrom(src => JsonConvert.SerializeObject(src.AdditionalRequirement)));
+
+            CreateMap<Service, ServiceDto>()
+                .ForMember(dest => dest.Requirement, opt => opt.MapFrom(src => JsonConvert.DeserializeObject<ICollection<RequirementDataDto>>(src.Requirement)))
+                .ForMember(dest => dest.AdditionalRequirement, opt => opt.MapFrom(src => JsonConvert.DeserializeObject<ICollection<RequirementDataDto>>(src.AdditionalRequirement)));
+
             #endregion
         }
     }

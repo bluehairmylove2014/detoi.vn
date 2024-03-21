@@ -2,14 +2,12 @@
 using DeToiServerData.Repositories.AccountCustomerRepo;
 using DeToiServerData.Repositories.AccountFreelanceRepo;
 using DeToiServerData.Repositories.AddressRepo;
-using DeToiServerData.Repositories.CleaningServiceRepo;
 using DeToiServerData.Repositories.OrderRepo;
 using DeToiServerData.Repositories.PromotionRepo;
-using DeToiServerData.Repositories.RepairingServiceRepo;
 using DeToiServerData.Repositories.ServiceCategoryRepo;
+using DeToiServerData.Repositories.ServiceRepo;
 using DeToiServerData.Repositories.ServiceStatusRepo;
 using DeToiServerData.Repositories.ServiceTypeRepo;
-using DeToiServerData.Repositories.ShoppingServiceRepo;
 using DeToiServerData.Repositories.UIElementServiceRequirementRepo;
 using DeToiServerData.Repositories.UserRepo;
 using System.Transactions;
@@ -121,33 +119,13 @@ namespace DeToiServerData
         #endregion
 
         #region Service Repo
-        private ICleaningServiceRepo _cleaningServiceRepo;
-        public ICleaningServiceRepo CleaningRepo
+        private IServiceRepo _serviceRepo;
+        public IServiceRepo ServiceRepo
         {
             get
             {
-                _cleaningServiceRepo ??= new CleaningServiceRepo(_dataContext);
-                return _cleaningServiceRepo;
-            }
-        }
-
-        private IShoppingServiceRepo _shoppingServiceRepo;
-        public IShoppingServiceRepo ShoppingRepo
-        {
-            get
-            {
-                _shoppingServiceRepo ??= new ShoppingServiceRepo(_dataContext);
-                return _shoppingServiceRepo;
-            }
-        }
-
-        private IRepairingServiceRepo _repairingServiceRepo;
-        public IRepairingServiceRepo RepairingRepo
-        {
-            get
-            {
-                _repairingServiceRepo ??= new RepairingServiceRepo(_dataContext);
-                return _repairingServiceRepo;
+                _serviceRepo ??= new ServiceRepo(_dataContext);
+                return _serviceRepo;
             }
         }
         #endregion

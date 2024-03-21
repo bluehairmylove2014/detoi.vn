@@ -15,14 +15,12 @@ using DeToiServerData.Repositories;
 using DeToiServerData.Repositories.AccountCustomerRepo;
 using DeToiServerData.Repositories.AccountFreelanceRepo;
 using DeToiServerData.Repositories.AddressRepo;
-using DeToiServerData.Repositories.CleaningServiceRepo;
 using DeToiServerData.Repositories.OrderRepo;
 using DeToiServerData.Repositories.PromotionRepo;
-using DeToiServerData.Repositories.RepairingServiceRepo;
 using DeToiServerData.Repositories.ServiceCategoryRepo;
+using DeToiServerData.Repositories.ServiceRepo;
 using DeToiServerData.Repositories.ServiceStatusRepo;
 using DeToiServerData.Repositories.ServiceTypeRepo;
-using DeToiServerData.Repositories.ShoppingServiceRepo;
 using DeToiServerData.Repositories.UIElementServiceRequirementRepo;
 using DeToiServerData.Repositories.UserRepo;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -82,9 +80,7 @@ namespace DeToiServerData
             services.AddScoped<IServiceProvenRepo, ServiceProvenRepo>();
             services.AddScoped<IPromotionRepo, PromotionRepo>();
             services.AddScoped<IOrderRepo, OrderRepo>();
-            services.AddScoped<ICleaningServiceRepo, CleaningServiceRepo>();
-            services.AddScoped<IRepairingServiceRepo, RepairingServiceRepo>();
-            services.AddScoped<IShoppingServiceRepo, ShoppingServiceRepo>();
+            services.AddScoped<IServiceRepo, ServiceRepo>();
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<IFavoriteRepo, FavoriteRepo>();
 

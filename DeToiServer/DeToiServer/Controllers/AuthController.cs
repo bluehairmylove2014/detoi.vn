@@ -108,10 +108,11 @@ namespace DeToiServer.Controllers
             freelance.Account.LoginToken = GenerateOTP();
             freelance.Account.LoginTokenExpires = DateTime.Now.AddMinutes(5);
             await _accService.Update(freelance.Account);
+            // send OTP to phone
 
             return Ok(new
             {
-                message = "Mã OTP đã được gửi đến điện thoại của bạn!", // "Tạo tài khoản mới thành công!"
+                message = "Mã OTP đã được gửi đến điện thoại của bạn (Hết hạn sau 5 phút)",
             });
         }
 
@@ -149,7 +150,7 @@ namespace DeToiServer.Controllers
 
             return Ok(new
             {
-                message = "Mã OTP đã được gửi đến điện thoại của bạn!", // "Tạo tài khoản mới thành công!"
+                message = "Mã OTP đã được gửi đến điện thoại của bạn! (Hết hạn sau 5 phút)",
             });
         }
 

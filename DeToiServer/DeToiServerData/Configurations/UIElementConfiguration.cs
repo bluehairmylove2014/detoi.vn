@@ -10,14 +10,6 @@ using System.Threading.Tasks;
 
 namespace DeToiServerData.Configurations
 {
-    //public DbSet<UIElementValidationType> UIElementValidationTypes { get; set; }
-    //public DbSet<UIElementInputOption> UIElementInputOptions { get; set; }
-    //public DbSet<UIElementInputMethodType> UIElementInputMethodTypes { get; set; }
-    //public DbSet<ServiceRequirementInputMethod> ServiceRequirementInputMethods { get; set; }
-    //public DbSet<UIElementServiceRequirement> UIElementServiceRequirements { get; set; }
-    //public DbSet<UIElementAdditionServiceRequirement> UIElementAdditionServiceRequirements { get; set; }
-
-
     internal class UIElementInputMethodTypeConfiguration : EntityTypeConfigurationBase<UIElementInputMethodType>
     {
         protected override void OnConfigure(EntityTypeBuilder<UIElementInputMethodType> builder)

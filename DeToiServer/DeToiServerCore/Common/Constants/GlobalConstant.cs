@@ -37,7 +37,7 @@
         public static readonly Guid OnMoving = Guid.Parse("0815e9cf-98c7-4a6a-b27b-43d9b8d1f5a2");
         public static readonly Guid OnDoingService = Guid.Parse("3f98b502-7245-4e86-b7b4-7db05357a1f8");
         public static readonly Guid Completed = Guid.Parse("a7d1f0e8-2a6f-4b9d-aa1c-10f58a1d5d32");
-        public static readonly Guid Canceled = Guid.Parse("82e9f321-740d-4173-acf3-4b0ded53c766");
+        public static readonly Guid Canceled = Guid.Parse("0774e101-f1a3-4186-af1e-af95a26e9ead");
     }
 
     public static class CustomerRankConst

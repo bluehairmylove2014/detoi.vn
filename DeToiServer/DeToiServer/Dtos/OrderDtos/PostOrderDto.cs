@@ -1,5 +1,5 @@
 ﻿using DeToiServer.Dtos.AddressDtos;
-using DeToiServer.Dtos.ServiceRequirementDtos;
+using DeToiServer.Dtos.ServiceDtos;
 
 namespace DeToiServer.Dtos.OrderDtos
 {
@@ -9,11 +9,7 @@ namespace DeToiServer.Dtos.OrderDtos
         public TimeOnly StartTime { get; set; }
         public DateOnly StartDate { get; set; }
         public Guid CustomerId { get; set; }
-        public PostCleaningServiceDto? CleaningService { get; set; }
-        public PostRepairingServiceDto? RepairingService { get; set; }
-        public PostShoppingServiceDto? ShoppingService { get; set; }
-        //public PostElectronicsCleaningServiceDto? ElectronicsCleaningService { get; set; }
-        //public PostMovingServiceDto? MovingService { get; set; }
+        public required PostServiceDto Services { get; set; }
     }
 
     public class PostOrderResultDto

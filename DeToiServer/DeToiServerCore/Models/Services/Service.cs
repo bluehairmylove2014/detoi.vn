@@ -4,6 +4,8 @@
     {
         public string Note { get; set; } = string.Empty;
         public string AdditionalNote { get; set; } = string.Empty;
+        public string Requirement { get; set; } = string.Empty;
+        public string AdditionalRequirement { get; set; } = string.Empty;
         public Guid ServiceTypeId { get; set; }
         public ServiceType? ServiceType { get; set; }
         public ICollection<OrderService>? OrderServices { get; set; }

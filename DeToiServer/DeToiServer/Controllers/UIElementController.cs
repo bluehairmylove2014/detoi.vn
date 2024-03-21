@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DeToiServer.Dtos.ServiceDtos;
 using DeToiServer.Dtos.UIElementDtos;
 using DeToiServer.Services.UIElementService;
 using DeToiServerCore.Models.SevicesUIElement;
@@ -35,6 +36,31 @@ namespace DeToiServer.Controllers
             await Task.Delay(10);
 
             return input;
+        }
+
+        [HttpGet("test3")]
+        public async Task<IEnumerable<ServiceDto>> Test3()
+        {
+            var res = await _requirementService.GetServiceClone();
+
+            return res;
+        }
+
+        [HttpPost("test4")]
+        public async Task<ActionResult<ServiceDto>> Test4(ServiceDto input)
+        {
+            var res = await _requirementService.AddServiceClone(input);
+
+            if (res == null)
+            {
+                return BadRequest(new
+                {
+                    Message = "Lỗi"
+                });
+            }
+            // await 
+
+            return Ok(res);
         }
     }
 }
