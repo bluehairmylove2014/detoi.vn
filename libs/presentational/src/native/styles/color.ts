@@ -19,7 +19,7 @@ export const COLOR_PALETTE = {
   yellow: '#ca8a04', // USE FOR DECORATE DOT ONLY
   blue: '#2563eb', // USE FOR DECORATE DOT ONLY
   cyan: '#155e75', // soft blue
-
+  pastel: '#EFB8C8', // pink pastel
   // Default
   transparent: 'transparent',
   inherit: 'inherit',
