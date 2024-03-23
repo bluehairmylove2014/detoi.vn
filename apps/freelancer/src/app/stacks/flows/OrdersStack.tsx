@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ordersStackParamList } from '../../../config';
+import { freelancerOrdersListStackParams } from '@constants/freelancerScreens';
 
 // Import screen component here
 import OrdersListScreen from '../../../screens/ordersFlow/OrdersList/OrdersList';
 
-const Stack = createNativeStackNavigator<ordersStackParamList>();
+const Stack = createNativeStackNavigator<freelancerOrdersListStackParams>();
 export const OrdersStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
     <Stack.Navigator initialRouteName="OrdersList">

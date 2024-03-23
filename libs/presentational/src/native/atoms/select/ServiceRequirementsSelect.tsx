@@ -118,7 +118,10 @@ export const ServiceRequirementsSelect = ({
 
         <View>
           <Paragraph theme="baseBold" color={themeColor}>
-            {labelIcon ? ' | ' : ''} {label} *
+            {labelIcon ? ' | ' : ''} {label}{' '}
+            <Paragraph color="rose" theme="baseBold">
+              *
+            </Paragraph>
           </Paragraph>
         </View>
       </View>

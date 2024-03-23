@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { messagesStackParamList } from '../../../config';
+import { freelancerMessageStackParams } from '@constants/freelancerScreens';
 
 // Import screen component here
 import MessageScreen from '../../../screens/messagesFlow/Message/Message';
 
-const Stack = createNativeStackNavigator<messagesStackParamList>();
+const Stack = createNativeStackNavigator<freelancerMessageStackParams>();
 export const MessagesStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
     <Stack.Navigator initialRouteName="Message">

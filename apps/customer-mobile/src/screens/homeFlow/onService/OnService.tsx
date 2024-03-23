@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
-import { OnServiceProps } from '../../../config';
 import { ActivityIndicator, TouchableOpacity, View } from 'react-native';
 import { onServiceScreenStyle } from './styles';
 import {
@@ -21,6 +20,9 @@ import ProgressBar from 'react-native-animated-progress';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { useGetOrderDetail } from '@business-layer/business-logic/lib/order';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { customerScreensList } from '@constants/customerScreens';
 
 const STAGES_LIST: { icon: nativeIconNameType; name: string }[] = [
   { icon: 'faStreetView', name: 'Chưa đến giờ hoạt động' },
@@ -32,7 +34,9 @@ const STAGES_LIST: { icon: nativeIconNameType; name: string }[] = [
   { icon: 'faHouseCircleCheck', name: 'Đã hoàn thành dịch vụ' },
 ];
 
-const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
+const OnService: React.FC<
+  NativeStackScreenProps<customerScreensList, 'OnService'>
+> = ({ route, navigation }) => {
   // const order: IOrderDetail = {
   //   id: 'ad',
   //   address: {
@@ -70,6 +74,7 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
   //   ],
   // };
   const { orderId } = route.params;
+  const { navigateToScreenInSameStack } = useAuthNavigation();
   const { data: order } = useGetOrderDetail(orderId);
   console.log(order);
   const [currentStage, setCurrentStage] = useState<number>(0);
@@ -95,9 +100,11 @@ const OnService: React.FC<OnServiceProps> = ({ route, navigation }) => {
     }, 4000);
 
     // if (order && currentStage === STAGES_LIST.length - 1) {
-    //   navigation.navigate('Rating', {
-    //     orderId: order.id,
-    //     orderPrice: order.serviceTypes[0].basePrice,
+    //   navigateToScreenInSameStack('Rating', {
+    //     params: {
+    //       orderId: order.id,
+    //       orderPrice: order.serviceTypes[0].basePrice,
+    //     },
     //   });
     // }
     // eslint-disable-next-line react-hooks/exhaustive-deps

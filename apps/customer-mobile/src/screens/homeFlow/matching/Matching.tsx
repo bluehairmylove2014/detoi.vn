@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { MatchingProps } from '../../../config';
 import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
 import { HeaderWithOrder } from '@present-native/organisms';
 import { IFreelancerAccountDetail } from '@business-layer/services/entities';
@@ -27,11 +26,17 @@ import {
   MatchingSortCriteriaID,
 } from '@constants/matchingFilterNSort';
 import { useGetMatchingOrderDetail } from '@business-layer/business-logic/lib/order';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { customerScreensList } from '@constants/customerScreens';
 
 const DEFAULT_FILTER_CRITERIA = MatchingFilterCriteriaID.All;
 const DEFAULT_SORT_CRITERIA = MatchingSortCriteriaID.Default;
 
-const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
+const Matching: React.FC<
+  NativeStackScreenProps<customerScreensList, 'Matching'>
+> = ({ route, navigation }) => {
+  const { navigateToScreenInSameStack } = useAuthNavigation();
   const { data: order } = useGetMatchingOrderDetail();
   const [matchingFreelancersRealTime, setMatchingFreelancersRealTime] =
     useState<IFreelancerAccountDetail[]>([]);
@@ -53,9 +58,11 @@ const Matching: React.FC<MatchingProps> = ({ route, navigation }) => {
       console.error('ERROR: Order is invalid');
       return;
     }
-    navigation.navigate('FreelancerDetail', {
-      freelancerAccountDetail: freelancerData,
-      orderId: order.id,
+    navigateToScreenInSameStack('FreelancerDetail', {
+      params: {
+        freelancerAccountDetail: freelancerData,
+        orderId: order.id,
+      },
     });
   }
   function openFilterModal() {

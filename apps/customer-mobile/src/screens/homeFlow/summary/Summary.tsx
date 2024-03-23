@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-pascal-case */
 import { ActivityIndicator, View } from 'react-native';
 import React from 'react';
@@ -16,27 +17,32 @@ import {
   ServiceCircleButtonWithLabel,
 } from '@present-native/molecules';
 import { ChoosePaymentMethods } from '@present-native/molecules';
-import { SummaryProps } from '../../../config';
 import { useCurrentOrderService } from '@business-layer/business-logic/lib/category';
 import { useCurrentOrderAddress } from '@business-layer/business-logic/lib/geocode';
 import { formatCurrency } from '@utils/helpers';
 import { useSelectFreelancerForOrder } from '@business-layer/business-logic/lib/order';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { customerScreensList } from '@constants/customerScreens';
 
-const Summary: React.FC<SummaryProps> = ({ route, navigation }) => {
+const Summary: React.FC<
+  NativeStackScreenProps<customerScreensList, 'Summary'>
+> = ({ route, navigation }) => {
   const { currentOrderService: service } = useCurrentOrderService();
   const { currentOrderAddress: address } = useCurrentOrderAddress();
   const { pricing, freelancerId, orderId } = route.params;
   const { onSelectFreelancerForOrder } = useSelectFreelancerForOrder();
+  const { navigateToScreenInSameStack } = useAuthNavigation();
 
   function handleCommitBooking() {
     // onSelectFreelancerForOrder(orderId, freelancerId, pricing)
     //   .then((msg) => {
-    //     navigation.navigate('OnService');
+    //     navigateToScreenInSameStack('OnService');
     //   })
     //   .catch((error) => {
     //     console.error(error);
     //   });
-    navigation.navigate('OnService', { orderId });
+    navigateToScreenInSameStack('OnService', { params: { orderId } });
   }
 
   return (

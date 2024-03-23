@@ -46,7 +46,10 @@ export const ServiceRequirementsInput = ({
 
         <View>
           <Paragraph theme="baseBold" color={isError ? 'rose' : 'black'}>
-            {labelIcon ? ' | ' : ''} {label} *
+            {labelIcon ? ' | ' : ''} {label}{' '}
+            <Paragraph color="rose" theme="baseBold">
+              *
+            </Paragraph>
           </Paragraph>
         </View>
       </View>

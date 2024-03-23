@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-pascal-case */
 import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
 import React from 'react';
-import { ProvideDetailProps } from '../../../config';
 import {
   useCurrentOrderService,
   useGetServiceDetail,
@@ -13,9 +12,15 @@ import { screenHorizontalPadding } from '@present-native/styles';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { FieldValues } from 'react-hook-form';
 import { useSetPostOrderServiceContent } from '@business-layer/business-logic/lib/order';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { customerScreensList } from '@constants/customerScreens';
 
-const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
+const ProvideDetail: React.FC<
+  NativeStackScreenProps<customerScreensList, 'ProvideDetail'>
+> = ({ route, navigation }) => {
   const { currentOrderService: service } = useCurrentOrderService();
+  const { navigateToScreenInSameStack } = useAuthNavigation();
   const { data: serviceDetail } = useGetServiceDetail(service?.id ?? '0');
   const { onGenerateUI, getForm } = useServiceRequirementsUI({
     requirements: serviceDetail?.requirements ?? [],
@@ -30,7 +35,7 @@ const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
       onSetPostOrderServiceContent({
         serviceContent: { ...data, serviceTypeId: service.id },
       });
-      navigation.navigate('ProvideDate');
+      navigateToScreenInSameStack('ProvideDate');
     }
   };
   const { onSetPostOrderServiceContent } = useSetPostOrderServiceContent();

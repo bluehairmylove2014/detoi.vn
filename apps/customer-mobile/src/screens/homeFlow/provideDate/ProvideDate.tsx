@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable react/jsx-no-useless-fragment */
-import { ProvideDateProps } from '../../../config';
 import {
   VerticalSpacer,
   Paragraph,
@@ -29,6 +28,9 @@ import {
 } from '@present-native/molecules';
 import { useCurrentOrderService } from '@business-layer/business-logic/lib/category';
 import { useCreateOrder } from '@business-layer/business-logic/lib/order';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { customerScreensList } from '@constants/customerScreens';
 
 const NUMBER_OF_DAYS = 14;
 
@@ -46,7 +48,9 @@ const constantTime = () => {
   return defaultTime;
 };
 
-const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
+const ProvideDate: React.FC<
+  NativeStackScreenProps<customerScreensList, 'ProvideDate'>
+> = ({ route, navigation }) => {
   const { currentOrderService: service } = useCurrentOrderService();
   const [selectedDate, setSelectedDate] = useState<Date>(currentDate);
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
@@ -54,6 +58,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
 
   const { handleSubmit, setValue, control } = useForm();
   const { onCreateOrder } = useCreateOrder();
+  const { navigateToScreenInSameStack } = useAuthNavigation();
 
   const dateList: Date[] = useMemo(() => {
     const followingDay = currentDate();
@@ -114,7 +119,7 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
       .catch((error) => {
         console.error(error);
       });
-    navigation.navigate('Matching');
+    navigateToScreenInSameStack('Matching');
   };
 
   const renderDateList = ({ item }: { item: Date }) => {

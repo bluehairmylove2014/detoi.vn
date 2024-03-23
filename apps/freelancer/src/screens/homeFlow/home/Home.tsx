@@ -1,6 +1,7 @@
 import { View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
-import { HomeProps } from '../../../config';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { freelancerScreensList } from '@constants/freelancerScreens';
 import {
   homeScreenStyle,
   topLabelStyle,
@@ -31,11 +32,16 @@ import EndowItem from '@present-native/molecules/endow/EndowItem';
 import ServiceCard from '@present-native/molecules/card/ServiceCard';
 import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
 import { useIsLogged } from '@business-layer/business-logic/lib/auth';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
 
-const Home: React.FC<HomeProps> = ({ route, navigation }) => {
+const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
+  route,
+  navigation,
+}) => {
   const { data: categories } = useGetAllCategories();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { setCurrentOrderCategory } = useCurrentOrderCategory();
+  const { navigateToScreenInSameStack } = useAuthNavigation();
   const isLogged = useIsLogged();
 
   // Event must be get from API
@@ -90,12 +96,9 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
   ]);
 
   function handlePressCategory(category: ICategory) {
-    // if (isLogged) {
-    //   setCurrentOrderCategory({ category });
-    //   navigation.navigate('ChooseService');
-    // } else {
-    //   navigation.navigate('Login');
-    // }
+    navigateToScreenInSameStack('ChooseService', {
+      callbackOnSuccess: () => setCurrentOrderCategory({ category }),
+    });
   }
 
   return (
@@ -111,6 +114,7 @@ const Home: React.FC<HomeProps> = ({ route, navigation }) => {
                 <VerticalSpacer size="m" />
                 <BaseLink
                   screen={isLogged ? 'ChooseLocation' : 'Login'}
+                  stack={isLogged ? undefined : 'AuthStack'}
                   itemsOrientation="row"
                   align="flex-start"
                 >

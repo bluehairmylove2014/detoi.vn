@@ -1,6 +1,7 @@
 import { IAccount, IToken } from '../../entities';
 
-export type loginParamsType = Pick<IAccount, 'phone'>;
+export type roles = 'customer' | 'freelancer';
+export type loginParamsType = Pick<IAccount, 'phone'> & { role: roles };
 export type loginResponseType = {
   message: string;
 };

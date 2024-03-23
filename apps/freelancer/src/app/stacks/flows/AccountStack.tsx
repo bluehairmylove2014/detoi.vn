@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { accountStackParamList } from '../../../config';
+import { freelancerAccountStackParams } from '@constants/freelancerScreens';
 
 // Import screen component here
 import AccountScreen from '../../../screens/accountFlow/Account/Account';
 
-const Stack = createNativeStackNavigator<accountStackParamList>();
+const Stack = createNativeStackNavigator<freelancerAccountStackParams>();
 export const AccountStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
     <Stack.Navigator initialRouteName="Account">
