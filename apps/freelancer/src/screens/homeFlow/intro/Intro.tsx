@@ -90,6 +90,7 @@ const Intro = React.memo(() => {
         {indexPagination > 0 ? (
           <View style={footIntroScreenStyles.button}>
             <SecondaryBtn
+              fontSize='small'
               onPress={actionBackPage}
               title="Quay lại"
               iconName="faChevronLeft"
@@ -101,13 +102,12 @@ const Intro = React.memo(() => {
         )}
         <View style={footIntroScreenStyles.dotPagerWrapper}>
           {CONTENTS_PAGINATION.map((_, index) => (
-            <TouchableOpacity onPress={() => setIndexPaginations(index)}>
               <DotPager isSelected={indexPagination === index} />
-            </TouchableOpacity>
           ))}
         </View>
         <View style={footIntroScreenStyles.button}>
           <PrimaryBtn
+            fontSize='small'
             onPress={actionNextPage}
             title="Tiếp tục"
             iconName="faChevronRight"

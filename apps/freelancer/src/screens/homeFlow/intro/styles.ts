@@ -40,7 +40,7 @@ const bodyIntroScreenStyles = StyleSheet.create({
     image: {
         width: "100%",
         height: 300,
-        objectFit: 'fill',
+        objectFit: 'cover',
         marginVertical: 5,
     },
     title: {},
