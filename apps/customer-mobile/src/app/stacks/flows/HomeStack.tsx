@@ -10,9 +10,9 @@ import ChooseServiceScreen from '../../../screens/homeFlow/chooseService/ChooseS
 import ProvideDetailScreen from '../../../screens/homeFlow/provideDetail/ProvideDetail';
 import ProvideDateScreen from '../../../screens/homeFlow/provideDate/ProvideDate';
 import SummaryScreen from '../../../screens/homeFlow/summary/Summary';
-import FreelanceerDetailScreen from '../../../screens/homeFlow/freelancerDetail/FreelancerDetail';
+import FreelancerDetailScreen from '../../../screens/homeFlow/freelancerDetail/FreelancerDetail';
 import OnServiceScreen from '../../../screens/homeFlow/onService/OnService';
-import DetailImageScreen from '../../../screens/homeFlow/imageDetail/ImageDetail';
+import FreelancerServiceProvenScreen from '../../../screens/homeFlow/freelancerServiceProven/FreelancerServiceProven';
 import MatchingScreen from '../../../screens/homeFlow/matching/Matching';
 import RatingScreen from '../../../screens/homeFlow/rating/Rating';
 import ReviewScreen from '../../../screens/homeFlow/review/Review';
@@ -68,7 +68,7 @@ export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        component={FreelanceerDetailScreen}
+        component={FreelancerDetailScreen}
         name="FreelancerDetail"
         options={{ headerShown: false }}
       />
@@ -78,8 +78,8 @@ export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        component={DetailImageScreen}
-        name="ImageDetail"
+        component={FreelancerServiceProvenScreen}
+        name="FreelancerServiceProven"
         options={{ headerShown: false }}
       />
       <Stack.Screen

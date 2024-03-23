@@ -62,3 +62,5 @@ apps/customer-mobile-e2e/artifacts
 
 # Next.js
 .next
+apps/-e2e/artifacts
+apps/freelancer-e2e/artifacts

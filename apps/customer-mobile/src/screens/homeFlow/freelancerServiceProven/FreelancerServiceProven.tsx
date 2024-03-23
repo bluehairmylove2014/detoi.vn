@@ -1,11 +1,11 @@
 import React from 'react';
 import { ImageBackground, ImageSourcePropType, View } from 'react-native';
-import { ImageDetailProps } from '../../../config';
+import { FreelancerServiceProvenProps } from '../../../config';
 import { OverlayColor } from '@present-native/atoms';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { iamgeDetailScreenStyle } from './styles';
 
-const ImageDetail: React.FC<ImageDetailProps> = ({ route, navigation }) => {
+const FreelancerServiceProven: React.FC<FreelancerServiceProvenProps> = ({ route, navigation }) => {
   const { imageUrl } = route.params;
   return (
     <CustomerTemplate>
@@ -24,4 +24,4 @@ const ImageDetail: React.FC<ImageDetailProps> = ({ route, navigation }) => {
   );
 };
 
-export default ImageDetail;
+export default FreelancerServiceProven;
