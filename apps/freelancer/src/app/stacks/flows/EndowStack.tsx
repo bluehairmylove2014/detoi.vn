@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { endowStackParamList } from '../../../config';
+import { freelancerEndowStackParams } from '@constants/freelancerScreens';
 
 // Import screen component here
 import EndowScreen from '../../../screens/endowFlow/Endow/Endow';
 
-const Stack = createNativeStackNavigator<endowStackParamList>();
+const Stack = createNativeStackNavigator<freelancerEndowStackParams>();
 export const EndowStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
     <Stack.Navigator initialRouteName="Endow">

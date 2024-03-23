@@ -1,20 +1,33 @@
 // Importing necessary modules and functions
-import { loginResponseType, loginParamsType } from '../../../../../services';
+import {
+  loginResponseType,
+  loginParamsType,
+  roles,
+} from '../../../../../services';
 import { useLoginMutation } from '../../fetching/mutation';
 import { useAuthContext } from '../context';
 
 type UseLoginType = {
-  onLogin: ({ phone }: loginParamsType) => Promise<string>;
+  onCustomerLogin: ({
+    phone,
+  }: Pick<loginParamsType, 'phone'>) => Promise<string>;
+  onFreelancerLogin: ({
+    phone,
+  }: Pick<loginParamsType, 'phone'>) => Promise<string>;
   isLoading: boolean;
 };
 export const useLogin = (): UseLoginType => {
   const { dispatch } = useAuthContext();
   const loginMutation = useLoginMutation();
+  const appType = process.env.EXPO_PUBLIC_APP_ROLE;
+  if (typeof appType === 'undefined') {
+    console.error('ERROR: Cannot find EXPO_PUBLIC_APP_ROLE');
+  }
 
-  const onLogin = ({ phone }: loginParamsType): Promise<string> => {
+  const onLogin = ({ phone, role }: loginParamsType): Promise<string> => {
     return new Promise((resolve, reject) => {
       loginMutation
-        .mutateAsync({ phone })
+        .mutateAsync({ phone, role })
         .then(({ message }: loginResponseType) => {
           dispatch({
             type: 'SET_ON_OTP_PHONE_NUMBER',
@@ -28,10 +41,14 @@ export const useLogin = (): UseLoginType => {
         });
     });
   };
+  const onFreelancerLogin = ({ phone }: Pick<loginParamsType, 'phone'>) =>
+    onLogin({ phone, role: appType as roles });
+  const onCustomerLogin = ({ phone }: Pick<loginParamsType, 'phone'>) =>
+    onLogin({ phone, role: appType as roles });
 
-  // Returning the onLogin function and the loading state
   return {
-    onLogin,
+    onCustomerLogin,
+    onFreelancerLogin,
     isLoading: loginMutation.isPending,
   };
 };

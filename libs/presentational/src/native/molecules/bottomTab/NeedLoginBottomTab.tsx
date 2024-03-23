@@ -3,9 +3,11 @@ import { View } from 'react-native';
 import { needLoginBottomTabStyle } from './styles';
 import { commonShadow } from '@present-native/styles';
 import { useNavigation } from '@react-navigation/native';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
 
 function NeedLoginBottomTab() {
   const navigation = useNavigation();
+  const { navigateToScreenInDifferentStack } = useAuthNavigation();
   return (
     <View style={[needLoginBottomTabStyle.container, commonShadow.top]}>
       <View style={needLoginBottomTabStyle.innerPadding}>
@@ -15,7 +17,7 @@ function NeedLoginBottomTab() {
             fontSize="medium"
             radius="square"
             onPress={() => {
-              navigation.navigate('Login');
+              navigateToScreenInDifferentStack('AuthStack', 'Login');
             }}
           />
         </View>
@@ -25,7 +27,7 @@ function NeedLoginBottomTab() {
             fontSize="medium"
             radius="square"
             onPress={() => {
-              navigation.navigate('Login');
+              navigateToScreenInDifferentStack('AuthStack', 'Login');
             }}
           />
         </View>

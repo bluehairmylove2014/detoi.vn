@@ -1,11 +1,14 @@
 import React from 'react';
 import { ImageBackground, ImageSourcePropType, View } from 'react-native';
-import { FreelancerServiceProvenProps } from '../../../config';
 import { OverlayColor } from '@present-native/atoms';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { iamgeDetailScreenStyle } from './styles';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { customerScreensList } from '@constants/customerScreens';
 
-const FreelancerServiceProven: React.FC<FreelancerServiceProvenProps> = ({ route, navigation }) => {
+const FreelancerServiceProven: React.FC<
+  NativeStackScreenProps<customerScreensList, 'FreelancerServiceProven'>
+> = ({ route, navigation }) => {
   const { imageUrl } = route.params;
   return (
     <CustomerTemplate>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { RatingProps } from '../../../config';
 import { View } from 'react-native';
 import {
   CircleImage,
@@ -17,14 +16,22 @@ import {
   totalPriceSection,
 } from './styles';
 import { formatCurrency } from '@utils/helpers/MoneyConverter';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { customerScreensList } from '@constants/customerScreens';
 
-const RatingScreen: React.FC<RatingProps> = ({ route, navigation }) => {
+const RatingScreen: React.FC<
+  NativeStackScreenProps<customerScreensList, 'Rating'>
+> = ({ route, navigation }) => {
+  const { navigateToScreenInSameStack } = useAuthNavigation();
   const { orderId, orderPrice } = route.params;
   const avatar =
     'https://www.womenonbusiness.com/wp-content/uploads/2018/05/employee-management.png';
 
   function handleSelectStar(index: number) {
-    navigation.navigate('Review', { ratingIndex: index, orderId });
+    navigateToScreenInSameStack('Review', {
+      params: { ratingIndex: index, orderId },
+    });
   }
 
   return (
@@ -76,7 +83,7 @@ const RatingScreen: React.FC<RatingProps> = ({ route, navigation }) => {
         <View style={buttonFootSection.container}>
           <PrimaryBtn
             onPress={() => {
-              navigation.navigate('Home');
+              navigateToScreenInSameStack('Home');
             }}
             title="Trở về trang chủ"
             radius="square"

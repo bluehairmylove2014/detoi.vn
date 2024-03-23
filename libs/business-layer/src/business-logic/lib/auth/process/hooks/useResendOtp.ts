@@ -29,7 +29,6 @@ export const useResendOtp = (): useResendOtpType => {
     });
   };
 
-  // Returning the onLogin function and the loading state
   return {
     onResendOtp,
     isLoading: resendOtpMutation.isPending,

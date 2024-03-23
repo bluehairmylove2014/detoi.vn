@@ -1,8 +1,9 @@
 import {
-  loginEndpoint,
+  customerLoginEndpoint,
   verifyOtpEndpoint,
   refreshTokenEndpoint,
   resendOtpEndpoint,
+  freelancerLoginEndpoint,
 } from '../../config/apis';
 import { Services } from '../../service';
 import {
@@ -19,11 +20,15 @@ import {
   refreshTokenResponseType,
   resendOtpResponseType,
   resendOtpParamsType,
+  roles,
 } from './type';
 
 export * from './type';
 export class AuthService extends Services {
-  login = async (data: loginParamsType): Promise<loginResponseType> => {
+  login = async ({
+    phone,
+    role,
+  }: loginParamsType): Promise<loginResponseType> => {
     this.abortController = new AbortController();
     try {
       const response = await this.fetchApi<
@@ -31,9 +36,10 @@ export class AuthService extends Services {
         loginResponseType
       >({
         method: 'POST',
-        url: loginEndpoint,
+        url:
+          role === 'customer' ? customerLoginEndpoint : freelancerLoginEndpoint,
         schema: loginResponseSchema,
-        data,
+        data: { phone },
         signal: this.abortController.signal,
         transformResponse: (res) => res,
       });

@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
 import { View, TextInput, ActivityIndicator } from 'react-native';
-import { OTPVertificationProps } from '../../../config';
 import { otpVertificationScreenStyle } from './styles';
 import { COLOR_PALETTE } from '@present-native/styles';
 import { useEffect, useState } from 'react';
@@ -13,6 +12,9 @@ import {
 import { Paragraph, PrimaryBtn, VerticalSpacer } from '@present-native/atoms';
 import AuthTemplate from '@present-native/templates/AuthTemplate';
 import { AuthHeader } from '@present-native/organisms';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { freelancerScreensList } from '@constants/freelancerScreens';
 
 const MAX_TRY = 3;
 const OTP_LENGTH = 4;
@@ -21,10 +23,11 @@ type otpInputFormType = {
   otp: string;
 };
 
-const OTPVertification: React.FC<OTPVertificationProps> = ({
-  route,
-  navigation,
-}) => {
+const OTPVertification: React.FC<
+  NativeStackScreenProps<freelancerScreensList, 'OTPVertification'>
+> = ({ route, navigation }) => {
+  const { navigateToScreenInSameStack, navigateToScreenInDifferentStack } =
+    useAuthNavigation();
   const phoneNumber = useGetOnOtpPhoneNumber();
   const { onResendOtp } = useResendOtp();
   //Handle OTP
@@ -54,12 +57,12 @@ const OTPVertification: React.FC<OTPVertificationProps> = ({
     // Call api to check otp
     onVerifyOtp({ otp })
       .then((msg) => {
-        navigation.navigate('Home');
+        navigateToScreenInDifferentStack('HomeStack', 'Home');
       })
       .catch((error) => {
         setTimeout(() => {
           if (countWrong === 1) {
-            navigation.navigate('Login');
+            navigateToScreenInSameStack('Login');
           } else {
             setCountWrong(countWrong - 1);
             setActiveWarning(true);

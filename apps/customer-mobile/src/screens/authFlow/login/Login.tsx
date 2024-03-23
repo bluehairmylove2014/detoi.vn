@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { View, TextInput } from 'react-native';
 
-import { LoginProps } from '../../../config';
 import { loginScreenStyle } from './styles';
 import { COLOR_PALETTE } from '@presentational/native/styles';
 import {
@@ -25,6 +24,9 @@ import {
 import AuthTemplate from '@present-native/templates/AuthTemplate';
 import { MessageBox } from '@present-native/molecules';
 import { AuthHeader } from '@present-native/organisms/header/AuthHeader';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { customerScreensList } from '@constants/customerScreens';
 
 const DEFAULT_COUNTRY_CODE = {
   alpha2Code: 'VN',
@@ -43,10 +45,14 @@ function removeLeadingZeroFromPhoneNumber(phoneNumber: string): string {
 type phoneInputFormType = {
   phone: string;
 };
-const Login: React.FC<LoginProps> = ({ route, navigation }) => {
+const Login: React.FC<NativeStackScreenProps<customerScreensList, 'Login'>> = ({
+  route,
+  navigation,
+}) => {
   const formResolver = useYupValidationResolver(loginByPhoneNumberSchema);
   const [countryCode, setCountryCode] =
     useState<ICountryCode>(DEFAULT_COUNTRY_CODE);
+  const { navigateToScreenInSameStack } = useAuthNavigation();
 
   const [activeErrorBox, setActiveErrorBox] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
@@ -57,14 +63,16 @@ const Login: React.FC<LoginProps> = ({ route, navigation }) => {
     resolver: formResolver,
   });
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { onLogin, isLoading } = useLogin();
+  const { onCustomerLogin, isLoading } = useLogin();
   // methods
   const onSuccessSubmitPhoneNumber = ({ phone }: phoneInputFormType) => {
     const phoneNumber =
       countryCode.callingCodes[0] + removeLeadingZeroFromPhoneNumber(phone);
-    onLogin({ phone: phoneNumber })
+    onCustomerLogin({ phone: phoneNumber })
       .then((msg) => {
-        navigation.navigate('OTPVertification');
+        console.log('LOGIN SUCCESS');
+        navigateToScreenInSameStack('OTPVertification');
+        // navigation.navigate('OTPVertification');
       })
       .catch((error) => {
         console.error(error);

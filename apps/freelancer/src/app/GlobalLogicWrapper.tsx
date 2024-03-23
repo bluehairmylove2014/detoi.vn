@@ -16,7 +16,7 @@ const GlobalLogicWrapper = () => {
   const isLogged = useIsLogged();
 
   const { onLogout } = useLogout();
-  const { onLogin } = useLogin();
+  const { onCustomerLogin } = useLogin();
   const { onVerifyOtp } = useVerifyOtp();
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const GlobalLogicWrapper = () => {
       return;
     } else {
       // Simulate authentication in development mode by setting the user as logged in and verified.
-      onLogin({
+      onCustomerLogin({
         phone: DEV_ENVIRONMENT_CONFIG.DEFAULT_AUTHENTICATION_PHONE_NUMBER,
       })
         .then((res) =>
