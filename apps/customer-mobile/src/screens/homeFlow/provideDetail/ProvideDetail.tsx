@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-pascal-case */
 import { View } from 'react-native';
 import React from 'react';
@@ -28,17 +29,35 @@ const ProvideDetail: React.FC<
   });
   const { handleSubmit } = getForm();
 
-  const handlePressNext = (data: FieldValues) => {
+  const { onSetPostOrderServiceContent } = useSetPostOrderServiceContent();
+
+  const handlePressNext = ({
+    requirementsData,
+    additionRequirementsData,
+  }: FieldValues) => {
     if (!service) {
       console.error('ERROR: Service is undefined ProvideDetail');
     } else {
       onSetPostOrderServiceContent({
-        serviceContent: { ...data, serviceTypeId: service.id },
+        serviceContent: {
+          serviceTypeId: service.id,
+          note: '',
+          additionalNote: '',
+          requirement: Object.keys(requirementsData).map((rk) => ({
+            key: rk,
+            value: requirementsData[rk].toString(),
+          })),
+          additionalRequirement: Object.keys(additionRequirementsData).map(
+            (ark) => ({
+              key: ark,
+              value: additionRequirementsData[ark].toString(),
+            })
+          ),
+        },
       });
       navigateToScreenInSameStack('ProvideDate');
     }
   };
-  const { onSetPostOrderServiceContent } = useSetPostOrderServiceContent();
 
   return (
     <CustomerTemplate>

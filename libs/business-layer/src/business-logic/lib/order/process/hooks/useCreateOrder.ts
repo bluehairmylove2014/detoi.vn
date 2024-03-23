@@ -16,7 +16,7 @@ export const useCreateOrder = (): useCreateOrderReturnType => {
     state: {
       postOrderAddress,
       postOrderServiceContent,
-      postOrderStartDatetime,
+      // postOrderStartDatetime,
     },
   } = useOrderContext();
   const { currentOrderCategory } = useCurrentOrderCategory();
@@ -46,8 +46,7 @@ export const useCreateOrder = (): useCreateOrderReturnType => {
             address: postOrderAddress,
             startTime: startTime,
             startDate: startDate,
-            serviceContent: { ...postOrderServiceContent, note },
-            serviceKey: currentOrderCategory.serviceClassName,
+            services: { ...postOrderServiceContent, note },
             token,
           })
           .then((res) => {

@@ -83,8 +83,10 @@ const ProvideDate: React.FC<
       })
       .catch((error) => {
         console.error(error);
+      })
+      .finally(() => {
+        navigateToScreenInSameStack('Matching');
       });
-    navigateToScreenInSameStack('Matching');
   };
 
   const renderDateList = ({ item }: { item: Date }) => {

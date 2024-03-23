@@ -28,10 +28,8 @@ import {
 export * from './type';
 export class OrderService extends Services {
   createOrder = async ({
-    serviceContent,
-    serviceKey,
     token,
-    ...rest
+    ...data
   }: createOrderPropsType): Promise<createOrderResponseType> => {
     this.abortController = new AbortController();
     try {
@@ -42,10 +40,7 @@ export class OrderService extends Services {
         >({
           method: 'POST',
           url: createOrderEndpoint,
-          data: {
-            ...rest,
-            [serviceKey]: serviceContent,
-          },
+          data,
           schema: createOrderResponseTypeSchema,
           headers: {
             Authorization: `Bearer ${token}`,

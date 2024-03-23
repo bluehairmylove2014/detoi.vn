@@ -1,11 +1,14 @@
-import { IAddress, IOrderDetail } from '../../entities';
+import {
+  IAddress,
+  IOrderDetail,
+  IPostOrderServiceContent,
+} from '../../entities';
 
 export type createOrderPropsType = {
   address: Omit<IAddress, 'id'>;
   startTime: string;
   startDate: string;
-  serviceContent: any;
-  serviceKey: string;
+  services: IPostOrderServiceContent;
   token: string | null;
 };
 export type createOrderResponseType = {
