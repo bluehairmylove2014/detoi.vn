@@ -9,3 +9,4 @@ export * from './service';
 export * from './payment';
 export * from './messageBox';
 export * from './matchingThumbnail';
+export * from './dotPager';
