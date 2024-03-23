@@ -12,6 +12,7 @@ type customerTabParamList = {
 // HOME STACK
 type customerRootStackParamList = {
   Home: undefined;
+  Intro: undefined
 };
 // ENDOW STACK
 type endowStackParamList = {
@@ -32,9 +33,10 @@ type accountStackParamList = {
 
 // 2. Props
 type HomeProps = NativeStackScreenProps<customerRootStackParamList, 'Home'>;
+type IntroProps = NativeStackScreenProps<customerRootStackParamList, 'Intro'>;
 
 // 3. Export props
-export { HomeProps };
+export { HomeProps, IntroProps };
 export {
   customerRootStackParamList,
   endowStackParamList,
