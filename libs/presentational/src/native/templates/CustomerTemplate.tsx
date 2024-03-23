@@ -30,10 +30,12 @@ const CustomerTemplate = ({ children }: { children: React.ReactNode }) => {
 
       {/* <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> */}
       <View style={globalStyles.container}>
-        <PrimaryScrollView direction="vertical">
-          {children}
-          <TransparentView theme="vertical" />
-        </PrimaryScrollView>
+        <KeyboardAvoidingView>
+          <PrimaryScrollView direction="vertical">
+            {children}
+            <TransparentView theme="vertical" />
+          </PrimaryScrollView>
+        </KeyboardAvoidingView>
         {isLogged ? null : <NeedLoginBottomTab />}
       </View>
       {/* </TouchableWithoutFeedback> */}

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
-import { View } from 'react-native';
+import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
 import React from 'react';
 import { ProvideDetailProps } from '../../../config';
 import {
@@ -42,20 +42,24 @@ const ProvideDetail: React.FC<ProvideDetailProps> = ({ route, navigation }) => {
         title={`DỊCH VỤ ${service?.name.toUpperCase()}`}
         subtitle={service?.description ?? ''}
       />
-      <VerticalSpacer size="xxl" />
-      <View style={{ paddingHorizontal: screenHorizontalPadding }}>
-        <Title theme="baseBold" color="primary">
-          Nhập đầy đủ thông tin bên dưới
-        </Title>
-        {onGenerateUI()}
-        <VerticalSpacer size="xxxl" />
-        <PrimaryBtn
-          title="Tiếp theo"
-          onPress={handleSubmit(handlePressNext, (error) => {
-            console.error('ERROR: ', error);
-          })}
-        />
-      </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View>
+          <VerticalSpacer size="xxl" />
+          <View style={{ paddingHorizontal: screenHorizontalPadding }}>
+            <Title theme="baseBold" color="primary">
+              Nhập đầy đủ thông tin bên dưới
+            </Title>
+            {onGenerateUI()}
+            <VerticalSpacer size="xxxl" />
+            <PrimaryBtn
+              title="Tiếp theo"
+              onPress={handleSubmit(handlePressNext, (error) => {
+                console.error('ERROR: ', error);
+              })}
+            />
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
     </CustomerTemplate>
   );
 };

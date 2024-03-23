@@ -1,11 +1,11 @@
 import { COLOR_PALETTE } from '@presentational/native/styles';
 import { StyleSheet } from 'react-native';
-import { windowHeight, windowWidth } from '@constants/dimension';
+import { windowWidth } from '@constants/dimension';
 
 const provideDateStyle = StyleSheet.create({
   container: {
     width: windowWidth,
-    minHeight: windowHeight,
+    minHeight: '100%',
     height: 'auto',
     padding: 20,
   },

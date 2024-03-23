@@ -10,6 +10,7 @@ import {
 import {
   FlatList,
   Keyboard,
+  Platform,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
@@ -21,7 +22,11 @@ import { useMemo, useState } from 'react';
 import { COLOR_PALETTE } from '@present-native/styles';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
-import { BannerTopSection, TimePicker } from '@present-native/molecules';
+import {
+  BannerTopSection,
+  MessageBox,
+  TimePicker,
+} from '@present-native/molecules';
 import { useCurrentOrderService } from '@business-layer/business-logic/lib/category';
 import { useCreateOrder } from '@business-layer/business-logic/lib/order';
 
@@ -45,6 +50,8 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
   const { currentOrderService: service } = useCurrentOrderService();
   const [selectedDate, setSelectedDate] = useState<Date>(currentDate);
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
+  const [activeErrorBox, setActiveErrorBox] = useState(false);
+
   const { handleSubmit, setValue, control } = useForm();
   const { onCreateOrder } = useCreateOrder();
 
@@ -62,7 +69,30 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
     return list;
   }, []);
 
+  const checkTime = (dateSelect: Date, dateCurrent: Date) => {
+    const oneHourInMilliseconds = 60 * 60 * 1000; // 1 hour in milliseconds
+
+    // Calculate the time difference in milliseconds
+    const timeDifference = dateSelect.getTime() - dateCurrent.getTime();
+
+    // Check if the selected time is at least 1 hour ahead of the current time
+    if (timeDifference < oneHourInMilliseconds) {
+      return false; // Selected time is not at least 1 hour ahead
+    }
+
+    return true; // Selected time is at least 1 hour ahead
+  };
+
   const onSuccessSubmitDate: SubmitHandler<FieldValues> = (data) => {
+    if (Platform.OS === 'android') {
+      const currentDate = new Date();
+      if (checkTime(selectedTime, currentDate) === false) {
+        setActiveErrorBox(true);
+        console.log('wrong');
+        return;
+      }
+    }
+
     const startDate = `${selectedDate.getFullYear()}-${(
       selectedDate.getMonth() + 1
     )
@@ -207,6 +237,13 @@ const ProvideDate: React.FC<ProvideDateProps> = ({ route, navigation }) => {
           </View>
         </View>
       </TouchableWithoutFeedback>
+
+      <MessageBox
+        message="Bạn cần phải chọn thời gian sớm hơn 1 tiếng!"
+        isActive={activeErrorBox}
+        onPressConfirm={() => setActiveErrorBox(false)}
+        confirmTitle="Tôi hiểu rồi"
+      />
     </CustomerTemplate>
   );
 };
