@@ -1,12 +1,4 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  Modal,
-  TouchableWithoutFeedback,
-  FlatList,
-} from 'react-native';
+import { View, TouchableOpacity, Image, Modal, FlatList } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { COLOR_PALETTE } from '@styles/color';
 import { FAIcon } from '../icon';

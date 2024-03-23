@@ -23,7 +23,7 @@ export const onServiceScreenStyle = StyleSheet.create({
   infoBillContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: 15,
+    paddingBottom: 5,
     width: '100%',
     overflow: 'hidden',
     gap: 20,
@@ -53,6 +53,7 @@ export const onServiceScreenStyle = StyleSheet.create({
   mapStyle: {
     width: '100%',
     height: '100%',
+    position: 'absolute',
   },
 
   chatBtn: {
