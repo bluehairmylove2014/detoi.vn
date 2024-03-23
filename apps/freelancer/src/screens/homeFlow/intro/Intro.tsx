@@ -5,51 +5,16 @@ import {
   Title,
   VerticalSpacer,
 } from '@present-native/atoms';
-import { COLOR_PALETTE, screenHorizontalPadding } from '@present-native/styles';
+import { screenHorizontalPadding } from '@present-native/styles';
 import React, { useState } from 'react';
-import { View, Image, SafeAreaView, TouchableOpacity } from 'react-native';
+import { View, Image, SafeAreaView } from 'react-native';
 import {
   introScreenStyles,
   footIntroScreenStyles,
   bodyIntroScreenStyles,
 } from './styles';
-
-const DotPager = React.memo(({ isSelected }: { isSelected: boolean }) => {
-  return (
-    <View
-      style={{
-        height: 15,
-        width: 15,
-        borderRadius: 99,
-        backgroundColor: isSelected
-          ? COLOR_PALETTE.primary
-          : COLOR_PALETTE.black,
-        opacity: isSelected ? 1 : 0.3,
-      }}
-    />
-  );
-});
-
-const CONTENTS_PAGINATION = [
-  {
-    title: 'Đa dạng dịch vụ',
-    description:
-      'Vô vàn dịch vụ đang cần bạn, hãy chọn các dịch vụ bạn có thể làm',
-    image: require('../../../../assets/splash-intro-1.png'),
-  },
-  {
-    title: 'Bạn tự định giá',
-    description:
-      'Phí dịch vụ do bạn hoàn toàn quyết định. Dịch vụ bạn làm, giá trị bạn định',
-    image: require('../../../../assets/splash-intro-2.png'),
-  },
-  {
-    title: 'Dễ dàng kết nối',
-    description:
-      'Hỗ trợ tìm và nhận đơn dễ dàng hơn phương pháp truyền thống gấp 2 lần',
-    image: require('../../../../assets/splash-intro-3.png'),
-  },
-];
+import { freelancerIntroGreeting } from '@constants/freelancerIntroGreeting';
+import { DotPager } from '@present-native/molecules';
 
 const Intro = React.memo(() => {
   const [indexPagination, setIndexPaginations] = useState<number>(0);
@@ -60,7 +25,7 @@ const Intro = React.memo(() => {
 
   const actionNextPage = React.useCallback(() => {
     setIndexPaginations((prevIndex) =>
-      prevIndex + 1 < CONTENTS_PAGINATION.length ? prevIndex + 1 : prevIndex
+      prevIndex + 1 < freelancerIntroGreeting.length ? prevIndex + 1 : prevIndex
     );
   }, [setIndexPaginations]);
 
@@ -71,16 +36,16 @@ const Intro = React.memo(() => {
         {
           <View style={bodyIntroScreenStyles.bodyWrapper}>
             <Image
-              source={CONTENTS_PAGINATION[indexPagination].image}
+              source={freelancerIntroGreeting[indexPagination].image}
               style={bodyIntroScreenStyles.image}
             />
             <VerticalSpacer size="xl" />
             <View style={{ paddingHorizontal: screenHorizontalPadding }}>
               <Title theme="largeBold" align="center" color="primary">
-                {CONTENTS_PAGINATION[indexPagination].title}
+                {freelancerIntroGreeting[indexPagination].title}
               </Title>
               <Paragraph align="center" theme="smallRegular">
-                {CONTENTS_PAGINATION[indexPagination].description}
+                {freelancerIntroGreeting[indexPagination].description}
               </Paragraph>
             </View>
           </View>
@@ -90,7 +55,7 @@ const Intro = React.memo(() => {
         {indexPagination > 0 ? (
           <View style={footIntroScreenStyles.button}>
             <SecondaryBtn
-              fontSize='small'
+              fontSize="small"
               onPress={actionBackPage}
               title="Quay lại"
               iconName="faChevronLeft"
@@ -101,13 +66,14 @@ const Intro = React.memo(() => {
           <View style={footIntroScreenStyles.button} />
         )}
         <View style={footIntroScreenStyles.dotPagerWrapper}>
-          {CONTENTS_PAGINATION.map((_, index) => (
-              <DotPager isSelected={indexPagination === index} />
-          ))}
+          <DotPager
+            indexSelected={indexPagination}
+            numberDot={freelancerIntroGreeting.length}
+          />
         </View>
         <View style={footIntroScreenStyles.button}>
           <PrimaryBtn
-            fontSize='small'
+            fontSize="small"
             onPress={actionNextPage}
             title="Tiếp tục"
             iconName="faChevronRight"
