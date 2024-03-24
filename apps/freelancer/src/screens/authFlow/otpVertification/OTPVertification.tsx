@@ -108,7 +108,7 @@ const OTPVertification: React.FC<
   }, [activeTimeCount]);
 
   useEffect(() => {
-    isSuccessVerified && navigateToScreenInDifferentStack('HomeStack', 'Home');
+    isSuccessVerified && navigateToScreenInDifferentStack('HomeStack', 'Intro');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccessVerified]);
 

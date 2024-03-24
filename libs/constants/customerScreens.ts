@@ -23,6 +23,7 @@ export type customerScreensList = {
   Account: undefined;
   Login: undefined;
   OTPVertification: undefined;
+  Intro: undefined;
 };
 
 export type customerHomeStackParams = Pick<
@@ -40,6 +41,7 @@ export type customerHomeStackParams = Pick<
   | 'OnService'
   | 'Rating'
   | 'Review'
+  | 'Intro'
 >;
 export type customerAuthStackParams = Pick<
   customerScreensList,
