@@ -34,6 +34,7 @@ const OTPVertification: React.FC<
   const [countWrong, setCountWrong] = useState<number>(MAX_TRY);
   const [activeWarning, setActiveWarning] = useState(false);
   const [loadingOTP, setLoadingOTP] = useState(false);
+  const [isSuccessVerified, setIsSuccessVerified] = useState<boolean>(false);
 
   //Handle Timer
   const [activeTimeCount, setActiveTimeCount] = useState(true);
@@ -57,7 +58,7 @@ const OTPVertification: React.FC<
     // Call api to check otp
     onVerifyOtp({ otp })
       .then((msg) => {
-        navigateToScreenInDifferentStack('HomeStack', 'Home');
+        setIsSuccessVerified(true);
       })
       .catch((error) => {
         setTimeout(() => {
@@ -105,6 +106,11 @@ const OTPVertification: React.FC<
       return () => clearInterval(interval);
     }
   }, [activeTimeCount]);
+
+  useEffect(() => {
+    isSuccessVerified && navigateToScreenInDifferentStack('HomeStack', 'Home');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccessVerified]);
 
   useEffect(() => {
     otpWatcher &&

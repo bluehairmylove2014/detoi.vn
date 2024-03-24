@@ -61,12 +61,12 @@ const Login: React.FC<
     resolver: formResolver,
   });
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { onCustomerLogin, isLoading } = useLogin();
+  const { onLogin, isLoading } = useLogin();
   // methods
   const onSuccessSubmitPhoneNumber = ({ phone }: phoneInputFormType) => {
     const phoneNumber =
       countryCode.callingCodes[0] + removeLeadingZeroFromPhoneNumber(phone);
-    onCustomerLogin({ phone: phoneNumber })
+    onLogin({ phone: phoneNumber })
       .then((msg) => {
         navigateToScreenInSameStack('OTPVertification');
       })

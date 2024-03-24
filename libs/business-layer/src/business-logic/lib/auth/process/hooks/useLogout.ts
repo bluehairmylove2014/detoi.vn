@@ -15,7 +15,7 @@ export const useLogout = (): UseLogoutType => {
       deleteRefreshToken();
       return true;
     } catch (error) {
-      // If any error occurs in logout process, return false to client
+      // If any error occurs in logout process, return false
       return false;
     }
   };
