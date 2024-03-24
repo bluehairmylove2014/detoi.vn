@@ -19,11 +19,11 @@ import { DotPager } from '@present-native/molecules';
 const Intro = React.memo(() => {
   const [indexPagination, setIndexPaginations] = useState<number>(0);
 
-  const actionBackPage = React.useCallback(() => {
+  const handleBackPage = React.useCallback(() => {
     setIndexPaginations((prevIndex) => prevIndex - 1);
   }, [setIndexPaginations]);
 
-  const actionNextPage = React.useCallback(() => {
+  const handleNextPage = React.useCallback(() => {
     setIndexPaginations((prevIndex) =>
       prevIndex + 1 < freelancerIntroGreeting.length ? prevIndex + 1 : prevIndex
     );
@@ -56,7 +56,7 @@ const Intro = React.memo(() => {
           <View style={footIntroScreenStyles.button}>
             <SecondaryBtn
               fontSize="small"
-              onPress={actionBackPage}
+              onPress={handleBackPage}
               title="Quay lại"
               iconName="faChevronLeft"
               iconPosition="left"
@@ -74,7 +74,7 @@ const Intro = React.memo(() => {
         <View style={footIntroScreenStyles.button}>
           <PrimaryBtn
             fontSize="small"
-            onPress={actionNextPage}
+            onPress={handleNextPage}
             title="Tiếp tục"
             iconName="faChevronRight"
             iconPosition="right"
