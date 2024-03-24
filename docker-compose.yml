@@ -19,7 +19,6 @@ services:
       test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PPassword@12345#", "-Q", "select 1"]
       interval: 1s
       retries: 20
-
   detoiserver:
     container_name: detoi-server-container
     image: cuong457/detoiserver:latest
@@ -36,6 +35,17 @@ services:
       - DB_HOST=detoidb
       - DB_NAME=DeToiVN
       - DB_SA_PASSWORD=Password@12345#
+      - MQ_HOST=rabbitmq
     networks:
       - detoidockernetwork
-
+  rabbitmq:
+    container_name: rabbitmq-container
+    image: rabbitmq:3.8-management-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=mypass
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - detoidockernetwork
