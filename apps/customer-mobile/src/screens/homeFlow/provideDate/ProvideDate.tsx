@@ -6,7 +6,14 @@ import {
   RoseTextarea,
   PrimaryBtn,
 } from '@present-native/atoms';
-import { FlatList, TouchableOpacity, View } from 'react-native';
+import {
+  FlatList,
+  Keyboard,
+  Platform,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 
 import { provideDateStyle } from './styles';
 
@@ -14,7 +21,11 @@ import { useMemo, useState } from 'react';
 import { COLOR_PALETTE } from '@present-native/styles';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
-import { BannerTopSection, TimePicker } from '@present-native/molecules';
+import {
+  BannerTopSection,
+  MessageBox,
+  TimePicker,
+} from '@present-native/molecules';
 import { useCurrentOrderService } from '@business-layer/business-logic/lib/category';
 import { useCreateOrder } from '@business-layer/business-logic/lib/order';
 import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
@@ -23,12 +34,11 @@ import { customerScreensList } from '@constants/customerScreens';
 
 const NUMBER_OF_DAYS = 14;
 
-const calcFollowingDay = () => {
+const currentDate = () => {
   const currentDate = new Date();
-  const followingDay = new Date();
-  followingDay.setDate(currentDate.getDate() + 1);
+  currentDate.setHours(currentDate.getHours() + 1);
 
-  return followingDay;
+  return currentDate;
 };
 
 const constantTime = () => {
@@ -42,14 +52,16 @@ const ProvideDate: React.FC<
   NativeStackScreenProps<customerScreensList, 'ProvideDate'>
 > = ({ route, navigation }) => {
   const { currentOrderService: service } = useCurrentOrderService();
-  const [selectedDate, setSelectedDate] = useState<Date>(calcFollowingDay);
+  const [selectedDate, setSelectedDate] = useState<Date>(currentDate);
   const [selectedTime, setSelectedTime] = useState<Date>(constantTime);
+  const [activeErrorBox, setActiveErrorBox] = useState(false);
+
   const { handleSubmit, setValue, control } = useForm();
   const { onCreateOrder } = useCreateOrder();
   const { navigateToScreenInSameStack } = useAuthNavigation();
 
   const dateList: Date[] = useMemo(() => {
-    const followingDay = calcFollowingDay();
+    const followingDay = currentDate();
     const list = [];
 
     // Generate dates for the next 14 days
@@ -62,7 +74,30 @@ const ProvideDate: React.FC<
     return list;
   }, []);
 
+  const checkTime = (dateSelect: Date, dateCurrent: Date) => {
+    const oneHourInMilliseconds = 60 * 60 * 1000; // 1 hour in milliseconds
+
+    // Calculate the time difference in milliseconds
+    const timeDifference = dateSelect.getTime() - dateCurrent.getTime();
+
+    // Check if the selected time is at least 1 hour ahead of the current time
+    if (timeDifference < oneHourInMilliseconds) {
+      return false; // Selected time is not at least 1 hour ahead
+    }
+
+    return true; // Selected time is at least 1 hour ahead
+  };
+
   const onSuccessSubmitDate: SubmitHandler<FieldValues> = (data) => {
+    if (Platform.OS === 'android') {
+      const currentDate = new Date();
+      if (checkTime(selectedTime, currentDate) === false) {
+        setActiveErrorBox(true);
+        console.log('wrong');
+        return;
+      }
+    }
+
     const startDate = `${selectedDate.getFullYear()}-${(
       selectedDate.getMonth() + 1
     )
@@ -136,7 +171,7 @@ const ProvideDate: React.FC<
         title={`DỊCH VỤ ${service?.name.toUpperCase()}`}
         subtitle={service?.description ?? ''}
       />
-      <View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={provideDateStyle.container}>
           <VerticalSpacer size="l" />
           <View style={provideDateStyle.labelTime}>
@@ -162,7 +197,10 @@ const ProvideDate: React.FC<
           </View>
 
           <VerticalSpacer size="xl" />
-          <TimePicker setTime={(time) => setSelectedTime(time)} />
+          <TimePicker
+            setTime={(time) => setSelectedTime(time)}
+            dateSelect={selectedDate}
+          />
 
           <VerticalSpacer size="xxxl" />
           <View>
@@ -183,7 +221,6 @@ const ProvideDate: React.FC<
               />
             </View>
           </View>
-
           <VerticalSpacer size="xxxl" />
           <View style={provideDateStyle.buttonContainer}>
             <PrimaryBtn
@@ -191,7 +228,6 @@ const ProvideDate: React.FC<
               onPress={handleSubmit(onSuccessSubmitDate)}
             />
           </View>
-
           <VerticalSpacer size="xl" />
           <View>
             <Paragraph theme="smallBold" align="center">
@@ -207,7 +243,14 @@ const ProvideDate: React.FC<
             </Paragraph>
           </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
+
+      <MessageBox
+        message="Bạn cần phải chọn thời gian sớm hơn 1 tiếng!"
+        isActive={activeErrorBox}
+        onPressConfirm={() => setActiveErrorBox(false)}
+        confirmTitle="Tôi hiểu rồi"
+      />
     </CustomerTemplate>
   );
 };

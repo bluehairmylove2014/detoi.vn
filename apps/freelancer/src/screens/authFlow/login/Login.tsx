@@ -53,7 +53,7 @@ const Login: React.FC<
     useState<ICountryCode>(DEFAULT_COUNTRY_CODE);
 
   const [activeErrorBox, setActiveErrorBox] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string>();
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const { handleSubmit, setValue, control } = useForm<phoneInputFormType>({
     defaultValues: {
       phone: '',
@@ -175,7 +175,8 @@ const Login: React.FC<
       <MessageBox
         message={errorMessage}
         isActive={activeErrorBox}
-        onClose={() => setActiveErrorBox(false)}
+        onPressConfirm={() => setActiveErrorBox(false)}
+        confirmTitle="Tôi hiểu rồi"
       />
     </AuthTemplate>
   );
