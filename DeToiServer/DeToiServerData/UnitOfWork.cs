@@ -2,6 +2,9 @@
 using DeToiServerData.Repositories.AccountCustomerRepo;
 using DeToiServerData.Repositories.AccountFreelanceRepo;
 using DeToiServerData.Repositories.AddressRepo;
+using DeToiServerData.Repositories.CleaningServiceRepo;
+using DeToiServerData.Repositories.FreelanceQuizRepo;
+using DeToiServerData.Repositories.FreelancerQuizRepo;
 using DeToiServerData.Repositories.OrderRepo;
 using DeToiServerData.Repositories.PromotionRepo;
 using DeToiServerData.Repositories.ServiceCategoryRepo;
@@ -188,6 +191,7 @@ namespace DeToiServerData
         }
         #endregion
 
+        #region Service Status Repo
         private IServiceStatusRepo _serviceStatusRepo;
         public IServiceStatusRepo ServiceStatusRepo
         {
@@ -197,6 +201,20 @@ namespace DeToiServerData
                 return _serviceStatusRepo;
             }
         }
+        #endregion
+
+        #region Freelance Quiz Repo
+        private IFreelanceQuizRepo _freelanceQuizRepo;
+        public IFreelanceQuizRepo FreelanceQuizRepo
+        {
+            get
+            {
+                _freelanceQuizRepo ??= new FreelanceQuizRepo(_dataContext);
+                return _freelanceQuizRepo;
+            }
+        }
+        #endregion
+
 
         public async Task<bool> SaveChangesAsync()
         {

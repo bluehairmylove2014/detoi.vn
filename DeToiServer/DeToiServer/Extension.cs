@@ -2,6 +2,7 @@
 using DeToiServer.Services.CustomerAccountService;
 using DeToiServer.Services.FavoriteService;
 using DeToiServer.Services.FreelanceAccountService;
+using DeToiServer.Services.FreelanceQuizService;
 using DeToiServer.Services.MessageQueueService;
 using DeToiServer.Services.OrderManagementService;
 using DeToiServer.Services.ServiceCategoryService;
@@ -15,6 +16,9 @@ using DeToiServerData.Repositories;
 using DeToiServerData.Repositories.AccountCustomerRepo;
 using DeToiServerData.Repositories.AccountFreelanceRepo;
 using DeToiServerData.Repositories.AddressRepo;
+using DeToiServerData.Repositories.CleaningServiceRepo;
+using DeToiServerData.Repositories.FreelanceQuizRepo;
+using DeToiServerData.Repositories.FreelancerQuizRepo;
 using DeToiServerData.Repositories.OrderRepo;
 using DeToiServerData.Repositories.PromotionRepo;
 using DeToiServerData.Repositories.ServiceCategoryRepo;
@@ -87,6 +91,8 @@ namespace DeToiServerData
             services.AddScoped<IUIElementServiceRequirementRepo, UIElementServiceRequirementRepo>();
             services.AddScoped<IUIElementAdditionServiceRequirementRepo, UIElementAdditionServiceRequirementRepo>();
 
+            services.AddScoped<IFreelanceQuizRepo, FreelanceQuizRepo>();
+
             services.AddScoped<IAddressRepo, AddressRepo>();
 
 
@@ -107,8 +113,8 @@ namespace DeToiServerData
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IMessageQueueService, MessageQueueService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
-
             services.AddScoped<IUIElementServiceRequirementService, UIElementServiceRequirementService>();
+            services.AddScoped<IFreelanceQuizService, FreelanceQuizService>();
             return services;
         }
 

@@ -4,6 +4,7 @@ using DeToiServer.Dtos.AddressDtos;
 using DeToiServer.Dtos.FreelanceDtos;
 using DeToiServer.Dtos.LocationDtos;
 using DeToiServer.Dtos.OrderDtos;
+using DeToiServer.Dtos.QuizDtos;
 using DeToiServer.Dtos.ServiceCategoryDtos;
 using DeToiServer.Dtos.ServiceDtos;
 using DeToiServer.Dtos.ServiceProvenDtos;
@@ -13,8 +14,8 @@ using DeToiServer.Dtos.SkillDtos;
 using DeToiServer.Dtos.UIElementDtos;
 using DeToiServerCore.Common.Constants;
 using DeToiServerCore.Common.Helper;
-using DeToiServerCore.Models;
 using DeToiServerCore.Models.Accounts;
+using DeToiServerCore.Models.FreelanceQuiz;
 using DeToiServerCore.Models.Services;
 using DeToiServerCore.Models.SevicesUIElement;
 using Newtonsoft.Json;
@@ -194,6 +195,27 @@ namespace DeToiServer.AutoMapper
                 .ForMember(dest => dest.Requirement, opt => opt.MapFrom(src => JsonConvert.DeserializeObject<ICollection<RequirementDataDto>>(src.Requirement)))
                 .ForMember(dest => dest.AdditionalRequirement, opt => opt.MapFrom(src => JsonConvert.DeserializeObject<ICollection<RequirementDataDto>>(src.AdditionalRequirement)));
 
+            #endregion
+
+            #region Freelance Quiz
+            CreateMap<FreelanceQuizAnswer, FreelanceQuizAnswerDto>().ReverseMap();
+            CreateMap<FreelanceQuizQuestion, FreelanceQuizQuestionDto>()
+                .ForMember(dest => dest.OfSkills, opt => opt.MapFrom(src => JsonConvert.DeserializeObject<ICollection<string>>(src.OfSkills)));
+
+            CreateMap<FreelanceQuizQuestionDto, FreelanceQuizQuestion>()
+                .ForMember(dest => dest.OfSkills, opt => opt.MapFrom(src => JsonConvert.SerializeObject(src.OfSkills))); 
+
+            CreateMap<QuizQuestion, FreelanceQuizQuestionDto>()
+                .ConvertUsing((src, dest, context) => {
+                    return context.Mapper.Map<FreelanceQuizQuestionDto>(src.Question);
+                });
+            CreateMap<FreelanceCorrectQuestion, FreelanceQuizQuestionDto>()
+                .ConvertUsing((src, dest, context) => {
+                    return context.Mapper.Map<FreelanceQuizQuestionDto>(src.Question);
+                });
+
+            CreateMap<FreelanceQuiz, GetPreDefinedQuizDto>();
+            CreateMap<FreelanceQuizResult, FreelanceQuizResultDto>();
             #endregion
         }
     }

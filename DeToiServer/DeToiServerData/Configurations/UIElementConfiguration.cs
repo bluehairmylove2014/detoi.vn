@@ -163,20 +163,20 @@ namespace DeToiServerData.Configurations
                 {
                     Id = Guid.NewGuid(),
                     Name = "min",
-                    Value = "0",
+                    Value = "1",
                     Message = "Thông báo valid input 3 custom 2.",
                     InputMethodId = new Guid("42b3fce8-5392-4bfd-97a2-0b84532a4b67"),
                     InputMethod = null!
                 },
-                new()
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "max",
-                    Value = "10",
-                    Message = "Thông báo valid input 3 custom 3.",
-                    InputMethodId = new Guid("42b3fce8-5392-4bfd-97a2-0b84532a4b67"),
-                    InputMethod = null!
-                },
+                //new()
+                //{
+                //    Id = Guid.NewGuid(),
+                //    Name = "max",
+                //    Value = "10",
+                //    Message = "Thông báo valid input 3 custom 3.",
+                //    InputMethodId = new Guid("42b3fce8-5392-4bfd-97a2-0b84532a4b67"),
+                //    InputMethod = null!
+                //},
             });
         }
     }

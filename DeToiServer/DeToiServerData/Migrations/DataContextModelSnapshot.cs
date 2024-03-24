@@ -41,7 +41,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("UserPhone");
 
-                    b.ToTable("Connections");
+                    b.ToTable("Connections", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServer.Models.User", b =>
@@ -51,7 +51,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasKey("Phone");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.Accounts.Account", b =>
@@ -112,7 +112,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Accounts");
+                    b.ToTable("Accounts", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.Accounts.Address", b =>
@@ -159,7 +159,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("FreelanceAccountId");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.Accounts.CustomerAccount", b =>
@@ -182,7 +182,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.Accounts.FreelanceAccount", b =>
@@ -230,7 +230,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Freelancers");
+                    b.ToTable("Freelancers", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.Accounts.FreelanceSkill", b =>
@@ -268,7 +268,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Skills");
+                    b.ToTable("Skills", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.BlogPost", b =>
@@ -290,7 +290,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BlogPosts");
+                    b.ToTable("BlogPosts", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.CustomerPromotion", b =>
@@ -308,7 +308,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("CustomerPromotions");
+                    b.ToTable("CustomerPromotions", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.Favorite", b =>
@@ -345,7 +345,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FrequentlyAskedQuestions");
+                    b.ToTable("FrequentlyAskedQuestions", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.Order", b =>
@@ -394,7 +394,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("ServiceStatusId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.Payment.PaymentHistory", b =>
@@ -422,7 +422,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("FreelanceAccountId");
 
-                    b.ToTable("PaymentHistories");
+                    b.ToTable("PaymentHistories", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.Promotion", b =>
@@ -465,7 +465,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Promotions");
+                    b.ToTable("Promotions", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.ServiceCategory", b =>
@@ -494,7 +494,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ServiceCategories");
+                    b.ToTable("ServiceCategories", (string)null);
 
                     b.HasData(
                         new
@@ -618,6 +618,9 @@ namespace DeToiServerData.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ServiceClones");
+                    b.ToTable("Services", (string)null);
+
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.Services.ServiceProven", b =>
@@ -651,7 +654,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("ServiceTypeId");
 
-                    b.ToTable("ServiceProven");
+                    b.ToTable("ServiceProven", (string)null);
                 });
 
             modelBuilder.Entity("DeToiServerCore.Models.Services.ServiceStatus", b =>
@@ -666,7 +669,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ServiceStatuses");
+                    b.ToTable("ServiceStatuses", (string)null);
 
                     b.HasData(
                         new
@@ -725,7 +728,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("ServiceCategoryId");
 
-                    b.ToTable("ServiceTypes");
+                    b.ToTable("ServiceTypes", (string)null);
 
                     b.HasData(
                         new
@@ -906,7 +909,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("ServiceTypeId");
 
-                    b.ToTable("UIElementAdditionServiceRequirements");
+                    b.ToTable("UIElementAdditionServiceRequirements", (string)null);
 
                     b.HasData(
                         new
@@ -950,7 +953,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UIElementInputMethodTypes");
+                    b.ToTable("UIElementInputMethodTypes", (string)null);
 
                     b.HasData(
                         new
@@ -990,7 +993,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("InputMethodTypeId");
 
-                    b.ToTable("UIElementInputOptions");
+                    b.ToTable("UIElementInputOptions", (string)null);
 
                     b.HasData(
                         new
@@ -1042,7 +1045,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("ServiceTypeId");
 
-                    b.ToTable("UIElementServiceRequirements");
+                    b.ToTable("UIElementServiceRequirements", (string)null);
 
                     b.HasData(
                         new
@@ -1093,7 +1096,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("MethodId");
 
-                    b.ToTable("UIElementServiceRequirementInputMethods");
+                    b.ToTable("UIElementServiceRequirementInputMethods", (string)null);
 
                     b.HasData(
                         new
@@ -1140,7 +1143,7 @@ namespace DeToiServerData.Migrations
 
                     b.HasIndex("InputMethodId");
 
-                    b.ToTable("UIElementValidationTypes");
+                    b.ToTable("UIElementValidationTypes", (string)null);
 
                     b.HasData(
                         new

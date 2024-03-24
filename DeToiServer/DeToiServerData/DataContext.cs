@@ -1,6 +1,7 @@
 ﻿using DeToiServer.Models;
 using DeToiServerCore.Models;
 using DeToiServerCore.Models.Accounts;
+using DeToiServerCore.Models.FreelanceQuiz;
 using DeToiServerCore.Models.Payment;
 using DeToiServerCore.Models.Services;
 using DeToiServerCore.Models.SevicesUIElement;
@@ -65,6 +66,15 @@ namespace DeToiServerData
             #region Realtime config
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             #endregion
+
+            #region Freelancer Quiz Config
+            modelBuilder.ApplyConfiguration(new QuizQuestionConfiguration());
+            modelBuilder.ApplyConfiguration(new FreelanceQuizQuestionConfiguration());
+            modelBuilder.ApplyConfiguration(new FreelanceQuizAnswerConfiguration());
+            modelBuilder.ApplyConfiguration(new FreelanceQuizConfiguration());
+            modelBuilder.ApplyConfiguration(new FreelanceCorrectQuestionConfiguration());
+            modelBuilder.ApplyConfiguration(new FreelanceQuizResultConfiguration());
+            #endregion
         }
 
         // Account related models
@@ -105,6 +115,14 @@ namespace DeToiServerData
         #region Realtime
         public DbSet<User> Users { get; set; }
         public DbSet<Connection> Connections { get; set; }
+        #endregion
+
+        #region Quiz
+        public DbSet<FreelanceQuiz> FreelanceQuizzes { get; set; }
+        public DbSet<FreelanceQuizQuestion> FreelanceQuizQuestions { get; set; }
+        public DbSet<FreelanceQuizAnswer> FreelanceQuizAnswers { get; set; }
+        public DbSet<FreelanceCorrectQuestion> FreelanceCorrectQuestions { get; set; }
+        public DbSet<FreelanceQuizResult> FreelanceQuizResults { get; set; }
         #endregion
     }
 }

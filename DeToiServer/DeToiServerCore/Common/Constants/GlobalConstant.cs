@@ -29,6 +29,15 @@
         {
             public static readonly string DataFile = "insert_data.sql";
         }
+
+        public static class Quiz
+        {
+            public static class QuestionType
+            {
+                public static readonly string SingleChoice = "SingleChoice";
+                public static readonly string MultipleChoice = "MultipleChoice";
+            }
+        }
     }
 
     public static class StatusConst
