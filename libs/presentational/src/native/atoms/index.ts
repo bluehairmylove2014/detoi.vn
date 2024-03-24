@@ -14,3 +14,4 @@ export * from './divider';
 export * from './overlay';
 export * from './image';
 export * from './rating';
+export * from './progressbar';

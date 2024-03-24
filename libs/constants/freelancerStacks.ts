@@ -6,11 +6,12 @@ export type freelancerStacksList = {
   MessagesStack: undefined;
   OrdersStack: undefined;
   AccountStack: undefined;
+  TestStack: undefined;
 };
 
 export type freelancerGlobalStacks = Pick<
   freelancerStacksList,
-  'AuthStack' | 'MainStack'
+  'AuthStack' | 'MainStack' | 'TestStack'
 >;
 export type freelancerBottomTabChildStacks = Pick<
   freelancerStacksList,

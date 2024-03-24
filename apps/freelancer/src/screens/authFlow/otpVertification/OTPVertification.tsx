@@ -59,6 +59,7 @@ const OTPVertification: React.FC<
     onVerifyOtp({ otp })
       .then((msg) => {
         setIsSuccessVerified(true);
+        navigateToScreenInDifferentStack('TestStack', 'Test');
       })
       .catch((error) => {
         setTimeout(() => {

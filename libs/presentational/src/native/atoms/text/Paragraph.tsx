@@ -16,6 +16,7 @@ const Paragraph = ({
   color = 'black',
   align = 'left',
   decoration = 'normal',
+  ellipsizeMode = 'tail',
 }: {
   children: React.ReactNode;
   theme: keyof typeof paragraphFontStyles;
@@ -23,6 +24,7 @@ const Paragraph = ({
   color?: keyof typeof textColors;
   align?: 'left' | 'right' | 'center' | 'justify';
   decoration?: 'underline' | 'normal' | 'lineThrough';
+  ellipsizeMode?: 'tail' | 'middle' | 'clip' | 'head';
 }) => (
   <Text
     style={[
@@ -32,6 +34,7 @@ const Paragraph = ({
       textDecorationStyles[decoration],
       textCommonStyles.behavior,
     ]}
+    ellipsizeMode={ellipsizeMode}
     numberOfLines={lineNumber}
   >
     {children}

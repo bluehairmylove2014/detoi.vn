@@ -44,7 +44,11 @@ import {
   faGripLines,
   faPhone,
   faChevronRight,
-  faChevronLeft
+  faChevronLeft,
+  faStopwatch,
+  faFileCircleQuestion,
+  faCheck,
+  faX,
 } from '@fortawesome/free-solid-svg-icons';
 import { fa500px } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -110,7 +114,11 @@ export const NATIVE_ICONS = {
   faGripLines,
   faPhone,
   faChevronRight,
-  faChevronLeft
+  faChevronLeft,
+  faStopwatch,
+  faFileCircleQuestion,
+  faCheck,
+  faX,
 };
 
 export type nativeIconNameType = keyof typeof NATIVE_ICONS;
