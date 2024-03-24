@@ -8,7 +8,7 @@ import IntroScreen from '../../../screens/homeFlow/intro/Intro';
 const Stack = createNativeStackNavigator<freelancerHomeStackParams>();
 export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="Intro">
       {/* Then, put stack.screen for your screen component here (in the end) */}
       <Stack.Screen
         component={IntroScreen}
