@@ -123,7 +123,7 @@ namespace DeToiServer.Services.OrderManagementService
             }
 
             var order = _mapper.Map<GetOrderDto>(rawOrder);
-            order.ServiceTypes = rawOrder.OrderServiceTypes?.Select(ost => _mapper.Map<GetServiceTypeDto>(ost.ServiceType)).ToList();
+            // order.ServiceTypes = rawOrder.OrderServiceTypes?.Select(ost => _mapper.Map<GetServiceTypeDto>(ost.ServiceType)).ToList();
             
             return order;
         }

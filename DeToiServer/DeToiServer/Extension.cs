@@ -16,7 +16,6 @@ using DeToiServerData.Repositories;
 using DeToiServerData.Repositories.AccountCustomerRepo;
 using DeToiServerData.Repositories.AccountFreelanceRepo;
 using DeToiServerData.Repositories.AddressRepo;
-using DeToiServerData.Repositories.CleaningServiceRepo;
 using DeToiServerData.Repositories.FreelanceQuizRepo;
 using DeToiServerData.Repositories.FreelancerQuizRepo;
 using DeToiServerData.Repositories.OrderRepo;

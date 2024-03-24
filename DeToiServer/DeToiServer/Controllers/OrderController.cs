@@ -75,9 +75,6 @@ namespace DeToiServer.Controllers
         [HttpGet("all")]
         public async Task<ActionResult<Order>> GetAllOrders()
         {
-            //Guid.TryParse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out Guid customerId);
-            //postOrder.CustomerId = customerId;
-            //var order = await _orderService.Ge(Guid.Empty);
             var order = await _orderService.GetAllOrderTest();
 
             if (order is null)
@@ -88,7 +85,7 @@ namespace DeToiServer.Controllers
                 });
             }
 
-            return Ok(order);
+            return Ok(_mapper.Map<IEnumerable<GetOrderDto>>(order));
         }
 
         [HttpPut("order-price"), AuthorizeRoles(GlobalConstant.Customer)]

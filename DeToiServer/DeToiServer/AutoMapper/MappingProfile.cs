@@ -141,8 +141,16 @@ namespace DeToiServer.AutoMapper
                 .ForMember(dest => dest.FinishTime, opt => opt.MapFrom(src => TimeOnly.FromDateTime(src.FinishTime ?? DateTime.MinValue)))
                 .ForMember(dest => dest.FinishDate, opt => opt.MapFrom(src => DateOnly.FromDateTime(src.FinishTime ?? DateTime.MinValue)))
                 .ForMember(dest => dest.Freelance, opt => opt.MapFrom(src => src.Freelance != null ? src.Freelance.Account : null))
-                .ForMember(dest => dest.ServiceStatus, opt => opt.MapFrom(src => src.ServiceStatus != null ? src.ServiceStatus.Name : "Chờ xử lí"));
-            CreateMap<OrderServiceType, GetOrderServiceTypeDto>();
+                .ForMember(dest => dest.ServiceStatus, opt => opt.MapFrom(src => src.ServiceStatus != null ? src.ServiceStatus.Name : "Chờ xử lí"))
+                .ForMember(dest => dest.Services, opt => opt.MapFrom(src => src.OrderServices!.FirstOrDefault()))
+                .ForMember(dest => dest.ServiceTypes, opt => opt.MapFrom(src => src.OrderServiceTypes));
+                
+            CreateMap<OrderServiceType, GetServiceTypeDto>()
+                .ConvertUsing((src, dest, context) => {
+                    return context.Mapper.Map<GetServiceTypeDto>(src.ServiceType);
+                });
+
+            //CreateMap<OrderServiceType, GetOrderServiceTypeDto>();
 
             CreateMap<PostServiceProvenDto, ServiceProven>().ReverseMap();
             CreateMap<ServiceProven, GetServiceProvenDto>()
@@ -195,6 +203,10 @@ namespace DeToiServer.AutoMapper
                 .ForMember(dest => dest.Requirement, opt => opt.MapFrom(src => JsonConvert.DeserializeObject<ICollection<RequirementDataDto>>(src.Requirement)))
                 .ForMember(dest => dest.AdditionalRequirement, opt => opt.MapFrom(src => JsonConvert.DeserializeObject<ICollection<RequirementDataDto>>(src.AdditionalRequirement)));
 
+            CreateMap<OrderService, ServiceDto>()
+                .ConvertUsing((src, dest, context) => {
+                    return context.Mapper.Map<ServiceDto>(src.Service);
+                });
             #endregion
 
             #region Freelance Quiz
