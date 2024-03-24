@@ -53,11 +53,13 @@ import {
   faRectangleList as faRectangleListRegular,
   faSun as faSunRegular,
   faStar as faStarEmptyStroke,
+  faBell as faBellRegular,
 } from '@fortawesome/free-regular-svg-icons';
 
 export const NATIVE_ICONS = {
   faCircleArrowRight,
   faBell,
+  faBellRegular,
   faMagnifyingGlass,
   faArrowRightLong,
   faTimes,

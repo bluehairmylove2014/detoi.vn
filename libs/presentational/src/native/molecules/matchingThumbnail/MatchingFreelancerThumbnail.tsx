@@ -30,7 +30,7 @@ export const MatchingFreelancerThumbnail: React.FC<
       onPress={() => onPress && onPress(freelancerData)}
     >
       <SquareImage source={{ uri: freelancerData.account.avatar }} />
-      <OverlayColor theme="black-gradient" />
+      <OverlayColor theme="black-gradient-bottom-top" />
       <View
         style={{
           position: 'absolute',

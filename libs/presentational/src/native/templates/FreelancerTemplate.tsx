@@ -7,7 +7,7 @@ import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blu
 import { useIsLogged } from '@business-layer/business-logic/lib/auth';
 import NeedLoginBottomTab from '@present-native/molecules/bottomTab/NeedLoginBottomTab';
 
-const CustomerTemplate = ({ children }: { children: React.ReactNode }) => {
+const FreelancerTemplate = ({ children }: { children: React.ReactNode }) => {
   const { state } = useBlurTheme();
   const isLogged = useIsLogged();
 
@@ -26,4 +26,4 @@ const CustomerTemplate = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default CustomerTemplate;
+export default FreelancerTemplate;

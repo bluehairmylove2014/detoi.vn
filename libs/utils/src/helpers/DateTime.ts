@@ -101,6 +101,27 @@ function formatDate(dateObj: Date | string) {
   };
 }
 
+function timeUntilStart(startDate: string, startTime: string) {
+  // Convert start date and time to a JavaScript Date object
+  const start = new Date(`${startDate}T${startTime}`);
+  start.setFullYear(start.getFullYear(), start.getMonth(), start.getDate());
+
+  // Get the current date and time
+  const now = new Date();
+
+  // Calculate the difference in milliseconds
+  const diffMillis = start.getTime() - now.getTime();
+
+  // Convert milliseconds to hours and minutes
+  const hours = Math.floor(diffMillis / (1000 * 60 * 60));
+  const minutes = Math.floor((diffMillis % (1000 * 60 * 60)) / (1000 * 60));
+
+  // Format the output in Vietnamese
+  const output = `${hours} giờ ${minutes} phút`;
+
+  return output;
+}
+
 export {
   isDateGreaterThan,
   calcNight,
@@ -110,4 +131,5 @@ export {
   formatDate,
   nMonthsFromToday,
   nDaysFromToday,
+  timeUntilStart,
 };

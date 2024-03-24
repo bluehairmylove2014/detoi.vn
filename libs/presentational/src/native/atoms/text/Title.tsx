@@ -1,8 +1,6 @@
 import { Text } from 'react-native';
 import React from 'react';
 import {
-  textAlignStyles,
-  textColorStyles,
   textDecorationStyles,
   textCommonStyles,
   titleFontStyles,
@@ -27,10 +25,12 @@ const Title = ({
   <Text
     style={[
       titleFontStyles[theme],
-      textColorStyles[color],
-      textAlignStyles[align],
       textDecorationStyles[decoration],
       textCommonStyles.behavior,
+      {
+        color: titleColors[color],
+        textAlign: align,
+      },
     ]}
     numberOfLines={lineNumber}
   >

@@ -1,8 +1,6 @@
 import { Text } from 'react-native';
 import React from 'react';
 import {
-  textAlignStyles,
-  textColorStyles,
   textDecorationStyles,
   textCommonStyles,
   paragraphFontStyles,
@@ -27,10 +25,12 @@ const Paragraph = ({
   <Text
     style={[
       paragraphFontStyles[theme],
-      textColorStyles[color],
-      textAlignStyles[align],
       textDecorationStyles[decoration],
       textCommonStyles.behavior,
+      {
+        color: textColors[color],
+        textAlign: align,
+      },
     ]}
     numberOfLines={lineNumber}
   >

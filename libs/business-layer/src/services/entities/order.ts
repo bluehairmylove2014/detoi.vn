@@ -58,7 +58,7 @@ export const PostOrderServiceContentSchema = z.object({
 export interface IOrderDetail {
   id: string;
   address: IAddress;
-  estimatedPrice: number | null;
+  estimatedPrice: number;
   startTime: string;
   startDate: string;
   finishTime: string | null;
@@ -71,6 +71,7 @@ export interface IOrderDetail {
   } | null;
   serviceStatus: string;
   serviceTypes: IService[];
+  services: IPostOrderServiceContent & { id: string };
 }
 export const OrderDetailSchema = z.object({
   id: z.string(),
