@@ -47,3 +47,7 @@ export const titleColors = {
   black: COLOR_PALETTE.black,
   white: COLOR_PALETTE.white,
 };
+export const btnBoxColors = {
+  primary: COLOR_PALETTE.primary,
+  secondary: COLOR_PALETTE.secondary,
+};

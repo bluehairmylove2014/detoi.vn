@@ -20,7 +20,9 @@ import {
 type useServiceRequirementsUIType = {
   onGenerateUI: () => JSX.Element;
   getForm: () => {
-    handleSubmit: UseFormHandleSubmit<FieldValues, FieldValues>;
+    handleSubmit: (
+      callback: (requirements: any, additionalRequirements: any) => void
+    ) => () => void;
   };
 };
 export const useServiceRequirementsUI = ({
@@ -32,10 +34,9 @@ export const useServiceRequirementsUI = ({
 }): useServiceRequirementsUIType => {
   const schema = useGenerateSchema(requirements);
   const {
-    control,
-    handleSubmit,
-    setValue,
-    formState: { errors },
+    control: requirementControl,
+    handleSubmit: requirementHandleSubmit,
+    formState: { errors: requirementErrors },
   } = useForm({
     defaultValues: {
       ...Object.fromEntries(
@@ -44,11 +45,19 @@ export const useServiceRequirementsUI = ({
           r.inputMethod.dataType === 'number' ? 0 : '',
         ])
       ),
+    },
+    resolver: useYupValidationResolver(schema),
+  });
+  const {
+    control: additionalRequirementControl,
+    handleSubmit: additionalRequirementHandleSubmit,
+    setValue: additionalRequirementSetValue,
+  } = useForm({
+    defaultValues: {
       ...Object.fromEntries(
         additionalRequirements.map((ar) => [ar.key, ar.autoSelect])
       ),
     },
-    resolver: useYupValidationResolver(schema),
   });
 
   const onGenerateUI = (): JSX.Element => {
@@ -64,9 +73,9 @@ export const useServiceRequirementsUI = ({
                 label={r.label}
                 labelIcon={r.labelIcon}
                 placeholder={r.placeholder}
-                control={control}
+                control={requirementControl}
                 inputName={r.key}
-                isError={!!errors[r.key]}
+                isError={!!requirementErrors[r.key]}
               />
             ) : r.inputMethod.method.name === 'select' ? (
               <ServiceRequirementsSelect
@@ -74,9 +83,9 @@ export const useServiceRequirementsUI = ({
                 labelIcon={r.labelIcon}
                 placeholder={r.placeholder}
                 options={r.inputMethod.method.options}
-                control={control}
+                control={requirementControl}
                 selectName={r.key}
-                isError={!!errors[r.key]}
+                isError={!!requirementErrors[r.key]}
               />
             ) : (
               <></>
@@ -97,8 +106,8 @@ export const useServiceRequirementsUI = ({
                     icon={ar.icon}
                     label={ar.label}
                     autoSelect={ar.autoSelect}
-                    control={control}
-                    setValue={setValue}
+                    control={additionalRequirementControl}
+                    setValue={additionalRequirementSetValue}
                     selectName={ar.key}
                   />
                   <HorizontalSpacer size="m" />
@@ -114,7 +123,12 @@ export const useServiceRequirementsUI = ({
   };
 
   const getForm = () => ({
-    handleSubmit,
+    handleSubmit: (callback: any) =>
+      requirementHandleSubmit((requirementsData) => {
+        additionalRequirementHandleSubmit((additionRequirementsData) => {
+          callback({ requirementsData, additionRequirementsData });
+        })();
+      }),
   });
 
   return {

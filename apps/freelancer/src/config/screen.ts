@@ -1,5 +1,10 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+type globalStackParamList = {
+  AuthStack: { isLogged: boolean };
+  MainStack: { isLogged: boolean };
+};
+
 type customerTabParamList = {
   HomeStack: undefined;
   EndowStack: undefined;
@@ -30,18 +35,31 @@ type ordersStackParamList = {
 type accountStackParamList = {
   Account: undefined;
 };
+// AUTH STACK
+type authStackParamList = {
+  Login: undefined;
+  OTPVertification: undefined;
+};
 
 // 2. Props
 type HomeProps = NativeStackScreenProps<customerRootStackParamList, 'Home'>;
 type IntroProps = NativeStackScreenProps<customerRootStackParamList, 'Intro'>;
 
+type LoginProps = NativeStackScreenProps<authStackParamList, 'Login'>;
+type OTPVertificationProps = NativeStackScreenProps<
+  authStackParamList,
+  'OTPVertification'
+>;
+
 // 3. Export props
-export { HomeProps, IntroProps };
+export { HomeProps, LoginProps, OTPVertificationProps, IntroProps };
 export {
+  globalStackParamList,
   customerRootStackParamList,
   endowStackParamList,
   messagesStackParamList,
   ordersStackParamList,
   accountStackParamList,
   customerTabParamList,
+  authStackParamList,
 };

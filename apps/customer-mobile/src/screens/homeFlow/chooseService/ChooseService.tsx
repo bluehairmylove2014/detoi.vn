@@ -1,6 +1,5 @@
 import { View } from 'react-native';
 import React from 'react';
-import { ChooseServiceProps } from '../../../config';
 import { provideDetailStyle } from './styles';
 import {
   useCurrentOrderCategory,
@@ -16,15 +15,21 @@ import {
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { BannerTopSection, ServicesList } from '@present-native/molecules';
 import { IService } from '@business-layer/services/entities/service';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { customerScreensList } from '@constants/customerScreens';
 
-const ChooseService: React.FC<ChooseServiceProps> = ({ route, navigation }) => {
+const ChooseService: React.FC<
+  NativeStackScreenProps<customerScreensList, 'ChooseService'>
+> = ({ route, navigation }) => {
+  const { navigateToScreenInSameStack } = useAuthNavigation();
   const { currentOrderCategory: category } = useCurrentOrderCategory();
   const { setCurrentOrderService } = useCurrentOrderService();
   const { data: categoryDetail } = useGetCategoryDetail(category?.id ?? '0');
 
   const handleSelectService = (service: IService) => {
     setCurrentOrderService({ service });
-    navigation.navigate('ChooseLocation');
+    navigateToScreenInSameStack('ChooseLocation');
   };
 
   return (

@@ -27,28 +27,27 @@ export const useAccessToken = (): AccessTokenHook => {
 
   // Function to set the token
   const setToken = (newToken: IToken): void => {
-    const date = new Date();
+    // Dispatch the new token to the context
+    dispatch({
+      type: 'SET_TOKEN',
+      payload: newToken.value,
+    });
     // setSecureStorageItem(COOKIE_KEYS.ACCESS_TOKEN, newToken.value);
     setSecureStorageItem(
       COOKIE_KEYS.ACCESS_TOKEN,
       newToken.value,
       new Date(newToken.expires)
     );
-    // Dispatch the new token to the context
-    dispatch({
-      type: 'SET_TOKEN',
-      payload: newToken.value,
-    });
   };
 
   // Function to delete the token
   const deleteToken = (): void => {
-    removeSecureStorageItem(COOKIE_KEYS.ACCESS_TOKEN);
     // Remove the token from the context
     dispatch({
       type: 'SET_TOKEN',
       payload: null,
     });
+    removeSecureStorageItem(COOKIE_KEYS.ACCESS_TOKEN);
   };
 
   // Returning the hook functions

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ReviewProps } from '../../../config';
 import { View } from 'react-native';
 import { buttonFootSection, ratingSection, reviewScreenStyle } from './styles';
 import {
@@ -10,6 +9,8 @@ import {
   VerticalSpacer,
 } from '@present-native/atoms';
 import { useRatingOrder } from '@business-layer/business-logic/lib/rating';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { customerScreensList } from '@constants/customerScreens';
 
 const RATING_INSIGHT = [
   'Quá tệ',
@@ -19,7 +20,9 @@ const RATING_INSIGHT = [
   'Hoàn hảo',
 ];
 
-const ReviewScreen: React.FC<ReviewProps> = ({ route, navigation }) => {
+const ReviewScreen: React.FC<
+  NativeStackScreenProps<customerScreensList, 'Review'>
+> = ({ route, navigation }) => {
   const { ratingIndex, orderId } = route.params;
   const [textReview, setTextReview] = useState<string>('');
   const { onRatingOrder } = useRatingOrder();

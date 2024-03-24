@@ -8,8 +8,10 @@ import {
   proofOfWorkSectionStyle,
 } from './styles';
 import { Paragraph, VerticalSpacer } from '@present-native/atoms';
-import { FreelancerDetailProps } from '../../../config';
 import { BannerFreelancerDetail } from '@present-native/molecules';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { customerScreensList } from '@constants/customerScreens';
 
 const TitleSectionFreelancerDetail = React.memo(
   ({ title }: { title: string }) => {
@@ -47,22 +49,31 @@ const InsightItem = React.memo(
 );
 
 const FreelancerDetail = React.memo(
-  ({ route, navigation }: FreelancerDetailProps) => {
+  ({
+    route,
+    navigation,
+  }: NativeStackScreenProps<customerScreensList, 'FreelancerDetail'>) => {
+    const { navigateToScreenInSameStack } = useAuthNavigation();
     const { freelancerAccountDetail, orderId } = route.params;
 
     const actionMoveToImageDetailScreen = useCallback(
       (source: string) => {
-        navigation.navigate('FreelancerServiceProven', {
-          imageUrl: source,
+        navigateToScreenInSameStack('FreelancerServiceProven', {
+          params: {
+            imageUrl: source,
+          },
         });
       },
-      [navigation]
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      []
     );
     const onSelectFreelancer = () => {
-      navigation.navigate('Summary', {
-        pricing: freelancerAccountDetail.previewPrice,
-        orderId,
-        freelancerId: freelancerAccountDetail.accountId,
+      navigateToScreenInSameStack('Summary', {
+        params: {
+          pricing: freelancerAccountDetail.previewPrice,
+          orderId,
+          freelancerId: freelancerAccountDetail.accountId,
+        },
       });
     };
 

@@ -2,8 +2,6 @@ import { bannerFreelancerDetailStyle } from './styles';
 import React from 'react';
 import { Image, View } from 'react-native';
 import {
-  BaseLink,
-  FAIcon,
   OutlineBtn,
   OverlayColor,
   Paragraph,

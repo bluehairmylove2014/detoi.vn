@@ -1,12 +1,14 @@
 import {
   Keyboard,
+  KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
   StatusBar,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import React from 'react';
-import { globalStyles } from '../styles';
+import { COLOR_PALETTE, globalStyles } from '../styles';
 import { FAProvider } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import {
   BlurTheme,
@@ -28,10 +30,12 @@ const CustomerTemplate = ({ children }: { children: React.ReactNode }) => {
 
       {/* <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> */}
       <View style={globalStyles.container}>
-        <PrimaryScrollView direction="vertical">
-          {children}
-          <TransparentView theme="vertical" />
-        </PrimaryScrollView>
+        <KeyboardAvoidingView>
+          <PrimaryScrollView direction="vertical">
+            {children}
+            <TransparentView theme="vertical" />
+          </PrimaryScrollView>
+        </KeyboardAvoidingView>
         {isLogged ? null : <NeedLoginBottomTab />}
       </View>
       {/* </TouchableWithoutFeedback> */}

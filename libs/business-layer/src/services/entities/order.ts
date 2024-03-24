@@ -25,11 +25,35 @@ export const PostOrderFixedContentSchema = z.object({
 });
 
 export interface IPostOrderServiceContent {
-  [key: string]: string | boolean | number;
+  serviceTypeId: string;
+  note: string;
+  additionalNote: string;
+  requirement: {
+    key: string;
+    value: string;
+  }[];
+  additionalRequirement: {
+    key: string;
+    value: string;
+  }[];
 }
-export const PostOrderServiceContentSchema = z.record(
-  z.union([z.string(), z.boolean(), z.number()])
-);
+export const PostOrderServiceContentSchema = z.object({
+  serviceTypeId: z.string(),
+  note: z.string(),
+  additionalNote: z.string(),
+  requirement: z.array(
+    z.object({
+      key: z.string(),
+      value: z.string(),
+    })
+  ),
+  additionalRequirement: z.array(
+    z.object({
+      key: z.string(),
+      value: z.string(),
+    })
+  ),
+});
 
 export interface IOrderDetail {
   id: string;

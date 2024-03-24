@@ -1,34 +1,33 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 // Importing necessary libraries and services
 import { useEffect, useMemo, useState } from 'react';
 import { useAuthContext } from '../context';
 import { useAccessToken } from './useAccessToken';
 
-// True: User is logged in and has a valid token
-// False: User is NOT logged in or has an invalid (or expired) token
 // Hook to check if the user is logged in
 export const useIsLogged = () => {
-  const { state } = useAuthContext();
+  const {
+    state: { token },
+  } = useAuthContext();
   const { getToken } = useAccessToken();
   const [isLogged, setIsLogged] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
-    if (state.token) {
-      setIsLogged(true);
-    } else {
-      getToken()
-        .then((token) => {
-          if (token) {
-            setIsLogged(true);
-          } else {
-            setIsLogged(false);
-          }
-        })
-        .catch((error) => {
+    const checkToken = async () => {
+      if (token) {
+        setIsLogged(true);
+      } else {
+        try {
+          const fetchedToken = await getToken();
+          setIsLogged(Boolean(fetchedToken));
+        } catch (error) {
           console.error(error);
-        });
-    }
-  }, [state.token]);
+          setIsLogged(false);
+        }
+      }
+    };
+
+    checkToken();
+  }, [token, getToken]); // Adding getToken to the dependency array
 
   return useMemo(() => isLogged, [isLogged]);
 };

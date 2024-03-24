@@ -7,6 +7,6 @@ export * from './card';
 export * from './banner';
 export * from './service';
 export * from './payment';
-export * from './messageBox';
+export * from './box';
 export * from './matchingThumbnail';
 export * from './dotPager';
