@@ -10,13 +10,9 @@ export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
     <Stack.Navigator initialRouteName="Intro">
       {/* Then, put stack.screen for your screen component here (in the end) */}
-      <Stack.Screen
-        component={IntroScreen}
-        name="Intro"
-        options={{ headerShown: false }}
-      />
       <Stack.Group key={'home-non-auth'} screenOptions={{ headerShown: false }}>
         <Stack.Screen component={HomeScreen} name="Home" />
+        <Stack.Screen component={IntroScreen} name="Intro" options={{ headerShown: false }} />
       </Stack.Group>
 
       {/* {isLogged ? (
