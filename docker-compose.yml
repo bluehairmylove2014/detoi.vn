@@ -36,6 +36,7 @@ services:
       - DB_NAME=DeToiVN
       - DB_SA_PASSWORD=Password@12345#
       - MQ_HOST=rabbitmq
+      - DELAY_TIME_MS=1000
     networks:
       - detoidockernetwork
   rabbitmq:
