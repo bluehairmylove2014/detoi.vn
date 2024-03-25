@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { FreelancerCardOrder } from '@present-native/molecules/order';
+import { FreelancerCardOrder } from '@present-native/molecules/card';
 import { freelancerCardOrderListStyles } from './styles';
 import { PrimaryScrollView } from '@present-native/atoms/scroll';
 import { windowWidth } from '@constants/dimension';
