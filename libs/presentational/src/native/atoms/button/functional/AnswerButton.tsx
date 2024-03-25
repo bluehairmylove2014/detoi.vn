@@ -3,8 +3,32 @@ import { Paragraph } from '@present-native/atoms/text';
 import { COLOR_PALETTE } from '@present-native/styles';
 import { TouchableOpacity, View } from 'react-native';
 import { commonButtonStyles } from './styles';
+import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 
 export type statusAnswerType = 'normal' | 'correct' | 'wrong' | 'noneSelect';
+
+const statusMapper = {
+  normal: {
+    colorBackground: COLOR_PALETTE.transparent,
+    colorBorder: COLOR_PALETTE.gray,
+    icon: null,
+  },
+  correct: {
+    colorBackground: COLOR_PALETTE.green,
+    colorBorder: COLOR_PALETTE.white,
+    icon: 'faCheck',
+  },
+  wrong: {
+    colorBackground: COLOR_PALETTE.rose,
+    colorBorder: COLOR_PALETTE.white,
+    icon: 'faX',
+  },
+  noneSelect: {
+    colorBackground: COLOR_PALETTE.white,
+    colorBorder: COLOR_PALETTE.gray,
+    icon: null,
+  },
+};
 
 const AnswerButton = ({
   answer,
@@ -19,20 +43,11 @@ const AnswerButton = ({
 }) => {
   return (
     <TouchableOpacity
-      disabled={
-        status === 'correct' || status === 'noneSelect' || status === 'wrong'
-          ? true
-          : false
-      }
+      disabled={status !== 'normal' ? true : false}
       onPress={onPress}
       style={{
         ...commonButtonStyles.answerBtn,
-        backgroundColor:
-          status === 'wrong'
-            ? COLOR_PALETTE.rose
-            : status === 'correct'
-            ? COLOR_PALETTE.green
-            : COLOR_PALETTE.white,
+        backgroundColor: statusMapper[status].colorBackground,
       }}
     >
       <Paragraph
@@ -44,20 +59,15 @@ const AnswerButton = ({
       <View
         style={{
           ...commonButtonStyles.answerIconContainer,
-          borderColor:
-            status === 'wrong' || status === 'correct'
-              ? COLOR_PALETTE.white
-              : COLOR_PALETTE.gray,
+          borderColor: statusMapper[status].colorBorder,
         }}
       >
-        {status === 'correct' ? (
-          <FAIcon iconName="faCheck" color={COLOR_PALETTE.white} size={12} />
-        ) : (
-          <></>
-        )}
-
-        {status === 'wrong' ? (
-          <FAIcon iconName="faX" color={COLOR_PALETTE.white} size={12} />
+        {statusMapper[status].icon ? (
+          <FAIcon
+            iconName={statusMapper[status].icon as nativeIconNameType}
+            color={COLOR_PALETTE.white}
+            size={12}
+          />
         ) : (
           <></>
         )}

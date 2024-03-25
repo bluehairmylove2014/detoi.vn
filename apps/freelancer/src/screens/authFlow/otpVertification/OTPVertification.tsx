@@ -40,6 +40,7 @@ const OTPVertification: React.FC<
   const [activeTimeCount, setActiveTimeCount] = useState(true);
   const [timerCount, setTimerCount] = useState(30);
 
+  //Check First Time
   const { handleSubmit, setValue, watch, control } = useForm<otpInputFormType>({
     defaultValues: {
       otp: '',
@@ -59,7 +60,11 @@ const OTPVertification: React.FC<
     onVerifyOtp({ otp })
       .then((msg) => {
         setIsSuccessVerified(true);
-        navigateToScreenInDifferentStack('TestStack', 'Test');
+
+        //Check is complete test before
+        const isCompletedTestBefore = false;
+        if (!isCompletedTestBefore)
+          navigateToScreenInDifferentStack('TestStack', 'TestPreview');
       })
       .catch((error) => {
         setTimeout(() => {

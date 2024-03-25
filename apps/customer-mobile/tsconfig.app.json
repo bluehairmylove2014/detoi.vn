@@ -11,11 +11,5 @@
     "**/*.spec.tsx",
     "test-setup.ts"
   ],
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js",
-    "**/*.jsx",
-    "../freelancer/src/app/stacks/flows/TestStack.tsx"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
 }

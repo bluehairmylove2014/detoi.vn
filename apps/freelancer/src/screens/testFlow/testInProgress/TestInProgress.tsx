@@ -1,7 +1,6 @@
 import { freelancerScreensList } from '@constants/freelancerScreens';
 import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { OnTestStyle } from './styles';
 import { View } from 'react-native';
 import {
   AnswerButton,
@@ -13,109 +12,17 @@ import {
 } from '@present-native/atoms';
 import { useEffect, useState } from 'react';
 import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import { TestInProgressStyle } from './styles';
 
 export type statusAnswerType = 'normal' | 'correct' | 'wrong' | 'noneSelect';
 
-const TIME_LIMIT = 5;
-const questionList = [
-  {
-    question:
-      'Bạn nên làm gì để vệ sinh thớt gỗ nhằm ngăn ngừa vi khuẩn tích tụ?',
-    point: 10,
-    answers: [
-      {
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        answer: 'Rửa bằng giấm',
-        isCorrect: false,
-      },
-      {
-        answer: 'Rửa bằng xà phòng và nước',
-        isCorrect: true,
-      },
-    ],
-  },
-  {
-    question:
-      'Bạn nên làm gì để vệ sinh thớt gỗ nhằm ngăn ngừa vi khuẩn tích tụ?',
-    point: 10,
-    answers: [
-      {
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        answer: 'Rửa bằng giấm',
-        isCorrect: false,
-      },
-      {
-        answer: 'Rửa bằng xà phòng và nước',
-        isCorrect: true,
-      },
-    ],
-  },
-  {
-    question:
-      'Bạn nên làm gì để vệ sinh thớt gỗ nhằm ngăn ngừa vi khuẩn tích tụ?',
-    point: 10,
-    answers: [
-      {
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        answer: 'Rửa bằng giấm',
-        isCorrect: false,
-      },
-      {
-        answer: 'Rửa bằng xà phòng và nước',
-        isCorrect: true,
-      },
-    ],
-  },
-  {
-    question:
-      'Bạn nên làm gì để vệ sinh thớt gỗ nhằm ngăn ngừa vi khuẩn tích tụ?',
-    point: 10,
-    answers: [
-      {
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        answer: 'Rửa bằng giấm',
-        isCorrect: false,
-      },
-      {
-        answer: 'Rửa bằng xà phòng và nước',
-        isCorrect: true,
-      },
-    ],
-  },
-];
+const TestInProgress: React.FC<
+  NativeStackScreenProps<freelancerScreensList, 'TestInProgress'>
+> = ({ route, navigation }) => {
+  const { timeLimit, questionList, pointToPass } = route.params;
 
-const OnTest: React.FC<
-  NativeStackScreenProps<freelancerScreensList, 'OnTest'>
-> = () => {
-  const [timerCount, setTimerCount] = useState<number>(TIME_LIMIT * 60);
+  const [timerCount, setTimerCount] = useState<number>(timeLimit * 60);
+  const [isDisableContinute, setIsDisableContinue] = useState<boolean>(true);
   const [indexQuestionCurrent, setIndexQuestionCurrent] = useState(0);
   const [currentPoint, setCurrentPoint] = useState(0);
   const { navigateToScreenInSameStack } = useAuthNavigation();
@@ -131,6 +38,7 @@ const OnTest: React.FC<
     indexAnswerCurrent: number,
     answerCurrentisCorrect: boolean
   ) => {
+    setIsDisableContinue(false);
     const newStateAnswerList = [...stateAnswerList];
 
     if (answerCurrentisCorrect) {
@@ -151,11 +59,11 @@ const OnTest: React.FC<
   };
 
   const checkPoint = (point: number) => {
-    if (currentPoint === 40)
+    if (currentPoint === pointToPass)
       navigateToScreenInSameStack('TestResult', {
         params: {
           isSuccess: true,
-          pointTest: 40,
+          pointTest: currentPoint,
         },
       });
     else {
@@ -169,7 +77,7 @@ const OnTest: React.FC<
   };
 
   const handleNextQuestion = () => {
-    if (indexQuestionCurrent < 3) {
+    if (indexQuestionCurrent < questionList.length - 1) {
       const newStateAnswerList = [...stateAnswerList];
 
       // eslint-disable-next-line array-callback-return
@@ -178,6 +86,7 @@ const OnTest: React.FC<
       });
 
       setStateAnswerList(newStateAnswerList);
+      setIsDisableContinue(true);
       setIndexQuestionCurrent(indexQuestionCurrent + 1);
     } else checkPoint(currentPoint);
   };
@@ -198,7 +107,7 @@ const OnTest: React.FC<
 
   return (
     <CustomerTemplate>
-      <View style={OnTestStyle.container}>
+      <View style={TestInProgressStyle.container}>
         <Title theme="largeBold" color="primary">
           Kiểm tra
         </Title>
@@ -214,9 +123,9 @@ const OnTest: React.FC<
         />
 
         <VerticalSpacer size="xxxl" />
-        <View style={OnTestStyle.questionContainer}>
+        <View style={TestInProgressStyle.questionContainer}>
           <>
-            <View style={OnTestStyle.questionPointContainer}>
+            <View style={TestInProgressStyle.questionPointContainer}>
               <Paragraph theme="smallMedium" color="gray">
                 Câu hỏi {indexQuestionCurrent + 1}
               </Paragraph>
@@ -254,6 +163,7 @@ const OnTest: React.FC<
                 radius="full"
                 onPress={handleNextQuestion}
                 fontSize="medium"
+                disabled={isDisableContinute}
               />
             </View>
           </>
@@ -263,4 +173,4 @@ const OnTest: React.FC<
   );
 };
 
-export default OnTest;
+export default TestInProgress;

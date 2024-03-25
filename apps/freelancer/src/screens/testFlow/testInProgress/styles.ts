@@ -2,7 +2,7 @@ import { COLOR_PALETTE } from '@present-native/styles';
 import { StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '@constants/dimension';
 
-const OnTestStyle = StyleSheet.create({
+const TestInProgressStyle = StyleSheet.create({
   container: {
     width: windowWidth,
     height: windowHeight,
@@ -35,4 +35,4 @@ const OnTestStyle = StyleSheet.create({
   },
 });
 
-export { OnTestStyle };
+export { TestInProgressStyle };

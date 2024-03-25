@@ -1,3 +1,5 @@
+import { IQuestion } from '@business-layer/services/entities';
+
 export type freelancerScreensList = {
   Home: undefined;
   Login: undefined;
@@ -7,12 +9,19 @@ export type freelancerScreensList = {
   Message: undefined;
   OrdersList: undefined;
   Account: undefined;
-  Test: undefined;
-  OnTest: undefined;
+  TestPreview: undefined;
+  TestInProgress: {
+    timeLimit: number;
+    questionList: IQuestion[];
+    pointToPass: number;
+  };
   TestResult: { isSuccess: boolean; pointTest: number };
 };
 
-export type freelancerHomeStackParams = Pick<freelancerScreensList, 'Home' | 'Intro'>;
+export type freelancerHomeStackParams = Pick<
+  freelancerScreensList,
+  'Home' | 'Intro'
+>;
 export type freelancerAuthStackParams = Pick<
   freelancerScreensList,
   'Login' | 'OTPVertification'
@@ -33,5 +42,5 @@ export type freelancerAccountStackParams = Pick<
 
 export type freelancerTestStackParams = Pick<
   freelancerScreensList,
-  'Test' | 'OnTest' | 'TestResult'
+  'TestPreview' | 'TestInProgress' | 'TestResult'
 >;
