@@ -19,10 +19,9 @@ export type statusAnswerType = 'normal' | 'correct' | 'wrong' | 'noneSelect';
 const TestInProgress: React.FC<
   NativeStackScreenProps<freelancerScreensList, 'TestInProgress'>
 > = ({ route, navigation }) => {
-  const { timeLimit, questionList, pointToPass } = route.params;
+  const { test, pointToPass } = route.params;
 
-  const [timerCount, setTimerCount] = useState<number>(timeLimit * 60);
-  const [isDisableContinute, setIsDisableContinue] = useState<boolean>(true);
+  const [timerCount, setTimerCount] = useState<number>(test.totalTime);
   const [indexQuestionCurrent, setIndexQuestionCurrent] = useState(0);
   const [currentPoint, setCurrentPoint] = useState(0);
   const { navigateToScreenInSameStack } = useAuthNavigation();
@@ -39,42 +38,36 @@ const TestInProgress: React.FC<
     indexAnswerCurrent: number,
     answerCurrentisCorrect: boolean
   ) => {
-    setIsDisableContinue(false);
     const newStateAnswerList = [...stateAnswerList];
 
     if (answerCurrentisCorrect) {
-      setCurrentPoint(currentPoint + questionList[indexQuestionCurrent].point);
+      setCurrentPoint(
+        currentPoint + test.quizQuestions[indexQuestionCurrent].point
+      );
       newStateAnswerList[indexAnswerCurrent] = 'correct';
     } else newStateAnswerList[indexAnswerCurrent] = 'wrong';
 
-    // eslint-disable-next-line array-callback-return
-    questionList[indexQuestionCurrent].answers.map((stateAnswer, index) => {
-      if (index !== indexAnswerCurrent) {
-        newStateAnswerList[index] = stateAnswer.isCorrect
-          ? 'correct'
-          : 'noneSelect';
+    test.quizQuestions[indexQuestionCurrent].answers.map(
+      // eslint-disable-next-line array-callback-return
+      (stateAnswer, index) => {
+        if (index !== indexAnswerCurrent) {
+          newStateAnswerList[index] = stateAnswer.isCorrect
+            ? 'correct'
+            : 'noneSelect';
+        }
       }
-    });
+    );
 
     setStateAnswerList(newStateAnswerList);
   };
 
   const checkPoint = (point: number) => {
-    if (currentPoint === pointToPass)
-      navigateToScreenInSameStack('TestResult', {
-        params: {
-          isSuccess: true,
-          pointTest: currentPoint,
-        },
-      });
-    else {
-      navigateToScreenInSameStack('TestResult', {
-        params: {
-          isSuccess: false,
-          pointTest: currentPoint,
-        },
-      });
-    }
+    navigateToScreenInSameStack('TestResult', {
+      params: {
+        isSuccess: currentPoint === pointToPass,
+        pointTest: currentPoint,
+      },
+    });
   };
 
   const handleNextQuestion = () => {
@@ -84,16 +77,17 @@ const TestInProgress: React.FC<
       easing: Easing.linear,
       useNativeDriver: true,
     }).start(() => {
-      if (indexQuestionCurrent < questionList.length - 1) {
+      if (indexQuestionCurrent < test.quizQuestions.length - 1) {
         const newStateAnswerList = [...stateAnswerList];
 
-        // eslint-disable-next-line array-callback-return
-        questionList[indexQuestionCurrent].answers.map((stateAnswer, index) => {
-          newStateAnswerList[index] = 'normal';
-        });
+        test.quizQuestions[indexQuestionCurrent].answers.map(
+          // eslint-disable-next-line array-callback-return
+          (stateAnswer, index) => {
+            newStateAnswerList[index] = 'normal';
+          }
+        );
 
         setStateAnswerList(newStateAnswerList);
-        setIsDisableContinue(true);
         setIndexQuestionCurrent(indexQuestionCurrent + 1);
       } else checkPoint(currentPoint);
 
@@ -118,6 +112,7 @@ const TestInProgress: React.FC<
     }, 1000);
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -150,17 +145,17 @@ const TestInProgress: React.FC<
                   Câu hỏi {indexQuestionCurrent + 1}
                 </Paragraph>
                 <Paragraph theme="smallMedium" color="gray">
-                  {questionList[indexQuestionCurrent].point} điểm
+                  {test.quizQuestions[indexQuestionCurrent].point} điểm
                 </Paragraph>
               </View>
 
               <VerticalSpacer size="l" />
               <Paragraph theme="baseBold">
-                {questionList[indexQuestionCurrent].question}
+                {test.quizQuestions[indexQuestionCurrent].question}
               </Paragraph>
 
               <VerticalSpacer size="xl" />
-              {questionList[indexQuestionCurrent].answers.map(
+              {test.quizQuestions[indexQuestionCurrent].answers.map(
                 (answer, index) => {
                   return (
                     <View key={`answer-${index}`}>
@@ -185,7 +180,9 @@ const TestInProgress: React.FC<
                   radius="full"
                   onPress={handleNextQuestion}
                   fontSize="medium"
-                  disabled={isDisableContinute}
+                  disabled={
+                    !stateAnswerList.every((status) => status !== 'normal')
+                  }
                 />
               </View>
             </>

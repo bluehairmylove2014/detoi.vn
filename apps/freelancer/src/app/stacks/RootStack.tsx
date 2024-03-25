@@ -20,7 +20,7 @@ const GlobalStack = createNativeStackNavigator<freelancerGlobalStacks>();
 export const RootStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
     <NavigationContainer theme={MyTheme}>
-      <GlobalStack.Navigator initialRouteName="MainStack">
+      <GlobalStack.Navigator initialRouteName="TestStack">
         <GlobalStack.Group
           screenOptions={{
             headerShown: false,
@@ -48,7 +48,7 @@ export const RootStack = ({ isLogged }: { isLogged: boolean }) => {
               headerShown: false,
             }}
           >
-            {() => <TestStack isLogged={isLogged} />}
+            {() => <TestStack />}
           </GlobalStack.Screen>
         </GlobalStack.Group>
       </GlobalStack.Navigator>

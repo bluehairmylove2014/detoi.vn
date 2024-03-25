@@ -1,4 +1,4 @@
-import { IQuestion } from '@business-layer/services/entities';
+import { ITest } from '@business-layer/services/entities';
 
 export type freelancerScreensList = {
   Home: undefined;
@@ -10,11 +10,7 @@ export type freelancerScreensList = {
   OrdersList: undefined;
   Account: undefined;
   TestPreview: undefined;
-  TestInProgress: {
-    timeLimit: number;
-    questionList: IQuestion[];
-    pointToPass: number;
-  };
+  TestInProgress: { test: ITest; pointToPass: number };
   TestResult: { isSuccess: boolean; pointTest: number };
 };
 

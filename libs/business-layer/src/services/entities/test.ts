@@ -1,3 +1,10 @@
+export interface ITest {
+  id: string;
+  totalTime: number;
+  totalQuestion: number;
+  quizQuestions: IQuestion[];
+}
+
 export interface IQuestion {
   id: string;
   question: string;

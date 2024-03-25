@@ -14,130 +14,16 @@ import {
 import { COLOR_PALETTE } from '@present-native/styles';
 import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
 import { testPreviewStyle } from './styles';
-import { IQuestion } from '@business-layer/services/entities';
+import { Test } from './mock';
 
 const reviewInfo = {
   title: 'Kiểm tra kiến thức!',
   description:
     'Hãy giúp chúng tôi trả lời 1 vài câu hỏi liên quan tới kỹ năng bạn đã chọn. Điểm càng cao, uy tín càng cao. (Bạn vẫn có thể làm lại bài kiểm tra sau khi đã tạo tài khoản thành công)',
-  time: 5,
-  pointToPass: 40,
 };
 
-const questionList: IQuestion[] = [
-  {
-    id: '1',
-    question:
-      'Bạn nên làm gì để vệ sinh thớt gỗ nhằm ngăn ngừa vi khuẩn tích tụ?',
-    point: 10,
-    answers: [
-      {
-        id: '1',
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        id: '2',
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        id: '3',
-        answer: 'Rửa bằng giấm',
-        isCorrect: false,
-      },
-      {
-        id: '4',
-        answer: 'Rửa bằng xà phòng và nước',
-        isCorrect: true,
-      },
-    ],
-  },
-  {
-    id: '1',
-    question:
-      'Bạn nên làm gì để vệ sinh thớt gỗ nhằm ngăn ngừa vi khuẩn tích tụ?',
-    point: 10,
-    answers: [
-      {
-        id: '1',
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: true,
-      },
-      {
-        id: '2',
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        id: '3',
-        answer: 'Rửa bằng giấm',
-        isCorrect: false,
-      },
-      {
-        id: '4',
-        answer: 'Rửa bằng xà phòng và nước',
-        isCorrect: false,
-      },
-    ],
-  },
-  {
-    id: '1',
-    question:
-      'Bạn nên làm gì để vệ sinh thớt gỗ nhằm ngăn ngừa vi khuẩn tích tụ?',
-    point: 10,
-    answers: [
-      {
-        id: '1',
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        id: '2',
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: true,
-      },
-      {
-        id: '3',
-        answer: 'Rửa bằng giấm',
-        isCorrect: false,
-      },
-      {
-        id: '4',
-        answer: 'Rửa bằng xà phòng và nước',
-        isCorrect: false,
-      },
-    ],
-  },
-  {
-    id: '1',
-    question:
-      'Bạn nên làm gì để vệ sinh thớt gỗ nhằm ngăn ngừa vi khuẩn tích tụ?',
-    point: 10,
-    answers: [
-      {
-        id: '1',
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        id: '2',
-        answer: 'Ngâm trong dung dịch tẩy trắng',
-        isCorrect: false,
-      },
-      {
-        id: '3',
-        answer: 'Rửa bằng giấm',
-        isCorrect: false,
-      },
-      {
-        id: '4',
-        answer: 'Rửa bằng xà phòng và nước',
-        isCorrect: true,
-      },
-    ],
-  },
-];
+const test = Test;
+const HAPPY_POINT = 40;
 
 const TestPreview: React.FC<
   NativeStackScreenProps<freelancerScreensList, 'TestPreview'>
@@ -168,7 +54,7 @@ const TestPreview: React.FC<
             </View>
             <HorizontalSpacer size="m" />
             <Paragraph theme="baseBold" color="primary">
-              {questionList.length} câu hỏi
+              {test.totalQuestion} câu hỏi
             </Paragraph>
           </View>
 
@@ -184,7 +70,7 @@ const TestPreview: React.FC<
             </View>
             <HorizontalSpacer size="m" />
             <Paragraph theme="baseBold" color="primary">
-              {reviewInfo.time} phút
+              {test.totalTime / 60} phút
             </Paragraph>
           </View>
         </View>
@@ -196,9 +82,8 @@ const TestPreview: React.FC<
           onPress={() =>
             navigateToScreenInSameStack('TestInProgress', {
               params: {
-                timeLimit: reviewInfo.time,
-                questionList: questionList,
-                pointToPass: reviewInfo.pointToPass,
+                test: test,
+                pointToPass: HAPPY_POINT,
               },
             })
           }
