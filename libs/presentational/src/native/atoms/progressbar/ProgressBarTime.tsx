@@ -13,11 +13,13 @@ export const ProgressBarTime = ({
   timeCount: string;
 }) => {
   const progressWidth: `${number}%` = `${widthProgress}%`;
+  const iconColor =
+    widthProgress >= 4 ? COLOR_PALETTE.white : COLOR_PALETTE.primary;
 
   return (
     <View style={ProgressBarStyle.progressBar}>
       <HorizontalSpacer size="m" />
-      <FAIcon iconName="faStopwatch" color={COLOR_PALETTE.primary} size={17} />
+      <FAIcon iconName="faStopwatch" color={iconColor} size={17} />
       <HorizontalSpacer size="s" />
       <Paragraph theme="baseBold" color="primary">
         {timeCount}
@@ -36,7 +38,7 @@ export const ProgressBarTime = ({
         ]}
       >
         <HorizontalSpacer size="m" />
-        <FAIcon iconName="faStopwatch" color={COLOR_PALETTE.white} size={17} />
+        <FAIcon iconName="faStopwatch" color={iconColor} size={17} />
         <HorizontalSpacer size="s" />
         <Paragraph
           theme="baseBold"
