@@ -4,6 +4,7 @@ import { COLOR_PALETTE } from '@present-native/styles';
 import { TouchableOpacity, View } from 'react-native';
 import { commonButtonStyles } from './styles';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
+import { HorizontalSpacer } from '@present-native/atoms/spacer';
 
 export type statusAnswerType = 'normal' | 'correct' | 'wrong' | 'noneSelect';
 
@@ -56,6 +57,7 @@ const AnswerButton = ({
       >
         {String.fromCharCode(65 + index)}. {answer}
       </Paragraph>
+      <HorizontalSpacer size="xl" />
       <View
         style={{
           ...commonButtonStyles.answerIconContainer,
