@@ -1,20 +1,24 @@
-import { COLOR_PALETTE } from '@present-native/styles';
+import { COLOR_PALETTE, screenVerticalPadding } from '@present-native/styles';
 import { StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '@constants/dimension';
 
 const TestInProgressStyle = StyleSheet.create({
+  safeAreaStyle: {
+    backgroundColor: COLOR_PALETTE.soft,
+    height: windowHeight,
+  },
+
   container: {
     width: windowWidth,
-    height: windowHeight,
-    padding: 20,
-    backgroundColor: COLOR_PALETTE.soft,
+    height: '100%',
+    paddingVertical: screenVerticalPadding,
+    paddingHorizontal: 20,
   },
 
   questionContainer: {
     borderRadius: 10,
     backgroundColor: COLOR_PALETTE.white,
-    paddingHorizontal: 25,
-    paddingVertical: 20,
+    padding: 25,
   },
 
   questionPointContainer: {

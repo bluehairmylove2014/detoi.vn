@@ -1,13 +1,18 @@
-import { COLOR_PALETTE } from '@present-native/styles';
+import { COLOR_PALETTE, screenVerticalPadding } from '@present-native/styles';
 import { StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '@constants/dimension';
 
 const testPreviewStyle = StyleSheet.create({
+  safeAreaStyle: {
+    backgroundColor: COLOR_PALETTE.soft,
+    height: windowHeight,
+  },
+
   container: {
     width: windowWidth,
-    height: windowHeight,
-    padding: 20,
-    backgroundColor: COLOR_PALETTE.soft,
+    height: 'auto',
+    paddingVertical: screenVerticalPadding,
+    paddingHorizontal: 20,
   },
 
   iconContainer: {

@@ -3,6 +3,7 @@ export interface ITest {
   totalTime: number;
   totalQuestion: number;
   quizQuestions: IQuestion[];
+  freelancerId: string;
 }
 
 export interface IQuestion {

@@ -1,7 +1,7 @@
-import { View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
+import React, { useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { freelancerScreensList } from '@constants/freelancerScreens';
-import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import {
   BaseLink,
   FAIcon,
@@ -15,6 +15,9 @@ import { COLOR_PALETTE } from '@present-native/styles';
 import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
 import { testPreviewStyle } from './styles';
 import { Test } from './mock';
+import FreelancerTemplate from '@present-native/templates/FreelancerTemplate';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ITest } from '@business-layer/services/entities';
 
 const reviewInfo = {
   title: 'Kiểm tra kiến thức!',
@@ -22,82 +25,111 @@ const reviewInfo = {
     'Hãy giúp chúng tôi trả lời 1 vài câu hỏi liên quan tới kỹ năng bạn đã chọn. Điểm càng cao, uy tín càng cao. (Bạn vẫn có thể làm lại bài kiểm tra sau khi đã tạo tài khoản thành công)',
 };
 
-const test = Test;
 const HAPPY_POINT = 40;
 
 const TestPreview: React.FC<
   NativeStackScreenProps<freelancerScreensList, 'TestPreview'>
 > = () => {
   const { navigateToScreenInSameStack } = useAuthNavigation();
+  const [test, setTest] = useState<ITest>();
+
+  // Simulating a 2-second delay before setting the test data
+  setTimeout(() => {
+    setTest(Test);
+  }, 2000);
 
   return (
-    <CustomerTemplate>
-      <View style={testPreviewStyle.container}>
-        <Title theme="largeBold" color="primary">
-          {reviewInfo.title}
-        </Title>
+    <FreelancerTemplate>
+      <SafeAreaView style={testPreviewStyle.safeAreaStyle}>
+        <View style={testPreviewStyle.container}>
+          <Title theme="largeBold" color="primary">
+            {reviewInfo.title}
+          </Title>
 
-        <VerticalSpacer size="s" />
-        <Paragraph theme="smallMedium" color="primary">
-          {reviewInfo.description}
-        </Paragraph>
-
-        <VerticalSpacer size="xl" />
-        <View style={testPreviewStyle.flexRowCenterItem}>
-          <View style={testPreviewStyle.flexRowCenterItem}>
-            <View style={testPreviewStyle.iconContainer}>
-              <FAIcon
-                iconName="faFileCircleQuestion"
-                color={COLOR_PALETTE.primary}
-                size={17}
-              />
-            </View>
-            <HorizontalSpacer size="m" />
-            <Paragraph theme="baseBold" color="primary">
-              {test.totalQuestion} câu hỏi
-            </Paragraph>
-          </View>
-
-          <HorizontalSpacer size="xxxl" />
-
-          <View style={testPreviewStyle.flexRowCenterItem}>
-            <View style={testPreviewStyle.iconContainer}>
-              <FAIcon
-                iconName="faStopwatch"
-                color={COLOR_PALETTE.primary}
-                size={17}
-              />
-            </View>
-            <HorizontalSpacer size="m" />
-            <Paragraph theme="baseBold" color="primary">
-              {test.totalTime / 60} phút
-            </Paragraph>
-          </View>
-        </View>
-
-        <VerticalSpacer size="xl" />
-        <PrimaryBtn
-          radius="full"
-          title="Bắt đầu ngay"
-          onPress={() =>
-            navigateToScreenInSameStack('TestInProgress', {
-              params: {
-                test: test,
-                pointToPass: HAPPY_POINT,
-              },
-            })
-          }
-          isFitContent={true}
-        />
-
-        <VerticalSpacer size="xl" />
-        <BaseLink screen="Home">
-          <Paragraph theme="smallMedium" align="center" decoration="underline">
-            Tôi sẽ làm sau
+          <VerticalSpacer size="s" />
+          <Paragraph theme="smallMedium" color="primary">
+            {reviewInfo.description}
           </Paragraph>
-        </BaseLink>
-      </View>
-    </CustomerTemplate>
+
+          <VerticalSpacer size="xl" />
+          {test === undefined ? (
+            <View
+              style={{
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <ActivityIndicator size="large" color={COLOR_PALETTE.primary} />
+              <VerticalSpacer size="m" />
+              <Paragraph theme="baseBold" color="primary">
+                Bộ đề đang được tải
+              </Paragraph>
+            </View>
+          ) : (
+            <View>
+              <View style={testPreviewStyle.flexRowCenterItem}>
+                <View style={testPreviewStyle.flexRowCenterItem}>
+                  <View style={testPreviewStyle.iconContainer}>
+                    <FAIcon
+                      iconName="faFileCircleQuestion"
+                      color={COLOR_PALETTE.primary}
+                      size={17}
+                    />
+                  </View>
+                  <HorizontalSpacer size="m" />
+                  <Paragraph theme="baseBold" color="primary">
+                    {test.totalQuestion} câu hỏi
+                  </Paragraph>
+                </View>
+
+                <HorizontalSpacer size="xxxl" />
+
+                <View style={testPreviewStyle.flexRowCenterItem}>
+                  <View style={testPreviewStyle.iconContainer}>
+                    <FAIcon
+                      iconName="faStopwatch"
+                      color={COLOR_PALETTE.primary}
+                      size={17}
+                    />
+                  </View>
+                  <HorizontalSpacer size="m" />
+                  <Paragraph theme="baseBold" color="primary">
+                    {test.totalTime / 60} phút
+                  </Paragraph>
+                </View>
+              </View>
+
+              <VerticalSpacer size="xl" />
+              <PrimaryBtn
+                radius="full"
+                title="Bắt đầu ngay"
+                onPress={() =>
+                  navigateToScreenInSameStack('TestInProgress', {
+                    params: {
+                      test: test,
+                      pointToPass: HAPPY_POINT,
+                    },
+                  })
+                }
+                isFitContent={true}
+              />
+            </View>
+          )}
+
+          <VerticalSpacer size="xl" />
+          <BaseLink screen="Home">
+            <Paragraph
+              theme="smallMedium"
+              align="center"
+              decoration="underline"
+            >
+              Tôi sẽ làm sau
+            </Paragraph>
+          </BaseLink>
+        </View>
+      </SafeAreaView>
+    </FreelancerTemplate>
   );
 };
 

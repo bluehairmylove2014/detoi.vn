@@ -13,6 +13,7 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
 import { TestInProgressStyle } from './styles';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export type statusAnswerType = 'normal' | 'correct' | 'wrong' | 'noneSelect';
 
@@ -117,78 +118,80 @@ const TestInProgress: React.FC<
 
   return (
     <CustomerTemplate>
-      <View style={TestInProgressStyle.container}>
-        <Title theme="largeBold" color="primary">
-          Kiểm tra
-        </Title>
+      <SafeAreaView style={TestInProgressStyle.safeAreaStyle}>
+        <View style={TestInProgressStyle.container}>
+          <Title theme="largeBold" color="primary">
+            Kiểm tra
+          </Title>
 
-        <VerticalSpacer size="xl" />
-        <ProgressBarTime
-          widthProgress={100 - (timerCount * 100) / 300}
-          timeCount={`${Math.floor(timerCount / 60)
-            .toString()
-            .padStart(2, '0')}:${(timerCount % 60)
-            .toString()
-            .padStart(2, '0')}`}
-        />
+          <VerticalSpacer size="l" />
+          <ProgressBarTime
+            widthProgress={100 - (timerCount * 100) / test.totalTime}
+            timeCount={`${Math.floor(timerCount / 60)
+              .toString()
+              .padStart(2, '0')}:${(timerCount % 60)
+              .toString()
+              .padStart(2, '0')}`}
+          />
 
-        <VerticalSpacer size="xxxl" />
-        <Animated.View
-          style={{
-            opacity: opacity,
-          }}
-        >
-          <View style={TestInProgressStyle.questionContainer}>
-            <>
-              <View style={TestInProgressStyle.questionPointContainer}>
-                <Paragraph theme="smallMedium" color="gray">
-                  Câu hỏi {indexQuestionCurrent + 1}
+          <VerticalSpacer size="xxl" />
+          <Animated.View
+            style={{
+              opacity: opacity,
+            }}
+          >
+            <View style={TestInProgressStyle.questionContainer}>
+              <>
+                <View style={TestInProgressStyle.questionPointContainer}>
+                  <Paragraph theme="smallMedium" color="gray">
+                    Câu hỏi {indexQuestionCurrent + 1}
+                  </Paragraph>
+                  <Paragraph theme="smallMedium" color="gray">
+                    {test.quizQuestions[indexQuestionCurrent].point} điểm
+                  </Paragraph>
+                </View>
+
+                <VerticalSpacer size="l" />
+                <Paragraph theme="baseBold">
+                  {test.quizQuestions[indexQuestionCurrent].question}
                 </Paragraph>
-                <Paragraph theme="smallMedium" color="gray">
-                  {test.quizQuestions[indexQuestionCurrent].point} điểm
-                </Paragraph>
-              </View>
 
-              <VerticalSpacer size="l" />
-              <Paragraph theme="baseBold">
-                {test.quizQuestions[indexQuestionCurrent].question}
-              </Paragraph>
-
-              <VerticalSpacer size="xl" />
-              {test.quizQuestions[indexQuestionCurrent].answers.map(
-                (answer, index) => {
-                  return (
-                    <View key={`answer-${index}`}>
-                      <AnswerButton
-                        answer={answer.answer}
-                        index={index}
-                        status={stateAnswerList[index]}
-                        onPress={() =>
-                          handleAnswerSelection(index, answer.isCorrect)
-                        }
-                      />
-                      <VerticalSpacer size="xl" />
-                    </View>
-                  );
-                }
-              )}
-
-              <VerticalSpacer size="xxl" />
-              <View style={{ paddingHorizontal: 100 }}>
-                <PrimaryBtn
-                  title="Tiếp tục"
-                  radius="full"
-                  onPress={handleNextQuestion}
-                  fontSize="medium"
-                  disabled={
-                    !stateAnswerList.every((status) => status !== 'normal')
+                <VerticalSpacer size="xl" />
+                {test.quizQuestions[indexQuestionCurrent].answers.map(
+                  (answer, index) => {
+                    return (
+                      <View key={`answer-${index}`}>
+                        <AnswerButton
+                          answer={answer.answer}
+                          index={index}
+                          status={stateAnswerList[index]}
+                          onPress={() =>
+                            handleAnswerSelection(index, answer.isCorrect)
+                          }
+                        />
+                        <VerticalSpacer size="l" />
+                      </View>
+                    );
                   }
-                />
-              </View>
-            </>
-          </View>
-        </Animated.View>
-      </View>
+                )}
+
+                <VerticalSpacer size="xxl" />
+                <View style={{ paddingHorizontal: 100 }}>
+                  <PrimaryBtn
+                    title="Tiếp tục"
+                    radius="full"
+                    onPress={handleNextQuestion}
+                    fontSize="medium"
+                    disabled={
+                      !stateAnswerList.every((status) => status !== 'normal')
+                    }
+                  />
+                </View>
+              </>
+            </View>
+          </Animated.View>
+        </View>
+      </SafeAreaView>
     </CustomerTemplate>
   );
 };

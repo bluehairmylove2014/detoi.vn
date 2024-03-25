@@ -4,6 +4,7 @@ export const Test: ITest = {
   id: '0',
   totalTime: 300,
   totalQuestion: 20,
+  freelancerId: '1',
   quizQuestions: [
     {
       id: '0',
