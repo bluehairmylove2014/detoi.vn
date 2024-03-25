@@ -31,6 +31,12 @@ const testPreviewStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  loaderContain: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export { testPreviewStyle };

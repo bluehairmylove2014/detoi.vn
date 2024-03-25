@@ -53,13 +53,7 @@ const TestPreview: React.FC<
 
           <VerticalSpacer size="xl" />
           {test === undefined ? (
-            <View
-              style={{
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
+            <View style={testPreviewStyle.loaderContain}>
               <ActivityIndicator size="large" color={COLOR_PALETTE.primary} />
               <VerticalSpacer size="m" />
               <Paragraph theme="baseBold" color="primary">
