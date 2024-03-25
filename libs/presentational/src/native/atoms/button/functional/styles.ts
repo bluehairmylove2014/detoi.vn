@@ -1,46 +1,89 @@
 import { COLOR_PALETTE } from '@present-native/styles';
 import { StyleSheet } from 'react-native';
-const commonButtonStyles = StyleSheet.create({
-  bellIconButton: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 60,
-    height: '100%',
-    borderRadius: 8,
-    backgroundColor: COLOR_PALETTE.white,
-    shadowColor: COLOR_PALETTE.zinc,
-    shadowOffset: {
-      width: 0,
-      height: 2,
+
+const bellBtnTheme = {
+  whitePrimary: StyleSheet.create({
+    bellIconButton: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      aspectRatio: 1,
+      height: '100%',
+      borderRadius: 8,
+      backgroundColor: COLOR_PALETTE.white,
+      shadowColor: COLOR_PALETTE.zinc,
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.4,
+      shadowRadius: 3.84,
+
+      elevation: 5,
     },
-    shadowOpacity: 0.4,
-    shadowRadius: 3.84,
-
-    elevation: 5,
-  },
-  bellIconButton_innerContainer: {
-    position: 'relative',
-  },
-  bellIconButton_badge: {
-    position: 'absolute',
-    top: -6,
-    right: -8,
-    backgroundColor: COLOR_PALETTE.rose,
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: COLOR_PALETTE.white,
-  },
-  bellIconButton_badgeText: {
-    color: COLOR_PALETTE.white,
-    fontFamily: 'Montserrat_600SemiBold',
-    fontSize: 10,
-  },
-
+    bellIconButton_innerContainer: {
+      position: 'relative',
+      width: '100%',
+      height: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    bellIconButton_badge: {
+      position: 'absolute',
+      top: -6,
+      right: -2,
+      backgroundColor: COLOR_PALETTE.rose,
+      width: 20,
+      height: 20,
+      borderRadius: 999,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: COLOR_PALETTE.white,
+    },
+    bellIconButton_badgeText: {
+      color: COLOR_PALETTE.white,
+      fontFamily: 'Montserrat_600SemiBold',
+      fontSize: 10,
+    },
+  }),
+  none: StyleSheet.create({
+    bellIconButton: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      aspectRatio: 1,
+      height: '100%',
+      borderRadius: 8,
+      backgroundColor: COLOR_PALETTE.transparent,
+    },
+    bellIconButton_innerContainer: {
+      position: 'relative',
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    bellIconButton_badge: {
+      position: 'absolute',
+      top: -6,
+      right: -8,
+      backgroundColor: COLOR_PALETTE.rose,
+      width: 16,
+      height: 16,
+      borderRadius: 8,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: COLOR_PALETTE.white,
+    },
+    bellIconButton_badgeText: {
+      color: COLOR_PALETTE.white,
+      fontFamily: 'Montserrat_600SemiBold',
+      fontSize: 10,
+    },
+  }),
+};
+const commonButtonStyles = StyleSheet.create({
   imageButton: {
     display: 'flex',
     flexDirection: 'row',
@@ -81,4 +124,4 @@ const commonButtonStyles = StyleSheet.create({
   },
 });
 
-export { commonButtonStyles };
+export { commonButtonStyles, bellBtnTheme };

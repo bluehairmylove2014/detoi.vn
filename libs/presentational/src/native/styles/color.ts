@@ -42,6 +42,7 @@ export const textColors = {
   white: COLOR_PALETTE.white,
   gray: COLOR_PALETTE.gray,
   yellow: COLOR_PALETTE.yellow,
+  secondary: COLOR_PALETTE.secondary,
 };
 export const titleColors = {
   primary: COLOR_PALETTE.primary,

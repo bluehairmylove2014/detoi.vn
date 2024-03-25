@@ -53,3 +53,35 @@ export const headerWithOrderStyles = StyleSheet.create({
     width: 30,
   },
 });
+
+export const freelancerHeaderStyles = StyleSheet.create({
+  container: {
+    width: windowWidth,
+    height: 'auto',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexWrap: 'nowrap',
+    paddingHorizontal: screenHorizontalPadding,
+  },
+  nameView: {
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    gap: 5,
+  },
+  avatarView: {
+    flexShrink: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    gap: 5,
+  },
+  avatarWrapper: {
+    width: 60,
+  },
+});

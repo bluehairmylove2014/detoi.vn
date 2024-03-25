@@ -43,7 +43,7 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
             source={{ uri: url }}
             style={bannerFreelancerDetailStyle.image}
           />
-          <OverlayColor theme="black-gradient" />
+          <OverlayColor theme="black-gradient-bottom-top" />
 
           <View style={[bannerFreelancerDetailStyle.contentContainer]}>
             <AuthHeader childs={['CIRCLE_BACK_BUTTON']} />

@@ -29,7 +29,7 @@ export const BannerTopSection: React.FC<BannerChooseLocationProps> = React.memo(
     return (
       <View style={bannerTopSectionStyle.container}>
         <Image source={{ uri: url }} style={bannerTopSectionStyle.image} />
-        <OverlayColor theme="black-gradient"></OverlayColor>
+        <OverlayColor theme="black-gradient-bottom-top"></OverlayColor>
         <View
           style={[
             bannerTopSectionStyle.contentContainer,

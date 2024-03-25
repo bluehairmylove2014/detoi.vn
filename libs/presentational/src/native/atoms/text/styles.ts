@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { COLOR_PALETTE } from '@styles/color';
 
 const paragraphFontStyles = StyleSheet.create({
   smallRegular: {
@@ -69,41 +68,6 @@ const titleFontStyles = StyleSheet.create({
     fontFamily: 'Montserrat_700Bold',
   },
 });
-
-const textColorStyles = StyleSheet.create({
-  primary: {
-    color: COLOR_PALETTE.primary,
-  },
-  black: {
-    color: COLOR_PALETTE.black,
-  },
-  rose: {
-    color: COLOR_PALETTE.rose,
-  },
-  white: {
-    color: COLOR_PALETTE.white,
-  },
-  gray: {
-    color: COLOR_PALETTE.gray,
-  },
-  yellow: {
-    color: COLOR_PALETTE.yellow,
-  },
-});
-const textAlignStyles = StyleSheet.create({
-  left: {
-    textAlign: 'left',
-  },
-  center: {
-    textAlign: 'center',
-  },
-  right: {
-    textAlign: 'right',
-  },
-  justify: {
-    textAlign: 'justify',
-  },
-});
 const textDecorationStyles = StyleSheet.create({
   underline: {
     textDecorationLine: 'underline',
@@ -135,8 +99,6 @@ const staticServiceRequirementDetailStyles = StyleSheet.create({
 export {
   paragraphFontStyles,
   titleFontStyles,
-  textColorStyles,
-  textAlignStyles,
   textCommonStyles,
   textDecorationStyles,
   staticServiceRequirementDetailStyles,

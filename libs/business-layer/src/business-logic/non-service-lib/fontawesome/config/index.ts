@@ -49,9 +49,12 @@ import {
   faFileCircleQuestion,
   faCheck,
   faX,
+  faWallet,
+  faBusinessTime,
 } from '@fortawesome/free-solid-svg-icons';
 import { fa500px } from '@fortawesome/free-brands-svg-icons';
 import {
+  faCircleQuestion as faCircleQuestionRegular,
   faComments as faCommentsRegular,
   faHeart,
   faUser as faUserRegular,
@@ -59,11 +62,16 @@ import {
   faRectangleList as faRectangleListRegular,
   faSun as faSunRegular,
   faStar as faStarEmptyStroke,
+  faBell as faBellRegular,
 } from '@fortawesome/free-regular-svg-icons';
 
 export const NATIVE_ICONS = {
+  faBusinessTime,
+  faWallet,
+  faCircleQuestionRegular,
   faCircleArrowRight,
   faBell,
+  faBellRegular,
   faMagnifyingGlass,
   faArrowRightLong,
   faTimes,

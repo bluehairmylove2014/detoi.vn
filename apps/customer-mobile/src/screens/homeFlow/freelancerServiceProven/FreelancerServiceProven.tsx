@@ -17,7 +17,7 @@ const FreelancerServiceProven: React.FC<
         source={{ uri: imageUrl } as ImageSourcePropType}
         resizeMode="cover"
       >
-        <OverlayColor theme="black-gradient" />
+        <OverlayColor theme="black-gradient-bottom-top" />
         <View style={{ zIndex: 999 }}>
           {/* <Header typeDisplay={[ETypeDisplayHeader.BACK_BUTTON_BACKGROUND]} /> */}
         </View>

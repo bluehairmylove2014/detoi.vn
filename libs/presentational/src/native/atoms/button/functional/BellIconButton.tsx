@@ -2,19 +2,37 @@ import { TouchableHighlight, View, Text } from 'react-native';
 import { FAIcon } from '../../icon';
 import { COLOR_PALETTE } from '@styles/color';
 import React from 'react';
-import { commonButtonStyles } from './styles';
+import { bellBtnTheme } from './styles';
+import { Props } from '@fortawesome/react-native-fontawesome';
+import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
+
+const themeIcon: {
+  [key: string]: {
+    iconName: nativeIconNameType;
+    color: Props['color'];
+  };
+} = {
+  whitePrimary: {
+    iconName: 'faBell',
+    color: COLOR_PALETTE.primary,
+  },
+  none: {
+    iconName: 'faBellRegular',
+    color: COLOR_PALETTE.black,
+  },
+};
 
 type iconButtonProps = {
   iconSize?: number;
   notificationCount: number | null;
+  theme?: 'whitePrimary' | 'none';
 };
-
-const DEFAULT_ICON_SIZE = 22;
-
 const BellIconButton = ({
-  iconSize = DEFAULT_ICON_SIZE,
+  iconSize = 22,
   notificationCount,
+  theme = 'whitePrimary',
 }: iconButtonProps) => {
+  const styles = bellBtnTheme[theme];
   // methods
   const handleBellClick = () => {
     // TODO
@@ -23,17 +41,13 @@ const BellIconButton = ({
     <TouchableHighlight
       onPress={handleBellClick}
       underlayColor={COLOR_PALETTE.softBg} // Màu nền khi button được nhấn
-      style={commonButtonStyles.bellIconButton}
+      style={styles.bellIconButton}
     >
-      <View style={commonButtonStyles.bellIconButton_innerContainer}>
-        <FAIcon
-          iconName="faBell"
-          size={iconSize}
-          color={COLOR_PALETTE.primary}
-        />
+      <View style={styles.bellIconButton_innerContainer}>
+        <FAIcon size={iconSize} {...themeIcon[theme]} />
         {notificationCount ? (
-          <View style={commonButtonStyles.bellIconButton_badge}>
-            <Text style={commonButtonStyles.bellIconButton_badgeText}>
+          <View style={styles.bellIconButton_badge}>
+            <Text style={styles.bellIconButton_badgeText}>
               {notificationCount}
             </Text>
           </View>

@@ -1,258 +1,195 @@
-import { View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ActivityIndicator, Switch, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { freelancerScreensList } from '@constants/freelancerScreens';
+import { homeScreenStyle } from './styles';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
 import {
-  homeScreenStyle,
-  topLabelStyle,
-  serviceSectionStyle,
-  endowSectionStyle,
-  memberSectionStyle,
-} from './styles';
+  FreelancerCardOrderList,
+  FreelancerHeader,
+} from '@present-native/organisms';
+import FreelancerTemplate from '@present-native/templates/FreelancerTemplate';
 import {
+  BaseLink,
   FAIcon,
   HorizontalSpacer,
-  Title,
+  InfiniteProgressBar,
   Paragraph,
-  VerticalSpacer,
-  BellIconButton,
+  PrimaryBtn,
   PrimaryScrollView,
-  Thumbnail,
-  BaseLink,
+  SecondaryBtn,
+  Title,
+  VerticalSpacer,
 } from '@present-native/atoms';
-import { ICategory, IEvent } from '@business-layer/services/entities';
-import { COLOR_PALETTE } from '@present-native/styles';
-import { CategoryAndServiceSearchBox } from '@present-native/molecules';
-import { CategoryThumbnail } from '@present-native/molecules/category/CategoryThumbnail';
 import {
-  useCurrentOrderCategory,
-  useGetAllCategories,
-} from '@business-layer/business-logic/lib/category';
-import EndowItem from '@present-native/molecules/endow/EndowItem';
-import ServiceCard from '@present-native/molecules/card/ServiceCard';
-import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
-import { useIsLogged } from '@business-layer/business-logic/lib/auth';
-import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+  COLOR_PALETTE,
+  commonShadow,
+  screenHorizontalPadding,
+} from '@present-native/styles';
+import { ORDER_MARKETPLACE_SORT_CRITERIA } from '@constants/orderMarketplaceSortCriteria';
+import EmptyBoxWithLabel from '@present-native/molecules/empty/EmptyBoxWithLabel';
 
 const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
   route,
   navigation,
 }) => {
-  const { data: categories } = useGetAllCategories();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { setCurrentOrderCategory } = useCurrentOrderCategory();
   const { navigateToScreenInSameStack } = useAuthNavigation();
-  const isLogged = useIsLogged();
+  const [currentMarketplaceSortCriteria, setCurrentMarketplaceSortCriteria] =
+    useState(ORDER_MARKETPLACE_SORT_CRITERIA[0]);
+  const [marketplaceOrders, setMarketplaceOrders] = useState<[] | undefined>(
+    undefined
+  );
 
-  // Event must be get from API
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [event, setEvent] = useState<IEvent>({
-    title: 'Chào đón những người dùng đầu tiên - ưu đãi lên đến 70k',
-    subtitle: 'Xem ưu đãi ngay!',
-    screenName: 'ChooseLocation',
-    image: 'https://detoivn.sirv.com/events/001.png',
-  });
-
-  // Get point from api
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [point, setPoint] = useState(105);
-
-  // Get endow from api
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [endows, setEndows] = useState([
-    {
-      image:
-        'https://detoivn.sirv.com/voucher/_636da2ee-7b55-4d92-969f-b51607820058.jpg',
-      description: 'Giảm nóng 20k cho lần đầu trải nghiệm dịch vụ',
-      label: 'Tất cả dịch vụ',
-    },
-
-    {
-      image: 'https://detoivn.sirv.com/voucher/sale.png',
-      description: 'Dọn nhà cuối năm, giảm tới 50k',
-      label: 'Dọn dẹp',
-    },
-  ]);
-
-  // Get member from api
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [members, setMember] = useState([
-    {
-      id: '1',
-      thumbnail:
-        'https://detoivn.sirv.com/subscribe/_49dca4ad-3405-40d8-b33d-facfaeff071a.png',
-    },
-    {
-      id: '2',
-      thumbnail:
-        'https://detoivn.sirv.com/subscribe/_3cf1c993-becb-4b65-bfe5-dda32fd03b31.png',
-    },
-  ]);
-
-  // Real time get notifications
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [notifications, setNotification] = useState<number[] | null>([
-    1, 2, 3, 4, 5,
-  ]);
-
-  function handlePressCategory(category: ICategory) {
-    navigateToScreenInSameStack('ChooseService', {
-      callbackOnSuccess: () => setCurrentOrderCategory({ category }),
-    });
+  function handleChangeSortCriteria(criteria: { id: string; name: string }) {
+    setCurrentMarketplaceSortCriteria(criteria);
   }
 
-  return (
-    <CustomerTemplate>
-      <View style={homeScreenStyle.container}>
-        <View style={topLabelStyle.container}>
-          <View style={topLabelStyle.event}>
-            <SafeAreaView style={topLabelStyle.event_safeView}>
-              <View style={topLabelStyle.event_content}>
-                <Title theme="baseMedium" color="primary">
-                  {event.title}
-                </Title>
-                <VerticalSpacer size="m" />
-                <BaseLink
-                  screen={isLogged ? 'ChooseLocation' : 'Login'}
-                  stack={isLogged ? undefined : 'AuthStack'}
-                  itemsOrientation="row"
-                  align="flex-start"
-                >
-                  <Paragraph theme="smallMedium" color="primary">
-                    {event.subtitle}
-                  </Paragraph>
-                  <HorizontalSpacer size="m" />
-                  <FAIcon
-                    iconName="faCircleArrowRight"
-                    color={COLOR_PALETTE.primary}
-                    size={14}
-                  />
-                </BaseLink>
-              </View>
-              <View style={topLabelStyle.event_spacer} />
-              <Image
-                source={{ uri: event.image }}
-                style={topLabelStyle.event_image}
-              />
-            </SafeAreaView>
-          </View>
-          <View style={topLabelStyle.interaction}>
-            <View style={topLabelStyle.interaction_background_top} />
-            <View style={topLabelStyle.interaction_background_bottom} />
-            <View style={topLabelStyle.interaction_inner}>
-              {isLogged ? (
-                <>
-                  <BellIconButton
-                    notificationCount={
-                      notifications ? notifications.length : null
-                    }
-                  />
-                  <HorizontalSpacer size="l" />
-                </>
-              ) : null}
+  useEffect(() => {
+    setTimeout(() => {
+      setMarketplaceOrders([]);
+    }, 5000);
+  }, []);
 
-              <CategoryAndServiceSearchBox />
+  return (
+    <FreelancerTemplate>
+      <View style={homeScreenStyle.container}>
+        <FreelancerHeader />
+        <FreelancerCardOrderList />
+        <VerticalSpacer size="l" />
+        {/* Interaction View  -------------------------------------------- */}
+        <View style={homeScreenStyle.interactionView}>
+          <View style={[homeScreenStyle.balanceView, commonShadow.top]}>
+            {/* Balance view goes here */}
+            <View>
+              <View
+                style={[
+                  homeScreenStyle.balanceViewColumn,
+                  { alignItems: 'flex-start' },
+                ]}
+              >
+                <Paragraph theme="smallRegular" color="black" lineNumber={1}>
+                  Số dư{' '}
+                  <FAIcon
+                    iconName="faCircleQuestionRegular"
+                    color={COLOR_PALETTE.black}
+                    size={10}
+                    style={{ opacity: 0.7 }}
+                  />
+                </Paragraph>
+                <Paragraph theme="largeBold" color="primary" lineNumber={1}>
+                  3.526.000 đ
+                </Paragraph>
+              </View>
+            </View>
+            <View
+              style={[
+                homeScreenStyle.balanceViewColumn,
+                { alignItems: 'flex-end' },
+              ]}
+            >
+              <BaseLink screen="Account">
+                <Paragraph theme="smallRegular" color="black" lineNumber={1}>
+                  Ví của tôi{' '}
+                  <FAIcon
+                    iconName="faChevronRight"
+                    color={COLOR_PALETTE.black}
+                    size={10}
+                    style={{ opacity: 0.9 }}
+                  />
+                </Paragraph>
+              </BaseLink>
+
+              <PrimaryBtn
+                title="Nạp tiền"
+                onPress={() => {}}
+                isFitContent={true}
+                fontSize="small"
+                iconName="faWallet"
+                iconPosition="left"
+              />
+            </View>
+          </View>
+          <View style={[homeScreenStyle.jobSettingView, commonShadow.top]}>
+            <View>
+              <View style={homeScreenStyle.jobSettingRowCenter}>
+                <FAIcon iconName="faBusinessTime" color={COLOR_PALETTE.black} />
+                <Paragraph theme="smallBold" color="black">
+                  Bật tìm việc
+                </Paragraph>
+              </View>
+              <View style={[homeScreenStyle.jobSettingRowCenter]}>
+                <Switch />
+              </View>
             </View>
           </View>
         </View>
-        <VerticalSpacer size="xxl" />
-        <View style={serviceSectionStyle.container}>
+        {/* Order Marketplace -------------------------------------------- */}
+        <VerticalSpacer size="xl" />
+        <View style={homeScreenStyle.innerContentWrapper}>
           <Title theme="baseBold" color="primary">
-            Chúng tôi có thể giúp gì cho bạn?
+            Sàn dịch vụ{' '}
+            <FAIcon
+              iconName="faCircleQuestionRegular"
+              color={COLOR_PALETTE.primary}
+              size={15}
+            />
           </Title>
-          <VerticalSpacer size="xs" />
-          <View style={serviceSectionStyle.categoriesContainer}>
-            {Array.isArray(categories) && categories.length > 0 ? (
+        </View>
+        <VerticalSpacer size="l" />
+        <View style={{ paddingLeft: screenHorizontalPadding }}>
+          <PrimaryScrollView direction="horizontal">
+            {ORDER_MARKETPLACE_SORT_CRITERIA.map((sc) =>
+              sc.id === currentMarketplaceSortCriteria.id ? (
+                <React.Fragment key={sc.id}>
+                  <PrimaryBtn
+                    title={sc.name}
+                    onPress={() => handleChangeSortCriteria(sc)}
+                    fontSize="small"
+                    radius="full"
+                    isFitContent={true}
+                  />
+                  <HorizontalSpacer size="m" />
+                </React.Fragment>
+              ) : (
+                <React.Fragment key={sc.id}>
+                  <SecondaryBtn
+                    key={sc.id}
+                    title={sc.name}
+                    onPress={() => handleChangeSortCriteria(sc)}
+                    fontSize="small"
+                    radius="full"
+                    isFitContent={true}
+                  />
+                  <HorizontalSpacer size="m" />
+                </React.Fragment>
+              )
+            )}
+          </PrimaryScrollView>
+        </View>
+        <VerticalSpacer size="l" />
+        <View style={homeScreenStyle.innerContentWrapper}>
+          {Array.isArray(marketplaceOrders) ? (
+            marketplaceOrders.length > 0 ? null : (
               <>
-                {categories.slice(0, 5).map((c) => (
-                  <CategoryThumbnail
-                    category={c}
-                    key={`category@${c.id}`}
-                    onPress={() => handlePressCategory(c)}
-                  />
-                ))}
-                <TouchableOpacity
-                  style={serviceSectionStyle.categories_viewAllBtn}
-                >
-                  <FAIcon
-                    iconName="faArrowRightLong"
-                    color={COLOR_PALETTE.primary}
-                    size={20}
-                  />
-                  <VerticalSpacer size="s" />
-                  <Paragraph theme="smallBold" color="primary">
-                    Xem tất cả
-                  </Paragraph>
-                </TouchableOpacity>
+                <VerticalSpacer size="xxl" />
+                <EmptyBoxWithLabel />
               </>
-            ) : null}
-          </View>
-
-          {!isLogged ? null : (
+            )
+          ) : (
             <>
-              <VerticalSpacer size="xs" />
-              <View style={serviceSectionStyle.other_service}>
-                <ServiceCard
-                  title="Thêm dịch vụ khác"
-                  subtitle="Góp ý"
-                  iconName="container"
-                  onPress={() => {}}
-                />
-                <ServiceCard
-                  title={`${point} điểm`}
-                  subtitle="Điểm tích lũy"
-                  iconName="shoppingBag"
-                  onPress={() => {}}
+              <VerticalSpacer size="xxl" />
+              <View style={{ width: '100%', height: 100 }}>
+                <InfiniteProgressBar
+                  color="primary"
+                  label="Đang lấy đơn trên sàn"
                 />
               </View>
-
-              <VerticalSpacer size="xs" />
-              <Title theme="baseBold" color="primary">
-                Ưu đãi dành riêng cho bạn
-              </Title>
-              <VerticalSpacer size="xs" />
-              <PrimaryScrollView direction="horizontal">
-                <View style={endowSectionStyle.container}>
-                  {Array.isArray(endows) && endows.length > 0 ? (
-                    <>
-                      {endows.map((item, index) => (
-                        <EndowItem
-                          key={index}
-                          image={item.image}
-                          description={item.description}
-                          label={item.label}
-                        />
-                      ))}
-                    </>
-                  ) : null}
-                </View>
-              </PrimaryScrollView>
-
-              {/* Member */}
-              {/* Use member state get from api */}
-              {Array.isArray(members) && members.length > 0 ? (
-                <>
-                  <VerticalSpacer size="xs" />
-                  <Title theme="baseBold" color="primary">
-                    Gói hội viên Detoi
-                  </Title>
-                  <VerticalSpacer size="xs" />
-                  <View style={memberSectionStyle.container}>
-                    {members.map((m) => (
-                      <Thumbnail
-                        theme="fullWidth"
-                        image={m.thumbnail}
-                        key={m.id}
-                      />
-                    ))}
-                  </View>
-                </>
-              ) : null}
             </>
           )}
         </View>
       </View>
-    </CustomerTemplate>
+    </FreelancerTemplate>
   );
 };
 

@@ -4,30 +4,29 @@ import { overlayStyle } from './styles';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const themeList = {
-  'black-gradient': {
-    backgroundColor:
-      'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 100%)',
-  },
-  'black-opacity': {
-    backgroundColor: 'rgba(0,0,0,0.5)',
-  },
+  'black-gradient-bottom-top': [
+    'rgba(0,0,0,0)',
+    'rgba(0,0,0,0.6)',
+    'rgba(0,0,0,1)',
+  ],
+  'black-gradient-top-bottom': [
+    'rgba(0,0,0,1)',
+    'rgba(0,0,0,0.6)',
+    'rgba(0,0,0,0)',
+  ],
+  'black-opacity': ['rgba(0,0,0,0.5)', 'rgba(0,0,0,0.5)'],
 };
 
 export const OverlayColor = React.memo(
   ({
     children,
-    theme,
+    theme = 'black-opacity',
   }: {
     children?: React.ReactNode;
-    theme: 'black-gradient' | 'black-opacity';
+    theme: keyof typeof themeList;
   }) => {
     return (
-      <LinearGradient
-        colors={['rgba(0,0,0,0)', 'rgba(0,0,0,1)']}
-        style={overlayStyle.overlayBackground}
-      >
-        {children}
-      </LinearGradient>
+      <LinearGradient colors={themeList[theme]}>{children}</LinearGradient>
     );
   }
 );
