@@ -7,6 +7,8 @@ export type freelancerScreensList = {
   Message: undefined;
   OrdersList: undefined;
   Account: undefined;
+  OrderManagement: undefined;
+  OrderManagementNext: undefined;
 };
 
 export type freelancerHomeStackParams = Pick<freelancerScreensList, 'Home' | 'Intro'>;
@@ -21,7 +23,7 @@ export type freelancerMessageStackParams = Pick<
 >;
 export type freelancerOrdersListStackParams = Pick<
   freelancerScreensList,
-  'OrdersList'
+  'OrdersList' | 'OrderManagement' | 'OrderManagementNext'
 >;
 export type freelancerAccountStackParams = Pick<
   freelancerScreensList,
