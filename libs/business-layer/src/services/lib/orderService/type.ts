@@ -39,3 +39,8 @@ export type getOrderDetailPropsType = {
   token: string | null;
 };
 export type getOrderDetailResponseType = IOrderDetail;
+
+export type getFreelancerIncomingOrdersPropsType = {
+  token: string | null;
+};
+export type getFreelancerIncomingOrdersResponseType = IOrderDetail[];

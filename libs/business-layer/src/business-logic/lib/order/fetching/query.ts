@@ -19,3 +19,9 @@ export const useGetOrderDetailQuery = (
     queryFn: () => service.getOrderDetail({ orderId, token }),
   });
 };
+export const useGetFreelancerIncomingOrdersQuery = (token: string | null) => {
+  return useQuery({
+    queryKey: [QUERY_N_MUTATION_KEYS.GET_FREELANCER_INCOMING_ORDERS, token],
+    queryFn: () => service.getFreelancerIncomingOrders({ token }),
+  });
+};

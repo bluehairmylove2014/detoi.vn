@@ -16,3 +16,4 @@ export * from './order';
 export * from './paymentMethod';
 export * from './countryCode';
 export * from './test';
+export * from './coordinate';
