@@ -9,6 +9,8 @@ export type freelancerScreensList = {
   Message: undefined;
   OrdersList: undefined;
   Account: undefined;
+  BookingDetail: undefined;
+
   TestPreview: undefined;
   TestInProgress: { test: ITest; pointToPass: number };
   TestResult: { isSuccess: boolean; pointTest: number };
@@ -16,7 +18,7 @@ export type freelancerScreensList = {
 
 export type freelancerHomeStackParams = Pick<
   freelancerScreensList,
-  'Home' | 'Intro'
+  'Home' | 'Intro' | 'BookingDetail'
 >;
 export type freelancerAuthStackParams = Pick<
   freelancerScreensList,
