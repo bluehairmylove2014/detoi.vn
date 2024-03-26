@@ -1,5 +1,5 @@
 import { ActivityIndicator, SafeAreaView, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { freelancerScreensList } from '@constants/freelancerScreens';
 import {
@@ -30,12 +30,14 @@ const TestPreview: React.FC<
   NativeStackScreenProps<freelancerScreensList, 'TestPreview'>
 > = () => {
   const { navigateToScreenInSameStack } = useAuthNavigation();
-  const [test, setTest] = useState<ITest>();
+  const [test, setTest] = useState<ITest | undefined>(undefined);
 
   // Simulating a 2-second delay before setting the test data
-  setTimeout(() => {
-    setTest(Test);
-  }, 2000);
+  useEffect(() => {
+    setTimeout(() => {
+      setTest(Test);
+    }, 2000);
+  }, []);
 
   return (
     <FreelancerTemplate>
