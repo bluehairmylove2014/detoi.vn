@@ -14,6 +14,8 @@ const selectFreelancerForOrderResponseSchema = z.object({
 const getOrderDetailResponseSchema = OrderDetailSchema;
 const getFreelancerIncomingOrdersResponseSchema = z.array(OrderDetailSchema);
 
+const getMarketplaceOrdersSchema = z.array(OrderDetailSchema);
+
 export {
   createOrderResponseTypeSchema,
   getMatchingOrderDetailResponseSchema,
@@ -21,4 +23,5 @@ export {
   selectFreelancerForOrderResponseSchema,
   getOrderDetailResponseSchema,
   getFreelancerIncomingOrdersResponseSchema,
+  getMarketplaceOrdersSchema,
 };

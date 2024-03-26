@@ -1,4 +1,8 @@
-import { ITest } from '@business-layer/services/entities';
+import {
+  IFreelancerPreview,
+  IOrderDetail,
+  ITest,
+} from '@business-layer/services/entities';
 
 export type freelancerScreensList = {
   Home: undefined;
@@ -12,11 +16,15 @@ export type freelancerScreensList = {
   TestPreview: undefined;
   TestInProgress: { test: ITest; pointToPass: number };
   TestResult: { isSuccess: boolean; pointTest: number };
+  MarketplaceOrderDetail: {
+    order: IOrderDetail;
+    freelancer: IFreelancerPreview;
+  };
 };
 
 export type freelancerHomeStackParams = Pick<
   freelancerScreensList,
-  'Home' | 'Intro'
+  'Home' | 'Intro' | 'MarketplaceOrderDetail'
 >;
 export type freelancerAuthStackParams = Pick<
   freelancerScreensList,

@@ -27,14 +27,18 @@ import {
   commonShadow,
   screenHorizontalPadding,
 } from '@present-native/styles';
-import { ORDER_MARKETPLACE_SORT_CRITERIA } from '@constants/orderMarketplaceSortCriteria';
+import { ORDER_MARKETPLACE_SORT_CRITERIA } from '@constants/marketplace';
 import EmptyBoxWithLabel from '@present-native/molecules/empty/EmptyBoxWithLabel';
 import { PreviewCardOrder } from '@present-native/molecules';
 import { orderListMockData } from './__mock__';
-import { IOrderDetail } from '@business-layer/services/entities';
 import { formatCurrency, generateBoxShadowStyle } from '@utils/helpers';
 import { useGetFreelancerPreviewData } from '@business-layer/business-logic/lib/account';
-import { useGetFreelancerIncomingOrders } from '@business-layer/business-logic/lib/order';
+import {
+  useGetFreelancerIncomingOrders,
+  // useGetMarketplaceOrders,
+} from '@business-layer/business-logic/lib/order';
+import { getMarketplaceOrdersPropsType } from '@business-layer/services';
+import { ICoordinate, IOrderDetail } from '@business-layer/services/entities';
 
 const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
   route,
@@ -46,9 +50,20 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
   const [currentMarketplaceSortCriteria, setCurrentMarketplaceSortCriteria] =
     useState(ORDER_MARKETPLACE_SORT_CRITERIA[0]);
   const [isAutoFindingJob, setIsAutoFindingJob] = useState<boolean>(false);
-  const [marketplaceOrders, setMarketplaceOrders] = useState<
-    IOrderDetail[] | undefined
-  >(undefined);
+  const [marketplaceOrdersCriteria, setMarketplaceOrdersCriteria] = useState<
+    Omit<getMarketplaceOrdersPropsType, 'token'>
+  >({
+    sortingCol: 'ASCENDANT',
+    sortType: 'DISTANCE',
+    page: 1,
+    pageSize: 5,
+  });
+  // const marketplaceOrders = useGetMarketplaceOrders(marketplaceOrdersCriteria);
+  const marketplaceOrders = orderListMockData;
+  const [currentLatLon, setCurrentLatLon] = useState<ICoordinate | undefined>({
+    lat: 10.823,
+    lon: 106.6296,
+  });
 
   function handleChangeSortCriteria(criteria: { id: string; name: string }) {
     setCurrentMarketplaceSortCriteria(criteria);
@@ -56,13 +71,11 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
   function toggleSwitch() {
     setIsAutoFindingJob((previousState) => !previousState);
   }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setMarketplaceOrders(orderListMockData);
-    }, 5000);
-  }, []);
-
+  function handleViewMarketplaceOrderDetail(order: IOrderDetail) {
+    navigateToScreenInSameStack('MarketplaceOrderDetail', {
+      params: { order, freelancer: freelancerPreviewData },
+    });
+  }
   return (
     <FreelancerTemplate>
       <View style={homeScreenStyle.container}>
@@ -219,7 +232,13 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
               marketplaceOrders.map((orderDetail) => (
                 <React.Fragment key={orderDetail.id}>
                   <VerticalSpacer size="l" />
-                  <PreviewCardOrder orderDetail={orderDetail} />
+                  <PreviewCardOrder
+                    orderDetail={orderDetail}
+                    currentLatLon={currentLatLon}
+                    onNavigate={() =>
+                      handleViewMarketplaceOrderDetail(orderDetail)
+                    }
+                  />
                 </React.Fragment>
               ))
             ) : (

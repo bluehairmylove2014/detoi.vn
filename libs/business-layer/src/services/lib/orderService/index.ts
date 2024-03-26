@@ -2,6 +2,7 @@ import {
   cancelOrderEndpoint,
   createOrderEndpoint,
   getFreelancerIncomingOrdersEndpoint,
+  getMarketplaceOrdersEndpoint,
   getMatchingOrderDetailEndpoint,
   getOrderDetailEndpoint,
   selectFreelancerForOrderEndpoint,
@@ -11,6 +12,7 @@ import {
   cancelOrderResponseSchema,
   createOrderResponseTypeSchema,
   getFreelancerIncomingOrdersResponseSchema,
+  getMarketplaceOrdersSchema,
   getMatchingOrderDetailResponseSchema,
   getOrderDetailResponseSchema,
   selectFreelancerForOrderResponseSchema,
@@ -22,6 +24,8 @@ import {
   createOrderResponseType,
   getFreelancerIncomingOrdersPropsType,
   getFreelancerIncomingOrdersResponseType,
+  getMarketplaceOrdersPropsType,
+  getMarketplaceOrdersResponseType,
   getMatchingOrderDetailResponseType,
   getOrderDetailPropsType,
   getOrderDetailResponseType,
@@ -184,6 +188,34 @@ export class OrderService extends Services {
           method: 'GET',
           url: getFreelancerIncomingOrdersEndpoint,
           schema: getFreelancerIncomingOrdersResponseSchema,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          signal: this.abortController.signal,
+          transformResponse: (res) => res,
+        });
+      } else {
+        throw new Error('Unauthorized');
+      }
+    } catch (error) {
+      throw this.handleError(error);
+    }
+  };
+  getMarketplaceOrders = async ({
+    token,
+    ...params
+  }: getMarketplaceOrdersPropsType): Promise<getMarketplaceOrdersResponseType> => {
+    this.abortController = new AbortController();
+    try {
+      if (token) {
+        return await this.fetchApi<
+          typeof getMarketplaceOrdersSchema,
+          getMarketplaceOrdersResponseType
+        >({
+          method: 'GET',
+          url: getMarketplaceOrdersEndpoint,
+          schema: getMarketplaceOrdersSchema,
+          params,
           headers: {
             Authorization: `Bearer ${token}`,
           },

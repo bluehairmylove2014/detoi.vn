@@ -3,6 +3,10 @@ import {
   IOrderDetail,
   IPostOrderServiceContent,
 } from '../../entities';
+import {
+  MARKETPLACE_SORTING_COL,
+  MARKETPLACE_SORT_TYPE,
+} from '@constants/marketplace';
 
 export type createOrderPropsType = {
   address: Omit<IAddress, 'id'>;
@@ -44,3 +48,12 @@ export type getFreelancerIncomingOrdersPropsType = {
   token: string | null;
 };
 export type getFreelancerIncomingOrdersResponseType = IOrderDetail[];
+
+export type getMarketplaceOrdersPropsType = {
+  sortingCol: keyof typeof MARKETPLACE_SORTING_COL;
+  sortType: keyof typeof MARKETPLACE_SORT_TYPE;
+  page: number;
+  pageSize: number;
+  token: string | null;
+};
+export type getMarketplaceOrdersResponseType = IOrderDetail[];

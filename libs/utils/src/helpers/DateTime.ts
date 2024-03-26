@@ -116,10 +116,10 @@ function timeUntilStart(startDate: string, startTime: string) {
   const hours = Math.floor(diffMillis / (1000 * 60 * 60));
   const minutes = Math.floor((diffMillis % (1000 * 60 * 60)) / (1000 * 60));
 
-  // Format the output in Vietnamese
-  const output = `${hours} giờ ${minutes} phút`;
-
-  return output;
+  return {
+    hours,
+    minutes,
+  };
 }
 
 export {

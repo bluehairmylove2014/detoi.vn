@@ -1,9 +1,4 @@
-import {
-  Control,
-  Controller,
-  FieldValues,
-  UseFormSetValue,
-} from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
 import { TextInput, View } from 'react-native';
 import { FAIcon } from '../icon';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
@@ -24,7 +19,7 @@ export const ServiceRequirementsInput = ({
   label: string;
   labelIcon: nativeIconNameType | null;
   placeholder: string;
-  control: Control<FieldValues, any, FieldValues>;
+  control: Control<any, any, any>;
   inputName: string;
   isError: boolean;
 }) => {
@@ -46,10 +41,7 @@ export const ServiceRequirementsInput = ({
 
         <View>
           <Paragraph theme="baseBold" color={isError ? 'rose' : 'black'}>
-            {labelIcon ? ' | ' : ''} {label}{' '}
-            <Paragraph color="rose" theme="baseBold">
-              *
-            </Paragraph>
+            {labelIcon ? ' | ' : ''} {label} *
           </Paragraph>
         </View>
       </View>
@@ -68,7 +60,6 @@ export const ServiceRequirementsInput = ({
             }
             selectionColor={themeColor}
             keyboardType={type === 'number' ? 'numeric' : 'default'}
-            maxLength={type === 'number' ? 4 : 255}
             {...field}
             onChangeText={(value) => {
               field.onChange(value);

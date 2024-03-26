@@ -1,3 +1,12 @@
+export enum MARKETPLACE_SORTING_COL {
+  ASCENDANT = 'asc',
+  DESCENDANT = 'desc',
+}
+export enum MARKETPLACE_SORT_TYPE {
+  DATE = 'date',
+  DISTANCE = 'distance',
+}
+
 export const ORDER_MARKETPLACE_SORT_CRITERIA = [
   {
     id: 'order-marketplace-sort@1',

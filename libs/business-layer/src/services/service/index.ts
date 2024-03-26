@@ -60,6 +60,7 @@ export class Services {
       signal,
       withCredentials,
     };
+    console.log(url);
     const response = await axios(mockParams);
     const dataResponse = schema.parse(response.data);
 
