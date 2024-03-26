@@ -34,13 +34,13 @@ const bodyIntroScreenStyles = StyleSheet.create({
     bodyWrapper: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
     },
     image: {
         width: "100%",
-        height: 300,
-        objectFit: 'cover',
+        aspectRatio:1,
+        height: 350,
         marginVertical: 5,
     },
     title: {},

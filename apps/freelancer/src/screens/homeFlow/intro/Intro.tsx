@@ -15,19 +15,31 @@ import {
 } from './styles';
 import { freelancerIntroGreeting } from '@constants/freelancerIntroGreeting';
 import { DotPager } from '@present-native/molecules';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { freelancerScreensList } from '@constants/freelancerScreens';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
 
-const Intro = React.memo(() => {
+
+const Intro: React.FC<NativeStackScreenProps<freelancerScreensList, 'Intro'>> = ({
+  route,
+  navigation,
+}) => {
+
   const [indexPagination, setIndexPaginations] = useState<number>(0);
-
+  const { navigateToScreenInSameStack } = useAuthNavigation();
   const handleBackPage = React.useCallback(() => {
     setIndexPaginations((prevIndex) => prevIndex - 1);
   }, [setIndexPaginations]);
 
   const handleNextPage = React.useCallback(() => {
+    if(indexPagination + 1 ===  freelancerIntroGreeting.length){
+      navigateToScreenInSameStack('Home')
+      return;
+    }
     setIndexPaginations((prevIndex) =>
       prevIndex + 1 < freelancerIntroGreeting.length ? prevIndex + 1 : prevIndex
     );
-  }, [setIndexPaginations]);
+  }, [indexPagination, navigateToScreenInSameStack]);
 
   return (
     <SafeAreaView style={introScreenStyles.container}>
@@ -44,7 +56,7 @@ const Intro = React.memo(() => {
               <Title theme="largeBold" align="center" color="primary">
                 {freelancerIntroGreeting[indexPagination].title}
               </Title>
-              <Paragraph align="center" theme="smallRegular">
+              <Paragraph align="center" theme="smallRegular" color='primary'>
                 {freelancerIntroGreeting[indexPagination].description}
               </Paragraph>
             </View>
@@ -83,6 +95,6 @@ const Intro = React.memo(() => {
       </View>
     </SafeAreaView>
   );
-});
+};
 
 export default Intro;
