@@ -21,11 +21,18 @@ export type freelancerScreensList = {
     freelancer: IFreelancerPreview;
   };
   ReceiveOrderSuccess: undefined;
+  IncomingOrderDetail: {
+    order: IOrderDetail;
+  };
 };
 
 export type freelancerHomeStackParams = Pick<
   freelancerScreensList,
-  'Home' | 'Intro' | 'MarketplaceOrderDetail' | 'ReceiveOrderSuccess'
+  | 'Home'
+  | 'Intro'
+  | 'MarketplaceOrderDetail'
+  | 'ReceiveOrderSuccess'
+  | 'IncomingOrderDetail'
 >;
 export type freelancerAuthStackParams = Pick<
   freelancerScreensList,

@@ -1,66 +1,32 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { View } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { freelancerScreensList } from '@constants/freelancerScreens';
 import FreelancerTemplate from '@present-native/templates/FreelancerTemplate';
 import { BannerTopSection } from '@present-native/molecules';
 import {
-  BaseLink,
   CircleImage,
   FAIcon,
   GrayDivider,
   Paragraph,
   PrimaryBtn,
-  ServiceRequirementsInput,
   StaticServiceRequirementDetail,
   Title,
   VerticalSpacer,
 } from '@present-native/atoms';
-import { marketplaceOrderDetailStyles } from './styles';
+import { incomingOrderDetailStyles } from './styles';
 import { COLOR_PALETTE } from '@present-native/styles';
 import { formatCurrency } from '@utils/helpers';
-import { useForm } from 'react-hook-form';
-import { useYupValidationResolver } from '@utils/validators/yup';
-import { freelancerMarketplaceOrderDetailForm } from '@utils/validators/yup/schemas';
-import { SERVICE_MIN_PRICE, SERVICE_PLATFORM_FEE_AMOUNT } from '@constants/fee';
 import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
-type formType = {
-  orderPrice: number;
-};
-const MarketplaceOrderDetail: React.FC<
-  NativeStackScreenProps<freelancerScreensList, 'MarketplaceOrderDetail'>
+
+const IncomingOrderDetail: React.FC<
+  NativeStackScreenProps<freelancerScreensList, 'IncomingOrderDetail'>
 > = ({ route }) => {
   const { navigateToScreenInSameStack } = useAuthNavigation();
-  const {
-    order,
-    freelancer: { balance },
-  } = route.params;
+  const { order } = route.params;
   const address = order.address;
   const service = order.serviceTypes[0];
-  const [isNotAfford, setIsNotAfford] = useState<boolean>(false);
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-    setError,
-    watch,
-  } = useForm<formType>({
-    resolver: useYupValidationResolver(freelancerMarketplaceOrderDetailForm),
-  });
-  const orderPriceWatcher = watch('orderPrice');
-
-  function handleReceiveOrder({ orderPrice }: formType) {
-    if (typeof orderPrice === 'number') {
-      if (SERVICE_PLATFORM_FEE_AMOUNT * orderPrice > balance) {
-        setIsNotAfford(true);
-      } else {
-        navigateToScreenInSameStack('ReceiveOrderSuccess');
-      }
-    } else {
-      setError('orderPrice', { type: 'invalid-type', message: '' });
-    }
-  }
 
   return (
     <FreelancerTemplate>
@@ -71,10 +37,10 @@ const MarketplaceOrderDetail: React.FC<
       />
       <VerticalSpacer size="xxl" />
 
-      <View style={marketplaceOrderDetailStyles.container}>
+      <View style={incomingOrderDetailStyles.container}>
         {/* Location */}
         <View>
-          <View style={marketplaceOrderDetailStyles.locationTitleContainer}>
+          <View style={incomingOrderDetailStyles.locationTitleContainer}>
             <View style={{ flexGrow: 1 }}>
               <Title theme="baseBold" color="primary" lineNumber={1}>
                 Địa điểm:
@@ -99,11 +65,11 @@ const MarketplaceOrderDetail: React.FC<
             Thông tin dịch vụ
           </Title>
           <VerticalSpacer size="xl" />
-          <View style={marketplaceOrderDetailStyles.serviceDetailContainer}>
+          <View style={incomingOrderDetailStyles.serviceDetailContainer}>
             <View style={{ width: 100 }}>
               <CircleImage source={{ uri: service.image }} />
             </View>
-            <View style={marketplaceOrderDetailStyles.serviceDetailList}>
+            <View style={incomingOrderDetailStyles.serviceDetailList}>
               <Paragraph theme="baseBold" align="left">
                 {service.name}
               </Paragraph>
@@ -134,7 +100,7 @@ const MarketplaceOrderDetail: React.FC<
 
         <View>
           <Title theme="baseBold" color="primary" lineNumber={1}>
-            Giá trung bình dịch vụ{' '}
+            Giá dịch vụ{' '}
             <FAIcon
               iconName="faCircleQuestionRegular"
               color={COLOR_PALETTE.primary}
@@ -145,56 +111,25 @@ const MarketplaceOrderDetail: React.FC<
             {formatCurrency(order.estimatedPrice, 'vnd')}
           </Paragraph>
         </View>
-        <VerticalSpacer size="xl" />
+        <VerticalSpacer size="l" />
         <View>
-          <ServiceRequirementsInput
-            type="number"
-            label="Bạn muốn nhận đơn với giá bao nhiêu?"
-            labelIcon="faMoneyBills"
-            placeholder="Ít nhất 50.000đ & Tài khoản đủ 2% số tiền (Phí nền tảng)"
-            control={control}
-            inputName="orderPrice"
-            isError={!!errors['orderPrice']}
-          />
-          <VerticalSpacer size="m" />
-          <Paragraph
-            theme="smallRegular"
-            color={errors['orderPrice'] ? 'rose' : 'black'}
-            align="center"
-          >
-            {orderPriceWatcher < SERVICE_MIN_PRICE
-              ? `Ít nhất ${formatCurrency(SERVICE_MIN_PRICE, 'vnd')}`
-              : orderPriceWatcher > 0
-              ? `(Tài khoản phải có ít nhất: ${formatCurrency(
-                  SERVICE_PLATFORM_FEE_AMOUNT * orderPriceWatcher,
-                  'vnd'
-                )})`
-              : ''}
+          <Title theme="baseBold" color="primary" lineNumber={1}>
+            Phương thức thanh toán
+          </Title>
+          <Paragraph theme="baseRegular" color="black" lineNumber={1}>
+            Thanh toán tiền mặt sau khi hoàn thành dịch vụ
           </Paragraph>
-          {isNotAfford ? (
-            <>
-              <VerticalSpacer size="m" />
-              <BaseLink screen="Home">
-                <Paragraph
-                  theme="baseBold"
-                  color={'rose'}
-                  align="center"
-                  decoration="underline"
-                >
-                  Tài khoản không đủ. Nạp thêm?
-                </Paragraph>
-              </BaseLink>
-            </>
-          ) : null}
         </View>
         <VerticalSpacer size="xl" />
-        <PrimaryBtn
-          title="Báo giá ngay"
-          onPress={handleSubmit(handleReceiveOrder)}
-        />
+        <PrimaryBtn title="Bắt đầu làm" onPress={() => {}} />
+        <VerticalSpacer size="m" />
+        <Paragraph theme="baseMedium" align="center">
+          Lưu ý: Bạn sẽ tuyệt đối không được đóng ứng dụng hay tắt nguồn sau khi
+          bắt đầu làm việc cho đến khi hoàn thành dịch vụ.
+        </Paragraph>
       </View>
     </FreelancerTemplate>
   );
 };
 
-export default MarketplaceOrderDetail;
+export default IncomingOrderDetail;
