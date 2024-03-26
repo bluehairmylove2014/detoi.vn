@@ -7,7 +7,7 @@ import TestInProgressScreen from '../../../screens/testFlow/testInProgress/TestI
 import TestResultScreen from '../../../screens/testFlow/testResult/TestResult';
 
 const Stack = createNativeStackNavigator<freelancerTestStackParams>();
-export const TestStack = () => {
+export const TestStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
     <Stack.Navigator initialRouteName="TestPreview">
       {/* Then, put stack.screen for your screen component here (in the end) */}

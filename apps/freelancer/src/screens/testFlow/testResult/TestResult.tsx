@@ -26,9 +26,9 @@ const TestResult: React.FC<
             <View>
               <View style={{ alignItems: 'center' }}>
                 {isSuccess ? (
-                  <SquareImage source={require('./successTest.png')} />
+                  <SquareImage source={require('@constants/successTest.png')} />
                 ) : (
-                  <SquareImage source={require('./failTest.png')} />
+                  <SquareImage source={require('@constants/failTest.png')} />
                 )}
               </View>
 

@@ -6,7 +6,12 @@ import { commonButtonStyles } from './styles';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { HorizontalSpacer } from '@present-native/atoms/spacer';
 
-export type statusAnswerType = 'normal' | 'correct' | 'wrong' | 'noneSelect';
+export enum statusAnswer {
+  normal,
+  correct,
+  wrong,
+  noneSelect,
+}
 
 const statusMapper = {
   normal: {
@@ -39,21 +44,27 @@ const AnswerButton = ({
 }: {
   answer: string;
   index: number;
-  status: statusAnswerType;
+  status: statusAnswer;
   onPress: () => void;
 }) => {
+  const statusKey = statusAnswer[status] as keyof typeof statusMapper;
+
   return (
     <TouchableOpacity
-      disabled={status !== 'normal' ? true : false}
+      disabled={status !== statusAnswer.normal ? true : false}
       onPress={onPress}
       style={{
         ...commonButtonStyles.answerBtn,
-        backgroundColor: statusMapper[status].colorBackground,
+        backgroundColor: statusMapper[statusKey].colorBackground,
       }}
     >
       <Paragraph
         theme="baseSemibold"
-        color={status === 'correct' || status === 'wrong' ? 'white' : 'black'}
+        color={
+          status === statusAnswer.correct || status === statusAnswer.wrong
+            ? 'white'
+            : 'black'
+        }
       >
         {String.fromCharCode(65 + index)}. {answer}
       </Paragraph>
@@ -61,12 +72,12 @@ const AnswerButton = ({
       <View
         style={{
           ...commonButtonStyles.answerIconContainer,
-          borderColor: statusMapper[status].colorBorder,
+          borderColor: statusMapper[statusKey].colorBorder,
         }}
       >
-        {statusMapper[status].icon ? (
+        {statusMapper[statusKey].icon ? (
           <FAIcon
-            iconName={statusMapper[status].icon as nativeIconNameType}
+            iconName={statusMapper[statusKey].icon as nativeIconNameType}
             color={COLOR_PALETTE.white}
             size={12}
           />
