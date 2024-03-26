@@ -4,6 +4,7 @@ import { freelancerHomeStackParams } from '@constants/freelancerScreens';
 // Import screen component here
 import HomeScreen from '../../../screens/homeFlow/home/Home';
 import IntroScreen from '../../../screens/homeFlow/intro/Intro';
+import ReceiveOrderSuccessScreen from '../../../screens/homeFlow/receiveOrderSuccess/ReceiveOrderSuccess';
 import MarketplaceOrderDetailScreen from '../../../screens/homeFlow/marketplaceOrderDetail/MarketplaceOrderDetail';
 
 const Stack = createNativeStackNavigator<freelancerHomeStackParams>();
@@ -21,6 +22,10 @@ export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
           <Stack.Screen
             component={MarketplaceOrderDetailScreen}
             name="MarketplaceOrderDetail"
+          />
+          <Stack.Screen
+            component={ReceiveOrderSuccessScreen}
+            name="ReceiveOrderSuccess"
           />
         </Stack.Group>
       ) : null}

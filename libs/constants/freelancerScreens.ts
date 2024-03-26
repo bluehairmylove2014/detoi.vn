@@ -20,11 +20,12 @@ export type freelancerScreensList = {
     order: IOrderDetail;
     freelancer: IFreelancerPreview;
   };
+  ReceiveOrderSuccess: undefined;
 };
 
 export type freelancerHomeStackParams = Pick<
   freelancerScreensList,
-  'Home' | 'Intro' | 'MarketplaceOrderDetail'
+  'Home' | 'Intro' | 'MarketplaceOrderDetail' | 'ReceiveOrderSuccess'
 >;
 export type freelancerAuthStackParams = Pick<
   freelancerScreensList,

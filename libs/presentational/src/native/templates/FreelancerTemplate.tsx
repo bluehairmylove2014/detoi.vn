@@ -1,8 +1,12 @@
-import { KeyboardAvoidingView, StatusBar, View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import React from 'react';
 import { globalStyles } from '../styles';
 import { FAProvider } from '@business-layer/business-logic/non-service-lib/fontawesome';
-import { BlurTheme, PrimaryScrollView } from '@present-native/atoms';
+import {
+  BlurTheme,
+  PrimaryScrollView,
+  TransparentView,
+} from '@present-native/atoms';
 import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
 
 const FreelancerTemplate = ({ children }: { children: React.ReactNode }) => {
@@ -14,9 +18,10 @@ const FreelancerTemplate = ({ children }: { children: React.ReactNode }) => {
       <BlurTheme isOpen={state['isOpened']} />
 
       <View style={globalStyles.container}>
-        <KeyboardAvoidingView>
-          <PrimaryScrollView direction="vertical">{children}</PrimaryScrollView>
-        </KeyboardAvoidingView>
+        <PrimaryScrollView direction="vertical">
+          {children}
+          <TransparentView theme="vertical" />
+        </PrimaryScrollView>
       </View>
     </FAProvider>
   );

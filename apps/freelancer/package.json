@@ -39,7 +39,8 @@
     "axios": "*",
     "lodash": "*",
     "@react-navigation/bottom-tabs": "*",
-    "@react-navigation/native-stack": "*"
+    "@react-navigation/native-stack": "*",
+    "react-native-sound": "*"
   },
   "scripts": {
     "eas-build-pre-install": "cd ../../ && node tools/scripts/eas-build-pre-install.mjs . apps/freelancer && cp package-lock.json apps/freelancer",

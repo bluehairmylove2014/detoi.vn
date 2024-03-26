@@ -31,7 +31,7 @@ const bannerTopSectionStyle = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 2,
+    zIndex: 11,
     paddingHorizontal: screenHorizontalPadding,
   },
   containerInnerConfig: {},

@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, StatusBar, View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import React from 'react';
 import { globalStyles } from '../styles';
 import { FAProvider } from '@business-layer/business-logic/non-service-lib/fontawesome';

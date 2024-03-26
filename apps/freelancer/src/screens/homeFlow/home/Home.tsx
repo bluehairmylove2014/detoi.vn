@@ -35,7 +35,7 @@ import { formatCurrency, generateBoxShadowStyle } from '@utils/helpers';
 import { useGetFreelancerPreviewData } from '@business-layer/business-logic/lib/account';
 import {
   useGetFreelancerIncomingOrders,
-  // useGetMarketplaceOrders,
+  useGetMarketplaceOrders,
 } from '@business-layer/business-logic/lib/order';
 import { getMarketplaceOrdersPropsType } from '@business-layer/services';
 import { ICoordinate, IOrderDetail } from '@business-layer/services/entities';
@@ -58,7 +58,9 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
     page: 1,
     pageSize: 5,
   });
-  // const marketplaceOrders = useGetMarketplaceOrders(marketplaceOrdersCriteria);
+  // const { data: marketplaceOrders } = useGetMarketplaceOrders(
+  //   marketplaceOrdersCriteria
+  // );
   const marketplaceOrders = orderListMockData;
   const [currentLatLon, setCurrentLatLon] = useState<ICoordinate | undefined>({
     lat: 10.823,
@@ -72,9 +74,13 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
     setIsAutoFindingJob((previousState) => !previousState);
   }
   function handleViewMarketplaceOrderDetail(order: IOrderDetail) {
-    navigateToScreenInSameStack('MarketplaceOrderDetail', {
-      params: { order, freelancer: freelancerPreviewData },
-    });
+    if (freelancerPreviewData) {
+      navigateToScreenInSameStack('MarketplaceOrderDetail', {
+        params: { order, freelancer: freelancerPreviewData },
+      });
+    } else {
+      console.log('Chờ một chút');
+    }
   }
   return (
     <FreelancerTemplate>

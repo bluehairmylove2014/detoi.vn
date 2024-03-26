@@ -4,10 +4,7 @@ import React, { useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { freelancerScreensList } from '@constants/freelancerScreens';
 import FreelancerTemplate from '@present-native/templates/FreelancerTemplate';
-import {
-  BannerTopSection,
-  ServiceCircleButtonWithLabel,
-} from '@present-native/molecules';
+import { BannerTopSection } from '@present-native/molecules';
 import {
   BaseLink,
   CircleImage,
@@ -27,13 +24,14 @@ import { useForm } from 'react-hook-form';
 import { useYupValidationResolver } from '@utils/validators/yup';
 import { freelancerMarketplaceOrderDetailForm } from '@utils/validators/yup/schemas';
 import { SERVICE_MIN_PRICE, SERVICE_PLATFORM_FEE_AMOUNT } from '@constants/fee';
-
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
 type formType = {
   orderPrice: number;
 };
 const MarketplaceOrderDetail: React.FC<
   NativeStackScreenProps<freelancerScreensList, 'MarketplaceOrderDetail'>
 > = ({ route }) => {
+  const { navigateToScreenInSameStack } = useAuthNavigation();
   const {
     order,
     freelancer: { balance },
@@ -45,17 +43,22 @@ const MarketplaceOrderDetail: React.FC<
     control,
     handleSubmit,
     formState: { errors },
+    setError,
     watch,
   } = useForm<formType>({
     resolver: useYupValidationResolver(freelancerMarketplaceOrderDetailForm),
   });
   const orderPriceWatcher = watch('orderPrice');
 
-  function handleReceiveOrder(data: formType) {
-    if (SERVICE_PLATFORM_FEE_AMOUNT * data.orderPrice > balance) {
-      setIsNotAfford(true);
+  function handleReceiveOrder({ orderPrice }: formType) {
+    if (typeof orderPrice === 'number') {
+      if (SERVICE_PLATFORM_FEE_AMOUNT * orderPrice > balance) {
+        setIsNotAfford(true);
+      } else {
+        navigateToScreenInSameStack('ReceiveOrderSuccess');
+      }
     } else {
-      // TODO
+      setError('orderPrice', { type: 'invalid-type', message: '' });
     }
   }
 
@@ -187,9 +190,7 @@ const MarketplaceOrderDetail: React.FC<
         <VerticalSpacer size="xl" />
         <PrimaryBtn
           title="Nhận đơn và báo giá"
-          onPress={handleSubmit(handleReceiveOrder, (error) => {
-            console.log(error);
-          })}
+          onPress={handleSubmit(handleReceiveOrder)}
         />
       </View>
     </FreelancerTemplate>

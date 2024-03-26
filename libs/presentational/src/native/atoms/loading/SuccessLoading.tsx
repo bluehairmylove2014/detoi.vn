@@ -1,23 +1,35 @@
 import { View, Image, Animated, Text, SafeAreaView } from 'react-native';
-import introSound from '@assets/sounds/detoi-with-bg-music.mp3';
+import sound from '@assets/sounds/detoi.mp3';
 import { useMp3Player } from '@business-layer/business-logic/non-service-lib/player';
 import { useEffect, useRef } from 'react';
 import { introStyles } from './styles';
 import YeahImg from '@assets/yeah.png';
 import { VerticalSpacer } from '../spacer';
-import ProgressBar from 'react-native-animated-progress';
-import { COLOR_PALETTE } from '@present-native/styles';
+import { Title } from '../text';
 
-const Intro = () => {
-  const { playSound } = useMp3Player(introSound);
+type props = {
+  title: string;
+  onComplete: () => void;
+  timeout?: number;
+};
+export const SuccessLoading: React.FC<props> = ({
+  title,
+  onComplete,
+  timeout = 2500,
+}) => {
+  const { playSound } = useMp3Player(sound);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     playSound();
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 1000,
+      duration: 600,
       useNativeDriver: true,
     }).start();
+
+    setTimeout(() => {
+      onComplete && onComplete();
+    }, timeout);
   }, []);
 
   return (
@@ -32,21 +44,12 @@ const Intro = () => {
               />
             </View>
             <VerticalSpacer size="m" />
-            <Text style={introStyles.text}>Chào mừng đến với</Text>
-            <Text style={introStyles.text}>DETOI Việt Nam</Text>
-            <VerticalSpacer size="xl" />
-            <ProgressBar
-              height={5}
-              animated={true}
-              progress={100}
-              progressDuration={6000}
-              backgroundColor={COLOR_PALETTE.primary}
-              trackColor={COLOR_PALETTE.gray}
-            />
+            <Title theme="baseBold" color="black" align="center">
+              {title}
+            </Title>
           </Animated.View>
         </View>
       </SafeAreaView>
     </View>
   );
 };
-export { Intro };

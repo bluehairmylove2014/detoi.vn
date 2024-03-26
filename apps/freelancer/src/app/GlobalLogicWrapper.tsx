@@ -10,7 +10,7 @@ import { Intro } from '@present-native/atoms';
 import { RootStack } from './stacks';
 import { useGoogleFonts } from '@business-layer/business-logic/non-service-lib/googleFont';
 
-const INTRO_MEDIA_TIME = 5000; // 5s
+const INTRO_MEDIA_TIME = 6000; // 6s
 
 const GlobalLogicWrapper = () => {
   const [isAppReady, setIsAppReady] = useState(false);
@@ -59,7 +59,7 @@ const GlobalLogicWrapper = () => {
   return isAppReady &&
     !isFontFetched &&
     isLogged !== undefined &&
-    !isIntroMediaTimeout ? (
+    isIntroMediaTimeout ? (
     <RootStack isLogged={isLogged} />
   ) : (
     <Intro />
