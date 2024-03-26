@@ -17,9 +17,7 @@ const CustomerTemplate = ({ children }: { children: React.ReactNode }) => {
       <BlurTheme isOpen={state['isOpened']} />
 
       <View style={globalStyles.container}>
-        <KeyboardAvoidingView>
-          <PrimaryScrollView direction="vertical">{children}</PrimaryScrollView>
-        </KeyboardAvoidingView>
+        <PrimaryScrollView direction="vertical">{children}</PrimaryScrollView>
         {isLogged ? null : <NeedLoginBottomTab />}
       </View>
     </FAProvider>

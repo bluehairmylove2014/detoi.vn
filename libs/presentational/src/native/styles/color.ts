@@ -13,6 +13,7 @@ export const COLOR_PALETTE = {
   softBg: '#FFEFF4',
   charcoal: '#1E1E1E',
   lightBlue: '#e4e4e7',
+  green: '#05642B',
 
   // Accent Color
   rose: '#e11d48', // soft red

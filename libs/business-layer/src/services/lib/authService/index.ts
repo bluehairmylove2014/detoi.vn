@@ -54,6 +54,7 @@ export class AuthService extends Services {
   ): Promise<verifyOtpResponseType> => {
     this.abortController = new AbortController();
     try {
+      console.log(data);
       const response = await this.fetchApi<
         typeof verifyOtpResponseSchema,
         verifyOtpResponseType
@@ -65,8 +66,10 @@ export class AuthService extends Services {
         signal: this.abortController.signal,
         transformResponse: (res) => res,
       });
+      console.log(response);
       return response;
     } catch (error) {
+      console.log(error);
       throw this.handleError(error);
     }
   };

@@ -18,6 +18,7 @@ const BaseBtn = ({
   border = 'none',
   borderColor,
   radius = 'square',
+  disabled,
   isFitContent,
   onPress,
 }: baseBtnProps) => {
@@ -45,13 +46,15 @@ const BaseBtn = ({
 
   return (
     <TouchableOpacity
+      disabled={disabled}
       activeOpacity={0.5}
       style={[
         baseBtnStyles.btn,
         radiusBtnStyles[radius],
         borderBtnStyles[border],
         {
-          backgroundColor: btnBackgroundColors[backgroundColor],
+          backgroundColor:
+            btnBackgroundColors[disabled ? 'zinc' : backgroundColor],
           justifyContent: alignItems,
           gap,
           paddingHorizontal: fontSizeBtnConfig[fontSize].paddingHorizontal,

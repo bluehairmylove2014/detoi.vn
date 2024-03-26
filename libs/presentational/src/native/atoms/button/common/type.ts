@@ -15,6 +15,7 @@ export type baseBtnProps = {
   border?: keyof typeof borderBtnStyles;
   borderColor?: keyof typeof btnChildColors;
   radius?: keyof typeof radiusBtnStyles;
+  disabled?: boolean;
   isFitContent?: boolean;
   onPress: (...args: any[]) => void;
 };

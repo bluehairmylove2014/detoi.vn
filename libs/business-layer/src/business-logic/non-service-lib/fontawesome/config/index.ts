@@ -45,6 +45,10 @@ import {
   faPhone,
   faChevronRight,
   faChevronLeft,
+  faStopwatch,
+  faFileCircleQuestion,
+  faCheck,
+  faX,
   faWallet,
   faBusinessTime,
 } from '@fortawesome/free-solid-svg-icons';
@@ -119,6 +123,10 @@ export const NATIVE_ICONS = {
   faPhone,
   faChevronRight,
   faChevronLeft,
+  faStopwatch,
+  faFileCircleQuestion,
+  faCheck,
+  faX,
 };
 
 export type nativeIconNameType = keyof typeof NATIVE_ICONS;

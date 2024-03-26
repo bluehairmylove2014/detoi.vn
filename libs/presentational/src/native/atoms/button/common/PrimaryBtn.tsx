@@ -9,6 +9,7 @@ export const PrimaryBtn = ({
   gap,
   radius,
   isFitContent,
+  disabled,
   onPress,
 }: Omit<
   baseBtnProps,
@@ -27,6 +28,7 @@ export const PrimaryBtn = ({
       backgroundColor="secondary"
       isFitContent={isFitContent}
       border="none"
+      disabled={disabled}
       alignItems="center"
     />
   );
