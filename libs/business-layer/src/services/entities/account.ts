@@ -44,6 +44,19 @@ export const CustomerAccountDetailSchema = z.object({
   memberPoint: z.number(),
 });
 
+export interface IFreelancerPreview {
+  id: string;
+  fullName: string;
+  avatar: string;
+  balance: number;
+}
+export const FreelancerPreviewSchema = z.object({
+  id: z.string(),
+  fullName: z.string(),
+  avatar: z.string(),
+  balance: z.number(),
+});
+
 export interface IFreelancerAccountDetail {
   accountId: string;
   account: IAccountDetail;

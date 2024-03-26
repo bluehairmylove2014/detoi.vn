@@ -5,3 +5,4 @@ export * from './categoryService';
 export * from './geocodeService';
 export * from './orderService';
 export * from './ratingService';
+export * from './accountService';

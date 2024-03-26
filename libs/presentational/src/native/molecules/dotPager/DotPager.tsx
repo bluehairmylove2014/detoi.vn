@@ -14,6 +14,7 @@ export const DotPager = React.memo(
       <React.Fragment>
         {Array.from({ length: numberDot }).map((_, indexDot) => (
           <View
+            key={indexDot}
             style={{
               height: 15,
               width: 15,

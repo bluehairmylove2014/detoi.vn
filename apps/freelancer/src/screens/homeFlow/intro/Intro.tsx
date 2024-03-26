@@ -15,19 +15,34 @@ import {
 } from './styles';
 import { freelancerIntroGreeting } from '@constants/freelancerIntroGreeting';
 import { DotPager } from '@present-native/molecules';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { freelancerScreensList } from '@constants/freelancerScreens';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import { useIsLogged } from '@business-layer/business-logic/lib/auth';
 
-const Intro = React.memo(() => {
+const Intro: React.FC<
+  NativeStackScreenProps<freelancerScreensList, 'Intro'>
+> = ({ route, navigation }) => {
   const [indexPagination, setIndexPaginations] = useState<number>(0);
-
+  const { navigateToScreenInSameStack, navigateToScreenInDifferentStack } =
+    useAuthNavigation();
+  const isLogged = useIsLogged();
   const handleBackPage = React.useCallback(() => {
     setIndexPaginations((prevIndex) => prevIndex - 1);
   }, [setIndexPaginations]);
 
   const handleNextPage = React.useCallback(() => {
+    if (indexPagination + 1 === freelancerIntroGreeting.length) {
+      isLogged
+        ? navigateToScreenInSameStack('Home')
+        : navigateToScreenInDifferentStack('AuthStack', 'Login');
+      return;
+    }
     setIndexPaginations((prevIndex) =>
       prevIndex + 1 < freelancerIntroGreeting.length ? prevIndex + 1 : prevIndex
     );
-  }, [setIndexPaginations]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [indexPagination]);
 
   return (
     <SafeAreaView style={introScreenStyles.container}>
@@ -44,7 +59,7 @@ const Intro = React.memo(() => {
               <Title theme="largeBold" align="center" color="primary">
                 {freelancerIntroGreeting[indexPagination].title}
               </Title>
-              <Paragraph align="center" theme="smallRegular">
+              <Paragraph align="center" theme="smallRegular" color="primary">
                 {freelancerIntroGreeting[indexPagination].description}
               </Paragraph>
             </View>
@@ -83,6 +98,6 @@ const Intro = React.memo(() => {
       </View>
     </SafeAreaView>
   );
-});
+};
 
 export default Intro;

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ActivityIndicator, Switch, Text, View } from 'react-native';
+import { ActivityIndicator, Switch, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { freelancerScreensList } from '@constants/freelancerScreens';
@@ -29,33 +29,45 @@ import {
 } from '@present-native/styles';
 import { ORDER_MARKETPLACE_SORT_CRITERIA } from '@constants/orderMarketplaceSortCriteria';
 import EmptyBoxWithLabel from '@present-native/molecules/empty/EmptyBoxWithLabel';
+import { PreviewCardOrder } from '@present-native/molecules';
+import { orderListMockData } from './__mock__';
+import { IOrderDetail } from '@business-layer/services/entities';
+import { formatCurrency, generateBoxShadowStyle } from '@utils/helpers';
+import { useGetFreelancerPreviewData } from '@business-layer/business-logic/lib/account';
+import { useGetFreelancerIncomingOrders } from '@business-layer/business-logic/lib/order';
 
 const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
   route,
   navigation,
 }) => {
   const { navigateToScreenInSameStack } = useAuthNavigation();
+  const { data: freelancerPreviewData } = useGetFreelancerPreviewData();
+  const { data: incomingOrders } = useGetFreelancerIncomingOrders();
   const [currentMarketplaceSortCriteria, setCurrentMarketplaceSortCriteria] =
     useState(ORDER_MARKETPLACE_SORT_CRITERIA[0]);
-  const [marketplaceOrders, setMarketplaceOrders] = useState<[] | undefined>(
-    undefined
-  );
+  const [isAutoFindingJob, setIsAutoFindingJob] = useState<boolean>(false);
+  const [marketplaceOrders, setMarketplaceOrders] = useState<
+    IOrderDetail[] | undefined
+  >(undefined);
 
   function handleChangeSortCriteria(criteria: { id: string; name: string }) {
     setCurrentMarketplaceSortCriteria(criteria);
   }
+  function toggleSwitch() {
+    setIsAutoFindingJob((previousState) => !previousState);
+  }
 
   useEffect(() => {
     setTimeout(() => {
-      setMarketplaceOrders([]);
+      setMarketplaceOrders(orderListMockData);
     }, 5000);
   }, []);
 
   return (
     <FreelancerTemplate>
       <View style={homeScreenStyle.container}>
-        <FreelancerHeader />
-        <FreelancerCardOrderList />
+        <FreelancerHeader freelancerPreviewData={freelancerPreviewData} />
+        <FreelancerCardOrderList orders={incomingOrders} />
         <VerticalSpacer size="l" />
         {/* Interaction View  -------------------------------------------- */}
         <View style={homeScreenStyle.interactionView}>
@@ -77,9 +89,13 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
                     style={{ opacity: 0.7 }}
                   />
                 </Paragraph>
-                <Paragraph theme="largeBold" color="primary" lineNumber={1}>
-                  3.526.000 đ
-                </Paragraph>
+                {freelancerPreviewData ? (
+                  <Paragraph theme="largeBold" color="primary" lineNumber={1}>
+                    {formatCurrency(freelancerPreviewData.balance, 'vnd')}
+                  </Paragraph>
+                ) : (
+                  <ActivityIndicator />
+                )}
               </View>
             </View>
             <View
@@ -110,16 +126,43 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
               />
             </View>
           </View>
-          <View style={[homeScreenStyle.jobSettingView, commonShadow.top]}>
-            <View>
+          <View
+            style={[
+              homeScreenStyle.jobSettingView,
+              generateBoxShadowStyle(-2, 4, '#171717', 0.2, 3, 4, '#171717')
+                .boxShadow,
+            ]}
+          >
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
               <View style={homeScreenStyle.jobSettingRowCenter}>
                 <FAIcon iconName="faBusinessTime" color={COLOR_PALETTE.black} />
                 <Paragraph theme="smallBold" color="black">
                   Bật tìm việc
                 </Paragraph>
               </View>
+              <VerticalSpacer size="m" />
               <View style={[homeScreenStyle.jobSettingRowCenter]}>
-                <Switch />
+                <Switch
+                  trackColor={{
+                    false: COLOR_PALETTE.gray,
+                    true: COLOR_PALETTE.soft,
+                  }}
+                  thumbColor={
+                    isAutoFindingJob
+                      ? COLOR_PALETTE.secondary
+                      : COLOR_PALETTE.zinc
+                  }
+                  ios_backgroundColor={COLOR_PALETTE.gray}
+                  onValueChange={toggleSwitch}
+                  value={isAutoFindingJob}
+                />
               </View>
             </View>
           </View>
@@ -153,14 +196,16 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
                 </React.Fragment>
               ) : (
                 <React.Fragment key={sc.id}>
-                  <SecondaryBtn
-                    key={sc.id}
-                    title={sc.name}
-                    onPress={() => handleChangeSortCriteria(sc)}
-                    fontSize="small"
-                    radius="full"
-                    isFitContent={true}
-                  />
+                  <View style={{ opacity: 0.5 }}>
+                    <SecondaryBtn
+                      key={sc.id}
+                      title={sc.name}
+                      onPress={() => handleChangeSortCriteria(sc)}
+                      fontSize="small"
+                      radius="full"
+                      isFitContent={true}
+                    />
+                  </View>
                   <HorizontalSpacer size="m" />
                 </React.Fragment>
               )
@@ -170,7 +215,14 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
         <VerticalSpacer size="l" />
         <View style={homeScreenStyle.innerContentWrapper}>
           {Array.isArray(marketplaceOrders) ? (
-            marketplaceOrders.length > 0 ? null : (
+            marketplaceOrders.length > 0 ? (
+              marketplaceOrders.map((orderDetail) => (
+                <React.Fragment key={orderDetail.id}>
+                  <VerticalSpacer size="l" />
+                  <PreviewCardOrder orderDetail={orderDetail} />
+                </React.Fragment>
+              ))
+            ) : (
               <>
                 <VerticalSpacer size="xxl" />
                 <EmptyBoxWithLabel />
