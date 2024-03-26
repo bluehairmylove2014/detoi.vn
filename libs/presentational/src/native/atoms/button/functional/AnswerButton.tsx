@@ -51,7 +51,7 @@ const AnswerButton = ({
 
   return (
     <TouchableOpacity
-      disabled={status !== statusAnswer.normal ? true : false}
+      disabled={status !== statusAnswer.normal}
       onPress={onPress}
       style={{
         ...commonButtonStyles.answerBtn,

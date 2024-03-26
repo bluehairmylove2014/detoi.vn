@@ -11,6 +11,8 @@ import {
   VerticalSpacer,
 } from '@present-native/atoms';
 import FreelancerTemplate from '@present-native/templates/FreelancerTemplate';
+import successImage from '@assets/successTest.png';
+import failImage from '@assets/failImage.png';
 
 const TestResult: React.FC<
   NativeStackScreenProps<freelancerScreensList, 'TestResult'>
@@ -26,9 +28,9 @@ const TestResult: React.FC<
             <View>
               <View style={{ alignItems: 'center' }}>
                 {isSuccess ? (
-                  <SquareImage source={require('@constants/successTest.png')} />
+                  <SquareImage source={successImage} />
                 ) : (
-                  <SquareImage source={require('@constants/failTest.png')} />
+                  <SquareImage source={failImage} />
                 )}
               </View>
 
