@@ -1,5 +1,5 @@
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IOrderDetail } from '@business-layer/services/entities';
 import { freelancerCardOrderStyles } from './styles';
 import { OverlayColor, Paragraph } from '@present-native/atoms';
@@ -14,6 +14,16 @@ export const FreelancerCardOrder: React.FC<props> = ({
   orderData,
   width = '100%',
 }) => {
+  const [orderStatus, setOrderStatus] = useState<string>(
+    'Đang lấy dữ liệu đơn...'
+  );
+
+  useEffect(() => {
+    if (orderData === null) {
+      setOrderStatus('Sắp tới không có đơn!');
+    }
+  }, [orderData]);
+
   return (
     <TouchableOpacity
       activeOpacity={0.9}
@@ -89,7 +99,7 @@ export const FreelancerCardOrder: React.FC<props> = ({
                 </>
               ) : (
                 <Paragraph theme="smallBold" color="white" lineNumber={1}>
-                  Không có đơn nào!
+                  {orderStatus}
                 </Paragraph>
               )}
             </View>

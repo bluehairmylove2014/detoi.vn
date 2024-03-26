@@ -18,28 +18,31 @@ import { DotPager } from '@present-native/molecules';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { freelancerScreensList } from '@constants/freelancerScreens';
 import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import { useIsLogged } from '@business-layer/business-logic/lib/auth';
 
-
-const Intro: React.FC<NativeStackScreenProps<freelancerScreensList, 'Intro'>> = ({
-  route,
-  navigation,
-}) => {
-
+const Intro: React.FC<
+  NativeStackScreenProps<freelancerScreensList, 'Intro'>
+> = ({ route, navigation }) => {
   const [indexPagination, setIndexPaginations] = useState<number>(0);
-  const { navigateToScreenInSameStack } = useAuthNavigation();
+  const { navigateToScreenInSameStack, navigateToScreenInDifferentStack } =
+    useAuthNavigation();
+  const isLogged = useIsLogged();
   const handleBackPage = React.useCallback(() => {
     setIndexPaginations((prevIndex) => prevIndex - 1);
   }, [setIndexPaginations]);
 
   const handleNextPage = React.useCallback(() => {
-    if(indexPagination + 1 ===  freelancerIntroGreeting.length){
-      navigateToScreenInSameStack('Home')
+    if (indexPagination + 1 === freelancerIntroGreeting.length) {
+      isLogged
+        ? navigateToScreenInSameStack('Home')
+        : navigateToScreenInDifferentStack('AuthStack', 'Login');
       return;
     }
     setIndexPaginations((prevIndex) =>
       prevIndex + 1 < freelancerIntroGreeting.length ? prevIndex + 1 : prevIndex
     );
-  }, [indexPagination, navigateToScreenInSameStack]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [indexPagination]);
 
   return (
     <SafeAreaView style={introScreenStyles.container}>
@@ -56,7 +59,7 @@ const Intro: React.FC<NativeStackScreenProps<freelancerScreensList, 'Intro'>> = 
               <Title theme="largeBold" align="center" color="primary">
                 {freelancerIntroGreeting[indexPagination].title}
               </Title>
-              <Paragraph align="center" theme="smallRegular" color='primary'>
+              <Paragraph align="center" theme="smallRegular" color="primary">
                 {freelancerIntroGreeting[indexPagination].description}
               </Paragraph>
             </View>
