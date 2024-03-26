@@ -12,7 +12,7 @@ import {
 } from '@present-native/atoms';
 import FreelancerTemplate from '@present-native/templates/FreelancerTemplate';
 import successImage from '@assets/successTest.png';
-import failImage from '@assets/failImage.png';
+import failImage from '@assets/failTest.png';
 
 const TestResult: React.FC<
   NativeStackScreenProps<freelancerScreensList, 'TestResult'>
