@@ -14,7 +14,12 @@ import { useAuthNavigation } from '@business-layer/business-logic/non-service-li
 import { TestInProgressStyle } from './styles';
 import FreelancerTemplate from '@present-native/templates/FreelancerTemplate';
 
-export type statusAnswerType = 'normal' | 'correct' | 'wrong' | 'noneSelect';
+export enum statusAnswer {
+  normal,
+  correct,
+  wrong,
+  noneSelect,
+}
 
 const TestInProgress: React.FC<
   NativeStackScreenProps<freelancerScreensList, 'TestInProgress'>
@@ -26,11 +31,11 @@ const TestInProgress: React.FC<
   const [currentPoint, setCurrentPoint] = useState(0);
   const { navigateToScreenInSameStack } = useAuthNavigation();
 
-  const [stateAnswerList, setStateAnswerList] = useState<statusAnswerType[]>([
-    'normal',
-    'normal',
-    'normal',
-    'normal',
+  const [stateAnswerList, setStateAnswerList] = useState<statusAnswer[]>([
+    statusAnswer.normal,
+    statusAnswer.normal,
+    statusAnswer.normal,
+    statusAnswer.normal,
   ]);
   const opacity = useRef(new Animated.Value(1)).current;
 
@@ -44,16 +49,16 @@ const TestInProgress: React.FC<
       setCurrentPoint(
         currentPoint + test.quizQuestions[indexQuestionCurrent].point
       );
-      newStateAnswerList[indexAnswerCurrent] = 'correct';
-    } else newStateAnswerList[indexAnswerCurrent] = 'wrong';
+      newStateAnswerList[indexAnswerCurrent] = statusAnswer.correct;
+    } else newStateAnswerList[indexAnswerCurrent] = statusAnswer.wrong;
 
     test.quizQuestions[indexQuestionCurrent].answers.map(
       // eslint-disable-next-line array-callback-return
       (stateAnswer, index) => {
         if (index !== indexAnswerCurrent) {
           newStateAnswerList[index] = stateAnswer.isCorrect
-            ? 'correct'
-            : 'noneSelect';
+            ? statusAnswer.correct
+            : statusAnswer.noneSelect;
         }
       }
     );
@@ -61,7 +66,7 @@ const TestInProgress: React.FC<
     setStateAnswerList(newStateAnswerList);
   };
 
-  const checkPoint = (point: number) => {
+  const checkPoint = () => {
     navigateToScreenInSameStack('TestResult', {
       params: {
         isSuccess: currentPoint === pointToPass,
@@ -83,13 +88,13 @@ const TestInProgress: React.FC<
         test.quizQuestions[indexQuestionCurrent].answers.map(
           // eslint-disable-next-line array-callback-return
           (stateAnswer, index) => {
-            newStateAnswerList[index] = 'normal';
+            newStateAnswerList[index] = statusAnswer.normal;
           }
         );
 
         setStateAnswerList(newStateAnswerList);
         setIndexQuestionCurrent(indexQuestionCurrent + 1);
-      } else checkPoint(currentPoint);
+      } else checkPoint();
 
       Animated.timing(opacity, {
         toValue: 1,
@@ -105,7 +110,7 @@ const TestInProgress: React.FC<
       setTimerCount((prevTimerCount) => {
         if (prevTimerCount === 1) {
           clearInterval(interval);
-          checkPoint(currentPoint);
+          checkPoint();
         }
         return prevTimerCount - 1;
       });
@@ -183,7 +188,9 @@ const TestInProgress: React.FC<
                       onPress={handleNextQuestion}
                       fontSize="medium"
                       disabled={
-                        !stateAnswerList.every((status) => status !== 'normal')
+                        !stateAnswerList.every(
+                          (status) => status !== statusAnswer.normal
+                        )
                       }
                     />
                   </View>

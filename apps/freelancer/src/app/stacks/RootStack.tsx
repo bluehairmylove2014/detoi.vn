@@ -48,7 +48,7 @@ export const RootStack = ({ isLogged }: { isLogged: boolean }) => {
               headerShown: false,
             }}
           >
-            {() => <TestStack />}
+            {() => <TestStack isLogged={isLogged} />}
           </GlobalStack.Screen>
         </GlobalStack.Group>
       </GlobalStack.Navigator>
