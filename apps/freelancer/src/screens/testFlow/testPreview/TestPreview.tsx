@@ -39,89 +39,91 @@ const TestPreview: React.FC<
 
   return (
     <FreelancerTemplate>
-      <SafeAreaView style={testPreviewStyle.safeAreaStyle}>
-        <View style={testPreviewStyle.container}>
-          <Title theme="largeBold" color="primary">
-            {reviewInfo.title}
-          </Title>
+      <View style={testPreviewStyle.safeAreaContainer}>
+        <SafeAreaView>
+          <View style={testPreviewStyle.container}>
+            <Title theme="largeBold" color="primary">
+              {reviewInfo.title}
+            </Title>
 
-          <VerticalSpacer size="s" />
-          <Paragraph theme="smallMedium" color="primary">
-            {reviewInfo.description}
-          </Paragraph>
-
-          <VerticalSpacer size="xl" />
-          {test === undefined ? (
-            <View style={testPreviewStyle.loaderContain}>
-              <ActivityIndicator size="large" color={COLOR_PALETTE.primary} />
-              <VerticalSpacer size="m" />
-              <Paragraph theme="baseBold" color="primary">
-                Bộ đề đang được tải
-              </Paragraph>
-            </View>
-          ) : (
-            <View>
-              <View style={testPreviewStyle.flexRowCenterItem}>
-                <View style={testPreviewStyle.flexRowCenterItem}>
-                  <View style={testPreviewStyle.iconContainer}>
-                    <FAIcon
-                      iconName="faFileCircleQuestion"
-                      color={COLOR_PALETTE.primary}
-                      size={17}
-                    />
-                  </View>
-                  <HorizontalSpacer size="m" />
-                  <Paragraph theme="baseBold" color="primary">
-                    {test.totalQuestion} câu hỏi
-                  </Paragraph>
-                </View>
-
-                <HorizontalSpacer size="xxxl" />
-
-                <View style={testPreviewStyle.flexRowCenterItem}>
-                  <View style={testPreviewStyle.iconContainer}>
-                    <FAIcon
-                      iconName="faStopwatch"
-                      color={COLOR_PALETTE.primary}
-                      size={17}
-                    />
-                  </View>
-                  <HorizontalSpacer size="m" />
-                  <Paragraph theme="baseBold" color="primary">
-                    {test.totalTime / 60} phút
-                  </Paragraph>
-                </View>
-              </View>
-
-              <VerticalSpacer size="xl" />
-              <PrimaryBtn
-                radius="full"
-                title="Bắt đầu ngay"
-                onPress={() =>
-                  navigateToScreenInSameStack('TestInProgress', {
-                    params: {
-                      test: test,
-                      pointToPass: HAPPY_POINT,
-                    },
-                  })
-                }
-                isFitContent={true}
-              />
-            </View>
-          )}
-
-          <VerticalSpacer size="xl" />
-          <BaseLink screen="Home">
-            <Paragraph
-              theme="smallMedium"
-              align="center"
-              decoration="underline"
-            >
-              Tôi sẽ làm sau
+            <VerticalSpacer size="s" />
+            <Paragraph theme="smallMedium" color="primary">
+              {reviewInfo.description}
             </Paragraph>
-          </BaseLink>
-        </View>
-      </SafeAreaView>
+
+            <VerticalSpacer size="xl" />
+            {test === undefined ? (
+              <View style={testPreviewStyle.loaderContain}>
+                <ActivityIndicator size="large" color={COLOR_PALETTE.primary} />
+                <VerticalSpacer size="m" />
+                <Paragraph theme="baseBold" color="primary">
+                  Bộ đề đang được tải
+                </Paragraph>
+              </View>
+            ) : (
+              <View>
+                <View style={testPreviewStyle.flexRowCenterItem}>
+                  <View style={testPreviewStyle.flexRowCenterItem}>
+                    <View style={testPreviewStyle.iconContainer}>
+                      <FAIcon
+                        iconName="faFileCircleQuestion"
+                        color={COLOR_PALETTE.primary}
+                        size={17}
+                      />
+                    </View>
+                    <HorizontalSpacer size="m" />
+                    <Paragraph theme="baseBold" color="primary">
+                      {test.totalQuestion} câu hỏi
+                    </Paragraph>
+                  </View>
+
+                  <HorizontalSpacer size="xxxl" />
+
+                  <View style={testPreviewStyle.flexRowCenterItem}>
+                    <View style={testPreviewStyle.iconContainer}>
+                      <FAIcon
+                        iconName="faStopwatch"
+                        color={COLOR_PALETTE.primary}
+                        size={17}
+                      />
+                    </View>
+                    <HorizontalSpacer size="m" />
+                    <Paragraph theme="baseBold" color="primary">
+                      {test.totalTime / 60} phút
+                    </Paragraph>
+                  </View>
+                </View>
+
+                <VerticalSpacer size="xl" />
+                <PrimaryBtn
+                  radius="full"
+                  title="Bắt đầu ngay"
+                  onPress={() =>
+                    navigateToScreenInSameStack('TestInProgress', {
+                      params: {
+                        test: test,
+                        pointToPass: HAPPY_POINT,
+                      },
+                    })
+                  }
+                  isFitContent={true}
+                />
+              </View>
+            )}
+
+            <VerticalSpacer size="xl" />
+            <BaseLink screen="Home">
+              <Paragraph
+                theme="smallMedium"
+                align="center"
+                decoration="underline"
+              >
+                Tôi sẽ làm sau
+              </Paragraph>
+            </BaseLink>
+          </View>
+        </SafeAreaView>
+      </View>
     </FreelancerTemplate>
   );
 };

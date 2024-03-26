@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '@constants/dimension';
 
 const TestResultStyle = StyleSheet.create({
-  safeAreaStyle: {
+  safeAreaContainer: {
     backgroundColor: COLOR_PALETTE.soft,
     height: windowHeight,
   },
