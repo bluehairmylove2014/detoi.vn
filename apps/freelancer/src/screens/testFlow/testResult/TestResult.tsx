@@ -1,7 +1,6 @@
 import { SafeAreaView, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { freelancerScreensList } from '@constants/freelancerScreens';
-import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { TestResultStyle } from './styles';
 import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
 import {
@@ -11,6 +10,7 @@ import {
   Title,
   VerticalSpacer,
 } from '@present-native/atoms';
+import FreelancerTemplate from '@present-native/templates/FreelancerTemplate';
 
 const TestResult: React.FC<
   NativeStackScreenProps<freelancerScreensList, 'TestResult'>
@@ -19,7 +19,7 @@ const TestResult: React.FC<
   const { navigateToScreenInDifferentStack } = useAuthNavigation();
 
   return (
-    <CustomerTemplate>
+    <FreelancerTemplate>
       <SafeAreaView style={TestResultStyle.safeAreaStyle}>
         <View style={TestResultStyle.container}>
           <View>
@@ -61,7 +61,7 @@ const TestResult: React.FC<
           </View>
         </View>
       </SafeAreaView>
-    </CustomerTemplate>
+    </FreelancerTemplate>
   );
 };
 

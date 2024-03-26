@@ -1,7 +1,6 @@
 import { freelancerScreensList } from '@constants/freelancerScreens';
-import CustomerTemplate from '@present-native/templates/CustomerTemplate';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Animated, Easing, View } from 'react-native';
+import { Animated, Easing, SafeAreaView, View } from 'react-native';
 import {
   AnswerButton,
   Paragraph,
@@ -13,7 +12,7 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
 import { TestInProgressStyle } from './styles';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import FreelancerTemplate from '@present-native/templates/FreelancerTemplate';
 
 export type statusAnswerType = 'normal' | 'correct' | 'wrong' | 'noneSelect';
 
@@ -117,7 +116,7 @@ const TestInProgress: React.FC<
   }, []);
 
   return (
-    <CustomerTemplate>
+    <FreelancerTemplate>
       <SafeAreaView style={TestInProgressStyle.safeAreaStyle}>
         <View style={TestInProgressStyle.container}>
           <Title theme="largeBold" color="primary">
@@ -192,7 +191,7 @@ const TestInProgress: React.FC<
           </Animated.View>
         </View>
       </SafeAreaView>
-    </CustomerTemplate>
+    </FreelancerTemplate>
   );
 };
 

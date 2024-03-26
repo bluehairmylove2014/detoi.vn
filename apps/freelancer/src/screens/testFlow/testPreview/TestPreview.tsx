@@ -1,4 +1,4 @@
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, SafeAreaView, View } from 'react-native';
 import React, { useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { freelancerScreensList } from '@constants/freelancerScreens';
@@ -16,7 +16,6 @@ import { useAuthNavigation } from '@business-layer/business-logic/non-service-li
 import { testPreviewStyle } from './styles';
 import { Test } from './mock';
 import FreelancerTemplate from '@present-native/templates/FreelancerTemplate';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { ITest } from '@business-layer/services/entities';
 
 const reviewInfo = {
