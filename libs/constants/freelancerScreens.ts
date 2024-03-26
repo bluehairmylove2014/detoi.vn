@@ -1,4 +1,4 @@
-import { ITest } from '@business-layer/services/entities';
+import { IOrderDetail, ITest } from '@business-layer/services/entities';
 
 export type freelancerScreensList = {
   Home: undefined;
@@ -9,7 +9,7 @@ export type freelancerScreensList = {
   Message: undefined;
   OrdersList: undefined;
   Account: undefined;
-  BookingDetail: undefined;
+  BookingDetail: { orderDetail: IOrderDetail };
 
   TestPreview: undefined;
   TestInProgress: { test: ITest; pointToPass: number };

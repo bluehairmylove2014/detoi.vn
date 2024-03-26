@@ -24,3 +24,12 @@ export const y_textArea = y
   .string()
   .required('Không được để trống nội dung')
   .max(1000, 'Nội dung tối đa 1000 ký tự');
+
+export const y_money = y
+  .number()
+  .required('Không được để trống mật khẩu')
+  .min(50000, 'Số tiền cần lớn hơn 50.000đ');
+
+export const moneyInputSchema = y.object({
+  money: y_money,
+});

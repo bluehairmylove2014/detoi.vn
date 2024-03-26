@@ -16,7 +16,7 @@ const ServiceRequirementsInputStyle = StyleSheet.create({
 
   input: {
     width: '100%',
-    paddingVertical: 10,
+    paddingVertical: 5,
     borderBottomWidth: 1,
   },
 });
@@ -60,7 +60,12 @@ const reviewTextareaStyles = StyleSheet.create({
     borderStyle: 'solid',
     borderWidth: 1,
     borderRadius: 10,
-  }
+  },
 });
 
-export { ServiceRequirementsInputStyle, paymentMethodStyles, textAreaStyles, reviewTextareaStyles };
+export {
+  ServiceRequirementsInputStyle,
+  paymentMethodStyles,
+  textAreaStyles,
+  reviewTextareaStyles,
+};

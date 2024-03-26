@@ -27,8 +27,17 @@ const BookingDetailStyle = StyleSheet.create({
   },
 
   serviceInfoContainer: {
+    paddingBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: COLOR_PALETTE.zinc,
+  },
+
+  serviceInfoContentContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+  },
+
+  serviceDetailContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
   },
 });

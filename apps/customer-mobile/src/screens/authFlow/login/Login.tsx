@@ -55,7 +55,7 @@ const Login: React.FC<NativeStackScreenProps<customerScreensList, 'Login'>> = ({
   const { navigateToScreenInSameStack } = useAuthNavigation();
 
   const [activeErrorBox, setActiveErrorBox] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string>();
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const { handleSubmit, setValue, control } = useForm<phoneInputFormType>({
     defaultValues: {
       phone: '',
@@ -179,7 +179,8 @@ const Login: React.FC<NativeStackScreenProps<customerScreensList, 'Login'>> = ({
       <MessageBox
         message={errorMessage}
         isActive={activeErrorBox}
-        onClose={() => setActiveErrorBox(false)}
+        confirmTitle="Tôi hiểu rồi"
+        onPressConfirm={() => setActiveErrorBox(false)}
       />
     </AuthTemplate>
   );

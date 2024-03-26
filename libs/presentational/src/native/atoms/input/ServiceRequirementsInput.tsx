@@ -19,6 +19,8 @@ export const ServiceRequirementsInput = ({
   control,
   inputName,
   isError,
+  note,
+  handleEndEditing,
 }: {
   type: 'text' | 'number';
   label: string;
@@ -27,6 +29,8 @@ export const ServiceRequirementsInput = ({
   control: Control<FieldValues, any, FieldValues>;
   inputName: string;
   isError: boolean;
+  note?: string;
+  handleEndEditing?: () => void;
 }) => {
   const themeColor = isError ? COLOR_PALETTE.rose : COLOR_PALETTE.black;
   return (
@@ -68,11 +72,12 @@ export const ServiceRequirementsInput = ({
             }
             selectionColor={themeColor}
             keyboardType={type === 'number' ? 'numeric' : 'default'}
-            maxLength={type === 'number' ? 4 : 255}
+            maxLength={type === 'number' ? 50 : 255}
             {...field}
             onChangeText={(value) => {
               field.onChange(value);
             }}
+            onEndEditing={handleEndEditing}
           />
         )}
       />
