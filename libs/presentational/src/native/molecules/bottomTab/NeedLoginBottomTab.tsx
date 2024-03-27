@@ -9,7 +9,7 @@ function NeedLoginBottomTab() {
   const navigation = useNavigation();
   const { navigateToScreenInDifferentStack } = useAuthNavigation();
   return (
-    <View style={[needLoginBottomTabStyle.container, commonShadow.top]}>
+    <View style={[needLoginBottomTabStyle.container, commonShadow.shadowSm]}>
       <View style={needLoginBottomTabStyle.innerPadding}>
         <View style={needLoginBottomTabStyle.buttonWrapper}>
           <SecondaryBtn

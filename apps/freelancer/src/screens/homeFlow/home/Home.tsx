@@ -88,7 +88,7 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
         <VerticalSpacer size="l" />
         {/* Interaction View  -------------------------------------------- */}
         <View style={homeScreenStyle.interactionView}>
-          <View style={[homeScreenStyle.balanceView, commonShadow.top]}>
+          <View style={[homeScreenStyle.balanceView, commonShadow.shadowSm]}>
             {/* Balance view goes here */}
             <View>
               <View
@@ -143,13 +143,7 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
               />
             </View>
           </View>
-          <View
-            style={[
-              homeScreenStyle.jobSettingView,
-              generateBoxShadowStyle(-2, 4, '#171717', 0.2, 3, 4, '#171717')
-                .boxShadow,
-            ]}
-          >
+          <View style={[homeScreenStyle.jobSettingView, commonShadow.shadowSm]}>
             <View
               style={{
                 display: 'flex',
