@@ -85,3 +85,12 @@ export const freelancerHeaderStyles = StyleSheet.create({
     width: 60,
   },
 });
+
+
+export const headerWithTitleStyles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  }
+});

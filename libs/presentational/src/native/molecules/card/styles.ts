@@ -23,7 +23,6 @@ export const ServiceCardSectionStyle = StyleSheet.create({
 export const freelancerCardOrderStyles = StyleSheet.create({
   container: {
     height: 200,
-    width:"92%",
     borderRadius: 10,
     overflow: 'hidden',
   },
@@ -66,7 +65,6 @@ export const freelancerCardOrderStyles = StyleSheet.create({
 export const freelancerCardAuctionStyles = StyleSheet.create({
   container: {
     height:200,
-    width:"92%",
     borderRadius: 10,
     overflow: 'hidden',
   },

@@ -3,29 +3,32 @@ import { freelancerOrdersListStackParams } from '@constants/freelancerScreens';
 
 // Import screen component here
 import OrdersListScreen from '../../../screens/ordersFlow/OrdersList/OrdersList';
-import OrderManagementScreen from '../../../screens/ordersFlow/OrderManagement/OrderManagement';
-import OrderManagementNextScreen from '../../../screens/ordersFlow/OrderManagementNext/OrderManagementNext';
+import AuctioningOrdersScreen from '../../../screens/ordersFlow/AuctioningOrders/AuctioningOrders';
+import IncomingOrdersScreen from '../../../screens/ordersFlow/IncomingOrders/IncomingOrders';
 
 const Stack = createNativeStackNavigator<freelancerOrdersListStackParams>();
 export const OrdersStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
-    <Stack.Navigator initialRouteName="OrdersList">
+    <Stack.Navigator initialRouteName="IncomingOrders">
       {/* Then, put stack.screen for your screen component here (in the end) */}
       <Stack.Screen
         component={OrdersListScreen}
         name="OrdersList"
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        component={OrderManagementScreen}
-        name="OrderManagement"
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        component={OrderManagementNextScreen}
-        name="OrderManagementNext"
-        options={{ headerShown: false }}
-      />
+
+      {isLogged ? (
+        <Stack.Group key={'order-auth'} screenOptions={{ headerShown: false }}>
+          <Stack.Screen
+            component={IncomingOrdersScreen}
+            name="IncomingOrders"
+          />
+          <Stack.Screen
+            component={AuctioningOrdersScreen}
+            name="AuctioningOrders"
+          />
+        </Stack.Group>
+      ) : null}
     </Stack.Navigator>
   );
 };
