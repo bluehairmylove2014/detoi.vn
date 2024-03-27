@@ -77,7 +77,7 @@ export const BannerFreelancerDetail: React.FC<BannerChooseLocationProps> =
                     fontSize="medium"
                     radius="full"
                     onPress={() => {}}
-                    iconName="faHeart"
+                    iconName="faHeartRegular"
                     borderColor="white"
                   />
                 </View>

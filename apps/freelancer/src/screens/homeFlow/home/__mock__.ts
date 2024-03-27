@@ -35,18 +35,22 @@ export const orderListMockData: IOrderDetail[] = [
       additionalNote: 'none',
       requirement: [
         {
+          icon: 'faCircleInfo',
           key: 'Name',
           value: 'Quạt treo tường',
         },
         {
+          icon: 'faCircleInfo',
           key: 'Size',
           value: 'Vừa',
         },
         {
+          icon: 'faMoneyBill1',
           key: 'Quantity',
           value: '3',
         },
         {
+          icon: 'faPlus',
           key: 'Price',
           value: '0',
         },
@@ -89,18 +93,22 @@ export const orderListMockData: IOrderDetail[] = [
       additionalNote: 'none',
       requirement: [
         {
+          icon: 'faCircleInfo',
           key: 'Name',
           value: 'Quạt treo tường',
         },
         {
+          icon: 'faCircleInfo',
           key: 'Size',
           value: 'Vừa',
         },
         {
+          icon: 'faMoneyBill1',
           key: 'Quantity',
           value: '3',
         },
         {
+          icon: 'faPlus',
           key: 'Price',
           value: '0',
         },

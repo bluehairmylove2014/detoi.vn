@@ -245,7 +245,7 @@ const OnService: React.FC<
                       activeOpacity={0.6}
                     >
                       <View style={{ opacity: 0.7 }}>
-                        <FAIcon iconName="faCommentsSolid" />
+                        <FAIcon iconName="faComments" />
                       </View>
                       <Paragraph theme="baseRegular">
                         Liên hệ với nhân viên...

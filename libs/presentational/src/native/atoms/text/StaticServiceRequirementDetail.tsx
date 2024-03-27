@@ -12,7 +12,7 @@ export const StaticServiceRequirementDetail = ({
   subTitle,
   hightlight = false,
 }: {
-  iconName: nativeIconNameType;
+  iconName: nativeIconNameType | null;
   title: string;
   subTitle?: string;
   hightlight?: boolean;
@@ -20,7 +20,14 @@ export const StaticServiceRequirementDetail = ({
   return (
     <View style={staticServiceRequirementDetailStyles.container}>
       <View style={staticServiceRequirementDetailStyles.lineView}>
-        <FAIcon iconName={iconName} color={COLOR_PALETTE.secondary} size={15} />
+        {iconName ? (
+          <FAIcon
+            iconName={iconName}
+            color={COLOR_PALETTE.secondary}
+            size={15}
+          />
+        ) : null}
+
         <HorizontalSpacer size="m" />
         <Paragraph theme={hightlight ? 'baseBold' : 'baseMedium'}>
           {title}

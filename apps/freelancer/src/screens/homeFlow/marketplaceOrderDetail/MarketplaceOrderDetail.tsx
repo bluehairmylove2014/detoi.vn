@@ -25,6 +25,9 @@ import { useYupValidationResolver } from '@utils/validators/yup';
 import { freelancerMarketplaceOrderDetailForm } from '@utils/validators/yup/schemas';
 import { SERVICE_MIN_PRICE, SERVICE_PLATFORM_FEE_AMOUNT } from '@constants/fee';
 import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
+import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
+import { useProvideOrderQuotation } from '@business-layer/business-logic/realtime';
+import { useGetFreelancerDetail } from '@business-layer/business-logic/lib/account';
 type formType = {
   orderPrice: number;
 };
@@ -50,12 +53,23 @@ const MarketplaceOrderDetail: React.FC<
     resolver: useYupValidationResolver(freelancerMarketplaceOrderDetailForm),
   });
   const orderPriceWatcher = watch('orderPrice');
+  const { onProvideOrderQuotation } = useProvideOrderQuotation();
+  const { data: freelancerDetailData } = useGetFreelancerDetail();
 
   function handleReceiveOrder({ orderPrice }: formType) {
+    if (!freelancerDetailData) {
+      console.error('Freelancer is invalid');
+      return;
+    }
     if (typeof orderPrice === 'number') {
       if (SERVICE_PLATFORM_FEE_AMOUNT * orderPrice > balance) {
         setIsNotAfford(true);
       } else {
+        // HANDLE PROVIDE ORDER QUOTATION
+        onProvideOrderQuotation({
+          freelancerDetail: freelancerDetailData,
+          previewPrice: orderPrice,
+        });
         navigateToScreenInSameStack('ReceiveOrderSuccess');
       }
     } else {
@@ -94,37 +108,26 @@ const MarketplaceOrderDetail: React.FC<
         </View>
 
         <VerticalSpacer size="xl" />
+        <GrayDivider direction="horizontal" />
+        <VerticalSpacer size="xl" />
         {/* Service Detail */}
         <View>
           <Title theme="baseBold" color="primary">
-            Thông tin dịch vụ
+            Dịch vụ: {service.name}
           </Title>
-          <VerticalSpacer size="xl" />
+          <VerticalSpacer size="l" />
           <View style={marketplaceOrderDetailStyles.serviceDetailContainer}>
-            <View style={{ width: 100 }}>
+            {/* <View style={{ width: 100 }}>
               <CircleImage source={{ uri: service.image }} />
-            </View>
+            </View> */}
             <View style={marketplaceOrderDetailStyles.serviceDetailList}>
-              <Paragraph theme="baseBold" align="left">
-                {service.name}
-              </Paragraph>
-              <StaticServiceRequirementDetail
-                iconName="faFlag"
-                title="Dọn nhà theo phòng - 5 phòng"
-              />
-              <StaticServiceRequirementDetail
-                iconName="faLocationDot"
-                title="17:30  |  Thứ 3, ngày 20 - 5 - 2014"
-              />
-              <StaticServiceRequirementDetail
-                iconName="faDog"
-                title="Nhà có thú cưng"
-              />
-              <StaticServiceRequirementDetail
-                iconName="faFlag"
-                title="Yêu cầu thêm cho nhân viên"
-                subTitle="Không có gì..."
-              />
+              {order.services.requirement.map((r) => (
+                <StaticServiceRequirementDetail
+                  iconName={r.icon as nativeIconNameType | null}
+                  title={r.value}
+                  key={r.key}
+                />
+              ))}
             </View>
           </View>
         </View>
@@ -192,6 +195,7 @@ const MarketplaceOrderDetail: React.FC<
         <PrimaryBtn
           title="Báo giá ngay"
           onPress={handleSubmit(handleReceiveOrder)}
+          disabled={!freelancerDetailData}
         />
       </View>
     </FreelancerTemplate>

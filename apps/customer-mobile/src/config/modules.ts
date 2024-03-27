@@ -6,4 +6,5 @@ export const activeModules: moduleKeyList[] = [
   'geocode',
   'blurTheme',
   'order',
+  'realtime',
 ];

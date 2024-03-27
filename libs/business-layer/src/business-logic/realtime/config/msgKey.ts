@@ -1,5 +1,7 @@
-export const MSG_KEYS = {
-  TO_OFFICER: 'SendMessageToOfficer',
-  TO_GUEST: 'SendMessageToGuest',
-  ON_RECEIVE_MESSAGE: 'AddMessage',
+export const FREELANCER_MSG_KEYS = {
+  PROVIDE_QUOTATION: 'SendMessageToCustomer',
+};
+export const CUSTOMER_MSG_KEYS = {
+  LISTEN_MATCHING: 'ReceiveFreelancerResponse',
+  UPDATE_ORDER_STATUS: 'ReceiveFreelancerStatusResponse',
 };

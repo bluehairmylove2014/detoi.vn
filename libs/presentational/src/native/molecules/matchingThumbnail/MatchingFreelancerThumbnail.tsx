@@ -9,12 +9,12 @@ import {
   VerticalSpacer,
 } from '@present-native/atoms';
 import { COLOR_PALETTE } from '@present-native/styles';
-import { IFreelancerAccountDetail } from '@business-layer/services/entities';
+import { IMatchingFreelancerAccountDetail } from '@business-layer/services/entities';
 import { formatCurrency } from '@utils/helpers/MoneyConverter';
 
 type matchingFreelancerDetailProps = {
-  freelancerData: IFreelancerAccountDetail;
-  onPress: (freelancerData: IFreelancerAccountDetail) => void;
+  freelancerData: IMatchingFreelancerAccountDetail;
+  onPress: (freelancerData: IMatchingFreelancerAccountDetail) => void;
 };
 export const MatchingFreelancerThumbnail: React.FC<
   matchingFreelancerDetailProps

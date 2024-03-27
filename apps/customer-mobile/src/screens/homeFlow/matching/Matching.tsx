@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import CustomerTemplate from '@presentational/native/templates/CustomerTemplate';
 import { HeaderWithOrder } from '@present-native/organisms';
-import { IFreelancerAccountDetail } from '@business-layer/services/entities';
+import { IMatchingFreelancerAccountDetail } from '@business-layer/services/entities';
 import {
   OutlineBtn,
   Paragraph,
@@ -15,7 +15,6 @@ import { View } from 'react-native';
 import { matchingStyles } from './styles';
 
 import { MatchingFreelancerThumbnail } from '@present-native/molecules';
-import { matchingFreelancerMockData } from './__mock__';
 import { windowHeight } from '@constants/dimension';
 import { HEADER_HEIGHT } from '@present-native/styles';
 import ModalWrapper from '@present-native/templates/ModalWrapper';
@@ -29,6 +28,7 @@ import { useGetMatchingOrderDetail } from '@business-layer/business-logic/lib/or
 import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { customerScreensList } from '@constants/customerScreens';
+import { useListenMatching } from '@business-layer/business-logic/realtime';
 
 const DEFAULT_FILTER_CRITERIA = MatchingFilterCriteriaID.All;
 const DEFAULT_SORT_CRITERIA = MatchingSortCriteriaID.Default;
@@ -39,20 +39,21 @@ const Matching: React.FC<
   const { navigateToScreenInSameStack } = useAuthNavigation();
   const { data: order } = useGetMatchingOrderDetail();
   const [matchingFreelancersRealTime, setMatchingFreelancersRealTime] =
-    useState<IFreelancerAccountDetail[]>([]);
+    useState<IMatchingFreelancerAccountDetail[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [freelancers, setFreelancers] = useState<IFreelancerAccountDetail[]>(
-    []
-  );
+  const [freelancers, setFreelancers] = useState<
+    IMatchingFreelancerAccountDetail[]
+  >([]);
   const [isFilterActive, setIsFilterActive] = useState<boolean>(false);
   const [filterCriteriaId, setFilterCriteriaId] =
     useState<MatchingFilterCriteriaID>(DEFAULT_FILTER_CRITERIA);
   const [sortCriteriaId, setSortCriteriaId] = useState<MatchingSortCriteriaID>(
     DEFAULT_SORT_CRITERIA
   );
+  const { onListenMatching } = useListenMatching();
 
   function handlePressFreelancerThumbnail(
-    freelancerData: IFreelancerAccountDetail
+    freelancerData: IMatchingFreelancerAccountDetail
   ) {
     if (!order) {
       console.error('ERROR: Order is invalid');
@@ -79,26 +80,14 @@ const Matching: React.FC<
   function selectSortCriteria(id: MatchingSortCriteriaID) {
     setSortCriteriaId(id);
   }
-  function handleFilter(id: string, sorts: string) {}
   function handleResetFilterAndSortCriteria() {
     setFilterCriteriaId(DEFAULT_FILTER_CRITERIA);
     setSortCriteriaId(DEFAULT_SORT_CRITERIA);
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      matchingFreelancersRealTime.length < 6 &&
-        setMatchingFreelancersRealTime([
-          ...matchingFreelancersRealTime,
-          matchingFreelancerMockData[matchingFreelancersRealTime.length],
-        ]);
-    }, 2000);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [matchingFreelancersRealTime.length]);
-
-  useEffect(() => {
     if (matchingFreelancersRealTime.length > 0) {
-      let newFreelancers: IFreelancerAccountDetail[] = [];
+      let newFreelancers: IMatchingFreelancerAccountDetail[] = [];
       switch (filterCriteriaId) {
         case MatchingFilterCriteriaID.Individual: {
           matchingFreelancersRealTime.forEach(
@@ -140,6 +129,17 @@ const Matching: React.FC<
       setFreelancers(newFreelancers);
     }
   }, [matchingFreelancersRealTime, filterCriteriaId, sortCriteriaId]);
+
+  useEffect(() => {
+    onListenMatching()
+      .then((res) => {
+        console.log('CLIENT RES: ', res);
+      })
+      .catch((error) => {
+        console.error('CLIENT ERROR: ', error);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <CustomerTemplate>

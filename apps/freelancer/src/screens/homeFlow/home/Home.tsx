@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ActivityIndicator, Switch, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { freelancerScreensList } from '@constants/freelancerScreens';
 import { homeScreenStyle } from './styles';
@@ -27,7 +27,6 @@ import {
 import { ORDER_MARKETPLACE_SORT_CRITERIA } from '@constants/marketplace';
 import EmptyBoxWithLabel from '@present-native/molecules/empty/EmptyBoxWithLabel';
 import { PreviewCardOrder } from '@present-native/molecules';
-import { orderListMockData } from './__mock__';
 import { formatCurrency, generateBoxShadowStyle } from '@utils/helpers';
 import { useGetFreelancerPreviewData } from '@business-layer/business-logic/lib/account';
 import {
@@ -56,10 +55,10 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
     page: 1,
     pageSize: 5,
   });
-  // const { data: marketplaceOrders } = useGetMarketplaceOrders(
-  //   marketplaceOrdersCriteria
-  // );
-  const marketplaceOrders = orderListMockData;
+  const { data: marketplaceOrders, refetch: refetchMarketplaceOrders } =
+    useGetMarketplaceOrders(marketplaceOrdersCriteria);
+  const [displayedMarketplaceOrders, setDisplayedMarketplaceOrders] =
+    useState(marketplaceOrders);
   const [currentLatLon, setCurrentLatLon] = useState<ICoordinate | undefined>({
     lat: 10.823,
     lon: 106.6296,
@@ -67,6 +66,40 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
 
   function handleChangeSortCriteria(criteria: { id: string; name: string }) {
     setCurrentMarketplaceSortCriteria(criteria);
+    switch (criteria.name) {
+      case 'Vị trí gần nhất': {
+        setMarketplaceOrdersCriteria({
+          ...marketplaceOrdersCriteria,
+          sortingCol: 'ASCENDANT',
+          sortType: 'DISTANCE',
+        });
+        break;
+      }
+      case 'Vị trí xa nhất': {
+        setMarketplaceOrdersCriteria({
+          ...marketplaceOrdersCriteria,
+          sortingCol: 'DESCENDANT',
+          sortType: 'DISTANCE',
+        });
+        break;
+      }
+      case 'Thời gian gần nhất': {
+        setMarketplaceOrdersCriteria({
+          ...marketplaceOrdersCriteria,
+          sortingCol: 'ASCENDANT',
+          sortType: 'DATE',
+        });
+        break;
+      }
+      case 'Thời gian xa nhất': {
+        setMarketplaceOrdersCriteria({
+          ...marketplaceOrdersCriteria,
+          sortingCol: 'DESCENDANT',
+          sortType: 'DATE',
+        });
+        break;
+      }
+    }
   }
   function toggleSwitch() {
     setIsAutoFindingJob((previousState) => !previousState);
@@ -80,6 +113,20 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
       console.log('Chờ một chút');
     }
   }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (marketplaceOrders) {
+      setDisplayedMarketplaceOrders(marketplaceOrders);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [marketplaceOrders]);
+
+  // useEffect(() => {
+  //   setInterval(() => refetchMarketplaceOrders(), 60000);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
   return (
     <FreelancerTemplate>
       <View style={homeScreenStyle.container}>
@@ -206,9 +253,9 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
         </View>
         <VerticalSpacer size="l" />
         <View style={homeScreenStyle.innerContentWrapper}>
-          {Array.isArray(marketplaceOrders) ? (
-            marketplaceOrders.length > 0 ? (
-              marketplaceOrders.map((orderDetail) => (
+          {Array.isArray(displayedMarketplaceOrders) ? (
+            displayedMarketplaceOrders.length > 0 ? (
+              displayedMarketplaceOrders.map((orderDetail) => (
                 <React.Fragment key={orderDetail.id}>
                   <VerticalSpacer size="l" />
                   <PreviewCardOrder

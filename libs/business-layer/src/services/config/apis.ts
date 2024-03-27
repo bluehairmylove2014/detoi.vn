@@ -34,6 +34,7 @@ export const ratingOrderEndpoint = '/api/v1/order/customer-review';
 // ACCOUNT
 export const getFreelancerPreviewDataEndpoint =
   '/api/v1/freelancer/short-detail';
+export const getFreelancerDetailEndpoint = '/api/v1/freelancer/current';
 
 // SIRV
 export const sirvBaseUrlTemplate = 'https://api.sirv.com/v2';

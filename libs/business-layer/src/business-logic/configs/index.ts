@@ -46,7 +46,8 @@ export type moduleKeyList =
   | 'pagination'
   | 'realtime'
   | 'blurTheme'
-  | 'order';
+  | 'order'
+  | 'realtime';
 export type providerList = React.FC<
   | AuthProviderType
   | categoryProviderType
@@ -55,6 +56,7 @@ export type providerList = React.FC<
   | geocodeProviderType
   | blurThemeProviderType
   | orderProviderType
+  | realtimeProviderType
 >;
 export const providerConfig: {
   key: moduleKeyList;
@@ -83,6 +85,10 @@ export const providerConfig: {
   {
     key: 'category',
     provider: CategoryProvider,
+  },
+  {
+    key: 'realtime',
+    provider: RealtimeProvider,
   },
   {
     key: 'auth',

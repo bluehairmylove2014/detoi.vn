@@ -7,6 +7,7 @@ import IntroScreen from '../../../screens/homeFlow/intro/Intro';
 import ReceiveOrderSuccessScreen from '../../../screens/homeFlow/receiveOrderSuccess/ReceiveOrderSuccess';
 import MarketplaceOrderDetailScreen from '../../../screens/homeFlow/marketplaceOrderDetail/MarketplaceOrderDetail';
 import IncomingOrderDetailScreen from '../../../screens/homeFlow/incomingOrderDetail/IncomingOrderDetail';
+import AddSkillsScreen from '../../../screens/homeFlow/addSkills/AddSkills';
 
 const Stack = createNativeStackNavigator<freelancerHomeStackParams>();
 export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
@@ -32,6 +33,7 @@ export const HomeStack = ({ isLogged }: { isLogged: boolean }) => {
             component={IncomingOrderDetailScreen}
             name="IncomingOrderDetail"
           />
+          <Stack.Screen component={AddSkillsScreen} name="AddSkills" />
         </Stack.Group>
       ) : null}
     </Stack.Navigator>

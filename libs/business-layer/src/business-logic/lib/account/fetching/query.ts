@@ -10,3 +10,9 @@ export const useGetFreelancerPreviewDataQuery = (token: string | null) => {
     queryFn: () => service.getFreelancerPreviewData({ token }),
   });
 };
+export const useGetFreelancerDetailQuery = (token: string | null) => {
+  return useQuery({
+    queryKey: [QUERY_N_MUTATION_KEYS.GET_FREELANCER_DETAIL, token],
+    queryFn: () => service.getFreelancerDetail({ token }),
+  });
+};

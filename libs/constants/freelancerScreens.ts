@@ -25,6 +25,7 @@ export type freelancerScreensList = {
   IncomingOrderDetail: {
     order: IOrderDetail;
   };
+  AddSkills: undefined;
 };
 
 export type freelancerHomeStackParams = Pick<
@@ -34,6 +35,7 @@ export type freelancerHomeStackParams = Pick<
   | 'MarketplaceOrderDetail'
   | 'ReceiveOrderSuccess'
   | 'IncomingOrderDetail'
+  | 'AddSkills'
 >;
 export type freelancerAuthStackParams = Pick<
   freelancerScreensList,

@@ -15,35 +15,35 @@ const tabConfig: {
     label: 'Ưu đãi',
     iconName: {
       inactive: 'faSunRegular',
-      active: 'faSunSolid',
+      active: 'faSun',
     },
   },
   messages: {
     label: 'Tin nhắn',
     iconName: {
       inactive: 'faCommentsRegular',
-      active: 'faCommentsSolid',
+      active: 'faComments',
     },
   },
   home: {
     label: 'Trang chủ',
     iconName: {
       inactive: 'faCompassRegular',
-      active: 'faCompassSolid',
+      active: 'faCompass',
     },
   },
   orders: {
     label: 'Đơn đặt',
     iconName: {
       inactive: 'faRectangleListRegular',
-      active: 'faRectangleListSolid',
+      active: 'faRectangleList',
     },
   },
   account: {
     label: 'Tài khoản',
     iconName: {
       inactive: 'faUserRegular',
-      active: 'faUserSolid',
+      active: 'faUser',
     },
   },
 };

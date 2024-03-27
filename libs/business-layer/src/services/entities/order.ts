@@ -29,12 +29,12 @@ export interface IPostOrderServiceContent {
   note: string;
   additionalNote: string;
   requirement: {
-    icon?: string;
+    icon: string | null;
     key: string;
     value: string;
   }[];
   additionalRequirement: {
-    icon?: string;
+    icon: string | null;
     key: string;
     value: string;
   }[];
@@ -97,4 +97,5 @@ export const OrderDetailSchema = z.object({
     .nullable(),
   serviceStatus: z.string(),
   serviceTypes: z.array(ServiceSchema).nullable(),
+  services: PostOrderServiceContentSchema.merge(z.object({ id: z.string() })),
 });

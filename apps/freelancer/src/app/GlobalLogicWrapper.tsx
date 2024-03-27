@@ -9,6 +9,7 @@ import {
 import { Intro } from '@present-native/atoms';
 import { RootStack } from './stacks';
 import { useGoogleFonts } from '@business-layer/business-logic/non-service-lib/googleFont';
+import { useSocketConnect } from '@business-layer/business-logic/realtime';
 
 const INTRO_MEDIA_TIME = 6000; // 6s
 
@@ -22,6 +23,12 @@ const GlobalLogicWrapper = () => {
   const { onLogout } = useLogout();
   const { onLogin } = useLogin();
   const { onVerifyOtp } = useVerifyOtp();
+  const { handleConnect } = useSocketConnect();
+
+  useEffect(() => {
+    handleConnect(DEV_ENVIRONMENT_CONFIG.DEFAULT_AUTHENTICATION_PHONE_NUMBER);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {

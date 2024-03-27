@@ -73,9 +73,44 @@ export interface IFreelancerAccountDetail {
   skills: ISkill[];
   description: string;
   serviceProven: IServiceProven[];
-  previewPrice: number;
 }
 export const FreelancerAccountDetailSchema = z.object({
+  accountId: z.string(),
+  account: AccountDetailSchema,
+  address: AddressSchema,
+  rating: z.number(),
+  totalReviewCount: z.number(),
+  balance: z.number(),
+  orderCount: z.number(),
+  loveCount: z.number(),
+  positiveReviewCount: z.number(),
+  identityNumber: z.string(),
+  isTeam: z.boolean(),
+  teamMemberCount: z.number(),
+  skills: z.array(SkillSchema),
+  description: z.string(),
+  serviceProven: z.array(ServiceProvenSchema),
+});
+
+export interface IMatchingFreelancerAccountDetail {
+  accountId: string;
+  account: IAccountDetail;
+  address: IAddress;
+  rating: number;
+  totalReviewCount: number;
+  balance: number;
+  orderCount: number;
+  loveCount: number;
+  positiveReviewCount: number;
+  identityNumber: string;
+  isTeam: boolean;
+  teamMemberCount: number;
+  skills: ISkill[];
+  description: string;
+  serviceProven: IServiceProven[];
+  previewPrice: number;
+}
+export const MatchingFreelancerAccountDetailSchema = z.object({
   accountId: z.string(),
   account: AccountDetailSchema,
   address: AddressSchema,

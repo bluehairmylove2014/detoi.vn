@@ -1,5 +1,6 @@
 import React from 'react';
 import { ContextProvider } from './ContextProvider';
+import 'react-native-url-polyfill/auto';
 
 export type realtimeProviderType = {
   children: React.ReactNode;
