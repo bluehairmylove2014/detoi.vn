@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { PrimaryScrollView, VerticalSpacer } from '@present-native/atoms';
 import { windowWidth } from '@constants/dimension';
 import { IOrderDetail } from '@business-layer/services/entities';
-import { timeUntilStartNoFormatString } from '@utils/helpers';
+import { timeUntilStart } from '@utils/helpers';
 import { HeaderWithTitle } from '@present-native/organisms';
 import React from 'react';
 import { ORDER_STATUS_INCOMING } from '@constants/orderStatusIncoming';
@@ -26,7 +26,7 @@ const IncomingOrders: React.FC<
 
   const orderListFiltered = (orderList: IOrderDetail[]) => {
     return orderList.filter(
-      (od) => timeUntilStartNoFormatString(od.startDate, od.startTime).hours > 0
+      (od) => timeUntilStart(od.startDate, od.startTime).hours > 0
     );
   };
   const [currentOrderStatusIncoming, setCurrentOrderStatusIncoming] = useState(

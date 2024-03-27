@@ -9,7 +9,7 @@ import { PrimaryScrollView, VerticalSpacer } from '@present-native/atoms';
 import { orderListMockData } from './__mock__';
 import { windowWidth } from '@constants/dimension';
 import { IOrderDetail } from '@business-layer/services/entities';
-import { timeUntilStartNoFormatString } from '@utils/helpers';
+import { timeUntilStart } from '@utils/helpers';
 import React from 'react';
 import { ORDER_STATUS_AUCTION } from '@constants/orderStatusAuction';
 import { HeaderWithTitle } from '@present-native/organisms';
@@ -31,7 +31,7 @@ const AuctioningOrders: React.FC<
   }, []);
 
   const typeAuction = (od: IOrderDetail): TypeAuction => {
-    if (timeUntilStartNoFormatString(od.startDate, od.startTime).hours <= 5) {
+    if (timeUntilStart(od.startDate, od.startTime).hours <= 5) {
       return TypeAuction.ABOUT_TO_EXPIRE;
     }
     return TypeAuction.NO_RESULT;
@@ -59,7 +59,7 @@ const AuctioningOrders: React.FC<
   const orderListFiltered = (orderList: IOrderDetail[]) => {
     return orderList.filter(
       (od) =>
-        timeUntilStartNoFormatString(od.startDate, od.startTime).hours > 0 &&
+        timeUntilStart(od.startDate, od.startTime).hours > 0 &&
         (currentOrderStatusAuction.id === ORDER_STATUS_AUCTION[0].id ||
           convertOrderStatus(currentOrderStatusAuction.id) === typeAuction(od))
     );

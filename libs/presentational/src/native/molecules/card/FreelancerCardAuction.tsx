@@ -67,13 +67,17 @@ const AuctionTag = React.memo(({ typeTag }: AuctionTagProps) => {
 
 export const HeaderCardAuction = React.memo(
   ({ orderData, typeAuction }: HeaderCardAuctionProps) => {
+    const { hours, minutes } = timeUntilStart(
+      orderData.startDate,
+      orderData.startTime
+    );
     return (
       <View style={freelancerCardAuctionStyles.topTextView}>
         {typeAuction === TypeAuction.REJECTED ? (
           <View>
             <Paragraph theme="smallBold" color="white">
               <Paragraph theme="smallBold" color="secondary" lineNumber={1}>
-                {timeUntilStart(orderData.startDate, orderData.startTime)}
+                {hours} giờ {minutes} phút
               </Paragraph>
             </Paragraph>
             <Paragraph theme="smallBold" color="white" lineNumber={1}>
@@ -86,7 +90,7 @@ export const HeaderCardAuction = React.memo(
             <Paragraph theme="smallBold" color="white">
               Còn{' '}
               <Paragraph theme="smallBold" color="secondary" lineNumber={1}>
-                {timeUntilStart(orderData.startDate, orderData.startTime)}
+                {hours} giờ {minutes} phút
               </Paragraph>
             </Paragraph>
             <Paragraph theme="smallBold" color="white" lineNumber={1}>
