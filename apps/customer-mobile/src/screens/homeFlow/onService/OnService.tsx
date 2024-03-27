@@ -134,7 +134,7 @@ const OnService: React.FC<
           />
         </MapView>
         <TouchableOpacity
-          style={[onServiceScreenStyle.backButton, commonShadow.top]}
+          style={[onServiceScreenStyle.backButton, commonShadow.shadowSm]}
           onPress={() => {}}
         >
           <FAIcon iconName="faArrowLeftLong" size={15} />
@@ -143,7 +143,10 @@ const OnService: React.FC<
         <View style={onServiceScreenStyle.popupWrapper}>
           <View style={onServiceScreenStyle.billWrapper}>
             <View
-              style={[onServiceScreenStyle.billContainer, commonShadow.top]}
+              style={[
+                onServiceScreenStyle.billContainer,
+                commonShadow.shadowSm,
+              ]}
             >
               {order ? (
                 <>
@@ -216,7 +219,10 @@ const OnService: React.FC<
           </View>
           <View style={onServiceScreenStyle.billWrapper}>
             <View
-              style={[onServiceScreenStyle.billContainer, commonShadow.top]}
+              style={[
+                onServiceScreenStyle.billContainer,
+                commonShadow.shadowSm,
+              ]}
             >
               {order && order.freelancer ? (
                 <>

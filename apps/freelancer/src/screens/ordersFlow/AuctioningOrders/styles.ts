@@ -3,7 +3,7 @@ import { screenHorizontalPadding, screenVerticalPadding } from '@present-native/
 import { StyleSheet } from 'react-native';
 
 const auctioningOrdersScreenStyle = StyleSheet.create({
-    container: {
+    safeAreaContainer: {
         paddingHorizontal: screenHorizontalPadding,
         paddingVertical: screenVerticalPadding,
     },

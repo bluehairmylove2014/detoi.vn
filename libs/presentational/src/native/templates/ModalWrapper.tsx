@@ -6,12 +6,11 @@ import {
   Animated,
   TouchableOpacity,
 } from 'react-native';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { windowWidth } from '@constants/dimension';
 import { COLOR_PALETTE } from '@present-native/styles';
 import { FAIcon } from '@present-native/atoms/icon';
 import { Paragraph } from '@present-native/atoms/text';
-import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
 
 const TRANSITION_DURATION = 200;
 
@@ -35,7 +34,6 @@ const ModalWrapper: React.FC<modalWrapperProps> = ({
   headerTitle,
 }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const { setOpenBlurTheme } = useBlurTheme();
 
   const fadeIn = () => {
     Animated.timing(fadeAnim, {
@@ -62,9 +60,6 @@ const ModalWrapper: React.FC<modalWrapperProps> = ({
   useEffect(() => {
     if (isActive) {
       fadeIn();
-      setOpenBlurTheme(true);
-    } else {
-      setOpenBlurTheme(false);
     }
   }, [isActive]);
 
@@ -99,7 +94,6 @@ const ModalWrapper: React.FC<modalWrapperProps> = ({
         }}
         onPress={() => {
           handleClose();
-          setOpenBlurTheme(false);
         }}
       >
         <TouchableWithoutFeedback>

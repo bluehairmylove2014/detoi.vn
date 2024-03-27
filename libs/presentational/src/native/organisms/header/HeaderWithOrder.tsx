@@ -13,7 +13,7 @@ export const HeaderWithOrder: React.FC<headerWithOrderProps> = ({
   orderData,
 }) => {
   return (
-    <View style={[headerWithOrderStyles.container, commonShadow.top]}>
+    <View style={[headerWithOrderStyles.container, commonShadow.shadowSm]}>
       <View style={headerWithOrderStyles.safeContainer}>
         {orderData ? (
           <>

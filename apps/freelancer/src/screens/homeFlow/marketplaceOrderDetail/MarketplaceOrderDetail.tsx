@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { View } from 'react-native';
+import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
 import React, { useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { freelancerScreensList } from '@constants/freelancerScreens';
@@ -79,33 +79,35 @@ const MarketplaceOrderDetail: React.FC<
 
   return (
     <FreelancerTemplate>
-      <BannerTopSection
-        url={service.image}
-        title={`CHI TIẾT ĐƠN DỊCH VỤ`}
-        subtitle={''}
-      />
-      <VerticalSpacer size="xxl" />
-
-      <View style={marketplaceOrderDetailStyles.container}>
-        {/* Location */}
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View>
-          <View style={marketplaceOrderDetailStyles.locationTitleContainer}>
-            <View style={{ flexGrow: 1 }}>
-              <Title theme="baseBold" color="primary" lineNumber={1}>
-                Địa điểm:
-              </Title>
-            </View>
-            <View style={{ flexShrink: 1 }}>
-              <Paragraph theme="largeBold" lineNumber={1}>
-                {`14km`}
+          <BannerTopSection
+            url={service.image}
+            title={`CHI TIẾT ĐƠN DỊCH VỤ`}
+            subtitle={''}
+          />
+          <VerticalSpacer size="xxl" />
+
+          <View style={marketplaceOrderDetailStyles.container}>
+            {/* Location */}
+            <View>
+              <View style={marketplaceOrderDetailStyles.locationTitleContainer}>
+                <View style={{ flexGrow: 1 }}>
+                  <Title theme="baseBold" color="primary" lineNumber={1}>
+                    Địa điểm:
+                  </Title>
+                </View>
+                <View style={{ flexShrink: 1 }}>
+                  <Paragraph theme="largeBold" lineNumber={1}>
+                    {`14km`}
+                  </Paragraph>
+                </View>
+              </View>
+              <VerticalSpacer size="s" />
+              <Paragraph theme="baseMedium" lineNumber={2}>
+                {address.addressLine}
               </Paragraph>
             </View>
-          </View>
-          <VerticalSpacer size="s" />
-          <Paragraph theme="baseMedium" lineNumber={2}>
-            {address.addressLine}
-          </Paragraph>
-        </View>
 
         <VerticalSpacer size="xl" />
         <GrayDivider direction="horizontal" />
@@ -132,9 +134,9 @@ const MarketplaceOrderDetail: React.FC<
           </View>
         </View>
 
-        <VerticalSpacer size="xl" />
-        <GrayDivider direction="horizontal" />
-        <VerticalSpacer size="xl" />
+            <VerticalSpacer size="xl" />
+            <GrayDivider direction="horizontal" />
+            <VerticalSpacer size="xl" />
 
         <View>
           <Title theme="baseBold" color="primary" lineNumber={1}>

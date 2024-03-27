@@ -33,7 +33,6 @@ const homeScreenStyle = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     borderRadius: 10,
-    overflow: 'hidden',
     padding: 10,
   },
   balanceViewColumn: {
@@ -52,7 +51,6 @@ const homeScreenStyle = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: 10,
-    overflow: 'hidden',
     padding: 10,
   },
   jobSettingRowCenter: {
