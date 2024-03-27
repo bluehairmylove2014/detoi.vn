@@ -12,7 +12,7 @@ import {
   SecondaryBtn,
   VerticalSpacer,
 } from '@present-native/atoms';
-import { orderListMockData } from '@present-native/organisms/order/__mock__';
+import { orderListMockData } from './__mock__';
 import { windowWidth } from '@constants/dimension';
 import { IOrderDetail } from '@business-layer/services/entities';
 import { timeUntilStartNoFormatString } from '@utils/helpers';

@@ -4,7 +4,7 @@ import { freelancerScreensList } from '@constants/freelancerScreens';
 import { COLOR_PALETTE, screenHorizontalPadding } from '@present-native/styles';
 import FreelancerTemplate from '@present-native/templates/FreelancerTemplate';
 import { FreelancerCardOrder } from '@present-native/molecules';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   HorizontalSpacer,
   PrimaryBtn,
@@ -12,7 +12,6 @@ import {
   SecondaryBtn,
   VerticalSpacer,
 } from '@present-native/atoms';
-import { orderListMockData } from '@present-native/organisms/order/__mock__';
 import { windowWidth } from '@constants/dimension';
 import { IOrderDetail } from '@business-layer/services/entities';
 import { timeUntilStartNoFormatString } from '@utils/helpers';
@@ -20,16 +19,12 @@ import { HeaderWithTitle } from '@present-native/organisms';
 import React from 'react';
 import { ORDER_STATUS_INCOMING } from '@constants/orderStatusIncoming';
 import { incomingOrdersScreenStyle } from './styles';
+import { useGetFreelancerIncomingOrders } from '@business-layer/business-logic/lib/order';
 
 const IncomingOrders: React.FC<
   NativeStackScreenProps<freelancerScreensList, 'IncomingOrders'>
 > = () => {
-  const [orderList, setOrderList] = useState<IOrderDetail[]>();
-  useEffect(() => {
-    setTimeout(() => {
-      setOrderList(orderListMockData);
-    }, 2000);
-  }, []);
+  const { data: orderList } = useGetFreelancerIncomingOrders();
 
   const cardWidth = windowWidth - screenHorizontalPadding * 2;
 

@@ -31,7 +31,8 @@ type formType = {
 const MarketplaceOrderDetail: React.FC<
   NativeStackScreenProps<freelancerScreensList, 'MarketplaceOrderDetail'>
 > = ({ route }) => {
-  const { navigateToScreenInSameStack } = useAuthNavigation();
+  const { navigateToScreenInSameStack, navigateToScreenInDifferentStack } =
+    useAuthNavigation();
   const {
     order,
     freelancer: { balance },

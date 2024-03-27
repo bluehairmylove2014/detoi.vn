@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ActivityIndicator, Switch, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { freelancerScreensList } from '@constants/freelancerScreens';
 import { homeScreenStyle } from './styles';
@@ -13,12 +13,9 @@ import FreelancerTemplate from '@present-native/templates/FreelancerTemplate';
 import {
   BaseLink,
   FAIcon,
-  HorizontalSpacer,
   InfiniteProgressBar,
   Paragraph,
   PrimaryBtn,
-  PrimaryScrollView,
-  SecondaryBtn,
   Title,
   VerticalSpacer,
 } from '@present-native/atoms';
@@ -39,6 +36,7 @@ import {
 } from '@business-layer/business-logic/lib/order';
 import { getMarketplaceOrdersPropsType } from '@business-layer/services';
 import { ICoordinate, IOrderDetail } from '@business-layer/services/entities';
+import OnPressCustomControlBar from '@present-native/molecules/controlBar/OnPressCustomControlBar';
 
 const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
   route,
@@ -200,36 +198,11 @@ const Home: React.FC<NativeStackScreenProps<freelancerScreensList, 'Home'>> = ({
         </View>
         <VerticalSpacer size="l" />
         <View style={{ paddingLeft: screenHorizontalPadding }}>
-          <PrimaryScrollView direction="horizontal">
-            {ORDER_MARKETPLACE_SORT_CRITERIA.map((sc) =>
-              sc.id === currentMarketplaceSortCriteria.id ? (
-                <React.Fragment key={sc.id}>
-                  <PrimaryBtn
-                    title={sc.name}
-                    onPress={() => handleChangeSortCriteria(sc)}
-                    fontSize="small"
-                    radius="full"
-                    isFitContent={true}
-                  />
-                  <HorizontalSpacer size="m" />
-                </React.Fragment>
-              ) : (
-                <React.Fragment key={sc.id}>
-                  <View style={{ opacity: 0.5 }}>
-                    <SecondaryBtn
-                      key={sc.id}
-                      title={sc.name}
-                      onPress={() => handleChangeSortCriteria(sc)}
-                      fontSize="small"
-                      radius="full"
-                      isFitContent={true}
-                    />
-                  </View>
-                  <HorizontalSpacer size="m" />
-                </React.Fragment>
-              )
-            )}
-          </PrimaryScrollView>
+          <OnPressCustomControlBar
+            onPress={handleChangeSortCriteria}
+            itemList={ORDER_MARKETPLACE_SORT_CRITERIA}
+            activeItemId={currentMarketplaceSortCriteria.id}
+          />
         </View>
         <VerticalSpacer size="l" />
         <View style={homeScreenStyle.innerContentWrapper}>

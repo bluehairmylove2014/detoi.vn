@@ -5,6 +5,7 @@ import { freelancerCardOrderStyles } from './styles';
 import { OverlayColor, Paragraph } from '@present-native/atoms';
 import emptyOrderImg from '@assets/no-order.jpg';
 import { formatCurrency, timeUntilStart } from '@utils/helpers';
+import { useAuthNavigation } from '@business-layer/business-logic/non-service-lib/navigation';
 
 type props = {
   orderData: IOrderDetail | undefined | null;
@@ -14,6 +15,7 @@ export const FreelancerCardOrder: React.FC<props> = ({
   orderData,
   width = '100%',
 }) => {
+  const { navigateToScreenInSameStack } = useAuthNavigation();
   const [orderStatus, setOrderStatus] = useState<string>(
     'Đang lấy dữ liệu đơn...'
   );
@@ -32,9 +34,18 @@ export const FreelancerCardOrder: React.FC<props> = ({
     }
   }, [orderData]);
 
+  function handleClick() {
+    if (orderData) {
+      navigateToScreenInSameStack('IncomingOrderDetail', {
+        params: { order: orderData },
+      });
+    }
+  }
+
   return (
     <TouchableOpacity
       activeOpacity={0.9}
+      onPress={handleClick}
       style={freelancerCardOrderStyles.container}
     >
       <ImageBackground

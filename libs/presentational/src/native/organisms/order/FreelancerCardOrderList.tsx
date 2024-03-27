@@ -4,7 +4,6 @@ import { freelancerCardOrderListStyles } from './styles';
 import { PrimaryScrollView } from '@present-native/atoms/scroll';
 import { windowWidth } from '@constants/dimension';
 import { screenHorizontalPadding } from '@present-native/styles';
-import { orderListMockData } from './__mock__';
 import { IOrderDetail } from '@business-layer/services/entities';
 import { useEffect, useState } from 'react';
 

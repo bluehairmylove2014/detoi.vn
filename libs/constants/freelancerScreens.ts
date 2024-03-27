@@ -11,7 +11,6 @@ export type freelancerScreensList = {
   Intro: undefined;
   Endow: undefined;
   Message: undefined;
-  OrdersList: undefined;
   Account: undefined;
   AuctioningOrders: undefined;
   IncomingOrders: undefined;
@@ -47,7 +46,7 @@ export type freelancerMessageStackParams = Pick<
 >;
 export type freelancerOrdersListStackParams = Pick<
   freelancerScreensList,
-  'OrdersList' | 'AuctioningOrders' | 'IncomingOrders'
+  'AuctioningOrders' | 'IncomingOrders'
 >;
 export type freelancerAccountStackParams = Pick<
   freelancerScreensList,

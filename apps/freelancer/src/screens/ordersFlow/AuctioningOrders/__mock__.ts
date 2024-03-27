@@ -24,7 +24,6 @@ export const orderListMockData: IOrderDetail[] = [
       {
         id: '0cbf59ea-8dcb-4a62-be82-617sfsdfs153952b1d',
         name: 'Tổng vệ sinh nhà / nhà phố',
-        basePrice: 200000,
         description: 'Sửa chữa để tôi lo',
         image: 'https://detoivn.sirv.com/services/dondep/n%C3%A2-nhapho.png',
       },
@@ -78,7 +77,6 @@ export const orderListMockData: IOrderDetail[] = [
       {
         id: '0cbf59ea-8dcb-4a62-be82-617sfsdfs153952b1d',
         name: 'Tổng vệ sinh nhà / nhà phố',
-        basePrice: 200000,
         description: 'Sửa chữa để tôi lo',
         image: 'https://detoivn.sirv.com/services/dondep/n%C3%A2-nhapho.png',
       },
@@ -132,7 +130,6 @@ export const orderListMockData: IOrderDetail[] = [
       {
         id: '0cbf59ea-8dcb-4a62-be82-617sfsdfs153952b1d',
         name: 'Tổng vệ sinh nhà / nhà phố',
-        basePrice: 200000,
         description: 'Sửa chữa để tôi lo',
         image: 'https://detoivn.sirv.com/services/dondep/n%C3%A2-nhapho.png',
       },
@@ -186,7 +183,6 @@ export const orderListMockData: IOrderDetail[] = [
       {
         id: '0cbf59ea-8dcb-4a62-be82-617153952b1d',
         name: 'Sửa máy lạnh',
-        basePrice: 200000,
         description: 'Sửa chữa để tôi lo',
         image:
           'https://detoivn.sirv.com/services/chuyennhaphongtro/category.png',
