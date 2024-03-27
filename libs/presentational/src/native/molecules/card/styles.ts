@@ -61,7 +61,6 @@ export const freelancerCardOrderStyles = StyleSheet.create({
   },
 });
 
-
 export const freelancerCardAuctionStyles = StyleSheet.create({
   container: {
     height:200,
@@ -100,5 +99,50 @@ export const freelancerCardAuctionStyles = StyleSheet.create({
     paddingBottom: 10,
     paddingHorizontal: 10,
     gap: 30,
+  },
+});
+
+export const previewCardOrderStyles = StyleSheet.create({
+  container: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    gap: 15,
+    backgroundColor: COLOR_PALETTE.softBg,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+    position: 'relative',
+  },
+  orderImageWrapper: {
+    width: 70,
+  },
+  orderNameView: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  orderDetailContainer: {
+    flexGrow: 1,
+    height: '100%',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  orderLineDetailView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  linkButtonWrapper: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+    width: 40,
   },
 });

@@ -56,16 +56,16 @@ export const useAuthNavigation = () => {
       console.error('ERROR: navigation is undefined');
       return;
     }
-    if (isLogged || noCredentialScreensList.includes(screenName)) {
-      options?.callbackOnSuccess && options.callbackOnSuccess();
-      navigation.navigate(stackName, {
-        screen: screenName,
-        params: options?.params ?? {},
-      });
-    } else {
-      options?.callbackOnFail && options.callbackOnFail();
-      navigation.navigate('AuthStack', { screenName: 'Login' });
-    }
+    // if (isLogged || noCredentialScreensList.includes(screenName)) {
+    options?.callbackOnSuccess && options.callbackOnSuccess();
+    navigation.navigate(stackName, {
+      screen: screenName,
+      params: options?.params ?? {},
+    });
+    // } else {
+    //   options?.callbackOnFail && options.callbackOnFail();
+    //   navigation.navigate('AuthStack', { screenName: 'Login' });
+    // }
   };
 
   return {

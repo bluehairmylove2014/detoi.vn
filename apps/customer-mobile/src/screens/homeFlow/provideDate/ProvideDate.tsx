@@ -93,7 +93,6 @@ const ProvideDate: React.FC<
       const currentDate = new Date();
       if (checkTime(selectedTime, currentDate) === false) {
         setActiveErrorBox(true);
-        console.log('wrong');
         return;
       }
     }
@@ -114,7 +113,7 @@ const ProvideDate: React.FC<
       .padStart(2, '0')}:00.000000`;
     onCreateOrder(startDate, startTime, data.require ?? '')
       .then((msg) => {
-        console.log(msg);
+        // TODO
       })
       .catch((error) => {
         console.error(error);

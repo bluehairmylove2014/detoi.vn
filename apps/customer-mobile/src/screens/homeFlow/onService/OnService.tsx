@@ -76,7 +76,6 @@ const OnService: React.FC<
   const { orderId } = route.params;
   const { navigateToScreenInSameStack } = useAuthNavigation();
   const { data: order } = useGetOrderDetail(orderId);
-  console.log(order);
   const [currentStage, setCurrentStage] = useState<number>(0);
 
   useEffect(() => {

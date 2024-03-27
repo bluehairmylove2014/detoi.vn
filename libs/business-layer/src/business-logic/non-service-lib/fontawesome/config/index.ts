@@ -45,6 +45,10 @@ import {
   faPhone,
   faChevronRight,
   faChevronLeft,
+  faStopwatch,
+  faFileCircleQuestion,
+  faCheck,
+  faX,
   faWallet,
   faBusinessTime,
 } from '@fortawesome/free-solid-svg-icons';
@@ -59,9 +63,13 @@ import {
   faSun as faSunRegular,
   faStar as faStarEmptyStroke,
   faBell as faBellRegular,
+  faMap as faMapRegular,
+  faClock as faClockRegular,
 } from '@fortawesome/free-regular-svg-icons';
 
 export const NATIVE_ICONS = {
+  faClockRegular,
+  faMapRegular,
   faBusinessTime,
   faWallet,
   faCircleQuestionRegular,
@@ -119,6 +127,10 @@ export const NATIVE_ICONS = {
   faPhone,
   faChevronRight,
   faChevronLeft,
+  faStopwatch,
+  faFileCircleQuestion,
+  faCheck,
+  faX,
 };
 
 export type nativeIconNameType = keyof typeof NATIVE_ICONS;

@@ -77,9 +77,7 @@ const ProvideDetail: React.FC<
             <VerticalSpacer size="xxxl" />
             <PrimaryBtn
               title="Tiếp theo"
-              onPress={handleSubmit(handlePressNext, (error) => {
-                console.error('ERROR: ', error);
-              })}
+              onPress={handleSubmit(handlePressNext)}
             />
           </View>
         </View>

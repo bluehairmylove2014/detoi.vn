@@ -13,7 +13,7 @@ import { LocationSearchBox } from '../searchBox';
 type BannerChooseLocationProps = {
   url: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   enableSearchBox?: boolean;
   searchBoxOnChange?: (value: string) => void;
 };
@@ -38,22 +38,25 @@ export const BannerTopSection: React.FC<BannerChooseLocationProps> = React.memo(
         >
           <View style={bannerTopSectionStyle.headerTitleContainer}>
             <BackButton />
-            <Title theme="largeBold" color="white" align="center">
+            <Title theme="baseBold" color="white" align="center">
               {title}
             </Title>
             <View style={{ width: 20 }} />
           </View>
           <VerticalSpacer size="m" />
-          <View style={bannerTopSectionStyle.headerSubtitleContainer}>
-            <Paragraph
-              theme="baseRegular"
-              align="center"
-              lineNumber={2}
-              color="white"
-            >
-              {subtitle}
-            </Paragraph>
-          </View>
+          {subtitle ? (
+            <View style={bannerTopSectionStyle.headerSubtitleContainer}>
+              <Paragraph
+                theme="baseRegular"
+                align="center"
+                lineNumber={2}
+                color="white"
+              >
+                {subtitle}
+              </Paragraph>
+            </View>
+          ) : null}
+
           <VerticalSpacer size="l" />
           {enableSearchBox ? (
             <LocationSearchBox onChange={searchBoxOnChange} />

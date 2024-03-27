@@ -26,7 +26,19 @@ export const OverlayColor = React.memo(
     theme: keyof typeof themeList;
   }) => {
     return (
-      <LinearGradient colors={themeList[theme]}>{children}</LinearGradient>
+      <LinearGradient
+        colors={themeList[theme]}
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          zIndex: 10,
+        }}
+      >
+        {children}
+      </LinearGradient>
     );
   }
 );

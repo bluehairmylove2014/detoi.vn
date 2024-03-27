@@ -29,10 +29,12 @@ export interface IPostOrderServiceContent {
   note: string;
   additionalNote: string;
   requirement: {
+    icon?: string;
     key: string;
     value: string;
   }[];
   additionalRequirement: {
+    icon?: string;
     key: string;
     value: string;
   }[];
@@ -43,12 +45,14 @@ export const PostOrderServiceContentSchema = z.object({
   additionalNote: z.string(),
   requirement: z.array(
     z.object({
+      icon: z.string().nullable(),
       key: z.string(),
       value: z.string(),
     })
   ),
   additionalRequirement: z.array(
     z.object({
+      icon: z.string().nullable(),
       key: z.string(),
       value: z.string(),
     })
@@ -59,6 +63,7 @@ export interface IOrderDetail {
   id: string;
   address: IAddress;
   estimatedPrice: number;
+  // recommendPrice: number;
   startTime: string;
   startDate: string;
   finishTime: string | null;
@@ -77,6 +82,7 @@ export const OrderDetailSchema = z.object({
   id: z.string(),
   address: AddressSchema,
   estimatedPrice: z.number().nullable(),
+  // recommendPrice: z.number(),
   startTime: z.string(),
   startDate: z.string(),
   finishTime: z.string().nullable(),

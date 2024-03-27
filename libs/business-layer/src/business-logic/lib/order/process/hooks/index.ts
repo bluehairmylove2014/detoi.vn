@@ -6,3 +6,5 @@ export * from './useGetMatchingOrderDetail';
 export * from './useCancelOrder';
 export * from './useSelectFreelancerForOrder';
 export * from './useGetOrderDetail';
+export * from './useGetFreelancerIncomingOrders';
+export * from './useGetMarketplaceOrders';

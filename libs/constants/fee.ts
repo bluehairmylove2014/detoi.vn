@@ -1,0 +1,2 @@
+export const SERVICE_PLATFORM_FEE_AMOUNT = 0.02;
+export const SERVICE_MIN_PRICE = 50000;

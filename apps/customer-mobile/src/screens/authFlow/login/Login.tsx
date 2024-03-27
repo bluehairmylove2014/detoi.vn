@@ -70,7 +70,6 @@ const Login: React.FC<NativeStackScreenProps<customerScreensList, 'Login'>> = ({
       countryCode.callingCodes[0] + removeLeadingZeroFromPhoneNumber(phone);
     onLogin({ phone: phoneNumber })
       .then((msg) => {
-        console.log('LOGIN SUCCESS');
         navigateToScreenInSameStack('OTPVertification');
         // navigation.navigate('OTPVertification');
       })

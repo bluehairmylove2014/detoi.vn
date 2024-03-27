@@ -1,5 +1,5 @@
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IOrderDetail } from '@business-layer/services/entities';
 import { freelancerCardOrderStyles } from './styles';
 import { OverlayColor, Paragraph } from '@present-native/atoms';
@@ -14,6 +14,24 @@ export const FreelancerCardOrder: React.FC<props> = ({
   orderData,
   width = '100%',
 }) => {
+  const [orderStatus, setOrderStatus] = useState<string>(
+    'Đang lấy dữ liệu đơn...'
+  );
+  const [{ hours, minutes }, setTimeUntilStart] = useState({
+    hours: 0,
+    minutes: 0,
+  });
+
+  useEffect(() => {
+    if (orderData === null) {
+      setOrderStatus('Sắp tới không có đơn!');
+    } else if (orderData) {
+      setTimeUntilStart(
+        timeUntilStart(orderData.startDate, orderData.startTime)
+      );
+    }
+  }, [orderData]);
+
   return (
     <TouchableOpacity
       activeOpacity={0.9}
@@ -31,19 +49,36 @@ export const FreelancerCardOrder: React.FC<props> = ({
             <OverlayColor theme="black-gradient-top-bottom">
               <View style={freelancerCardOrderStyles.topTextView}>
                 <View>
-                  <Paragraph theme="smallBold" color="white">
-                    Còn{' '}
-                    <Paragraph
-                      theme="smallBold"
-                      color="secondary"
-                      lineNumber={1}
-                    >
-                      {timeUntilStart(orderData.startDate, orderData.startTime)}
-                    </Paragraph>
-                  </Paragraph>
-                  <Paragraph theme="smallBold" color="white" lineNumber={1}>
-                    Cho tới giờ làm
-                  </Paragraph>
+                  {hours > 0 ? (
+                    <>
+                      <Paragraph theme="smallBold" color="white">
+                        Còn{' '}
+                        <Paragraph
+                          theme="smallBold"
+                          color="secondary"
+                          lineNumber={1}
+                        >
+                          {hours} giờ {minutes} phút
+                        </Paragraph>
+                      </Paragraph>
+                      <Paragraph theme="smallBold" color="white" lineNumber={1}>
+                        Cho tới giờ làm
+                      </Paragraph>
+                    </>
+                  ) : (
+                    <>
+                      <Paragraph theme="smallBold" color="white">
+                        Đã qua giờ làm{' '}
+                        <Paragraph
+                          theme="smallBold"
+                          color="secondary"
+                          lineNumber={1}
+                        >
+                          {Math.abs(hours)} giờ {Math.abs(minutes)} phút
+                        </Paragraph>
+                      </Paragraph>
+                    </>
+                  )}
                 </View>
               </View>
             </OverlayColor>
@@ -89,7 +124,7 @@ export const FreelancerCardOrder: React.FC<props> = ({
                 </>
               ) : (
                 <Paragraph theme="smallBold" color="white" lineNumber={1}>
-                  Không có đơn nào!
+                  {orderStatus}
                 </Paragraph>
               )}
             </View>

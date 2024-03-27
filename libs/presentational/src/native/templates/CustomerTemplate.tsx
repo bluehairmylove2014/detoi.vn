@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, StatusBar, View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import React from 'react';
 import { globalStyles } from '../styles';
 import { FAProvider } from '@business-layer/business-logic/non-service-lib/fontawesome';
@@ -17,9 +17,7 @@ const CustomerTemplate = ({ children }: { children: React.ReactNode }) => {
       <BlurTheme isOpen={state['isOpened']} />
 
       <View style={globalStyles.container}>
-        <KeyboardAvoidingView>
-          <PrimaryScrollView direction="vertical">{children}</PrimaryScrollView>
-        </KeyboardAvoidingView>
+        <PrimaryScrollView direction="vertical">{children}</PrimaryScrollView>
         {isLogged ? null : <NeedLoginBottomTab />}
       </View>
     </FAProvider>

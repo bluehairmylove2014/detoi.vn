@@ -24,9 +24,16 @@ export const getMatchingOrderDetailEndpoint = '/api/v1/order/customer-latest';
 export const cancelOrderEndpoint = '/api/v1/order/customer-order';
 export const selectFreelancerForOrderEndpoint = '/api/v1/order/order-price';
 export const getOrderDetailEndpoint = '/api/v1/order/detail';
+export const getFreelancerIncomingOrdersEndpoint =
+  '/api/v1/freelancer/orders/incoming';
+export const getMarketplaceOrdersEndpoint = '/api/v1/freelancer/orders';
 
 // RATING
 export const ratingOrderEndpoint = '/api/v1/order/customer-review';
+
+// ACCOUNT
+export const getFreelancerPreviewDataEndpoint =
+  '/api/v1/freelancer/short-detail';
 
 // SIRV
 export const sirvBaseUrlTemplate = 'https://api.sirv.com/v2';

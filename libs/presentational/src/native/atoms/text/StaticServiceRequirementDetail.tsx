@@ -19,21 +19,25 @@ export const StaticServiceRequirementDetail = ({
 }) => {
   return (
     <View style={staticServiceRequirementDetailStyles.container}>
-      <FAIcon iconName={iconName} color={COLOR_PALETTE.secondary} />
-      <HorizontalSpacer size="m" />
-      <View>
+      <View style={staticServiceRequirementDetailStyles.lineView}>
+        <FAIcon iconName={iconName} color={COLOR_PALETTE.secondary} size={15} />
+        <HorizontalSpacer size="m" />
         <Paragraph theme={hightlight ? 'baseBold' : 'baseMedium'}>
           {title}
         </Paragraph>
-        {subTitle ? (
+      </View>
+      {subTitle ? (
+        <View style={staticServiceRequirementDetailStyles.lineView}>
+          <View style={{ width: 16, height: 5 }} />
+          <HorizontalSpacer size="m" />
           <>
             <VerticalSpacer size="s" />
             <Paragraph theme="smallRegular">{subTitle}</Paragraph>
           </>
-        ) : (
-          <></>
-        )}
-      </View>
+        </View>
+      ) : (
+        <></>
+      )}
     </View>
   );
 };

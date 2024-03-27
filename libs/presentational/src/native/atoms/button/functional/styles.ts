@@ -101,6 +101,27 @@ const commonButtonStyles = StyleSheet.create({
     paddingVertical: 8,
     backgroundColor: COLOR_PALETTE.white,
   },
+
+  answerBtn: {
+    borderRadius: 8,
+    borderWidth: 1,
+    paddingVertical: 15,
+    paddingHorizontal: 12,
+    borderColor: COLOR_PALETTE.gray,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  answerIconContainer: {
+    borderRadius: 30,
+    width: 25,
+    height: 25,
+    borderWidth: 2,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export { commonButtonStyles, bellBtnTheme };

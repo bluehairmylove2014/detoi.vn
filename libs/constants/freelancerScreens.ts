@@ -1,3 +1,9 @@
+import {
+  IFreelancerPreview,
+  IOrderDetail,
+  ITest,
+} from '@business-layer/services/entities';
+
 export type freelancerScreensList = {
   Home: undefined;
   Login: undefined;
@@ -9,9 +15,27 @@ export type freelancerScreensList = {
   Account: undefined;
   AuctioningOrders: undefined;
   IncomingOrders: undefined;
+  TestPreview: undefined;
+  TestInProgress: { test: ITest; pointToPass: number };
+  TestResult: { isSuccess: boolean; pointTest: number };
+  MarketplaceOrderDetail: {
+    order: IOrderDetail;
+    freelancer: IFreelancerPreview;
+  };
+  ReceiveOrderSuccess: undefined;
+  IncomingOrderDetail: {
+    order: IOrderDetail;
+  };
 };
 
-export type freelancerHomeStackParams = Pick<freelancerScreensList, 'Home' | 'Intro'>;
+export type freelancerHomeStackParams = Pick<
+  freelancerScreensList,
+  | 'Home'
+  | 'Intro'
+  | 'MarketplaceOrderDetail'
+  | 'ReceiveOrderSuccess'
+  | 'IncomingOrderDetail'
+>;
 export type freelancerAuthStackParams = Pick<
   freelancerScreensList,
   'Login' | 'OTPVertification'
@@ -28,4 +52,9 @@ export type freelancerOrdersListStackParams = Pick<
 export type freelancerAccountStackParams = Pick<
   freelancerScreensList,
   'Account'
+>;
+
+export type freelancerTestStackParams = Pick<
+  freelancerScreensList,
+  'TestPreview' | 'TestInProgress' | 'TestResult'
 >;
