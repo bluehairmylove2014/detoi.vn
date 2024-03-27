@@ -9,14 +9,14 @@ import IncomingOrdersScreen from '../../../screens/ordersFlow/IncomingOrders/Inc
 const Stack = createNativeStackNavigator<freelancerOrdersListStackParams>();
 export const OrdersStack = ({ isLogged }: { isLogged: boolean }) => {
   return (
-    <Stack.Navigator initialRouteName="IncomingOrders">
+    <Stack.Navigator initialRouteName="OrdersList">
       {/* Then, put stack.screen for your screen component here (in the end) */}
       <Stack.Screen
         component={OrdersListScreen}
         name="OrdersList"
         options={{ headerShown: false }}
       />
-
+     
       {isLogged ? (
         <Stack.Group key={'order-auth'} screenOptions={{ headerShown: false }}>
           <Stack.Screen
