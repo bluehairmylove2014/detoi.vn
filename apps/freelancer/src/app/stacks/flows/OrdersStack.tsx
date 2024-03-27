@@ -3,6 +3,8 @@ import { freelancerOrdersListStackParams } from '@constants/freelancerScreens';
 
 // Import screen component here
 import OrdersListScreen from '../../../screens/ordersFlow/OrdersList/OrdersList';
+import AuctioningOrdersScreen from '../../../screens/ordersFlow/AuctioningOrders/AuctioningOrders';
+import IncomingOrdersScreen from '../../../screens/ordersFlow/IncomingOrders/IncomingOrders';
 
 const Stack = createNativeStackNavigator<freelancerOrdersListStackParams>();
 export const OrdersStack = ({ isLogged }: { isLogged: boolean }) => {
@@ -14,6 +16,19 @@ export const OrdersStack = ({ isLogged }: { isLogged: boolean }) => {
         name="OrdersList"
         options={{ headerShown: false }}
       />
+     
+      {isLogged ? (
+        <Stack.Group key={'order-auth'} screenOptions={{ headerShown: false }}>
+          <Stack.Screen
+            component={IncomingOrdersScreen}
+            name="IncomingOrders"
+          />
+          <Stack.Screen
+            component={AuctioningOrdersScreen}
+            name="AuctioningOrders"
+          />
+        </Stack.Group>
+      ) : null}
     </Stack.Navigator>
   );
 };

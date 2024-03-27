@@ -13,6 +13,8 @@ export type freelancerScreensList = {
   Message: undefined;
   OrdersList: undefined;
   Account: undefined;
+  AuctioningOrders: undefined;
+  IncomingOrders: undefined;
   TestPreview: undefined;
   TestInProgress: { test: ITest; pointToPass: number };
   TestResult: { isSuccess: boolean; pointTest: number };
@@ -45,7 +47,7 @@ export type freelancerMessageStackParams = Pick<
 >;
 export type freelancerOrdersListStackParams = Pick<
   freelancerScreensList,
-  'OrdersList'
+  'OrdersList' | 'AuctioningOrders' | 'IncomingOrders'
 >;
 export type freelancerAccountStackParams = Pick<
   freelancerScreensList,
