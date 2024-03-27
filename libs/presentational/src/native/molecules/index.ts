@@ -11,4 +11,3 @@ export * from './box';
 export * from './matchingThumbnail';
 export * from './dotPager';
 export * from './empty';
-export * from './tag';

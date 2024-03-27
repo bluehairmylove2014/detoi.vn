@@ -6,7 +6,6 @@ import { OverlayColor, Paragraph } from '@present-native/atoms';
 import emptyOrderImg from '@assets/no-order.jpg';
 import { formatCurrency, timeUntilStart } from '@utils/helpers';
 import { COLOR_PALETTE } from '@present-native/styles';
-import { AuctionTag } from '../tag';
 
 export enum TypeAuction {
   NO_RESULT,
@@ -27,6 +26,44 @@ type HeaderCardAuctionProps = {
     | TypeAuction.REJECTED
     | TypeAuction.ABOUT_TO_EXPIRE;
 };
+
+type AuctionTagProps = {
+  typeTag: TypeAuction;
+};
+
+const AuctionTag = React.memo(({ typeTag }: AuctionTagProps) => {
+  if (typeTag === TypeAuction.REJECTED)
+    return (
+      <View
+        style={{
+          backgroundColor: COLOR_PALETTE.rose,
+          paddingHorizontal: 15,
+          paddingVertical: 5,
+          borderRadius: 5,
+        }}
+      >
+        <Paragraph theme="smallBold" color="white">
+          Sẽ xoá sau 24h
+        </Paragraph>
+      </View>
+    );
+  if (typeTag === TypeAuction.ABOUT_TO_EXPIRE)
+    return (
+      <View
+        style={{
+          backgroundColor: COLOR_PALETTE.soft,
+          paddingHorizontal: 15,
+          paddingVertical: 5,
+          borderRadius: 5,
+        }}
+      >
+        <Paragraph theme="smallMedium" color="black">
+          Sắp hết hạn
+        </Paragraph>
+      </View>
+    );
+  return <View />;
+});
 
 export const HeaderCardAuction = React.memo(
   ({ orderData, typeAuction }: HeaderCardAuctionProps) => {

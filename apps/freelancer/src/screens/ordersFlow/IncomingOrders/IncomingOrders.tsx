@@ -47,7 +47,7 @@ const IncomingOrders: React.FC<
   return (
     <FreelancerTemplate>
       <SafeAreaView style={incomingOrdersScreenStyle.container}>
-        <HeaderWithTitle title="ĐƠN ĐANG ĐẤU GIÁ" />
+        <HeaderWithTitle title="ĐƠN SẮP TỚI" />
         <VerticalSpacer size="xl" />
         <PrimaryScrollView direction="horizontal">
           {ORDER_STATUS_INCOMING.map((sc) =>
