@@ -1,6 +1,5 @@
 import {
   FlatList,
-  Modal,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
@@ -8,21 +7,11 @@ import {
 import { Paragraph } from '../text';
 import { FAIcon } from '../icon';
 import { COLOR_PALETTE } from '@styles/color';
-import {
-  IOption,
-  IUIServiceRequirement,
-} from '@business-layer/services/entities';
+import { IOption } from '@business-layer/services/entities';
 import { nativeIconNameType } from '@business-layer/business-logic/non-service-lib/fontawesome';
 import { useEffect, useState } from 'react';
 
-import {
-  Control,
-  Controller,
-  FieldValues,
-  UseFormSetValue,
-} from 'react-hook-form';
-import { TouchTheme } from '../theme';
-import { useBlurTheme } from '@business-layer/business-logic/non-service-lib/blurTheme';
+import { Control, Controller, FieldValues } from 'react-hook-form';
 import { serviceRequirementsSelectStyle } from './styles';
 import ModalWrapper from '../../templates/ModalWrapper';
 import { VerticalSpacer } from '../spacer';
@@ -46,7 +35,6 @@ export const ServiceRequirementsSelect = ({
 }) => {
   const [activeModal, setActiveModal] = useState(false);
   const [optionSelected, setOptionSelected] = useState<string>('');
-  const { setOpenBlurTheme } = useBlurTheme();
   const themeColor = isError ? 'rose' : 'black';
 
   const renderItem = (item: IOption, onChange: (...event: any[]) => void) => {
@@ -128,7 +116,6 @@ export const ServiceRequirementsSelect = ({
       <TouchableWithoutFeedback
         onPress={() => {
           setActiveModal(true);
-          // setOpenBlurTheme(true);
         }}
       >
         <View
